@@ -1,4 +1,4 @@
-package App.Model.Entities.FOEntities;
+package App.Model.Entities.OperationEntities;
 
 public class Withdrawal extends Transaction{
     
