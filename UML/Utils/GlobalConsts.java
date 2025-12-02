@@ -13,8 +13,7 @@ public class GlobalConsts {
 
     public enum userType{
         INDIVIDUAL,
-        BUSINESS,
-        ADMIN
+        BUSINESS
     } 
 
 }

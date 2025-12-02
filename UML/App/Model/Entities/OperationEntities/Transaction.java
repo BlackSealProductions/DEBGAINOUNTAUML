@@ -1,5 +1,5 @@
 package App.Model.Entities.OperationEntities;
 
-public class Transaction {
+public abstract class Transaction {
     
 }

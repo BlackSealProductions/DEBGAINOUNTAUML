@@ -2,24 +2,24 @@ package App.Model.Entities.UserEntities;
 
 import Utils.GlobalConsts;
 
-public class Individual extends User{
+public class Individual extends Customer{
     
     String firstName;
     String lastName;
     String dateOfBirth;
-    String taxId;
 
-    public Individual(String firstName, String lastName, String dateOfBirth, String taxId, String userID, String username, String password, String email, String phone, GlobalConsts.userType userType) {
+
+    public Individual(String firstName, String lastName, String dateOfBirth, String taxId, String userID, String username, String password, String email, String phone, GlobalConsts.userType customerType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.taxId = taxId;
         this.userID = userID;
         this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.userType = userType; 
+        this.taxId = taxId;
+        this.customerType = customerType; 
     }
 
     public String getFirstName() {
