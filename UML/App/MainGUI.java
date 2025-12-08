@@ -14,8 +14,7 @@ public class MainGUI {
         c.initViews();
         c.initControllers();
         c.initStartScreen();
-        Boolean yes;
-        Boolean no;
+
         
         
     }

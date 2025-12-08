@@ -19,7 +19,7 @@ public class MainFrame{
 
     public void init(){
 
-        frame.setTitle("NIGGA");
+        frame.setTitle("Titel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setBounds(140, 40, wWidth+14, wHeight+36);
