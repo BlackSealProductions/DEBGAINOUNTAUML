@@ -1,10 +1,6 @@
 package App.View;
-
-import javax.swing.*;
-
-import Utils.GlobalConsts;
-
 import java.awt.*;
+import javax.swing.*;
 
 
 public class MainFrame{
@@ -26,6 +22,8 @@ public class MainFrame{
         frame.getContentPane().setBackground(darkgrey);
         frame.setResizable(false);
         frame.setVisible(true);
+        // close program when x button top right :3
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
         
     

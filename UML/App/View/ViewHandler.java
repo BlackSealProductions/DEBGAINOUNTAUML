@@ -6,6 +6,7 @@ public class ViewHandler {
     
     private MainFrame mainframe;
     private View_t loginscreen;
+    private View_t mainpage;;
 
 
     public void init(){
@@ -13,8 +14,16 @@ public class ViewHandler {
         this.mainframe = new MainFrame();
 
         this.loginscreen = new LoginScreen();
-        loginscreen.init();
-        mainframe.addPanel(((LoginScreen)loginscreen).getMainPanel());
+        this.mainpage = new MainPage();
+
+        // loginscreen.init();
+        // mainframe.addPanel(((LoginScreen)loginscreen).getMainPanel());
+
+        mainpage.init();
+        mainframe.addPanel(((MainPage)mainpage).getMainPanel());
+
+        
+
     }
 
 
