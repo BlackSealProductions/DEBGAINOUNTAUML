@@ -194,18 +194,5 @@ public class RegisterScreen implements View_t {
         panel.setVisible(false);
     }
 
-    public static void main(String[] args) {
-        JFrame testFrame = new JFrame("Test Register Screen");
-        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        RegisterScreen screen = new RegisterScreen();
-        screen.init(); 
-        
-        testFrame.setSize(1600, 900);
-        testFrame.setLocationRelativeTo(null);
-        testFrame.setVisible(true);
-        testFrame.add(screen.getMainPanel());
-
-        screen.show(); 
-    }
+   
 }
