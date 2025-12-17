@@ -31,11 +31,6 @@ public class LoginScreen implements View_t{
     public JTextArea usrname = new JTextArea(20, 200);
     public JTextArea pword = new JTextArea(20,200);
 
-    public JButton confirm = new JButton("LOG IN");
-    public JButton register = new JButton("REGISTER");
-    // public JButton button3 = new JButton("CHANGE COLOR");
-
-
 
     public void init(){
 
@@ -78,56 +73,50 @@ public class LoginScreen implements View_t{
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // --- Username field ---
-        JTextArea usernameField = new JTextArea("Username: ");
+        JTextField usernameField = new JTextField("Username: ");
         usernameField.setMaximumSize(new Dimension(380, 100));
         usernameField.setPreferredSize(new Dimension(380, 100));
         usernameField.setBackground(Color.white);
         usernameField.setForeground(Color.decode("#C6D3D0"));
         usernameField.setFont(new Font("Bodoni MT", Font.ITALIC, 20));
         usernameField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        OnFocusEventHelper.setOnFocusText(usernameField, "Username: ", Color.decode("#C6D3D0"), Color.decode("#C6D3D0"));
-        // OnClickEventHelper.clearUser(usernameField);
-        // usernameField.setPreferredSize(new Dimension(380, 1000));
-        // usernameField.setBorder(BorderFactory.createTitledBorder("Username"));
+        usernameField.transferFocus();
+        OnFocusEventHelper.setOnFocusText(usernameField, "Username: ", Color.black, Color.decode("#C6D3D0"));
+
         
         // --- Password field ---
-        JTextArea passwordField = new JTextArea("Password: ");
+        JTextField passwordField = new JTextField("Password: ");
         passwordField.setMaximumSize(new Dimension(380, 100));
         passwordField.setPreferredSize(new Dimension(380, 100));
         passwordField.setBackground(Color.white);
         passwordField.setForeground(Color.decode("#C6D3D0"));
         passwordField.setFont(new Font("Bodoni MT", Font.ITALIC, 20));
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        OnFocusEventHelper.setOnFocusText(passwordField, "Password: ", Color.decode("#C6D3D0"), Color.decode("#C6D3D0"));
-        // passwordField.setPreferredSize(new Dimension(380, 1000));
+        passwordField.transferFocus();
+        OnFocusEventHelper.setOnFocusText(passwordField, "Password: ", Color.black, Color.decode("#C6D3D0"));
 
 
-        JButton loginButton = new JButton("login");
-        // loginButton.setBackground(Color.decode("#CCE5E0"));
+        RoundedButton loginButton = new RoundedButton("login");
         loginButton.setBackground(red);
         loginButton.setForeground(Color.white); //93A09D
         loginButton.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
         loginButton.setMaximumSize(new Dimension(290, 95));
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loginButton.setBorder(new RoundedBorder(4, Color.BLACK, 1));
         loginButton.setFocusPainted(false);
-        OnClickEventHelper.setOnClickColor(loginButton, darkred, red);
+        // OnClickEventHelper.setOnClickColor(loginButton, darkred, red);
         
-        JButton registerButton = new JButton("register");
-        // registerButton.setBackground(Color.decode("#CCE5E0"));
+        RoundedButton registerButton = new RoundedButton("register");
         registerButton.setBackground(red);
         registerButton.setForeground(Color.white);
         registerButton.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
         registerButton.setMaximumSize(new Dimension(290, 95));
         registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        registerButton.setBorder(new RoundedBorder(4, Color.BLACK, 1));
         registerButton.setFocusPainted(false);
-        OnClickEventHelper.setOnClickColor(registerButton, darkred, red);
+        // OnClickEventHelper.setOnClickColor(registerButton, darkred, red);
 
 
 
         // (add titleLabel, fields, buttons... same as before)
-
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Verdana", Font.BOLD, 80));
         title.setBackground(Color.black);
@@ -163,6 +152,7 @@ public class LoginScreen implements View_t{
         panel.add(titlePanel);
         panel.add(loginPanel);
 
+
         hide();
     }
 
@@ -182,6 +172,7 @@ public class LoginScreen implements View_t{
 
     public void show(){
         this.panel.setVisible(true);
+        title.requestFocusInWindow();
     }
     
 }
