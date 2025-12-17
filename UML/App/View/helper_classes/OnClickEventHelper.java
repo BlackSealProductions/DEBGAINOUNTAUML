@@ -4,15 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
 
 public class OnClickEventHelper {
 
     static Boolean userClicked = false;
     static Boolean passClicked = false;
 
-    public static void setOnClickColor(JButton button, Color pressedColor, Color originalColor) {
+    public static void setOnClickColor(RoundedButton button, Color pressedColor, Color originalColor) {
     button.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -20,14 +18,14 @@ public class OnClickEventHelper {
                 button.setContentAreaFilled(false);
                 button.setBackground(pressedColor);
                 button.setOpaque(true);
-                button.repaint();
+                // button.repaint();
                 // System.out.println("Button Clicked");
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 button.setBackground(originalColor);
-                button.repaint();
+                // button.repaint();
             }
         });
     }
