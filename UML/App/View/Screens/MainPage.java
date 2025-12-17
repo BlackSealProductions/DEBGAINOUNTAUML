@@ -118,6 +118,36 @@ public class MainPage implements View_t{
 
 
         // register and login buttons 
+        JPanel buttonPanel = new JPanel();
+
+
+        Color red = Color.decode("#D82F4B");
+        RoundedButton registerBut = new RoundedButton("Register");
+        registerBut.setBackground(red);
+        registerBut.setForeground(Color.white);
+        registerBut.setFont(customFont20);
+        registerBut.setAlignmentX(Component.CENTER_ALIGNMENT);
+        registerBut.setMaximumSize(new Dimension(400, 100));
+        registerBut.setMinimumSize(new Dimension(300, 150));
+        registerBut.setFocusPainted(false);
+        
+        
+
+
+        RoundedButton loginBut = new RoundedButton("Login");
+        loginBut.setBackground(red);
+        loginBut.setForeground(Color.white);
+        loginBut.setFont(customFont20);
+        loginBut.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginBut.setMaximumSize(new Dimension(450, 150));
+        loginBut.setFocusPainted(false);
+
+
+
+        buttonPanel.add(registerBut);
+        buttonPanel.add(loginBut);
+        buttonPanel.setBackground(null);
+        buttonPanel.setBounds(1000, 70, 700, 300);
 
         
 
@@ -143,6 +173,8 @@ public class MainPage implements View_t{
         mainPanel.add(hmmyPanel);
         mainPanel.add(dentistPanel);
         mainPanel.add(greenPanel);
+        mainPanel.add(buttonPanel);
+        
 
 
 
