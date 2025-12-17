@@ -174,5 +174,23 @@ public class LoginScreen implements View_t{
         this.panel.setVisible(true);
         title.requestFocusInWindow();
     }
+
+
+    public static void main(String[] args) {
+        // 1. Create a Frame to hold the panel
+        JFrame testFrame = new JFrame("Test Preview: Register Screen");
+        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // 2. Add our RegisterScreen panel to it
+        testFrame.add(new RegisterScreen());
+        
+        // 3. Size the frame appropriately
+        testFrame.setSize(1000, 700); // Standard laptop size
+        testFrame.setLocationRelativeTo(null); // Center on screen
+        
+        // 4. Show it
+        testFrame.setVisible(true);
+    }
+
     
 }
