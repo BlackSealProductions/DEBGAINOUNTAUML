@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 public class MainPage implements View_t{
 
-    String fontPath = "/UML/App/Fonts/RobotoMono-Bold.ttf";
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
     Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
     Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
 
@@ -33,7 +33,7 @@ public class MainPage implements View_t{
         mainPanel.setLayout(null);
 
         // BoT logo 
-        Image logo = new ImageIcon(getClass().getResource("/UML/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon logoIcon = new ImageIcon(logo);
         RoundedImage logoPanel = new RoundedImage(logoIcon,20);
         logoPanel.setBounds(50,50,200,200);
@@ -55,7 +55,7 @@ public class MainPage implements View_t{
 
 
         // hmmu image
-        Image hmmy = new ImageIcon(getClass().getResource("/UML/Images/hmmyIMG.png")).getImage().getScaledInstance(700, 350, Image.SCALE_SMOOTH);
+        Image hmmy = new ImageIcon(getClass().getResource("/Images/hmmyIMG.png")).getImage().getScaledInstance(700, 350, Image.SCALE_SMOOTH);
         ImageIcon immyIcon = new ImageIcon(hmmy);
         RoundedImage hmmyPanel = new RoundedImage(immyIcon,10);
         hmmyPanel.setBounds(465,350,700,350);
@@ -65,14 +65,14 @@ public class MainPage implements View_t{
         JPanel dentistPanel = new JPanel();
         dentistPanel.setBackground(null);
         dentistPanel.setBounds(1225,400,300,300);
-
+  
         JLabel odont = new JLabel("9/10 Οδοντίατρους");
         odont.setFont(customFont20);
 
         JLabel epilegoun = new JLabel("επιλέγουν Bank of TUC!");
         epilegoun.setFont(customFont20);
 
-        Image trust = new ImageIcon(getClass().getResource("/UML/Images/trustpilot.png")).getImage().getScaledInstance(280, 120, Image.SCALE_SMOOTH);
+        Image trust = new ImageIcon(getClass().getResource("/Images/trustpilot.png")).getImage().getScaledInstance(280, 120, Image.SCALE_SMOOTH);
         ImageIcon trustIcon = new ImageIcon(trust);
         RoundedImage trustPanel = new RoundedImage(trustIcon,1);
         
@@ -112,9 +112,15 @@ public class MainPage implements View_t{
         polla.setFont(customFont20);
 
         
-        Image pig = new ImageIcon(getClass().getResource("/UML/Images/pig.png")).getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+        Image pig = new ImageIcon(getClass().getResource("/Images/pig.png")).getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         ImageIcon pigIcon = new ImageIcon(pig);
         RoundedImage pigPanel = new RoundedImage(pigIcon,1);
+
+
+        // register and login buttons 
+
+        
+
         
 
 
