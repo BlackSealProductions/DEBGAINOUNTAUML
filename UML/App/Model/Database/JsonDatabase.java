@@ -1,4 +1,4 @@
-package App.Model;
+package App.Model.Database;
 
 import java.io.*;
 import java.nio.file.*;
