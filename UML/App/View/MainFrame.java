@@ -22,9 +22,10 @@ public class MainFrame{
         frame.setTitle("NIGGA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
-        frame.setBounds(140, 40, wWidth+14, wHeight+36);
+        frame.setBounds(140, 40, wWidth, wHeight); // 14,36
         frame.getContentPane().setBackground(darkgrey);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
         

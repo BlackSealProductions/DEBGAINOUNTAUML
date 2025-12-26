@@ -14,10 +14,13 @@ import java.io.IOException;
 
 public class BillPaymentScreen implements View_t {
 
+    final int wWidth = Utils.GlobalConsts.wWidth;
+    final int wHeight = Utils.GlobalConsts.wHeight;
+
     // --- 1. View_t Essentials ---
     private JPanel panel = new JPanel();
-    final int wWidth = 1200; 
-    final int wHeight = 800;
+    // final int wWidth = 1200; 
+    // final int wHeight = 800;
 
     // --- 2. Colors ---
     Color blue = Color.decode("#C2E5FF");   
@@ -39,6 +42,8 @@ public class BillPaymentScreen implements View_t {
         panel.setLayout(new BorderLayout());
         panel.setBackground(blue);
         panel.setBorder(new EmptyBorder(20, 40, 20, 40));
+        panel.setBounds(0, 0, wWidth, wHeight);
+
 
         // --- A. Header Section (Logo | Title | Balance) ---
         // FIX: Use BorderLayout, but set FIXED preferred widths for Left/Right panels.
@@ -175,20 +180,17 @@ public class BillPaymentScreen implements View_t {
         return container;
     }
 
-    @Override
     public JPanel getMainPanel() {
-        return panel;
+        return this.panel;
     }
 
-    @Override
     public void show() {
-        panel.setVisible(true);
-        panel.requestFocusInWindow();
+        this.panel.setVisible(true);
+        // panel.requestFocusInWindow();
     }
 
-    @Override
     public void hide() {
-        panel.setVisible(false);
+        this.panel.setVisible(false);
     }
 
     public String getRFCode() { return rfCodeField.getText(); }
@@ -196,7 +198,22 @@ public class BillPaymentScreen implements View_t {
     public String getPaymentTime() { return timeField.getText(); }
     public RoundedButton getCompleteBtn() { return completeBtn; }
     public void setBalance(String amount) {
-        balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        this.balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+    }
+
+    public static void main(String[] args) {
+        JFrame testFrame = new JFrame("Test Bill Payment Screen");
+        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        BillPaymentScreen screen = new BillPaymentScreen();
+        screen.init(); 
+        
+        testFrame.setSize(1200, 800);
+        testFrame.setLocationRelativeTo(null);
+        testFrame.add(screen.getMainPanel());
+        testFrame.setVisible(true);
+        
+        screen.show();
     }
 
 }

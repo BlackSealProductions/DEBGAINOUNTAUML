@@ -31,7 +31,7 @@ public class LoginScreen implements View_t{
     public JTextArea usrname = new JTextArea(20, 200);
     public JTextArea pword = new JTextArea(20,200);
 
-
+    @Override
     public void init(){
 
 

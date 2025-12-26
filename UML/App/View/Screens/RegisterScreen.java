@@ -7,18 +7,16 @@ import App.View.helper_classes.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.stream.IntStream;
 
 public class RegisterScreen implements View_t {
 
+    final int wWidth = Utils.GlobalConsts.wWidth;
+    final int wHeight = Utils.GlobalConsts.wHeight;
+
     // --- 1. View_t Essentials ---
     private JPanel panel = new JPanel();
     
-    // Updated Resolution
-    final int wWidth = 1600; 
-    final int wHeight = 900; 
-
     // --- 2. Colors ---
     Color blue = Color.decode("#C2E5FF");   
     Color red = Color.decode("#D82F4B");    
@@ -37,7 +35,7 @@ public class RegisterScreen implements View_t {
         panel.setLayout(new BorderLayout());
         panel.setBackground(blue); 
         panel.setBounds(0, 0, wWidth, wHeight);
-        panel.setBorder(new EmptyBorder(40, 60, 40, 60)); // More padding for large screen
+        panel.setBorder(new EmptyBorder(40, 60, 40, 60));
 
         // --- Title Section ---
         titleLabel = new JLabel("Εγγραφή Χρήστη", SwingConstants.CENTER);
@@ -178,20 +176,17 @@ public class RegisterScreen implements View_t {
 
     // --- View_t Implementation ---
 
-    @Override
     public JPanel getMainPanel() {
-        return panel;
+        return this.panel;
     }
 
-    @Override
     public void show() {
-        panel.setVisible(true);
-        titleLabel.requestFocusInWindow(); 
+        this.panel.setVisible(true);
+        this.titleLabel.requestFocusInWindow(); 
     }
 
-    @Override
     public void hide() {
-        panel.setVisible(false);
+        this.panel.setVisible(false);
     }
 
    

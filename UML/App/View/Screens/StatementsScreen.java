@@ -13,10 +13,11 @@ import java.io.IOException;
 
 public class StatementsScreen implements View_t {
 
+    final int wWidth = Utils.GlobalConsts.wWidth;
+    final int wHeight = Utils.GlobalConsts.wHeight;
+
     // --- 1. View_t Essentials ---
     private JPanel panel = new JPanel();
-    final int wWidth = 1200; 
-    final int wHeight = 800;
 
     // --- 2. Colors ---
     Color blue = Color.decode("#C2E5FF");   // Main Background
@@ -37,6 +38,8 @@ public class StatementsScreen implements View_t {
         panel.setLayout(new BorderLayout());
         panel.setBackground(blue);
         panel.setBorder(new EmptyBorder(20, 40, 20, 40));
+        panel.setBounds(0, 0, wWidth, wHeight);
+
 
         // --- A. Header Section (Logo | Title | Balance) ---
         JPanel headerPanel = new JPanel(new BorderLayout()); 
@@ -189,6 +192,22 @@ public class StatementsScreen implements View_t {
     
     public void setBalance(String amount) {
         balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+    }
+
+
+    public static void main(String[] args) {
+        JFrame testFrame = new JFrame("Test Statements Screen");
+        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        StatementsScreen screen = new StatementsScreen();
+        screen.init(); 
+        
+        testFrame.setSize(1200, 800);
+        testFrame.setLocationRelativeTo(null);
+        testFrame.add(screen.getMainPanel());
+        testFrame.setVisible(true);
+        
+        screen.show();
     }
 
 }
