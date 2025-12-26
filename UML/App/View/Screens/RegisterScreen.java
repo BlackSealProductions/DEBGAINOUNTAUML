@@ -2,7 +2,7 @@ package App.View.Screens;
 
 import App.View.View_t;
 import App.View.helper_classes.*;
-// import Utils.GlobalConsts; 
+import Utils.GlobalConsts; // Make sure this import works
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,10 +24,19 @@ public class RegisterScreen implements View_t {
     Color textColor = Color.BLACK;
 
     // --- 3. Form Components ---
+    // Make sure all these are Class Variables!
     private JTextField nameField, surnameField, emailField, addressField, phoneField, citizenIdField;
+    // You also need Username/Password fields for registration!
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+
     private JComboBox<String> dayBox, monthBox, yearBox;
     private String selectedUserType = "Individual";
     private JLabel titleLabel;
+    
+    // FIX 1: Define buttons here so Getters can see them
+    private RoundedButton registerBtn;
+    private RoundedButton backBtn;
 
     @Override
     public void init() {
@@ -37,15 +46,31 @@ public class RegisterScreen implements View_t {
         panel.setBounds(0, 0, wWidth, wHeight);
         panel.setBorder(new EmptyBorder(40, 60, 40, 60));
 
-        // --- Title Section ---
+        // --- Top Bar (Back Button + Title) ---
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setOpaque(false);
+        
+        // FIX 2: Create Back Button
+        backBtn = new RoundedButton("< Back");
+        backBtn.setPreferredSize(new Dimension(100, 40));
+        backBtn.setBackground(Color.DARK_GRAY);
+        backBtn.setForeground(Color.WHITE);
+        backBtn.setFont(new Font("Arial", Font.BOLD, 14));
+        // Add to top-left
+        JPanel backContainer = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        backContainer.setOpaque(false);
+        backContainer.add(backBtn);
+        
         titleLabel = new JLabel("Εγγραφή Χρήστη", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Verdana", Font.BOLD, 60)); // Larger font for 1600p
+        titleLabel.setFont(new Font("Verdana", Font.BOLD, 60)); 
         titleLabel.setForeground(Color.BLACK);
-        titleLabel.setBorder(new EmptyBorder(0, 0, 50, 0)); // Push content down
-        panel.add(titleLabel, BorderLayout.NORTH);
+        
+        topPanel.add(backContainer, BorderLayout.WEST);
+        topPanel.add(titleLabel, BorderLayout.CENTER);
+        
+        panel.add(topPanel, BorderLayout.NORTH);
 
         // --- Main Content Container ---
-        // 1 Row, 2 Cols, 100px gap between Left/Right panels
         JPanel contentPanel = new JPanel(new GridLayout(1, 2, 100, 0)); 
         contentPanel.setOpaque(false);
 
@@ -54,19 +79,31 @@ public class RegisterScreen implements View_t {
         leftPanel.setOpaque(false);
         GridBagConstraints gbc = new GridBagConstraints();
         
-        // Fix: Don't fill horizontally excessively. Center them.
         gbc.fill = GridBagConstraints.NONE; 
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(15, 0, 15, 0); // Vertical spacing between fields
+        gbc.insets = new Insets(10, 0, 10, 0); // Reduced spacing slightly to fit more fields
         gbc.gridx = 0;
 
-        // Initialize Fields (Now wider but fixed)
-        nameField = createStyledField("Name", gbc, leftPanel, 0);
-        surnameField = createStyledField("Surname", gbc, leftPanel, 1);
-        emailField = createStyledField("Email", gbc, leftPanel, 2);
-        addressField = createStyledField("Address", gbc, leftPanel, 3);
-        phoneField = createStyledField("Phone Number", gbc, leftPanel, 4);
-        citizenIdField = createStyledField("Citizen ID", gbc, leftPanel, 5);
+        // Initialize Fields
+        // Added Username/Password fields because they are needed for login!
+        usernameField = createStyledField("Username", gbc, leftPanel, 0);
+        
+        // Create Password Field manually since it's unique
+        passwordField = new JPasswordField("Password");
+        passwordField.setPreferredSize(new Dimension(450, 55));
+        passwordField.setFont(new Font("Bodoni MT", Font.ITALIC, 24));
+        passwordField.setForeground(placeholderColor);
+        passwordField.setEchoChar((char)0); // Visible placeholder
+        OnFocusEventHelper.setOnFocusText(passwordField, "Password", textColor, placeholderColor);
+        gbc.gridy = 1;
+        leftPanel.add(passwordField, gbc);
+
+        nameField = createStyledField("Name", gbc, leftPanel, 2);
+        surnameField = createStyledField("Surname", gbc, leftPanel, 3);
+        emailField = createStyledField("Email", gbc, leftPanel, 4);
+        addressField = createStyledField("Address", gbc, leftPanel, 5);
+        phoneField = createStyledField("Phone Number", gbc, leftPanel, 6);
+        citizenIdField = createStyledField("Citizen ID", gbc, leftPanel, 7);
 
         contentPanel.add(leftPanel);
 
@@ -77,7 +114,7 @@ public class RegisterScreen implements View_t {
         gbcRight.gridx = 0;
         gbcRight.insets = new Insets(0, 0, 30, 0);
 
-        // A. Date of Birth (Dropdowns)
+        // A. Date of Birth
         JLabel dobLabel = new JLabel("ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ");
         dobLabel.setFont(new Font("Bodoni MT", Font.BOLD, 18));
         gbcRight.gridy = 0;
@@ -122,15 +159,16 @@ public class RegisterScreen implements View_t {
         typePanel.add(comBtn);
 
         gbcRight.gridy = 2;
-        gbcRight.insets = new Insets(50, 0, 50, 0); // More breathing room around buttons
+        gbcRight.insets = new Insets(50, 0, 50, 0);
         rightPanel.add(typePanel, gbcRight);
 
         // C. Register Button
-        RoundedButton registerBtn = new RoundedButton("Register");
+        // FIX 3: Initialize the class variable, don't create a new local one
+        registerBtn = new RoundedButton("Register");
         registerBtn.setBackground(red);
         registerBtn.setForeground(Color.WHITE);
-        registerBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 32)); // Bigger font
-        registerBtn.setPreferredSize(new Dimension(300, 70)); // Bigger button
+        registerBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 32));
+        registerBtn.setPreferredSize(new Dimension(300, 70));
         registerBtn.setFocusPainted(false);
         
         gbcRight.gridy = 3;
@@ -142,18 +180,15 @@ public class RegisterScreen implements View_t {
         hide();
     }
 
-    // --- Helpers for Styling ---
+    // --- Helpers ---
 
     private JTextField createStyledField(String placeholder, GridBagConstraints gbc, JPanel parent, int row) {
         JTextField field = new JTextField(placeholder);
-        // FIX: Made them wider (450px) and taller (55px) to fit 1600x900 better
         field.setPreferredSize(new Dimension(450, 55)); 
-        field.setFont(new Font("Bodoni MT", Font.ITALIC, 24)); // Larger text
+        field.setFont(new Font("Bodoni MT", Font.ITALIC, 24)); 
         field.setForeground(placeholderColor);
         field.setBackground(Color.WHITE);
-        
         OnFocusEventHelper.setOnFocusText(field, placeholder, textColor, placeholderColor);
-
         gbc.gridy = row;
         parent.add(field, gbc);
         return field;
@@ -162,7 +197,7 @@ public class RegisterScreen implements View_t {
     private JComboBox<String> createStyledComboBox(String[] items, int width) {
         JComboBox<String> box = new JComboBox<>(items);
         box.setBackground(Color.WHITE);
-        box.setFont(new Font("Bodoni MT", Font.PLAIN, 20)); // Larger font
+        box.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
         box.setPreferredSize(new Dimension(width, 40));
         return box;
     }
@@ -170,24 +205,27 @@ public class RegisterScreen implements View_t {
     private void styleToggleButton(JToggleButton btn) {
         btn.setBackground(Color.WHITE);
         btn.setFocusPainted(false);
-        btn.setPreferredSize(new Dimension(160, 100)); // Larger toggle buttons
+        btn.setPreferredSize(new Dimension(160, 100));
         btn.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
     }
 
     // --- View_t Implementation ---
 
-    public JPanel getMainPanel() {
-        return this.panel;
-    }
+    public JPanel getMainPanel() { return this.panel; }
+    public void show() { this.panel.setVisible(true); this.titleLabel.requestFocusInWindow(); }
+    public void hide() { this.panel.setVisible(false); }
 
-    public void show() {
-        this.panel.setVisible(true);
-        this.titleLabel.requestFocusInWindow(); 
-    }
+    // --- GETTERS ---
 
-    public void hide() {
-        this.panel.setVisible(false);
-    }
+    public String getUsername() { return usernameField.getText(); }
+    public String getPassword() { return new String(passwordField.getPassword()); }
+    public String getName() { return nameField.getText(); }
+    public String getSurname() { return surnameField.getText(); }
+    public String getCitizenId() { return citizenIdField.getText(); }
+    public String getEmail() { return emailField.getText(); }
+    public String getAddress() { return addressField.getText(); }
+    public String getPhone() { return phoneField.getText(); }
 
-   
+    public RoundedButton getRegisterBtn() { return registerBtn; } 
+    public RoundedButton getBackBtn() { return backBtn; }
 }

@@ -6,114 +6,143 @@ import java.util.*;
 
 public class JsonDatabase {
 
-    private static final String DB_FILE = "users.json";
+    private static final String DB_FILE = "accounts.json";
 
-    // --- WRITE: Save a User Profile ---
-    public static void saveUser(Map<String, String> userProfile) {
-        try {
-            File file = new File(DB_FILE);
-            List<String> lines = new ArrayList<>();
-            
-            // 1. Read existing file
-            if (file.exists()) {
-                lines = Files.readAllLines(file.toPath());
-            }
+    // ===========================
+    //      PUBLIC METHODS
+    // ===========================
 
-            // 2. Prepare the new JSON Object string
-            String jsonEntry = mapToJson(userProfile);
+    // --- Save Data (Used for Registering NEW users) ---
+    public static void saveRecord(Map<String, String> newRecord) {
+        // 1. Load existing data
+        List<Map<String, String>> allRecords = getAllRecords();
 
-            // 3. Write Mode:
-            // If file is empty, create new array.
-            // If file exists, remove the last "]" and append the new object.
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            
-            if (lines.isEmpty() || lines.size() <= 1) {
-                writer.write("[\n");
-                writer.write(jsonEntry);
-                writer.write("\n]");
-            } else {
-                // Rewrite everything except the last line (the closing bracket)
-                for (int i = 0; i < lines.size() - 1; i++) {
-                    writer.write(lines.get(i));
-                    writer.newLine();
-                }
-                writer.write("  ,\n"); // Add comma
-                writer.write(jsonEntry);
-                writer.write("\n]"); // Add closing bracket back
-            }
-            writer.close();
-            System.out.println("Profile saved for: " + userProfile.get("name"));
+        // 2. Add the new record
+        allRecords.add(newRecord);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // 3. Save everything back to the file
+        saveAllRecords(allRecords);
     }
 
-    // --- READ: Get a User Profile by Citizen ID ---
-    // This proves it is "easy to get afterwards"
-    public static Map<String, String> getUserProfile(String citizenId) {
-        List<Map<String, String>> allUsers = getAllUsers();
-        
-        for (Map<String, String> user : allUsers) {
-            if (user.get("citizenId").equals(citizenId)) {
-                return user; // Found the profile!
-            }
-        }
-        return null; // Not found
+    // --- Get All Records (Used for Login) ---
+    public static List<Map<String, String>> getAllRecords() {
+        return parseJsonFile(DB_FILE);
     }
 
-    // --- READ HELPER: Parse the JSON text file manually ---
-    public static List<Map<String, String>> getAllUsers() {
-        List<Map<String, String>> users = new ArrayList<>();
-        try {
-            File file = new File(DB_FILE);
-            if (!file.exists()) return users;
+    // --- Get Specific Record (Useful for checking duplicates/updates) ---
+    public static Map<String, String> getRecord(String citizenId) {
+        List<Map<String, String>> allData = getAllRecords();
+        for (Map<String, String> record : allData) {
+            if (record.containsKey("citizenId") && record.get("citizenId").equals(citizenId)) {
+                return record;
+            }
+        }
+        return null; 
+    }
 
+    // ===========================
+    //   PRIVATE HELPERS (Manual JSON Logic)
+    // ===========================
+
+    // --- PARSER: Reads the file and converts string -> List<Map> ---
+    private static List<Map<String, String>> parseJsonFile(String filename) {
+        List<Map<String, String>> dataList = new ArrayList<>();
+        File file = new File(filename);
+
+        if (!file.exists()) return dataList;
+
+        try {
+            // Read entire file content
             String content = new String(Files.readAllBytes(file.toPath()));
-            
-            // SUPER SIMPLE PARSER (Splits by curly braces "}")
-            // Note: This relies on the specific formatting we used in saveUser
-            String[] rawObjects = content.split("\\},"); 
+            content = content.trim();
+
+            // Handle empty file or empty JSON array
+            if (content.isEmpty() || content.equals("[]")) return dataList;
+
+            // Remove the outer [ and ]
+            if (content.startsWith("[") && content.endsWith("]")) {
+                content = content.substring(1, content.length() - 1);
+            }
+
+            // Split by "}, {" to separate objects
+            // This regex handles the comma between objects
+            String[] rawObjects = content.split("(?<=\\}),\\s*(?=\\{)");
 
             for (String rawObj : rawObjects) {
-                Map<String, String> userMap = new HashMap<>();
+                Map<String, String> map = new HashMap<>();
                 
-                // Clean up the string to find "key": "value" pairs
-                String[] lines = rawObj.split("\n");
-                for (String line : lines) {
-                    if (line.contains(":")) {
-                        String[] parts = line.split(":", 2);
-                        String key = parts[0].replaceAll("[\"{}, ]", "");
-                        String value = parts[1].replaceAll("[\"{},]", "").trim();
-                        userMap.put(key, value);
+                // Clean up braces
+                rawObj = rawObj.replace("{", "").replace("}", "").trim();
+                
+                // Split by comma (assuming no commas inside values for now)
+                // Note: This is a simple parser. If a user types a comma in their address, 
+                // this manual parser might break. Libraries like Jackson avoid this.
+                String[] fields = rawObj.split(",\n"); 
+                // Fallback: if not split by newline, try split by comma alone
+                if (fields.length == 1) fields = rawObj.split(",");
+
+                for (String field : fields) {
+                    if (field.contains(":")) {
+                        String[] parts = field.split(":", 2);
+                        String key = parts[0].replaceAll("[\"\\s]", ""); // Remove quotes and spaces
+                        String value = parts[1].replaceAll("[\"\\s]", ""); // Remove quotes and spaces
+                        
+                        // If you want to keep spaces inside values (like Name), change regex above:
+                        // String value = parts[1].replace("\"", "").trim();
+                        
+                        map.put(key, cleanValue(parts[1]));
                     }
                 }
-                if (!userMap.isEmpty()) {
-                    users.add(userMap);
-                }
+                dataList.add(map);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return users;
+        return dataList;
     }
 
-    // --- HELPER: Formats Map to JSON String ---
-    private static String mapToJson(Map<String, String> data) {
-        StringBuilder json = new StringBuilder();
-        json.append("  {\n");
-        int size = data.size();
-        int count = 0;
-        
-        for (Map.Entry<String, String> entry : data.entrySet()) {
-            json.append(String.format("    \"%s\": \"%s\"", entry.getKey(), entry.getValue()));
-            if (++count < size) {
-                json.append(",\n");
+    // --- WRITER: Converts List<Map> -> String and writes to file ---
+    private static void saveAllRecords(List<Map<String, String>> records) {
+        StringBuilder jsonBuilder = new StringBuilder();
+        jsonBuilder.append("[\n");
+
+        for (int i = 0; i < records.size(); i++) {
+            Map<String, String> record = records.get(i);
+            jsonBuilder.append("  {\n");
+
+            int fieldCount = 0;
+            for (Map.Entry<String, String> entry : record.entrySet()) {
+                jsonBuilder.append(String.format("    \"%s\": \"%s\"", entry.getKey(), entry.getValue()));
+                
+                // Add comma if not the last field
+                if (fieldCount < record.size() - 1) {
+                    jsonBuilder.append(",\n");
+                } else {
+                    jsonBuilder.append("\n");
+                }
+                fieldCount++;
+            }
+
+            jsonBuilder.append("  }");
+            
+            // Add comma between objects if not the last object
+            if (i < records.size() - 1) {
+                jsonBuilder.append(",\n");
             } else {
-                json.append("\n");
+                jsonBuilder.append("\n");
             }
         }
-        json.append("  }");
-        return json.toString();
+        jsonBuilder.append("]");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(DB_FILE))) {
+            writer.write(jsonBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Helper to clean up quotes and extra spaces from values
+    private static String cleanValue(String raw) {
+        return raw.replace("\"", "").trim();
     }
 }

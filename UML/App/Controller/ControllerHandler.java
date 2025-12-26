@@ -9,7 +9,7 @@ public class ControllerHandler {
 
     private ViewHandler v;
     private ModelHandler m;
-
+    private Controller_t register_con;
     private Controller_t login_con;
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
@@ -18,11 +18,13 @@ public class ControllerHandler {
     }
 
 
-    public void initControllers(){
-
-        //mainframe_con = new MainFrameCon(v.getMainframe(), m);
-        login_con = new LoginCon(v.getLoginscreen(), m);
-
+   public void initControllers() {
+        // Pass 'v' as the 3rd argument
+        login_con = new LoginCon(v.getLoginScreen(), m, v);
+        
+        login_con.init();
+        register_con = new App.Controller.ScreenControllers.RegisterCon(v.getRegisterScreen(), m, v);
+        register_con.init();
     }
 
 
