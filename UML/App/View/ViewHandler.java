@@ -11,6 +11,7 @@ public class ViewHandler {
     private View_t statements;
     private View_t standingorders;
     private View_t accountmgmt;
+    private View_t mainpage;
 
     
     public void init(){
@@ -40,6 +41,13 @@ public class ViewHandler {
         this.accountmgmt = new AccountManagementScreen();
         this.accountmgmt.init();
         mainframe.addPanel(((AccountManagementScreen)accountmgmt).getMainPanel());
+        
+        this.mainpage = new MainPage();
+        this.mainpage.init();
+        mainframe.addPanel(((MainPage)mainpage).getMainPanel());
+
+        
+
     }
 
 

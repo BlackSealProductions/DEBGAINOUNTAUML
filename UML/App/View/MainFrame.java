@@ -1,10 +1,6 @@
 package App.View;
-
-import javax.swing.*;
-
-import Utils.GlobalConsts;
-
 import java.awt.*;
+import javax.swing.*;
 
 
 public class MainFrame{
@@ -19,7 +15,7 @@ public class MainFrame{
 
     public void init(){
 
-        frame.setTitle("NIGGA");
+        frame.setTitle("Titel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setBounds(140, 40, wWidth, wHeight); // 14,36
@@ -27,6 +23,8 @@ public class MainFrame{
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        // close program when x button top right :3
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
         
     
