@@ -240,19 +240,6 @@ public class StandingOrdersScreen implements View_t {
         balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
     }
 
-    public static void main(String[] args) {
-        JFrame testFrame = new JFrame("Test Standing Orders");
-        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        StandingOrdersScreen screen = new StandingOrdersScreen();
-        screen.init(); 
-        
-        testFrame.setSize(1200, 800);
-        testFrame.setLocationRelativeTo(null);
-        testFrame.add(screen.getMainPanel());
-        testFrame.setVisible(true);
-        
-        screen.show();
-    }
+
 
 }

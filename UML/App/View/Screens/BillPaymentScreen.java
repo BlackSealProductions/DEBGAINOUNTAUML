@@ -201,19 +201,5 @@ public class BillPaymentScreen implements View_t {
         this.balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
     }
 
-    public static void main(String[] args) {
-        JFrame testFrame = new JFrame("Test Bill Payment Screen");
-        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        BillPaymentScreen screen = new BillPaymentScreen();
-        screen.init(); 
-        
-        testFrame.setSize(1200, 800);
-        testFrame.setLocationRelativeTo(null);
-        testFrame.add(screen.getMainPanel());
-        testFrame.setVisible(true);
-        
-        screen.show();
-    }
 
 }

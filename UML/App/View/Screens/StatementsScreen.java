@@ -195,19 +195,5 @@ public class StatementsScreen implements View_t {
     }
 
 
-    public static void main(String[] args) {
-        JFrame testFrame = new JFrame("Test Statements Screen");
-        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        StatementsScreen screen = new StatementsScreen();
-        screen.init(); 
-        
-        testFrame.setSize(1200, 800);
-        testFrame.setLocationRelativeTo(null);
-        testFrame.add(screen.getMainPanel());
-        testFrame.setVisible(true);
-        
-        screen.show();
-    }
 
 }
