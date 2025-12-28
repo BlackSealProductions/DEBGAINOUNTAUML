@@ -361,5 +361,18 @@
     "citizenId": "AB12345",
     "email": "christas101@outlook.com",
     "username": "chris"
+  },
+  {
+    "interestRate": "0.5",
+    "password": "1234",
+    "secondaryOwner": "None",
+    "balance": "0.0",
+    "phone": "66648992",
+    "surname": "l",
+    "iban": "GR4447263849266804943370369",
+    "name": "s",
+    "citizenId": "12345",
+    "email": "jhby@gmail.com",
+    "username": "steliosldr"
   }
 ]

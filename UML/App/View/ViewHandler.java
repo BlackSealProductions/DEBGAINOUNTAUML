@@ -68,7 +68,7 @@ public class ViewHandler {
     public void showDashboard() {
         if (login != null) login.hide();
         // Show whichever screen is your main dashboard
-        if (statements != null) statements.show(); 
+        if (statements != null) accountmgmt.show(); 
     }
 
     public void showRegisterScreen() {

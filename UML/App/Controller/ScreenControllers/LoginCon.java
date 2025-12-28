@@ -34,21 +34,27 @@ public class LoginCon extends Controller_t {
         if (view == null) return;
 
         // Login Button Logic
-        view.getLoginBtn().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleLogin();
-            }
-        });
+        view.getLoginBtn().addActionListener(e -> handleLogin());
+        // view.getLoginBtn().addActionListener(new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         handleLogin();
+        //     }
+        // });
 
         // Register Button Logic
-        view.getRegisterBtn().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Now this works because viewHandler exists!
-                viewHandler.showRegisterScreen();
-            }
-        });
+        view.getRegisterBtn().addActionListener(e -> handleRegister());
+        // view.getRegisterBtn().addActionListener(new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         // Now this works because viewHandler exists!
+        //         viewHandler.showRegisterScreen();
+        //     }
+        // });
+    }
+
+    private void handleRegister(){
+        viewHandler.showRegisterScreen();
     }
 
     private void handleLogin() {
