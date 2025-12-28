@@ -2,7 +2,7 @@ package App.Controller;
 
 import App.View.ViewHandler;
 import App.Controller.ScreenControllers.LoginCon;
-import App.Controller.ScreenControllers.MainFrameCon;
+import App.Controller.ScreenControllers.RegisterCon;
 import App.Model.ModelHandler;
 
 public class ControllerHandler {
@@ -21,9 +21,9 @@ public class ControllerHandler {
    public void initControllers() {
         // Pass 'v' as the 3rd argument
         login_con = new LoginCon(v.getLoginScreen(), m, v);
-        
         login_con.init();
-        register_con = new App.Controller.ScreenControllers.RegisterCon(v.getRegisterScreen(), m, v);
+        
+        register_con = new RegisterCon(v.getRegisterScreen(), m, v);
         register_con.init();
     }
 

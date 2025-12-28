@@ -38,6 +38,7 @@ public class RegisterCon extends Controller_t {
         });
 
         // 2. REGISTER BUTTON
+        
         view.getRegisterBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
