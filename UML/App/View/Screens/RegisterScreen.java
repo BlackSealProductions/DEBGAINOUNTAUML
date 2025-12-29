@@ -50,22 +50,22 @@ public class RegisterScreen implements View_t {
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setOpaque(false);
         
-        // FIX 2: Create Back Button
-        backBtn = new RoundedButton("< Back");
-        backBtn.setPreferredSize(new Dimension(100, 40));
-        backBtn.setBackground(Color.DARK_GRAY);
-        backBtn.setForeground(Color.WHITE);
-        backBtn.setFont(new Font("Arial", Font.BOLD, 14));
-        // Add to top-left
-        JPanel backContainer = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        backContainer.setOpaque(false);
-        backContainer.add(backBtn);
+        // // FIX 2: Create Back Button
+        // backBtn = new RoundedButton("< Back");
+        // backBtn.setPreferredSize(new Dimension(100, 40));
+        // backBtn.setBackground(Color.DARK_GRAY);
+        // backBtn.setForeground(Color.WHITE);
+        // backBtn.setFont(new Font("Arial", Font.BOLD, 14));
+        // // Add to top-left
+        // JPanel backContainer = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        // backContainer.setOpaque(false);
+        // backContainer.add(backBtn);
         
         titleLabel = new JLabel("Εγγραφή Χρήστη", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Verdana", Font.BOLD, 60)); 
         titleLabel.setForeground(Color.BLACK);
         
-        topPanel.add(backContainer, BorderLayout.WEST);
+        // topPanel.add(backContainer, BorderLayout.WEST);
         topPanel.add(titleLabel, BorderLayout.CENTER);
         
         panel.add(topPanel, BorderLayout.NORTH);

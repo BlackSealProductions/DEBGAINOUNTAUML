@@ -5,8 +5,11 @@ import App.Model.Database.JsonDatabase;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.ModelHandler;
 import App.Model.Session;
+import App.View.Screens.DashboardScreen;
 import App.View.Screens.LoginScreen;
+import App.View.Screens.RegisterScreen;
 import App.View.ViewHandler; // IMPORT THIS
+import App.View.ViewSession;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,12 +17,11 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
-public class LoginCon extends Controller_t {
+public class LoginCon implements Controller_t {
 
     private LoginScreen view;
     private ModelHandler model; 
     
-    // --- 1. DECLARE VIEW HANDLER HERE ---
     private ViewHandler viewHandler;
 
     // --- 2. UPDATE CONSTRUCTOR TO RECEIVE IT ---
@@ -35,26 +37,18 @@ public class LoginCon extends Controller_t {
 
         // Login Button Logic
         view.getLoginBtn().addActionListener(e -> handleLogin());
-        // view.getLoginBtn().addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         handleLogin();
-        //     }
-        // });
+
 
         // Register Button Logic
         view.getRegisterBtn().addActionListener(e -> handleRegister());
-        // view.getRegisterBtn().addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         // Now this works because viewHandler exists!
-        //         viewHandler.showRegisterScreen();
-        //     }
-        // });
+
     }
 
     private void handleRegister(){
-        viewHandler.showRegisterScreen();
+        view.hide();
+        RegisterScreen next = viewHandler.getRegisterScreen();
+        next.show();
+        ViewSession.getInstance().updateScreenHistory(next);
     }
 
     private void handleLogin() {
@@ -90,10 +84,14 @@ public class LoginCon extends Controller_t {
 
             Session.getInstance().login(inputUser, userRecord.get("citizenId"), activeAccount);
             
-            JOptionPane.showMessageDialog(null, "Login Successful! Welcome " + inputUser);
             
+            JOptionPane.showMessageDialog(null, "Login Successful! Welcome " + inputUser);
             // Switch to Dashboard
-            viewHandler.showDashboard(); 
+            view.hide();
+            DashboardScreen next = viewHandler.getDashboardScreen();
+            next.show();
+            ViewSession.getInstance().updateScreenHistory(next);
+            ViewSession.getInstance().clearHistory();
 
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Username or Password.");

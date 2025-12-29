@@ -38,13 +38,13 @@ public class LoginScreen implements View_t {
     public void init() {
         panel.setBackground(Color.white); 
         panel.setBounds(0, 0, wWidth, wHeight);
-        panel.setBorder(new EmptyBorder(-10, 0, 0, 0));
+        panel.setBorder(new EmptyBorder(0, 0, 0, 0));
         panel.setLayout(null);
         panel.setBackground(blue);
 
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
-        titlePanel.setBounds(0, 0, 1600, 220);
+        titlePanel.setBounds(0, 0, 1600, 240);
         titlePanel.setOpaque(false);
         titlePanel.setBorder(new EmptyBorder(0, 0, 10, 0));
         titlePanel.setBackground(Color.decode("#D6D8D7"));

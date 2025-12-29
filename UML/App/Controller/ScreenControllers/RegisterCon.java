@@ -3,8 +3,10 @@ package App.Controller.ScreenControllers;
 import App.Controller.Controller_t;
 import App.Model.Database.JsonDatabase; // Import Database
 import App.Model.ModelHandler;
+import App.View.Screens.LoginScreen;
 import App.View.Screens.RegisterScreen;
 import App.View.ViewHandler;
+import App.View.ViewSession;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class RegisterCon extends Controller_t {
+public class RegisterCon implements Controller_t {
 
     private RegisterScreen view;
     private ModelHandler model;
@@ -30,22 +32,13 @@ public class RegisterCon extends Controller_t {
         if (view == null) return;
 
         // 1. BACK BUTTON
-        view.getBackBtn().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewHandler.showLoginScreen();
-            }
-        });
+        // view.getBackBtn().addActionListener(e -> handleBack());
 
         // 2. REGISTER BUTTON
-        
-        view.getRegisterBtn().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleRegistration();
-            }
-        });
+        view.getRegisterBtn().addActionListener(e -> handleRegistration());
+
     }
+
 
     private void handleRegistration() {
         // A. GET DATA FROM VIEW
@@ -85,7 +78,10 @@ public class RegisterCon extends Controller_t {
 
         // E. SUCCESS MESSAGE & NAVIGATE
         JOptionPane.showMessageDialog(null, "Registration Successful! Please Login.");
-        viewHandler.showLoginScreen();
+        view.hide();
+        LoginScreen next = viewHandler.getLoginScreen();
+        next.show();
+        ViewSession.getInstance().updateScreenHistory(next);
     }
 
     // Helper to make a fake GR IBAN

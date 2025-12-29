@@ -40,10 +40,10 @@ public class DashboardScreen implements View_t {
 
         // Logo (Left side)
         JLabel logo = new JLabel();
-        logo.setBounds(50, 25, 300, 100);
+        logo.setBounds(0, 10, 150, 150);
         try {
-            BufferedImage logoImg = ImageIO.read(new File("PATH/TO/LOGO.png"));
-            logo.setIcon(new ImageIcon(logoImg.getScaledInstance(250, 80, Image.SCALE_SMOOTH)));
+            Image logoImg = new ImageIcon(getClass().getResource("/App/View/Assets/bankoftuclogo.png")).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+            logo.setIcon(new ImageIcon(logoImg));
         } catch (Exception e) {
             logo.setText("BANK LOGO");
         }
@@ -58,6 +58,7 @@ public class DashboardScreen implements View_t {
         logoutBtn.setBackground(red);
         logoutBtn.setForeground(Color.white);
         logoutBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        logoutBtn.setFocusPainted(false);
 
         // User Name (To the left of the logout button)
         userNameLabel.setBounds(1100, 50, 380, 50);
@@ -123,6 +124,7 @@ public class DashboardScreen implements View_t {
     @Override
     public void show() {
         panel.setVisible(true);
+        accountNumberLabel.requestFocusInWindow();
     }
 
     @Override
