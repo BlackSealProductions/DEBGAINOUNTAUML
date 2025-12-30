@@ -1,10 +1,7 @@
 package App.Controller;
 
 import App.View.ViewHandler;
-import App.Controller.ScreenControllers.FirstPageCon;
-import App.Controller.ScreenControllers.LoginCon;
-import App.Controller.ScreenControllers.MainFrameCon;
-import App.Controller.ScreenControllers.RegisterCon;
+import App.Controller.ScreenControllers.*;
 import App.Model.ModelHandler;
 
 public class ControllerHandler {
@@ -15,6 +12,7 @@ public class ControllerHandler {
     private Controller_t login_con;
     private Controller_t firstpage_con;
     private Controller_t mainframe_con;
+    private Controller_t dashboard_con;
     
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
@@ -36,6 +34,13 @@ public class ControllerHandler {
 
         firstpage_con = new FirstPageCon(v.getFirstPageScreen(), m, v);
         firstpage_con.init();
+
+        dashboard_con = new DashboardCon(v.getDashboardScreen(), m, v);
+        dashboard_con.init();
+
+        
+
+
 
 
     }

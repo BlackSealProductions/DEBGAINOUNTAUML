@@ -15,6 +15,14 @@ import java.io.IOException;
 
 public class AccountManagementScreen implements View_t {
 
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont50 = FontLoader.loadCustomFont(fontPath, 50f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
+    Font customFont30 = FontLoader.loadCustomFont(fontPath, 30f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+    Font customFont16 = FontLoader.loadCustomFont(fontPath, 16f);
+
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
 
@@ -31,6 +39,10 @@ public class AccountManagementScreen implements View_t {
     private RoundedButton changeNameBtn;
     private RoundedButton changeOwnerBtn;
     private JLabel balanceLabel;
+    private JLabel ibanLabel;
+    private JLabel nameLabel;
+    private JLabel epitokioLabel;
+    private JLabel secOwnerLabel;
 
     @Override
     public void init() {
@@ -49,22 +61,19 @@ public class AccountManagementScreen implements View_t {
         JPanel leftHead = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftHead.setOpaque(false);
         leftHead.setPreferredSize(new Dimension(300, 100)); 
-        JLabel logoLabel = new JLabel();
-        try {
-            BufferedImage logoImg = ImageIO.read(new File("App/View/Assets/logo.png")); 
-            Image scaled = logoImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-            logoLabel.setIcon(new ImageIcon(scaled));
-        } catch (IOException e) {
-            logoLabel.setText("[LOGO]");
-            logoLabel.setForeground(Color.RED); 
-        }
-        leftHead.add(logoLabel);
+
+        // BoT logo 
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon logoIcon = new ImageIcon(logo);
+        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
+        logoPanel.setBounds(50,50,100,100);
+        leftHead.add(logoPanel);
 
         // 2. CENTER Title
         JPanel centerHead = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerHead.setOpaque(false);
         JLabel titleLabel = new JLabel("Διαχείριση Λογαριασμού");
-        titleLabel.setFont(new Font("Verdana", Font.BOLD, 36)); 
+        titleLabel.setFont(customFont40); 
         centerHead.add(titleLabel);
 
         // 3. RIGHT Balance
@@ -72,7 +81,7 @@ public class AccountManagementScreen implements View_t {
         rightHead.setOpaque(false);
         rightHead.setPreferredSize(new Dimension(300, 100)); 
         balanceLabel = new JLabel("<html><u>Υπόλοιπο: 67.69€</u></html>");
-        balanceLabel.setFont(new Font("Verdana", Font.BOLD, 18));
+        balanceLabel.setFont(customFont20);
         balanceLabel.setForeground(Color.decode("#003366")); 
         rightHead.add(balanceLabel);
 
@@ -89,27 +98,36 @@ public class AccountManagementScreen implements View_t {
 
         // 1. Sub-Header
         JLabel subTitle = new JLabel("Πληροφορίες Λογαριασμού:");
-        subTitle.setFont(new Font("Verdana", Font.PLAIN, 24));
+        subTitle.setFont(customFont30);
         subTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPanel.add(subTitle);
         contentPanel.add(Box.createVerticalStrut(30)); // Gap
 
-        // 2. Info Rows
-        // We create them one by one using a helper
-        contentPanel.add(createRow("• IBAN: GR1770137038471374039483827", null));
+        // 2. Info Rows (make labels instance variables for later modification)
+        // IBAN Row
+        JLabel ibanLabel = new JLabel("• IBAN: GR1770137038471374039483827");
+        this.ibanLabel = ibanLabel;
+        contentPanel.add(createRow(ibanLabel, null));
         contentPanel.add(Box.createVerticalStrut(20));
 
-        // Create the buttons first so we can assign them to the class variables
+        // Name Row
         changeNameBtn = createSmallButton("αλλαγή");
-        contentPanel.add(createRow("• Όνομα Κατόχου: Ιωάννης Ιοστάριος", changeNameBtn));
+        JLabel nameLabel = new JLabel("• Όνομα Κατόχου: Ιωάννης Ιοστάριος");
+        this.nameLabel = nameLabel;
+        contentPanel.add(createRow(nameLabel, changeNameBtn));
         contentPanel.add(Box.createVerticalStrut(20));
 
-        contentPanel.add(createRow("• Επιτόκιο: 5%", null));
+        // Epitokio Row
+        JLabel epitokioLabel = new JLabel("• Επιτόκιο: 5%");
+        this.epitokioLabel = epitokioLabel;
+        contentPanel.add(createRow(epitokioLabel, null));
         contentPanel.add(Box.createVerticalStrut(20));
 
+        // Secondary Owner Row
         changeOwnerBtn = createSmallButton("αλλαγή");
-        contentPanel.add(createRow("• Δευτερεύοντας Κάτοχος: Γύρος Ζέπελης", changeOwnerBtn));
-        
+        JLabel secOwnerLabel = new JLabel("• Δευτερεύοντας Κάτοχος: Γύρος Ζέπελης");
+        this.secOwnerLabel = secOwnerLabel;
+        contentPanel.add(createRow(secOwnerLabel, changeOwnerBtn));
         // Push everything up
         contentPanel.add(Box.createVerticalGlue());
 
@@ -119,7 +137,7 @@ public class AccountManagementScreen implements View_t {
     }
 
     // --- Helper: Create a styled row ---
-    private JPanel createRow(String text, RoundedButton button) {
+    private JPanel createRow(JLabel label, RoundedButton button) {
         // Use BorderLayout to separate Text (Left) and Button (Right)
         JPanel row = new JPanel(new BorderLayout());
         row.setBackground(rowBg);
@@ -133,8 +151,7 @@ public class AccountManagementScreen implements View_t {
         ));
 
         // Label
-        JLabel label = new JLabel(text);
-        label.setFont(new Font("Verdana", Font.PLAIN, 18));
+        label.setFont(customFont20);
         label.setForeground(Color.BLACK);
         row.add(label, BorderLayout.CENTER);
 
@@ -154,7 +171,7 @@ public class AccountManagementScreen implements View_t {
         RoundedButton btn = new RoundedButton(text,15);
         btn.setBackground(buttonGreen);
         btn.setForeground(Color.WHITE);
-        btn.setFont(new Font("SansSerif", Font.BOLD, 14));
+        btn.setFont(customFont16);
         btn.setPreferredSize(new Dimension(100, 35)); // Small, distinct size
         btn.setFocusPainted(false);
         return btn;
@@ -173,6 +190,19 @@ public class AccountManagementScreen implements View_t {
     public RoundedButton getChangeOwnerBtn() { return changeOwnerBtn; }
     public void setBalance(String amount) {
         balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+    }
+
+    public void setIBAN(String iban){
+        ibanLabel.setText("• IBAN: "+iban);
+    }
+    public void setName(String name){
+        nameLabel.setText("• Όνομα Κατόχου: "+name);
+    }
+    public void setEpitokio(String epit){
+        epitokioLabel.setText("• Επιτόκιο: "+ epit);
+    }
+    public void setSecOwner(String secOwn){
+        secOwnerLabel.setText("• Δευτερεύοντας Κάτοχος: "+secOwn);
     }
 
 

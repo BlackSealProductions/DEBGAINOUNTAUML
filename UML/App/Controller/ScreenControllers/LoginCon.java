@@ -89,6 +89,7 @@ public class LoginCon implements Controller_t {
             // Switch to Dashboard
             view.hide();
             DashboardScreen next = viewHandler.getDashboardScreen();
+            next.changeUser(inputUser, userRecord.get("balance"));
             next.show();
             ViewSession.getInstance().updateScreenHistory(next);
             ViewSession.getInstance().clearHistory();

@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 public class DepositScreen implements View_t{
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    private JLabel balanceLabel;
     Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
     Font customFont50 = FontLoader.loadCustomFont(fontPath, 50f);
     Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
@@ -48,15 +49,15 @@ public class DepositScreen implements View_t{
         welcomePanel.setBackground(null);
         welcomePanel.setBounds(400,120,800,200);
         JLabel welcomeLabel = new JLabel("Κατάθεση σε Λογαριασμό");
-        welcomeLabel.setFont(customFont60);
+        welcomeLabel.setFont(customFont40);
         welcomePanel.add(welcomeLabel);;
 
-        // deposit Panel
+        // // deposit Panel
 
-        Image white = new ImageIcon(getClass().getResource("/Images/white_ahh_image.png")).getImage().getScaledInstance(2000, 1000, Image.SCALE_SMOOTH);
-        ImageIcon whiteIcon = new ImageIcon(white);
-        RoundedImage whiteLabel = new RoundedImage(whiteIcon,100);
-        whiteLabel.setBounds(150,400,1300,200);
+        // Image white = new ImageIcon(getClass().getResource("/Images/white_ahh_image.png")).getImage().getScaledInstance(2000, 1000, Image.SCALE_SMOOTH);
+        // ImageIcon whiteIcon = new ImageIcon(white);
+        // RoundedImage whiteLabel = new RoundedImage(whiteIcon,100);
+        // whiteLabel.setBounds(150,400,1300,200);
 
         //depositPanel.add(whiteLabel);
         JLabel fromAccText = new JLabel("ΑΠΟ: Λογαριασμός:");
@@ -83,15 +84,14 @@ public class DepositScreen implements View_t{
         moneyText.setBounds(1300,430,100,50);
 
         // ypoloipo 
-        Color darkBlue = Color.decode("#082336");
-        JLabel total = new JLabel("Υπόλοιπο:");
-        total.setFont(customFont30);
-        total.setForeground(darkBlue);
-        total.setBounds(1250,20,200,100);
-        JLabel totalNum = new JLabel("0€");
-        totalNum.setBounds(1430,20,200,100);
-        totalNum.setForeground(darkBlue);
-        totalNum.setFont(customFont30);
+         JPanel rightHead = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightHead.setOpaque(false);
+        rightHead.setPreferredSize(new Dimension(300, 100)); 
+        rightHead.setBounds(1200, 30, 300, 100);
+        balanceLabel = new JLabel("<html><u>Υπόλοιπο: 67.69€</u></html>");
+        balanceLabel.setFont(customFont20);
+        balanceLabel.setForeground(Color.decode("#003366")); 
+        rightHead.add(balanceLabel);
 
 
 
@@ -101,8 +101,7 @@ public class DepositScreen implements View_t{
         mainPanel.add(totalMoney);
         mainPanel.add(fromAccText);
         mainPanel.add(toAccText);
-        mainPanel.add(total);
-        mainPanel.add(totalNum);
+
 
 
 
@@ -121,10 +120,12 @@ public class DepositScreen implements View_t{
         depositBut.setBounds(620,670,300,90);
 
         // add to main Panel
-        mainPanel.add(whiteLabel);
+        // mainPanel.add(whiteLabel);
         mainPanel.add(logoPanel);
         mainPanel.add(welcomePanel);
         mainPanel.add(depositBut);
+        mainPanel.add(rightHead);
+        hide();
 
 
 
@@ -146,6 +147,10 @@ public class DepositScreen implements View_t{
     @Override
     public void show(){
         this.mainPanel.setVisible(true);
+    }
+
+    public void setBalance(String amount) {
+        balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
     }
 
 }

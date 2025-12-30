@@ -13,6 +13,15 @@ import java.io.IOException;
 
 public class StandingOrdersScreen implements View_t {
 
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont50 = FontLoader.loadCustomFont(fontPath, 50f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
+    Font customFont30 = FontLoader.loadCustomFont(fontPath, 30f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+    Font customFont12 = FontLoader.loadCustomFont(fontPath, 12f);
+    Font customFont16 = FontLoader.loadCustomFont(fontPath, 16f);
+
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
 
@@ -50,22 +59,18 @@ public class StandingOrdersScreen implements View_t {
         leftHead.setOpaque(false);
         leftHead.setPreferredSize(new Dimension(300, 100)); 
         
-        JLabel logoLabel = new JLabel();
-        try {
-            BufferedImage logoImg = ImageIO.read(new File("App/View/Assets/logo.png")); 
-            Image scaled = logoImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-            logoLabel.setIcon(new ImageIcon(scaled));
-        } catch (IOException e) {
-            logoLabel.setText("[LOGO]"); 
-            logoLabel.setForeground(Color.RED); 
-        }
-        leftHead.add(logoLabel);
+   
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon logoIcon = new ImageIcon(logo);
+        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
+        logoPanel.setBounds(50,50,100,100);
+        leftHead.add(logoPanel);
 
         // 2. CENTER Title
         JPanel centerHead = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerHead.setOpaque(false);
         JLabel titleLabel = new JLabel("Πάγιες Πληρωμές");
-        titleLabel.setFont(new Font("Verdana", Font.BOLD, 40)); 
+        titleLabel.setFont(customFont40); 
         centerHead.add(titleLabel);
 
         // 3. RIGHT Balance
@@ -73,7 +78,7 @@ public class StandingOrdersScreen implements View_t {
         rightHead.setOpaque(false);
         rightHead.setPreferredSize(new Dimension(300, 100)); 
         balanceLabel = new JLabel("<html><u>Υπόλοιπο: 67.69€</u></html>");
-        balanceLabel.setFont(new Font("Verdana", Font.BOLD, 18));
+        balanceLabel.setFont(customFont20);
         balanceLabel.setForeground(Color.decode("#003366")); 
         rightHead.add(balanceLabel);
 
@@ -91,7 +96,7 @@ public class StandingOrdersScreen implements View_t {
         leftColumn.setOpaque(false);
         
         JLabel listTitle = new JLabel("Ενεργές Πάγιες Πληρωμές", SwingConstants.CENTER);
-        listTitle.setFont(new Font("Verdana", Font.BOLD, 22));
+        listTitle.setFont(customFont20);
         listTitle.setBorder(new EmptyBorder(0,0,10,0));
         leftColumn.add(listTitle, BorderLayout.NORTH);
 
@@ -111,7 +116,7 @@ public class StandingOrdersScreen implements View_t {
         
         // Loop to create dummy data so you can test scrolling
         for (int i = 3; i < 20; i++) {
-             addListRow(listContainer, gbcList, i, "Test " + i, "GR123456...", "15η του Μήνα", "Μηνιαία", (i*10)+"€");
+             addListRow(listContainer, gbcList, i, "Test " + i, "GR1234562345452345452435", "15η του Μήνα", "Μηνιαία", (i*10)+"€");
         }
         
         // Push content to top
@@ -142,7 +147,7 @@ public class StandingOrdersScreen implements View_t {
         gbcForm.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel formTitle = new JLabel("Δημιουργία Πάγιας Χρέωσης");
-        formTitle.setFont(new Font("Verdana", Font.BOLD, 20));
+        formTitle.setFont(customFont20);
         formTitle.setHorizontalAlignment(SwingConstants.CENTER);
         gbcForm.gridy = 0;
         gbcForm.insets = new Insets(0, 0, 30, 0); 
@@ -159,7 +164,7 @@ public class StandingOrdersScreen implements View_t {
         completeBtn = new RoundedButton("Ολοκλήρωση",15);
         completeBtn.setBackground(red);
         completeBtn.setForeground(Color.WHITE);
-        completeBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
+        completeBtn.setFont(customFont20);
         completeBtn.setPreferredSize(new Dimension(200, 50));
         completeBtn.setFocusPainted(false);
 
@@ -179,14 +184,14 @@ public class StandingOrdersScreen implements View_t {
 
     private JTextField addFormField(JPanel parent, String labelText, String placeholder, GridBagConstraints gbc, int y) {
         JLabel label = new JLabel(labelText);
-        label.setFont(new Font("Bodoni MT", Font.PLAIN, 12));
+        label.setFont(customFont12);
         label.setForeground(Color.GRAY);
         gbc.gridy = y;
         parent.add(label, gbc);
 
         JTextField field = new JTextField(placeholder);
         field.setPreferredSize(new Dimension(300, 40));
-        field.setFont(new Font("Bodoni MT", Font.ITALIC, 16));
+        field.setFont(customFont16);
         field.setForeground(placeholderColor);
         field.setBackground(Color.WHITE);
         OnFocusEventHelper.setOnFocusText(field, placeholder, textColor, placeholderColor);
@@ -203,7 +208,7 @@ public class StandingOrdersScreen implements View_t {
         int x = 0;
         for (String h : headers) {
             JLabel label = new JLabel("<html><b>" + h + "</b></html>");
-            label.setFont(new Font("SansSerif", Font.PLAIN, 11));
+            label.setFont(customFont12);
             gbc.gridx = x++;
             gbc.weightx = (x == 2) ? 2.0 : 1.0; 
             parent.add(label, gbc);
@@ -216,7 +221,7 @@ public class StandingOrdersScreen implements View_t {
         int x = 0;
         for (String d : data) {
             JLabel label = new JLabel(d);
-            label.setFont(new Font("SansSerif", Font.PLAIN, 12));
+            label.setFont(customFont12);
             gbc.gridx = x++;
             gbc.weightx = (x == 2) ? 2.0 : 1.0;
             parent.add(label, gbc);
