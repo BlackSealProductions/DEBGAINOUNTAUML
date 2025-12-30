@@ -121,8 +121,8 @@ public class MainPage implements View_t{
         JPanel buttonPanel = new JPanel();
 
 
-        Color red = Color.decode("#D82F4B");
-        RoundedButton registerBut = new RoundedButton("Register");
+        Color red = Color.decode("#A91A32");
+        RoundedButton registerBut = new RoundedButton("Register",15);
         registerBut.setBackground(red);
         registerBut.setForeground(Color.white);
         registerBut.setFont(customFont20);
@@ -134,7 +134,7 @@ public class MainPage implements View_t{
         
 
 
-        RoundedButton loginBut = new RoundedButton("Login");
+        RoundedButton loginBut = new RoundedButton("Login",15);
         loginBut.setBackground(red);
         loginBut.setForeground(Color.white);
         loginBut.setFont(customFont20);
@@ -147,12 +147,9 @@ public class MainPage implements View_t{
         buttonPanel.add(registerBut);
         buttonPanel.add(loginBut);
         buttonPanel.setBackground(null);
-        buttonPanel.setBounds(1000, 70, 700, 300);
+        buttonPanel.setBounds(1040, 70, 700, 300);
 
         
-
-        
-
 
         greenPanel.add(apo);
         greenPanel.add(pigPanel);
@@ -167,7 +164,7 @@ public class MainPage implements View_t{
 
 
 
-
+        // add everything on mainPanel
         mainPanel.add(logoPanel);
         mainPanel.add(welcomePanel);
         mainPanel.add(hmmyPanel);
@@ -175,14 +172,6 @@ public class MainPage implements View_t{
         mainPanel.add(greenPanel);
         mainPanel.add(buttonPanel);
         
-
-
-
-
-
-        //
-        
-
 
     }
 
