@@ -9,8 +9,6 @@ import App.View.ViewHandler;
 import App.View.ViewSession;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
