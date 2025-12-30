@@ -9,6 +9,13 @@
             "name": "MainGUI",
             "request": "launch",
             "mainClass": "App.MainGUI",
+            "projectName": "DEBGAINOUNTAUML_412fde0e"
+        },
+        {
+            "type": "java",
+            "name": "MainGUI",
+            "request": "launch",
+            "mainClass": "App.MainGUI",
             "projectName": "DEBGAINOUNTAUML_db152894"
         },
         {
