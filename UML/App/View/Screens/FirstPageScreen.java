@@ -6,7 +6,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class MainPage implements View_t{
+public class FirstPageScreen implements View_t{
 
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
     Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
@@ -16,10 +16,14 @@ public class MainPage implements View_t{
     final int wHeight = Utils.GlobalConsts.wHeight;
 
     Color bkgColor = Color.decode("#C2E5FF");
+    Color red = Color.decode("#D82F4B");
 
 
+    private RoundedButton registerBut;
+    private RoundedButton loginBut;
 
     private JPanel mainPanel = new JPanel();
+    public JLabel welcomeJLabel;
 
 
 
@@ -29,7 +33,7 @@ public class MainPage implements View_t{
         // main panel // background
         mainPanel.setBackground(bkgColor);
         mainPanel.setBounds(0,0,wWidth,wHeight);
-        mainPanel.setBorder((new EmptyBorder(-10,0,0,0)));
+        mainPanel.setBorder((new EmptyBorder(0,0,0,0)));
         mainPanel.setLayout(null);
 
         // BoT logo 
@@ -44,7 +48,7 @@ public class MainPage implements View_t{
         welcomePanel.setBackground(null);
         welcomePanel.setBounds(520,120,600,200);
         
-        JLabel welcomeJLabel = new JLabel("Καλως Ήλθατέ");
+        welcomeJLabel = new JLabel("Καλως Ήλθατέ");
         welcomeJLabel.setFont(customFont60);
 
         JLabel bankoftuccJLabel = new JLabel("στην Bank of TUC");
@@ -121,8 +125,8 @@ public class MainPage implements View_t{
         JPanel buttonPanel = new JPanel();
 
 
-        Color red = Color.decode("#A91A32");
-        RoundedButton registerBut = new RoundedButton("Register",15);
+
+        registerBut = new RoundedButton("Register",15);
         registerBut.setBackground(red);
         registerBut.setForeground(Color.white);
         registerBut.setFont(customFont20);
@@ -134,7 +138,7 @@ public class MainPage implements View_t{
         
 
 
-        RoundedButton loginBut = new RoundedButton("Login",15);
+        loginBut = new RoundedButton("Login",15);
         loginBut.setBackground(red);
         loginBut.setForeground(Color.white);
         loginBut.setFont(customFont20);
@@ -161,23 +165,32 @@ public class MainPage implements View_t{
         greenPanel.add(polla);
 
 
-
-
-
-        // add everything on mainPanel
         mainPanel.add(logoPanel);
         mainPanel.add(welcomePanel);
         mainPanel.add(hmmyPanel);
         mainPanel.add(dentistPanel);
         mainPanel.add(greenPanel);
         mainPanel.add(buttonPanel);
-        
+    
+
+        hide();
+
+
 
     }
 
 
 
 
+
+
+    public RoundedButton getRegisterBut() {
+        return registerBut;
+    }
+
+    public RoundedButton getLoginBut() {
+        return loginBut;
+    }
 
 
     @Override
@@ -193,6 +206,7 @@ public class MainPage implements View_t{
     @Override
     public void show(){
         this.mainPanel.setVisible(true);
+        welcomeJLabel.requestFocusInWindow();
     }
 
 

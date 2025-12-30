@@ -8,4 +8,5 @@ public interface View_t {
     public void hide();
     public void show();
     public JPanel getMainPanel();
-} 
+    public View_t prev_screen = null;
+}

@@ -1,5 +1,5 @@
 package App.Model.Entities.UserEntities;
-public class Company extends User {
+public class Company extends Customer {
 
 
     String companyName;

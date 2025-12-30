@@ -1,10 +1,10 @@
 package App.View.ViewTests;
-import App.View.Screens.MainPage;
+import App.View.Screens.FirstPageScreen;
 
 public class TestMainPage{
 
     public static void main(String[] args) {
-        MainPage testPage = new MainPage();
+        FirstPageScreen testPage = new FirstPageScreen();
         testPage.init();
     }
 

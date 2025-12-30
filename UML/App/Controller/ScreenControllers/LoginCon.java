@@ -1,47 +1,100 @@
 package App.Controller.ScreenControllers;
 
-import java.awt.Color;
-import App.Controller.Controller_t;
+import App.Controller.Controller_t; 
+import App.Model.Database.JsonDatabase;
+import App.Model.Entities.UserEntities.Account;
 import App.Model.ModelHandler;
-import App.View.View_t;
+import App.Model.Session;
+import App.View.Screens.DashboardScreen;
 import App.View.Screens.LoginScreen;
+import App.View.Screens.RegisterScreen;
+import App.View.ViewHandler; // IMPORT THIS
+import App.View.ViewSession;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Map;
 
 public class LoginCon implements Controller_t {
 
-    private View_t view;
-    private ModelHandler model;
-    private Color red = new Color(255,20,55);
-    private Color blue = new Color(168, 237, 255);
+    private LoginScreen view;
+    private ModelHandler model; 
+    
+    private ViewHandler viewHandler;
 
-    public LoginCon(View_t view, ModelHandler model){
-
-        this.view=view;
-        this.model=model;
-        init();
+    // --- 2. UPDATE CONSTRUCTOR TO RECEIVE IT ---
+    public LoginCon(LoginScreen view, ModelHandler model, ViewHandler viewHandler) {
+        this.view = view;
+        this.model = model;
+        this.viewHandler = viewHandler; // Save it!
     }
 
-    private void init(){
+    @Override
+    public void init() {
+        if (view == null) return;
 
-        // ((LoginScreen)view).button3.addActionListener(e -> doSomething());
+        // Login Button Logic
+        view.getLoginBtn().addActionListener(e -> handleLogin());
+
+
+        // Register Button Logic
+        view.getRegisterBtn().addActionListener(e -> handleRegister());
+
     }
 
-    private void doSomething() {
+    private void handleRegister(){
+        view.hide();
+        RegisterScreen next = viewHandler.getRegisterScreen();
+        next.show();
+        ViewSession.getInstance().updateScreenHistory(next);
+    }
 
-        Color c = view.getMainPanel().getBackground();
+    private void handleLogin() {
+        String inputUser = view.getUsername();
+        String inputPass = view.getPassword();
 
-        if(c.equals(red)){
-            ((LoginScreen)view).changeColor(blue);
+        if (inputUser.isEmpty() || inputPass.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+            return;
         }
-    
-        else if(c.equals(blue)){
-            ((LoginScreen)view).changeColor(red);
-        }   
 
-        
-    }
+        List<Map<String, String>> records = JsonDatabase.getAllRecords();
+        boolean found = false;
+        Map<String, String> userRecord = null;
 
-    public View_t getViewTemplate(){
-        return view;
+        for (Map<String, String> record : records) {
+            if (record.get("username").equals(inputUser) && record.get("password").equals(inputPass)) {
+                found = true;
+                userRecord = record;
+                break;
+            }
+        }
+
+        if (found && userRecord != null) {
+            Account activeAccount = new Account(
+                userRecord.get("citizenId"),
+                userRecord.get("name") + " " + userRecord.get("surname"),
+                userRecord.get("iban"),
+                userRecord.get("balance"),
+                userRecord.get("interestRate"),
+                userRecord.get("secondaryOwner")
+            );
+
+            Session.getInstance().login(inputUser, userRecord.get("citizenId"), activeAccount);
+            
+            
+            JOptionPane.showMessageDialog(null, "Login Successful! Welcome " + inputUser);
+            // Switch to Dashboard
+            view.hide();
+            DashboardScreen next = viewHandler.getDashboardScreen();
+            next.show();
+            ViewSession.getInstance().updateScreenHistory(next);
+            ViewSession.getInstance().clearHistory();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Username or Password.");
+        }
     }
-    
 }
