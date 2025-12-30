@@ -517,5 +517,31 @@
     "citizenId": "Citizen ID",
     "email": "Email",
     "username": "Username"
+  },
+  {
+    "interestRate": "0.5",
+    "password": "Password",
+    "secondaryOwner": "None",
+    "balance": "0.0",
+    "phone": "Phone Number",
+    "surname": "Surname",
+    "iban": "GR1322656472299488321127704",
+    "name": "Name",
+    "citizenId": "Citizen ID",
+    "email": "Email",
+    "username": "Username"
+  },
+  {
+    "interestRate": "0.5",
+    "password": "steliosegamaw",
+    "secondaryOwner": "None",
+    "balance": "24.0",
+    "phone": "6955826258",
+    "surname": "Pitsoulis",
+    "iban": "GR1862810229957087778102776",
+    "name": "Aristeidis",
+    "citizenId": "A69675524",
+    "email": "arispitsoulis24@gmail.com",
+    "username": "arisgod04"
   }
 ]

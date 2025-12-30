@@ -1,10 +1,12 @@
 package App.View;
 
 import java.awt.*;
+import java.beans.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import App.Model.Entities.OperationEntities.Bill;
 import App.View.Screens.*;
 import App.View.helper_classes.RoundedButton;
 
@@ -19,6 +21,8 @@ public class ViewHandler {
     private View_t accountmgmt;
     private View_t firstpage;
     private View_t dashboard;
+    private View_t deposit;
+    
 
     JPanel wh = new JPanel();
     
@@ -59,9 +63,9 @@ public class ViewHandler {
         this.dashboard.init();
         mainframe.addPanel(dashboard.getMainPanel());
 
-
-        // depositscreen.init();
-        // mainframe.addPanel(((DepositScreen)depositscreen).getMainPanel());
+        this.deposit = new DepositScreen();
+        this.deposit.init();
+        mainframe.addPanel(((DepositScreen)deposit).getMainPanel());
         
         // registerscreen.init();
         // mainframe.addPanel(((RegisterUserScreen)registerscreen).getMainPanel());
@@ -108,6 +112,24 @@ public class ViewHandler {
     }
     public DashboardScreen getDashboardScreen() {
         return (DashboardScreen) this.dashboard;
+    }
+    public BillPaymentScreen getBillPaymentScreen() {
+        return (BillPaymentScreen) this.billpayment;
+    }
+
+    public StatementsScreen getStatementsScreen() {
+        return (StatementsScreen) this.statements;
+    }
+
+    public StandingOrdersScreen getStandingOrdersScreen() {
+        return (StandingOrdersScreen) this.standingorders;
+    }
+    public AccountManagementScreen getAccountManagementScreen() {
+        return (AccountManagementScreen) this.accountmgmt;
+    }
+
+    public DepositScreen getDepositScreen() {
+        return (DepositScreen) this.deposit;
     }
 
 

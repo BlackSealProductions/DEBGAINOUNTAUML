@@ -62,15 +62,11 @@ public class LoginScreen implements View_t {
         loginPanel.setBackground(Color.black);
 
         // --- Logo ---
-        JLabel logo = new JLabel();
-        logo.setBounds(0, 0, 1159, 158);
-        try {
-            BufferedImage logoImg = ImageIO.read(new File("UML/App/View/Assets/logo_.png"));
-            logo = new JLabel(new ImageIcon(logoImg));
-        } catch (Exception e) {
-            System.out.println("Logo not found");
-        }
-        logo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        ImageIcon logoIcon = new ImageIcon(logo);
+        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
+        logoPanel.setBounds(50,50,200,200);
+
 
         // --- Username field ---
         usernameField = new JTextField("Username: ");
@@ -101,7 +97,7 @@ public class LoginScreen implements View_t {
         loginButton = new RoundedButton("login",15);
         loginButton.setBackground(red);
         loginButton.setForeground(Color.white);
-        loginButton.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
+        loginButton.setFont(customFont20);
         loginButton.setMaximumSize(new Dimension(290, 95));
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setFocusPainted(false);
@@ -141,7 +137,7 @@ public class LoginScreen implements View_t {
 
         panel.add(titlePanel);
         panel.add(loginPanel);
-        panel.add(logo);
+        panel.add(logoPanel);
 
         hide();
     }
