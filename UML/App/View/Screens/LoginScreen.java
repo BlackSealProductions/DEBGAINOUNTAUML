@@ -14,6 +14,10 @@ import Utils.GlobalConsts;
 
 public class LoginScreen implements View_t {
 
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
 
@@ -74,7 +78,7 @@ public class LoginScreen implements View_t {
         usernameField.setPreferredSize(new Dimension(380, 100));
         usernameField.setBackground(Color.white);
         usernameField.setForeground(Color.decode("#C6D3D0"));
-        usernameField.setFont(new Font("Bodoni MT", Font.ITALIC, 20));
+        usernameField.setFont(customFont20);
         usernameField.setAlignmentX(Component.CENTER_ALIGNMENT);
         // Helper to handle placeholder text
         OnFocusEventHelper.setOnFocusText(usernameField, "Username: ", Color.black, Color.decode("#C6D3D0"));
@@ -87,7 +91,7 @@ public class LoginScreen implements View_t {
         passwordField.setPreferredSize(new Dimension(380, 100));
         passwordField.setBackground(Color.white);
         passwordField.setForeground(Color.decode("#C6D3D0"));
-        passwordField.setFont(new Font("Bodoni MT", Font.ITALIC, 20));
+        passwordField.setFont(customFont20);
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         // Custom logic might be needed for Password placeholders, but applying your helper:
@@ -105,17 +109,17 @@ public class LoginScreen implements View_t {
         registerButton = new RoundedButton("register");
         registerButton.setBackground(red);
         registerButton.setForeground(Color.white);
-        registerButton.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
+        registerButton.setFont(customFont20);
         registerButton.setMaximumSize(new Dimension(290, 95));
         registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         registerButton.setFocusPainted(false);
 
         // --- Title Styling ---
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setFont(new Font("Verdana", Font.BOLD, 80));
+        title.setFont(customFont60);
         title.setBackground(Color.black);
         title2.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title2.setFont(new Font("Verdana", Font.BOLD, 80));
+        title2.setFont(customFont60);
         title2.setBackground(Color.black);
 
         // --- Assembly ---
@@ -137,6 +141,7 @@ public class LoginScreen implements View_t {
 
         panel.add(titlePanel);
         panel.add(loginPanel);
+        panel.add(logo);
 
         hide();
     }

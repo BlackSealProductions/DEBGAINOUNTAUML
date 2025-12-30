@@ -60,6 +60,12 @@ public class ViewHandler {
         mainframe.addPanel(dashboard.getMainPanel());
 
 
+        // depositscreen.init();
+        // mainframe.addPanel(((DepositScreen)depositscreen).getMainPanel());
+        
+        // registerscreen.init();
+        // mainframe.addPanel(((RegisterUserScreen)registerscreen).getMainPanel());
+
         
     }
 

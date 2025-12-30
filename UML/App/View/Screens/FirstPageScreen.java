@@ -151,12 +151,9 @@ public class FirstPageScreen implements View_t{
         buttonPanel.add(registerBut);
         buttonPanel.add(loginBut);
         buttonPanel.setBackground(null);
-        buttonPanel.setBounds(1000, 70, 700, 300);
+        buttonPanel.setBounds(1040, 70, 700, 300);
 
         
-
-        
-
 
         greenPanel.add(apo);
         greenPanel.add(pigPanel);

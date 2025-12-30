@@ -10,10 +10,11 @@ import java.awt.geom.RoundRectangle2D;
      */
     public class RoundedButton extends JButton {
         // Defines the radius of the corners in pixels
-        private static final int CORNER_RADIUS = 15;
+        private int cornerRadius = 15;
 
-        public RoundedButton(String text) {
+        public RoundedButton(String text,int cornerRadius) {
             super(text);
+            this.cornerRadius = cornerRadius;
             // Ensures the button only paints what's inside its bounds
             setContentAreaFilled(false);
             // Makes the background transparent so the custom shape shows
@@ -25,7 +26,7 @@ import java.awt.geom.RoundRectangle2D;
         // Overrides the method to accurately determine the button's click area
         @Override
         public boolean contains(int x, int y) {
-            Shape shape = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), CORNER_RADIUS, CORNER_RADIUS);
+            Shape shape = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
             return shape.contains(x, y);
         }
 
@@ -46,7 +47,7 @@ import java.awt.geom.RoundRectangle2D;
 
             // Fill the rounded rectangle shape
             g2.setColor(buttonColor);
-            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), CORNER_RADIUS, CORNER_RADIUS));
+            g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius));
 
             // Call the superclass method to draw the text and icon over the shape
             super.paintComponent(g2);
