@@ -12,7 +12,7 @@ public class MainFrame{
     final int wHeight = Utils.GlobalConsts.wHeight;
 
     private JFrame frame = new JFrame();
-    private RoundedButton backButton = new RoundedButton(" <- ");
+    private RoundedButton backButton = new RoundedButton(" <- ",15);
 
     Color darkgrey = new Color(22, 20, 19);
     Color blue = new Color(168, 237, 255);

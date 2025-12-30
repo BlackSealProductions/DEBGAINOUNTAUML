@@ -25,7 +25,7 @@ public class DashboardScreen implements View_t {
     public JLabel accountNumberLabel = new JLabel("Account: #00000000");
     public JLabel balanceLabel = new JLabel("$0,000.00");
     public JLabel userNameLabel = new JLabel("Welcome, User");
-    public RoundedButton logoutBtn = new RoundedButton("X");
+    public RoundedButton logoutBtn = new RoundedButton("X",15);
 
     public void init() {
         panel.setBackground(blue);
@@ -112,7 +112,7 @@ public class DashboardScreen implements View_t {
      * Creates a large square-ish button for the dashboard grid
      */
     private RoundedButton createMenuButton(String text) {
-        RoundedButton btn = new RoundedButton(text);
+        RoundedButton btn = new RoundedButton(text,15);
         btn.setBackground(Color.white);
         btn.setForeground(darkGrey);
         btn.setFont(new Font("Verdana", Font.BOLD, 20));

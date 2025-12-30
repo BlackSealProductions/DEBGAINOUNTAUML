@@ -1,7 +1,7 @@
 package App.View.Screens;
 
 import App.View.View_t;
-import App.View.helper_classes.RoundedButton; // Using your custom button for "Change"
+import App.View.helper_classes.*; // Using your custom button for "Change"
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -151,7 +151,7 @@ public class AccountManagementScreen implements View_t {
     }
 
     private RoundedButton createSmallButton(String text) {
-        RoundedButton btn = new RoundedButton(text);
+        RoundedButton btn = new RoundedButton(text,15);
         btn.setBackground(buttonGreen);
         btn.setForeground(Color.WHITE);
         btn.setFont(new Font("SansSerif", Font.BOLD, 14));

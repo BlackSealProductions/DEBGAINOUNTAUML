@@ -164,7 +164,7 @@ public class RegisterScreen implements View_t {
 
         // C. Register Button
         // FIX 3: Initialize the class variable, don't create a new local one
-        registerBtn = new RoundedButton("Register");
+        registerBtn = new RoundedButton("Register",15);
         registerBtn.setBackground(red);
         registerBtn.setForeground(Color.WHITE);
         registerBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 32));

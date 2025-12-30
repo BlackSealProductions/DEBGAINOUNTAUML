@@ -156,7 +156,7 @@ public class StandingOrdersScreen implements View_t {
         frequencyField = addFormField(rightColumn, "ΚΑΘΕ ΠΟΤΕ", "ΜΕΡΑ / ΜΗΝΑ / ΧΡΟΝΟΣ", gbcForm, 7);
         amountField = addFormField(rightColumn, "ΠΟΣΟ ΠΛΗΡΩΜΗΣ", "$", gbcForm, 9);
 
-        completeBtn = new RoundedButton("Ολοκλήρωση");
+        completeBtn = new RoundedButton("Ολοκλήρωση",15);
         completeBtn.setBackground(red);
         completeBtn.setForeground(Color.WHITE);
         completeBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 20));

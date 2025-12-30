@@ -121,7 +121,7 @@ public class BillPaymentScreen implements View_t {
         contentPanel.add(row2, gbc);
 
         // 3. Complete Button
-        completeBtn = new RoundedButton("Ολοκλήρωση");
+        completeBtn = new RoundedButton("Ολοκλήρωση",15);
         completeBtn.setBackground(red);
         completeBtn.setForeground(Color.WHITE);
         completeBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 26));

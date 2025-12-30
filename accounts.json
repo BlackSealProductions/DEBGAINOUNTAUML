@@ -504,5 +504,18 @@
     "citizenId": "Citizen ID",
     "email": "Email",
     "username": "Username"
+  },
+  {
+    "interestRate": "0.5",
+    "password": "Password",
+    "secondaryOwner": "None",
+    "balance": "0.0",
+    "phone": "Phone Number",
+    "surname": "Surname",
+    "iban": "GR0619616018173440069493289",
+    "name": "Name",
+    "citizenId": "Citizen ID",
+    "email": "Email",
+    "username": "Username"
   }
 ]

@@ -98,7 +98,7 @@ public class LoginScreen implements View_t {
         OnFocusEventHelper.setOnFocusText(passwordField, "Password: ", Color.black, Color.decode("#C6D3D0"));
 
         // --- Buttons ---
-        loginButton = new RoundedButton("login");
+        loginButton = new RoundedButton("login",15);
         loginButton.setBackground(red);
         loginButton.setForeground(Color.white);
         loginButton.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
@@ -106,7 +106,7 @@ public class LoginScreen implements View_t {
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setFocusPainted(false);
 
-        registerButton = new RoundedButton("register");
+        registerButton = new RoundedButton("register",15);
         registerButton.setBackground(red);
         registerButton.setForeground(Color.white);
         registerButton.setFont(customFont20);
