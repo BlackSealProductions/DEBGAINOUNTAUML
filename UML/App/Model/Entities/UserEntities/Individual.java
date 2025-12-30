@@ -8,7 +8,6 @@ public class Individual extends Customer{
     String lastName;
     String dateOfBirth;
 
-
     public Individual(String firstName, String lastName, String dateOfBirth, String taxId, String userID, String username, String password, String email, String phone, GlobalConsts.userType customerType) {
         this.firstName = firstName;
         this.lastName = lastName;

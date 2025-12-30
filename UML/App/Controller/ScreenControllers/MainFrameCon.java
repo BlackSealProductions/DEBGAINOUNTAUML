@@ -21,10 +21,10 @@ public class MainFrameCon implements Controller_t{
     }
 
     public void init(){
-        for (ActionListener al : view.getMainframe().getBackBtn().getActionListeners()) {
-            System.out.println("\nhere\n");
-            // view.getMainframe().getBackBtn().removeActionListener(al);
-        }
+        // for (ActionListener al : view.getMainframe().getBackBtn().getActionListeners()) {
+        //     System.out.println("\nhere\n");
+        //     // view.getMainframe().getBackBtn().removeActionListener(al);
+        // }
         view.getMainframe().getBackBtn().addActionListener(e -> goBackOne());
     }
 

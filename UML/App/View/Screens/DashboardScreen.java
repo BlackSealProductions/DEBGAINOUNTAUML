@@ -12,6 +12,12 @@ import App.View.helper_classes.*;
 
 public class DashboardScreen implements View_t {
 
+
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
 
@@ -20,12 +26,27 @@ public class DashboardScreen implements View_t {
     Color darkGrey = new Color(22, 20, 19);
     
     JPanel panel = new JPanel();
+    
+    // DATA FOR DISPLAYING STATS
+    public String userBalance = "0";
+    public String username = "nao";
 
     // Placeholders for dynamic content
     public JLabel accountNumberLabel = new JLabel("Account: #00000000");
-    public JLabel balanceLabel = new JLabel("$0,000.00");
-    public JLabel userNameLabel = new JLabel("Welcome, User");
-    public RoundedButton logoutBtn = new RoundedButton("X");
+    public JLabel balanceLabel = new JLabel("$"+userBalance);
+    public JLabel userNameLabel = new JLabel("Welcome, " + username);
+    private RoundedButton logoutBtn = new RoundedButton("X",15);
+
+
+    public RoundedButton plhrwmhBtn = createMenuButton("Πληρωμή λογαριασμού");
+    public RoundedButton kinhseisBtn = createMenuButton("Κινήσεις λογαριασμού");
+    public RoundedButton metEntosBtn = createMenuButton("Μεταφορές εντός τράπεζας");
+    public RoundedButton metEktosBtn = createMenuButton("Μεταφορές σε λογαριασμό");
+    public RoundedButton pagiesBtn = createMenuButton("Πάγιες πληρωμές");
+    public RoundedButton diaxeirisiBtn = createMenuButton("Διαχείριση λογαριασμού");
+
+
+
 
     public void init() {
         panel.setBackground(blue);
@@ -50,19 +71,19 @@ public class DashboardScreen implements View_t {
 
         // Account Number (Centered relative to the frame)
         accountNumberLabel.setBounds(0, 50, wWidth, 50);
-        accountNumberLabel.setFont(new Font("Verdana", Font.PLAIN, 24));
+        accountNumberLabel.setFont(customFont20);
         accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Logout Button (Square, far right)
         logoutBtn.setBounds(1500, 50, 50, 50);
         logoutBtn.setBackground(red);
         logoutBtn.setForeground(Color.white);
-        logoutBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        logoutBtn.setFont(customFont20);
         logoutBtn.setFocusPainted(false);
 
         // User Name (To the left of the logout button)
         userNameLabel.setBounds(1100, 50, 380, 50);
-        userNameLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+        userNameLabel.setFont(customFont20);
         userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         header.add(logo);
@@ -78,9 +99,9 @@ public class DashboardScreen implements View_t {
         balancePanel.setBorder(new EmptyBorder(10, 50, 10, 50));
 
         JLabel balTitle = new JLabel("Available Balance");
-        balTitle.setFont(new Font("Verdana", Font.PLAIN, 18));
+        balTitle.setFont(customFont20);
         
-        balanceLabel.setFont(new Font("Verdana", Font.BOLD, 42));
+        balanceLabel.setFont(customFont40);
         balanceLabel.setForeground(darkGrey);
 
         balancePanel.add(balTitle, BorderLayout.NORTH);
@@ -93,13 +114,9 @@ public class DashboardScreen implements View_t {
         actionsPanel.setBounds(100, 330, 1400, 500);
         actionsPanel.setOpaque(false);
 
-        // Add the 6 buttons
-        actionsPanel.add(createMenuButton("Πληρωμή λογαριασμού"));
-        actionsPanel.add(createMenuButton("Κινήσεις λογαριασμού"));
-        actionsPanel.add(createMenuButton("Μεταφορές εντός τράπεζας"));
-        actionsPanel.add(createMenuButton("Μεταφορές σε λογαριασμό"));
-        actionsPanel.add(createMenuButton("Πάγιες πληρωμές"));
-        actionsPanel.add(createMenuButton("Διαχείριση λογαριασμού"));
+        
+
+        initActionButtons(actionsPanel);
 
         panel.add(header);
         panel.add(balancePanel);
@@ -112,13 +129,43 @@ public class DashboardScreen implements View_t {
      * Creates a large square-ish button for the dashboard grid
      */
     private RoundedButton createMenuButton(String text) {
-        RoundedButton btn = new RoundedButton(text);
+        RoundedButton btn = new RoundedButton(text,15);
         btn.setBackground(Color.white);
         btn.setForeground(darkGrey);
-        btn.setFont(new Font("Verdana", Font.BOLD, 20));
+        btn.setFont(customFont20);
         btn.setFocusPainted(false);
         // You can add OnClickEventHelper here if needed
         return btn;
+    }
+
+    // Store references to the dashboard action buttons
+    
+
+    /**
+     * Helper to initialize and store the dashboard action buttons
+     */
+    private void initActionButtons(JPanel actionsPanel) {
+        plhrwmhBtn.setBackground(red);
+        plhrwmhBtn.setForeground(Color.white);
+        kinhseisBtn.setBackground(red);
+        kinhseisBtn.setForeground(Color.white);
+        metEntosBtn.setBackground(red);
+        metEntosBtn.setForeground(Color.white);
+        metEktosBtn.setBackground(red);
+        metEktosBtn.setForeground(Color.white);
+        pagiesBtn.setBackground(red);
+        pagiesBtn.setForeground(Color.white);
+        diaxeirisiBtn.setBackground(red);
+        diaxeirisiBtn.setForeground(Color.white);
+
+
+        actionsPanel.add(plhrwmhBtn);
+        actionsPanel.add(kinhseisBtn);
+        actionsPanel.add(metEntosBtn);
+        actionsPanel.add(metEktosBtn);
+        actionsPanel.add(pagiesBtn);
+        actionsPanel.add(diaxeirisiBtn);
+        
     }
 
     @Override
@@ -136,4 +183,18 @@ public class DashboardScreen implements View_t {
     public JPanel getMainPanel() {
         return panel;
     }
-}
+
+    public void changeUser(String username, String balance){
+        userNameLabel.setText("Welcome, " + username);
+        if(Float.parseFloat(balance) <= 0){
+
+            balanceLabel.setText(balance+" $ (8a se valoun mesa se ligo :())");
+        }
+        else if (Float.parseFloat(balance) > 100 ) {
+           balanceLabel.setText(balance+" $ (eisai leftas :))"); 
+        }
+        else{
+            balanceLabel.setText(balance+" $ (eisai duskola :/)"); 
+        }
+        }
+    }

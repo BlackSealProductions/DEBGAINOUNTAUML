@@ -5,6 +5,7 @@ import App.Model.Database.JsonDatabase;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.ModelHandler;
 import App.Model.Session;
+import App.View.Screens.TypeSelectionScreen;
 import App.View.Screens.DashboardScreen;
 import App.View.Screens.LoginScreen;
 import App.View.Screens.RegisterScreen;
@@ -46,7 +47,7 @@ public class LoginCon implements Controller_t {
 
     private void handleRegister(){
         view.hide();
-        RegisterScreen next = viewHandler.getRegisterScreen();
+        TypeSelectionScreen next = viewHandler.getChooseRegisterType();
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
     }
@@ -89,6 +90,7 @@ public class LoginCon implements Controller_t {
             // Switch to Dashboard
             view.hide();
             DashboardScreen next = viewHandler.getDashboardScreen();
+            next.changeUser(inputUser, userRecord.get("balance"));
             next.show();
             ViewSession.getInstance().updateScreenHistory(next);
             ViewSession.getInstance().clearHistory();

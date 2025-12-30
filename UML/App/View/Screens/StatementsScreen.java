@@ -1,6 +1,9 @@
 package App.View.Screens;
 
 import App.View.View_t;
+import App.View.helper_classes.FontLoader;
+import App.View.helper_classes.RoundedImage;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -12,6 +15,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class StatementsScreen implements View_t {
+
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+    Font customFont12 = FontLoader.loadCustomFont(fontPath, 12f);
 
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
@@ -51,23 +60,19 @@ public class StatementsScreen implements View_t {
         leftHead.setOpaque(false);
         leftHead.setPreferredSize(new Dimension(300, 100)); 
         
-        JLabel logoLabel = new JLabel();
-        try {
-            BufferedImage logoImg = ImageIO.read(new File("App/View/Assets/logo.png")); 
-            Image scaled = logoImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-            logoLabel.setIcon(new ImageIcon(scaled));
-        } catch (IOException e) {
-            logoLabel.setText("[LOGO]"); 
-            logoLabel.setForeground(Color.RED); 
-        }
-        leftHead.add(logoLabel);
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon logoIcon = new ImageIcon(logo);
+        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
+        logoPanel.setBounds(15,20,100,100);
+
+        leftHead.add(logoPanel);
 
         // 2. CENTER Title
         JPanel centerHead = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerHead.setOpaque(false);
         
         JLabel titleLabel = new JLabel("Κινήσεις Λογαριασμού");
-        titleLabel.setFont(new Font("Verdana", Font.BOLD, 36)); 
+        titleLabel.setFont(customFont40); 
         centerHead.add(titleLabel);
 
         // 3. RIGHT Balance
@@ -76,7 +81,7 @@ public class StatementsScreen implements View_t {
         rightHead.setPreferredSize(new Dimension(300, 100)); 
         
         balanceLabel = new JLabel("<html><u>Υπόλοιπο: 67.69€</u></html>");
-        balanceLabel.setFont(new Font("Verdana", Font.BOLD, 18));
+        balanceLabel.setFont(customFont20);
         balanceLabel.setForeground(Color.decode("#003366")); 
         rightHead.add(balanceLabel);
 
@@ -102,7 +107,7 @@ public class StatementsScreen implements View_t {
         String[] headers = {"Ημερομηνία Συναλλαγής", "Αριθμός Συναλλαγής", "Γιάννης Τρανσακτορ", "Ποσό"};
         for (String h : headers) {
             JLabel l = new JLabel(h, SwingConstants.CENTER);
-            l.setFont(new Font("SansSerif", Font.BOLD, 12));
+            l.setFont(customFont12);
             headerRow.add(l);
         }
         listWrapper.add(headerRow, BorderLayout.NORTH);
@@ -177,7 +182,7 @@ public class StatementsScreen implements View_t {
         JLabel label = new JLabel(text, SwingConstants.CENTER);
         label.setOpaque(true); 
         label.setBackground(bg);
-        label.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        label.setFont(customFont12);
         label.setForeground(darkText);
         label.setBorder(new EmptyBorder(5, 5, 5, 5));
         return label;

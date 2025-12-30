@@ -12,7 +12,7 @@ public class MainFrame{
     final int wHeight = Utils.GlobalConsts.wHeight;
 
     private JFrame frame = new JFrame();
-    private RoundedButton backButton = new RoundedButton(" <- ");
+    private RoundedButton backButton = new RoundedButton(" <- ",15);
 
     Color darkgrey = new Color(22, 20, 19);
     Color blue = new Color(168, 237, 255);
@@ -36,7 +36,7 @@ public class MainFrame{
         // --- Top Bar (Back Button + Title) ---
 
         
-        backButton.setBounds(10, 820, 100, 40);
+        backButton.setBounds(10, 820, 80, 40);
         backButton.setBackground(red);
         backButton.setForeground(Color.white);
         backButton.setFont(new Font("Bodoni MT", Font.PLAIN, 26));

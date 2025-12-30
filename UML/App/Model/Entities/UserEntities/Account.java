@@ -1,7 +1,7 @@
 package App.Model.Entities.UserEntities;
 
 public class Account {
-    private String citizenId; 
+    private String accountId; 
     private String ownerName;
     private String iban;
     private String balance;
@@ -9,7 +9,7 @@ public class Account {
     private String secondaryOwner;
 
     public Account(String citizenId, String ownerName, String iban, String balance, String interestRate, String secondaryOwner) {
-        this.citizenId = citizenId;
+        this.accountId = citizenId;
         this.ownerName = ownerName;
         this.iban = iban;
         this.balance = balance;
@@ -18,7 +18,7 @@ public class Account {
     }
 
     // --- Getters ---
-    public String getCitizenId() { return citizenId; }
+    public String getCitizenId() { return accountId; }
     public String getOwnerName() { return ownerName; }
     public String getIban() { return iban; }
     public String getBalance() { return balance; }

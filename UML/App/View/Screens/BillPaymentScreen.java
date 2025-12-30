@@ -14,6 +14,13 @@ import java.io.IOException;
 
 public class BillPaymentScreen implements View_t {
 
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont50 = FontLoader.loadCustomFont(fontPath, 50f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
+    Font customFont30 = FontLoader.loadCustomFont(fontPath, 30f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
 
@@ -57,24 +64,20 @@ public class BillPaymentScreen implements View_t {
         JPanel leftHead = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftHead.setOpaque(false);
         leftHead.setPreferredSize(new Dimension(300, 100)); // Explicit width
+   
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        ImageIcon logoIcon = new ImageIcon(logo);
+        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
+        logoPanel.setBounds(50,50,200,200);
         
-        JLabel logoLabel = new JLabel();
-        try {
-            BufferedImage logoImg = ImageIO.read(new File("App/View/Assets/logo.png")); 
-            Image scaled = logoImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-            logoLabel.setIcon(new ImageIcon(scaled));
-        } catch (IOException e) {
-            logoLabel.setText("[LOGO]"); 
-            logoLabel.setForeground(Color.RED); 
-        }
-        leftHead.add(logoLabel);
+        leftHead.add(logoPanel);
 
         // 2. CENTER PANEL (Title) - Takes remaining space
         JPanel centerHead = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerHead.setOpaque(false);
         
         JLabel titleLabel = new JLabel("Πληρωμή Λογαριασμού");
-        titleLabel.setFont(new Font("Verdana", Font.BOLD, 40)); 
+        titleLabel.setFont(customFont40); 
         centerHead.add(titleLabel);
 
         // 3. RIGHT PANEL (Balance) - Fixed Width 300px (Matches Left)
@@ -83,7 +86,7 @@ public class BillPaymentScreen implements View_t {
         rightHead.setPreferredSize(new Dimension(300, 100)); // Explicit width matches Left
         
         balanceLabel = new JLabel("<html><u>Υπόλοιπο: 67.69€</u></html>");
-        balanceLabel.setFont(new Font("Verdana", Font.BOLD, 18));
+        balanceLabel.setFont(customFont20);
         balanceLabel.setForeground(Color.decode("#003366")); 
         rightHead.add(balanceLabel);
 
@@ -121,10 +124,10 @@ public class BillPaymentScreen implements View_t {
         contentPanel.add(row2, gbc);
 
         // 3. Complete Button
-        completeBtn = new RoundedButton("Ολοκλήρωση");
+        completeBtn = new RoundedButton("Ολοκλήρωση",15);
         completeBtn.setBackground(red);
         completeBtn.setForeground(Color.WHITE);
-        completeBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
+        completeBtn.setFont(customFont30);
         completeBtn.setPreferredSize(new Dimension(300, 65));
         completeBtn.setFocusPainted(false);
 
@@ -147,7 +150,7 @@ public class BillPaymentScreen implements View_t {
 
         // Label
         JLabel label = new JLabel(labelText);
-        label.setFont(new Font("Bodoni MT", Font.PLAIN, 16));
+        label.setFont(customFont20);
         label.setForeground(Color.DARK_GRAY);
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
         
@@ -155,7 +158,7 @@ public class BillPaymentScreen implements View_t {
         JTextField field = new JTextField(placeholder);
         field.setPreferredSize(new Dimension(width, 60)); 
         field.setMaximumSize(new Dimension(width, 60)); 
-        field.setFont(new Font("Bodoni MT", Font.BOLD, 22)); 
+        field.setFont(customFont20); 
         field.setForeground(textColor);
         field.setBackground(Color.decode("#F8F8F8")); 
         field.setAlignmentX(Component.LEFT_ALIGNMENT); 

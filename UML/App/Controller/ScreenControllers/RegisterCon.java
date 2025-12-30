@@ -39,7 +39,7 @@ public class RegisterCon implements Controller_t {
 
 
     private void handleRegistration() {
-        // A. GET DATA FROM VIEW
+        // A. GET DATA FROM VIEW.
         String username = view.getUsername();
         String password = view.getPassword();
         String name = view.getName();
@@ -59,8 +59,8 @@ public class RegisterCon implements Controller_t {
         
         newUser.put("username", username);
         newUser.put("password", password);
-        newUser.put("name", name);
-        newUser.put("surname", surname);
+        // newUser.put("name", name);
+        // newUser.put("surname", surname);
         newUser.put("citizenId", citizenId);
         newUser.put("email", email);
         newUser.put("phone", phone);

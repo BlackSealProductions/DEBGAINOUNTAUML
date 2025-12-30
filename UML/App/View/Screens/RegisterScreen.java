@@ -14,6 +14,10 @@ public class RegisterScreen implements View_t {
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
 
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+
     // --- 1. View_t Essentials ---
     private JPanel panel = new JPanel();
     
@@ -50,16 +54,6 @@ public class RegisterScreen implements View_t {
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setOpaque(false);
         
-        // // FIX 2: Create Back Button
-        // backBtn = new RoundedButton("< Back");
-        // backBtn.setPreferredSize(new Dimension(100, 40));
-        // backBtn.setBackground(Color.DARK_GRAY);
-        // backBtn.setForeground(Color.WHITE);
-        // backBtn.setFont(new Font("Arial", Font.BOLD, 14));
-        // // Add to top-left
-        // JPanel backContainer = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        // backContainer.setOpaque(false);
-        // backContainer.add(backBtn);
         
         titleLabel = new JLabel("Εγγραφή Χρήστη", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Verdana", Font.BOLD, 60)); 
@@ -101,9 +95,8 @@ public class RegisterScreen implements View_t {
         nameField = createStyledField("Name", gbc, leftPanel, 2);
         surnameField = createStyledField("Surname", gbc, leftPanel, 3);
         emailField = createStyledField("Email", gbc, leftPanel, 4);
-        addressField = createStyledField("Address", gbc, leftPanel, 5);
-        phoneField = createStyledField("Phone Number", gbc, leftPanel, 6);
-        citizenIdField = createStyledField("Citizen ID", gbc, leftPanel, 7);
+        phoneField = createStyledField("Phone Number", gbc, leftPanel, 5);
+        citizenIdField = createStyledField("Tax ID", gbc, leftPanel, 6);
 
         contentPanel.add(leftPanel);
 
@@ -138,33 +131,8 @@ public class RegisterScreen implements View_t {
         gbcRight.gridy = 1;
         rightPanel.add(datePanel, gbcRight);
 
-        // B. User Type Selection
-        JPanel typePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));
-        typePanel.setOpaque(false);
 
-        JToggleButton indBtn = new JToggleButton("Ιδιώτης");
-        JToggleButton comBtn = new JToggleButton("Επιχείρηση");
-        styleToggleButton(indBtn);
-        styleToggleButton(comBtn);
-
-        ButtonGroup group = new ButtonGroup();
-        group.add(indBtn);
-        group.add(comBtn);
-        indBtn.setSelected(true);
-
-        indBtn.addActionListener(e -> selectedUserType = "Individual");
-        comBtn.addActionListener(e -> selectedUserType = "Company");
-
-        typePanel.add(indBtn);
-        typePanel.add(comBtn);
-
-        gbcRight.gridy = 2;
-        gbcRight.insets = new Insets(50, 0, 50, 0);
-        rightPanel.add(typePanel, gbcRight);
-
-        // C. Register Button
-        // FIX 3: Initialize the class variable, don't create a new local one
-        registerBtn = new RoundedButton("Register");
+        registerBtn = new RoundedButton("Register",15);
         registerBtn.setBackground(red);
         registerBtn.setForeground(Color.WHITE);
         registerBtn.setFont(new Font("Bodoni MT", Font.PLAIN, 32));
@@ -185,7 +153,7 @@ public class RegisterScreen implements View_t {
     private JTextField createStyledField(String placeholder, GridBagConstraints gbc, JPanel parent, int row) {
         JTextField field = new JTextField(placeholder);
         field.setPreferredSize(new Dimension(450, 55)); 
-        field.setFont(new Font("Bodoni MT", Font.ITALIC, 24)); 
+        field.setFont(customFont20); 
         field.setForeground(placeholderColor);
         field.setBackground(Color.WHITE);
         OnFocusEventHelper.setOnFocusText(field, placeholder, textColor, placeholderColor);
@@ -228,4 +196,4 @@ public class RegisterScreen implements View_t {
 
     public RoundedButton getRegisterBtn() { return registerBtn; } 
     public RoundedButton getBackBtn() { return backBtn; }
-}
+}   

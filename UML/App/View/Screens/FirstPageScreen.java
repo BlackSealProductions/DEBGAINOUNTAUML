@@ -126,7 +126,7 @@ public class FirstPageScreen implements View_t{
 
 
 
-        registerBut = new RoundedButton("Register");
+        registerBut = new RoundedButton("Register",15);
         registerBut.setBackground(red);
         registerBut.setForeground(Color.white);
         registerBut.setFont(customFont20);
@@ -138,7 +138,7 @@ public class FirstPageScreen implements View_t{
         
 
 
-        loginBut = new RoundedButton("Login");
+        loginBut = new RoundedButton("Login",15);
         loginBut.setBackground(red);
         loginBut.setForeground(Color.white);
         loginBut.setFont(customFont20);
@@ -151,12 +151,9 @@ public class FirstPageScreen implements View_t{
         buttonPanel.add(registerBut);
         buttonPanel.add(loginBut);
         buttonPanel.setBackground(null);
-        buttonPanel.setBounds(1000, 70, 700, 300);
+        buttonPanel.setBounds(1040, 70, 700, 300);
 
         
-
-        
-
 
         greenPanel.add(apo);
         greenPanel.add(pigPanel);
