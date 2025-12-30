@@ -1,6 +1,5 @@
 package App.View;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public interface View_t {
