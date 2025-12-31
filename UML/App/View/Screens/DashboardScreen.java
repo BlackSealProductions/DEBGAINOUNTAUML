@@ -160,7 +160,7 @@ public class DashboardScreen implements View_t {
         diaxeirisiBtn.setBackground(red);
         diaxeirisiBtn.setForeground(Color.white);
 
-
+        
         actionsPanel.add(plhrwmhBtn);
         actionsPanel.add(kinhseisBtn);
         actionsPanel.add(metEntosBtn);

@@ -74,7 +74,6 @@ public class DepositScreen implements View_t{
         toAccount.setFont(customFont30);
         toAccount.setBounds(700,480,400,50);
         
-
         JTextField totalMoney = new JTextField();
         totalMoney.setFont(customFont20);
         totalMoney.setBounds(1300,480,100,50);
