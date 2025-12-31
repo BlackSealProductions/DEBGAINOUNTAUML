@@ -8,6 +8,7 @@ import App.View.MainFrame;
 import App.View.ViewHandler;
 import App.View.ViewSession;
 import App.View.View_t;
+import App.View.Screens.FirstPageScreen;
 
 public class MainFrameCon implements Controller_t{
     
@@ -21,23 +22,30 @@ public class MainFrameCon implements Controller_t{
     }
 
     public void init(){
-        for (ActionListener al : view.getMainframe().getBackBtn().getActionListeners()) {
-            System.out.println("\nhere\n");
-            // view.getMainframe().getBackBtn().removeActionListener(al);
-        }
+        // for (ActionListener al : view.getMainframe().getBackBtn().getActionListeners()) {
+        //     System.out.println("\nhere\n");
+        //     // view.getMainframe().getBackBtn().removeActionListener(al);
+        // }
         view.getMainframe().getBackBtn().addActionListener(e -> goBackOne());
     }
 
     private void goBackOne(){
         ViewSession inst = ViewSession.getInstance();
 
-        if(inst.isHistoryEmpty()==false){
+        Boolean noHistory = inst.isHistoryEmpty();
+        Boolean isLoginWithNoHistory = (noHistory && inst.getCurrentScreen().equals(view.getLoginScreen()));
+
+        if(!noHistory){
             inst.getCurrentScreen().hide();
             inst.goBack();
             inst.getCurrentScreen().show();
         }
-        else{
-            
+        else if (isLoginWithNoHistory){
+            FirstPageScreen firstpage = view.getFirstPageScreen();
+            inst.getCurrentScreen().hide();
+            firstpage.show();
+            ViewSession.getInstance().updateScreenHistory(firstpage);
+            ViewSession.getInstance().clearHistory();
         }
     }
 

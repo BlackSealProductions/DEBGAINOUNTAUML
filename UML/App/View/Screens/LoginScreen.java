@@ -26,6 +26,7 @@ public class LoginScreen implements View_t {
     Color lightblue = Color.decode("#BBE8E2");
     Color red = Color.decode("#D82F4B");
     Color darkred = Color.decode("#A02336");
+    Color placeholderColor = Color.decode("#C6D3D0");
 
     JPanel panel = new JPanel();
 
@@ -35,109 +36,82 @@ public class LoginScreen implements View_t {
     private RoundedButton loginButton;
     private RoundedButton registerButton;
     
-    public JLabel title = new JLabel("Καλως ήρθατε");
-    public JLabel title2 = new JLabel("στην Bank of TUC");
+    public JLabel title = new JLabel("Είσοδος Χρήστη");
 
     @Override
     public void init() {
-        panel.setBackground(Color.white); 
         panel.setBounds(0, 0, wWidth, wHeight);
-        panel.setBorder(new EmptyBorder(0, 0, 0, 0));
         panel.setLayout(null);
         panel.setBackground(blue);
 
-        JPanel titlePanel = new JPanel();
-        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
-        titlePanel.setBounds(0, 0, 1600, 240);
-        titlePanel.setOpaque(false);
-        titlePanel.setBorder(new EmptyBorder(0, 0, 10, 0));
-        titlePanel.setBackground(Color.decode("#D6D8D7"));
-
-        // --- Inner panel for login content ---
-        JPanel loginPanel = new JPanel();
-        loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
-        loginPanel.setBounds(GlobalConsts.wxCenter(wWidth, 800), 220, 800, 560);
-        loginPanel.setOpaque(false);
-        loginPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
-        loginPanel.setBackground(Color.black);
-
-        // --- Logo ---
-        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        // --- Logo Positioning ---
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png"))
+                        .getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon logoIcon = new ImageIcon(logo);
-        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
-        logoPanel.setBounds(50,50,200,200);
+        RoundedImage logoPanel = new RoundedImage(logoIcon, 25);
+        // Positioned 40px from top and left
+        logoPanel.setBounds(50, 50, 200, 200);
+        panel.add(logoPanel);
 
+        // --- Header Section ---
+        title.setBounds(0, 45, wWidth, 70);
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setFont(customFont60);
+
+
+        panel.add(title);
+
+        // --- Layout Variables ---
+        int fieldWidth = 450;
+        int fieldHeight = 75; // Taller fields
+        int buttonWidth = 320;
+        int buttonHeight = 80; // Bigger buttons
+        
+        // Using your wxCenter utility for horizontal alignment
+        int centerX = Utils.GlobalConsts.wxCenter(wWidth, fieldWidth);
+        int buttonX = Utils.GlobalConsts.wxCenter(wWidth, buttonWidth);
+        int startY = 280+70; 
 
         // --- Username field ---
         usernameField = new JTextField("Username: ");
-        usernameField.setMaximumSize(new Dimension(380, 100));
-        usernameField.setPreferredSize(new Dimension(380, 100));
+        usernameField.setBounds(centerX, startY, fieldWidth, fieldHeight);
         usernameField.setBackground(Color.white);
-        usernameField.setForeground(Color.decode("#C6D3D0"));
+        usernameField.setForeground(placeholderColor);
         usernameField.setFont(customFont20);
-        usernameField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        // Helper to handle placeholder text
-        OnFocusEventHelper.setOnFocusText(usernameField, "Username: ", Color.black, Color.decode("#C6D3D0"));
+        usernameField.setBorder(new EmptyBorder(0, 15, 0, 15));
+        OnFocusEventHelper.setOnFocusText(usernameField, "Username: ", Color.black, placeholderColor);
 
         // --- Password field ---
-        // Using JPasswordField masking characters by default
         passwordField = new JPasswordField("Password: ");
-        passwordField.setEchoChar((char) 0); // Start visible for placeholder "Password:"
-        passwordField.setMaximumSize(new Dimension(380, 100));
-        passwordField.setPreferredSize(new Dimension(380, 100));
+        passwordField.setEchoChar((char) 0);
+        passwordField.setBounds(centerX, startY + 90, fieldWidth, fieldHeight); // Tight 15px gap (90 - 75)
         passwordField.setBackground(Color.white);
-        passwordField.setForeground(Color.decode("#C6D3D0"));
+        passwordField.setForeground(placeholderColor);
         passwordField.setFont(customFont20);
-        passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        // Custom logic might be needed for Password placeholders, but applying your helper:
-        OnFocusEventHelper.setOnFocusText(passwordField, "Password: ", Color.black, Color.decode("#C6D3D0"));
+        passwordField.setBorder(new EmptyBorder(0, 15, 0, 15));
+        OnFocusEventHelper.setOnFocusText(passwordField, "Password: ", Color.black, placeholderColor);
 
-        // --- Buttons ---
-        loginButton = new RoundedButton("login",15);
+        // --- Login Button ---
+        loginButton = new RoundedButton("login", 20);
+        loginButton.setBounds(centerX, startY + 190, 220, buttonHeight);
         loginButton.setBackground(red);
         loginButton.setForeground(Color.white);
         loginButton.setFont(customFont20);
-        loginButton.setMaximumSize(new Dimension(290, 95));
-        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setFocusPainted(false);
 
-        registerButton = new RoundedButton("register",15);
+        // --- Register Button ---
+        registerButton = new RoundedButton("register", 20);
+        registerButton.setBounds(centerX+220+10, startY + 190, 220, buttonHeight);
         registerButton.setBackground(red);
         registerButton.setForeground(Color.white);
         registerButton.setFont(customFont20);
-        registerButton.setMaximumSize(new Dimension(290, 95));
-        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         registerButton.setFocusPainted(false);
 
-        // --- Title Styling ---
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setFont(customFont60);
-        title.setBackground(Color.black);
-        title2.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title2.setFont(customFont60);
-        title2.setBackground(Color.black);
-
-        // --- Assembly ---
-        loginPanel.add(Box.createVerticalStrut(130));
-        loginPanel.add(usernameField);
-        loginPanel.add(Box.createVerticalStrut(20));
-        loginPanel.add(passwordField);
-
-        loginPanel.add(Box.createVerticalStrut(75));
-        loginPanel.add(loginButton);
-        loginPanel.add(Box.createVerticalStrut(15));
-        loginPanel.add(registerButton);
-        loginPanel.add(Box.createVerticalStrut(160));
-
-        titlePanel.add(Box.createVerticalStrut(25));
-        titlePanel.add(title);
-        titlePanel.add(Box.createVerticalStrut(1));
-        titlePanel.add(title2);
-
-        panel.add(titlePanel);
-        panel.add(loginPanel);
-        panel.add(logoPanel);
+        // Assembly
+        panel.add(usernameField);
+        panel.add(passwordField);
+        panel.add(loginButton);
+        panel.add(registerButton);
 
         hide();
     }

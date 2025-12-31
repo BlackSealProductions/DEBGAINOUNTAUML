@@ -12,7 +12,7 @@ public class MainFrame{
     final int wHeight = Utils.GlobalConsts.wHeight;
 
     private JFrame frame = new JFrame();
-    private RoundedButton backButton = new RoundedButton(" <- ",15);
+    private RoundedButton backButton = new RoundedButton(" <— ",15);
 
     Color darkgrey = new Color(22, 20, 19);
     Color blue = new Color(168, 237, 255);
@@ -22,7 +22,7 @@ public class MainFrame{
 
     public void init(){
 
-        frame.setTitle("Titel");
+        frame.setTitle("Bank of TUC");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setBounds(140, 40, wWidth, wHeight); // 14,36
@@ -36,10 +36,10 @@ public class MainFrame{
         // --- Top Bar (Back Button + Title) ---
 
         
-        backButton.setBounds(10, 820, 100, 40);
+        backButton.setBounds(10, 820, 80, 40);
         backButton.setBackground(red);
         backButton.setForeground(Color.white);
-        backButton.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
+        backButton.setFont(new Font("Bodoni MT", Font.BOLD, 20));
         backButton.setFocusPainted(false);
         backButton.setVisible(true);
         frame.getLayeredPane().add(backButton, JLayeredPane.PALETTE_LAYER);

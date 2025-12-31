@@ -1,547 +1,338 @@
 [
   {
-    "interestRate": "5%",
-    "password": "123",
-    "secondaryOwner": "Gyros Zepelis",
-    "balance": "67.69",
-    "phone": "6900000000",
-    "surname": "Iostarios",
-    "iban": "GR1770137038471374039483827",
-    "name": "Ioannis",
-    "citizenId": "AK123456",
-    "type": "Individual",
-    "email": "ioannis@tuc.gr",
-    "username": "ioannis"
+    "user": {
+      "username": "ckadas",
+      "password": "ckadas",
+      "name": "Christos",
+      "surname": "Kadas",
+      "phone": "0000000011",
+      "email": "ckadas@tuc.gr",
+      "type": "Individual",
+      "taxId": "17983235",
+      "accounts": [
+        {
+          "accountId": "ID_67676767",
+          "iban": "GR6700000000000000000000000",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "15000",
+          "interestRate": "11%"
+        },
+        {
+          "accountId": "ID_69696969",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_70707070",
+          "iban": "GR6900000000000000800000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_23232323",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_13131313",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_90909090",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_84848484",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_45454545",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_34343434",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "10%",
-    "password": "admin",
-    "secondaryOwner": "-",
-    "balance": "9999.99",
-    "phone": "6911111111",
-    "surname": "Kadas",
-    "iban": "GR1010101010101010101010101",
-    "name": "Chris",
-    "citizenId": "DEV_001",
-    "type": "Individual",
-    "email": "admin@bankoftuc.gr",
-    "username": "admin"
+    "user": {
+      "username": "ioannis",
+      "password": "123",
+      "name": "Ioannis",
+      "surname": "Iostarios",
+      "phone": "6900000000",
+      "email": "ioannis@tuc.gr",
+      "type": "Individual",
+      "taxId": "AK123456",
+      "accounts": [
+        {
+          "accountId": "ACC_IOAN_01",
+          "iban": "GR1770137038471374039483827",
+          "ownerName": "Iostarios",
+          "secondaryOwner": "Gyros Zepelis",
+          "balance": "67.69",
+          "interestRate": "5%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "6%",
-    "password": "pass",
-    "secondaryOwner": "Mrs. Pliroforikou",
-    "balance": "120500.75",
-    "phone": "6922222222",
-    "surname": "Pliroforikos",
-    "iban": "GR9090909090909090909090909",
-    "name": "Athanasios",
-    "citizenId": "PROF_99",
-    "type": "Individual",
-    "email": "prof@tuc.gr",
-    "username": "prof"
+    "user": {
+      "username": "admin",
+      "password": "admin",
+      "name": "Chris",
+      "surname": "Kadas",
+      "phone": "6911111111",
+      "email": "admin@bankoftuc.gr",
+      "type": "Individual",
+      "taxId": "DEV_001",
+      "accounts": [
+        {
+          "accountId": "ACC_ADMIN_MAIN",
+          "iban": "GR1010101010101010101010101",
+          "ownerName": "Kadas",
+          "secondaryOwner": "-",
+          "balance": "9999.99",
+          "interestRate": "10%"
+        },
+        {
+          "accountId": "ACC_ADMIN_SAVINGS",
+          "iban": "GR1010101010101010101010999",
+          "ownerName": "Kadas",
+          "secondaryOwner": "-",
+          "balance": "50000.00",
+          "interestRate": "2%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "0%",
-    "password": "coffee",
-    "secondaryOwner": "Prytanis",
-    "balance": "8540.20",
-    "phone": "2821037000",
-    "surname": "Cafeteria",
-    "iban": "GR5555555555555555555555555",
-    "name": "TUC",
-    "citizenId": "TUC_CAFE",
-    "type": "Company",
-    "email": "cafe@tuc.gr",
-    "username": "cafe"
+    "user": {
+      "username": "prof",
+      "password": "pass",
+      "name": "Athanasios",
+      "surname": "Pliroforikos",
+      "phone": "6922222222",
+      "email": "prof@tuc.gr",
+      "type": "Individual",
+      "taxId": "PROF_99",
+      "accounts": [
+        {
+          "accountId": "ACC_PROF_01",
+          "iban": "GR9090909090909090909090909",
+          "ownerName": "Pliroforikos",
+          "secondaryOwner": "Mrs. Pliroforikou",
+          "balance": "120500.75",
+          "interestRate": "6%"
+        },
+        {
+          "accountId": "ACC_PROF_RESEARCH",
+          "iban": "GR9090909000000000000000888",
+          "ownerName": "Pliroforikos",
+          "secondaryOwner": "TUC",
+          "balance": "250000.00",
+          "interestRate": "1%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "4%",
-    "password": "ele",
-    "secondaryOwner": "Kostas Kostas",
-    "balance": "45000.00",
-    "phone": "6933333333",
-    "surname": "Kosta",
-    "iban": "GR1122334455667788990011223",
-    "name": "Eleni",
-    "citizenId": "AE555666",
-    "type": "Individual",
-    "email": "eleni@gmail.com",
-    "username": "eleni"
+    "user": {
+      "username": "cafe",
+      "password": "coffee",
+      "name": "TUC",
+      "surname": "Cafeteria",
+      "phone": "2821037000",
+      "email": "cafe@tuc.gr",
+      "type": "Company",
+      "taxId": "TUC_CAFE",
+      "accounts": [
+        {
+          "accountId": "ACC_CAFE_01",
+          "iban": "GR5555555555555555555555555",
+          "ownerName": "Cafeteria",
+          "secondaryOwner": "Prytanis",
+          "balance": "8540.20",
+          "interestRate": "0%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "1%",
-    "password": "nik",
-    "secondaryOwner": "-",
-    "balance": "5.45",
-    "phone": "6944444444",
-    "surname": "Oikonomou",
-    "iban": "GR1231231231231231231231231",
-    "name": "Nikos",
-    "citizenId": "STU_1122",
-    "type": "Individual",
-    "email": "noiko@tuc.gr",
-    "username": "nikos"
+    "user": {
+      "username": "yiannis",
+      "password": "nba",
+      "name": "Giannis",
+      "surname": "Antetokounmpo",
+      "phone": "001414555",
+      "email": "greekfreak@nba.com",
+      "type": "Individual",
+      "taxId": "GI343434",
+      "accounts": [
+        {
+          "accountId": "ACC_NBA_01",
+          "iban": "GR3434343434343434343434343",
+          "ownerName": "Antetokounmpo",
+          "secondaryOwner": "Thanasis",
+          "balance": "50000000.00",
+          "interestRate": "10%"
+        },
+        {
+          "accountId": "ACC_NBA_MILWAUKEE",
+          "iban": "GR3434340000000000000000777",
+          "ownerName": "Antetokounmpo",
+          "secondaryOwner": "Bucks",
+          "balance": "1200000.00",
+          "interestRate": "1%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "2%",
-    "password": "mar",
-    "secondaryOwner": "-",
-    "balance": "1250.50",
-    "phone": "6955555555",
-    "surname": "Papadopoulou",
-    "iban": "GR4500120034005600780090123",
-    "name": "Maria",
-    "citizenId": "AB102030",
-    "type": "Individual",
-    "email": "mpapa@hotmail.com",
-    "username": "maria"
+    "user": {
+      "username": "bank",
+      "password": "root",
+      "name": "Bank",
+      "surname": "Of TUC",
+      "phone": "2821000000",
+      "email": "info@bankoftuc.gr",
+      "type": "Company",
+      "taxId": "BANK_MAIN",
+      "accounts": [
+        {
+          "accountId": "ACC_BANK_RESERVE",
+          "iban": "GR0000000000000000000000001",
+          "ownerName": "Of TUC",
+          "secondaryOwner": "-",
+          "balance": "10000000.00",
+          "interestRate": "0%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "1%",
-    "password": "geo",
-    "secondaryOwner": "-",
-    "balance": "12.00",
-    "phone": "6966666666",
-    "surname": "Georgiou",
-    "iban": "GR9988776655443322110012345",
-    "name": "Georgios",
-    "citizenId": "XY987654",
-    "type": "Individual",
-    "email": "geo@yahoo.com",
-    "username": "george"
+    "user": {
+      "username": "arisgod04",
+      "password": "steliosegamaw",
+      "name": "Aristeidis",
+      "surname": "Pitsoulis",
+      "phone": "6955826258",
+      "email": "arispitsoulis24@gmail.com",
+      "type": "Individual",
+      "taxId": "A69675524",
+      "accounts": [
+        {
+          "accountId": "ACC_ARIS_01",
+          "iban": "GR1862810229957087778102776",
+          "ownerName": "Pitsoulis",
+          "secondaryOwner": "None",
+          "balance": "24.0",
+          "interestRate": "0.5%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "1%",
-    "password": "gut",
-    "secondaryOwner": "-",
-    "balance": "800.00",
-    "phone": "+4912345678",
-    "surname": "Schmidt",
-    "iban": "GR7777777777777777777777777",
-    "name": "Hans",
-    "citizenId": "ERASMUS_1",
-    "type": "Individual",
-    "email": "hans@berlin.de",
-    "username": "hans"
+    "user": {
+      "username": "aziz",
+      "password": "123",
+      "name": "null",
+      "surname": "null",
+      "phone": "6955555555",
+      "email": "osaker@gmail.com",
+      "type": "Company",
+      "taxId": "25324",
+      "accounts": [
+      ]
+    }
   },
   {
-    "interestRate": "0%",
-    "password": "root",
-    "secondaryOwner": "-",
-    "balance": "10000000.00",
-    "phone": "2821000000",
-    "surname": "Of TUC",
-    "iban": "GR0000000000000000000000001",
-    "name": "Bank",
-    "citizenId": "BANK_MAIN",
-    "type": "Company",
-    "email": "info@bankoftuc.gr",
-    "username": "bank"
+    "user": {
+      "username": "nigga1",
+      "password": "123",
+      "name": "nig",
+      "surname": "nigz",
+      "phone": "124235",
+      "email": "nig@gmail.com",
+      "type": "Individual",
+      "taxId": "111",
+      "accounts": [
+        {
+          "accountId": "ID_83848571",
+          "iban": "GR0434868378581762882502325",
+          "ownerName": "nig",
+          "secondaryOwner": "nigger2",
+          "balance": "0",
+          "interestRate": "1%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "3%",
-    "password": "kat",
-    "secondaryOwner": "-",
-    "balance": "2500.00",
-    "phone": "6977777777",
-    "surname": "Stefanidi",
-    "iban": "GR2233445566778899001122334",
-    "name": "Katerina",
-    "citizenId": "KA998877",
-    "type": "Individual",
-    "email": "kat@sports.gr",
-    "username": "katerina"
+    "user": {
+      "username": "osak",
+      "password": "123",
+      "name": "osaka",
+      "surname": "h",
+      "phone": "345",
+      "email": "a",
+      "type": "Individual",
+      "taxId": "7788",
+      "accounts": [
+        {
+          "accountId": "ID_18081025",
+          "iban": "GR4721132123635377234428151",
+          "ownerName": "osak",
+          "secondaryOwner": "osak2",
+          "balance": "0",
+          "interestRate": "1%"
+        }
+      ]
+    }
   },
   {
-    "interestRate": "4%",
-    "password": "dim",
-    "secondaryOwner": "-",
-    "balance": "13000.00",
-    "phone": "6988888888",
-    "surname": "Diamantidis",
-    "iban": "GR3344556677889900112233445",
-    "name": "Dimitris",
-    "citizenId": "DI112233",
-    "type": "Individual",
-    "email": "3d@pao.gr",
-    "username": "dimitris"
-  },
-  {
-    "interestRate": "0%",
-    "password": "shop",
-    "secondaryOwner": "CEO Tech",
-    "balance": "54320.90",
-    "phone": "2109999999",
-    "surname": "Store SA",
-    "iban": "GR8888888888888888888888888",
-    "name": "Tech",
-    "citizenId": "TECH_STORE",
-    "type": "Company",
-    "email": "sales@techstore.gr",
-    "username": "store"
-  },
-  {
-    "interestRate": "8%",
-    "password": "ann",
-    "secondaryOwner": "Nikos Karvelas",
-    "balance": "999999.00",
-    "phone": "6999999999",
-    "surname": "Vissi",
-    "iban": "GR6677889900112233445566778",
-    "name": "Anna",
-    "citizenId": "AN445566",
-    "type": "Individual",
-    "email": "fannatics@music.gr",
-    "username": "anna"
-  },
-  {
-    "interestRate": "15%",
-    "password": "sad",
-    "secondaryOwner": "-",
-    "balance": "-150.00",
-    "phone": "6900000001",
-    "surname": "Sougias",
-    "iban": "GR0000000000000000000000000",
-    "name": "Babis",
-    "citizenId": "BR000001",
-    "type": "Individual",
-    "email": "nomoney@yahoo.gr",
-    "username": "broke"
-  },
-  {
-    "interestRate": "10%",
-    "password": "nba",
-    "secondaryOwner": "Thanasis",
-    "balance": "50000000.00",
-    "phone": "001414555",
-    "surname": "Antetokounmpo",
-    "iban": "GR3434343434343434343434343",
-    "name": "Giannis",
-    "citizenId": "GI343434",
-    "type": "Individual",
-    "email": "greekfreak@nba.com",
-    "username": "yiannis"
-  },
-  {
-    "interestRate": "2.5%",
-    "password": "photo",
-    "secondaryOwner": "-",
-    "balance": "8765.43",
-    "phone": "6912345678",
-    "surname": "Sergoulopoulos",
-    "iban": "GR1112223334445556667778889",
-    "name": "Fotis",
-    "citizenId": "FO777888",
-    "type": "Individual",
-    "email": "tv@star.gr",
-    "username": "fotis"
-  },
-  {
-    "interestRate": "2%",
-    "password": "police",
-    "secondaryOwner": "-",
-    "balance": "1400.00",
-    "phone": "100",
-    "surname": "Bekas",
-    "iban": "GR1001001001001001001001001",
-    "name": "Astynomos",
-    "citizenId": "PO999111",
-    "type": "Individual",
-    "email": "police@gov.gr",
-    "username": "cop"
-  },
-  {
-    "interestRate": "5%",
-    "password": "cook",
-    "secondaryOwner": "-",
-    "balance": "320000.00",
-    "phone": "6922222223",
-    "surname": "Petretzikis",
-    "iban": "GR9999999999999999999999999",
-    "name": "Akis",
-    "citizenId": "CH555555",
-    "type": "Individual",
-    "email": "akis@kitchen.gr",
-    "username": "chef"
-  },
-  {
-    "interestRate": "0.5%",
-    "password": "stu",
-    "secondaryOwner": "-",
-    "balance": "20.50",
-    "phone": "6933333334",
-    "surname": "Foititria",
-    "iban": "GR8887776665554443332221110",
-    "name": "Georgia",
-    "citizenId": "STU_2233",
-    "type": "Individual",
-    "email": "gfoit@tuc.gr",
-    "username": "student2"
-  },
-  {
-    "interestRate": "1%",
-    "password": "vc",
-    "secondaryOwner": "VC Fund",
-    "balance": "1500000.00",
-    "phone": "2101234567",
-    "surname": "Tech Ltd",
-    "iban": "GR1020304050607080901020304",
-    "name": "New",
-    "citizenId": "START_UP",
-    "type": "Company",
-    "email": "info@startup.io",
-    "username": "startup"
-  },
-  {
-    "interestRate": "0%",
-    "password": "game",
-    "secondaryOwner": "-",
-    "balance": "420.69",
-    "phone": "6900000002",
-    "surname": "Gamer",
-    "iban": "GR5556667778889990001112223",
-    "name": "Mike",
-    "citizenId": "GA111222",
-    "type": "Individual",
-    "email": "mike@twitch.tv",
-    "username": "gamer"
-  },
-  {
-    "interestRate": "3%",
-    "password": "granny",
-    "secondaryOwner": "Grandchild 1",
-    "balance": "5000.00",
-    "phone": "2101111111",
-    "surname": "Koukou",
-    "iban": "GR1111111111111111111111111",
-    "name": "Yiayia",
-    "citizenId": "GR999999",
-    "type": "Individual",
-    "email": "none",
-    "username": "grandma"
-  },
-  {
-    "interestRate": "0%",
-    "password": "123",
-    "secondaryOwner": "-",
-    "balance": "0.01",
-    "phone": "0000000000",
-    "surname": "Robot",
-    "iban": "GR6666666666666666666666666",
-    "name": "Mr",
-    "citizenId": "HA666666",
-    "type": "Individual",
-    "email": "fsociety@enc.com",
-    "username": "hacker"
-  },
-  {
-    "interestRate": "1%",
-    "password": "test",
-    "secondaryOwner": "-",
-    "balance": "100.00",
-    "phone": "1234567890",
-    "surname": "User",
-    "iban": "GR1234567890123456789012345",
-    "name": "Test",
-    "citizenId": "TEST_USER",
-    "type": "Individual",
-    "email": "test@test.com",
-    "username": "test"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "mamo123",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "6922342643",
-    "surname": "Kadas",
-    "iban": "GR8418777125827487076940899",
-    "name": "Chris",
-    "citizenId": "AB12345",
-    "email": "christas101@outlook.com",
-    "username": "chris"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "1234",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "66648992",
-    "surname": "l",
-    "iban": "GR4447263849266804943370369",
-    "name": "s",
-    "citizenId": "12345",
-    "email": "jhby@gmail.com",
-    "username": "steliosldr"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR1234515718163479856412975",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR2081382227730608533100718",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR2589662328493000955135643",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR4049962982144000086073016",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR8739714550346705523841541",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR6389004320983474102141287",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR2079868727554555651232912",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR2039607076099236441838366",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR2584679649326007012085282",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR3982877431924297968275355",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR0619616018173440069493289",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "Password",
-    "secondaryOwner": "None",
-    "balance": "0.0",
-    "phone": "Phone Number",
-    "surname": "Surname",
-    "iban": "GR1322656472299488321127704",
-    "name": "Name",
-    "citizenId": "Citizen ID",
-    "email": "Email",
-    "username": "Username"
-  },
-  {
-    "interestRate": "0.5",
-    "password": "steliosegamaw",
-    "secondaryOwner": "None",
-    "balance": "24.0",
-    "phone": "6955826258",
-    "surname": "Pitsoulis",
-    "iban": "GR1862810229957087778102776",
-    "name": "Aristeidis",
-    "citizenId": "A69675524",
-    "email": "arispitsoulis24@gmail.com",
-    "username": "arisgod04"
+    "user": {
+      "username": "q",
+      "password": "q",
+      "name": "q",
+      "surname": "q",
+      "phone": "q",
+      "email": "q",
+      "type": "Individual",
+      "taxId": "q",
+      "accounts": [
+      ]
+    }
   }
 ]

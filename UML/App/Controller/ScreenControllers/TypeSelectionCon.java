@@ -7,44 +7,46 @@ import App.View.ViewSession;
 import App.View.Screens.TypeSelectionScreen;
 import App.View.Screens.FirstPageScreen;
 import App.View.Screens.LoginScreen;
-import App.View.Screens.RegisterScreen;
+import App.View.Screens.*;
 
-public class FirstPageCon implements Controller_t {
-    private FirstPageScreen view;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class TypeSelectionCon implements Controller_t{
+    private TypeSelectionScreen view;
     private ModelHandler model; 
     
     private ViewHandler viewHandler;
 
-    public FirstPageCon(FirstPageScreen view, ModelHandler model, ViewHandler viewHandler) {
+    public TypeSelectionCon(TypeSelectionScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
     }
-
     @Override
     public void init() {
         
-        view.getLoginBut().addActionListener(e -> handleLogin());
-        view.getRegisterBut().addActionListener(e -> handleRegistration());
+        view.getIndividualBtn().addActionListener(e -> handleIndividual());
+        view.getCompanyBtn().addActionListener(e -> handleCompany());
 
     }
 
-    private void handleLogin(){
+    private void handleIndividual(){
 
         view.hide();
-        LoginScreen next = viewHandler.getLoginScreen();
+        RegisterScreen next = viewHandler.getRegisterScreen();
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
 
     }
 
-    private void handleRegistration(){
+    private void handleCompany(){
 
         view.hide();
-        TypeSelectionScreen next = viewHandler.getChooseRegisterType();
+        RegisterCompanyScreen next = viewHandler.getRegisterCompanyScreen();
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
     }
-
-    
 }

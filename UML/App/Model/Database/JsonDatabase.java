@@ -5,144 +5,204 @@ import java.nio.file.*;
 import java.util.*;
 
 public class JsonDatabase {
-
     private static final String DB_FILE = "accounts.json";
 
     // ===========================
     //      PUBLIC METHODS
     // ===========================
 
-    // --- Save Data (Used for Registering NEW users) ---
-    public static void saveRecord(Map<String, String> newRecord) {
-        // 1. Load existing data
-        List<Map<String, String>> allRecords = getAllRecords();
+    /**
+     * Loads all records from the JSON file.
+     */
+    public static List<Map<String, Object>> getAllRecords() {
+        return parseJsonNested(DB_FILE);
+    }
 
-        // 2. Add the new record
-        allRecords.add(newRecord);
-
-        // 3. Save everything back to the file
+    /**
+     * Saves a NEW user during registration.
+     */
+    public static void saveRecord(Map<String, Object> userData) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        Map<String, Object> wrapper = new HashMap<>();
+        wrapper.put("user", userData);
+        allRecords.add(wrapper);
         saveAllRecords(allRecords);
     }
 
-    // --- Get All Records (Used for Login) ---
-    public static List<Map<String, String>> getAllRecords() {
-        return parseJsonFile(DB_FILE);
-    }
-
-    // --- Get Specific Record (Useful for checking duplicates/updates) ---
-    public static Map<String, String> getRecord(String citizenId) {
-        List<Map<String, String>> allData = getAllRecords();
-        for (Map<String, String> record : allData) {
-            if (record.containsKey("citizenId") && record.get("citizenId").equals(citizenId)) {
-                return record;
+    /**
+     * Adds a new account to an existing user identified by username.
+     */
+    public static void addAccountToUser(String username, Map<String, String> newAccount) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        for (Map<String, Object> wrapper : allRecords) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            if (user.get("username").equals(username)) {
+                List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
+                if (accounts == null) {
+                    accounts = new ArrayList<>();
+                    user.put("accounts", accounts);
+                }
+                accounts.add(newAccount);
+                break;
             }
         }
-        return null; 
+        saveAllRecords(allRecords);
     }
 
     // ===========================
-    //   PRIVATE HELPERS (Manual JSON Logic)
+    //   PRIVATE HELPERS (Writer)
     // ===========================
 
-    // --- PARSER: Reads the file and converts string -> List<Map> ---
-    private static List<Map<String, String>> parseJsonFile(String filename) {
-        List<Map<String, String>> dataList = new ArrayList<>();
-        File file = new File(filename);
-
-        if (!file.exists()) return dataList;
-
-        try {
-            // Read entire file content
-            String content = new String(Files.readAllBytes(file.toPath()));
-            content = content.trim();
-
-            // Handle empty file or empty JSON array
-            if (content.isEmpty() || content.equals("[]")) return dataList;
-
-            // Remove the outer [ and ]
-            if (content.startsWith("[") && content.endsWith("]")) {
-                content = content.substring(1, content.length() - 1);
+    private static void saveAllRecords(List<Map<String, Object>> records) {
+        StringBuilder sb = new StringBuilder("[\n");
+        for (int i = 0; i < records.size(); i++) {
+            Map<String, Object> user = (Map<String, Object>) records.get(i).get("user");
+            sb.append("  {\n    \"user\": {\n");
+            
+            // Basic fields
+            String[] fields = {"username", "password", "name", "surname", "phone", "email", "type", "taxId"};
+            for (String f : fields) {
+                sb.append(String.format("      \"%s\": \"%s\",\n", f, user.get(f)));
             }
 
-            // Split by "}, {" to separate objects
-            // This regex handles the comma between objects
-            String[] rawObjects = content.split("(?<=\\}),\\s*(?=\\{)");
+            // Accounts Array
+            sb.append("      \"accounts\": [\n");
+            List<Map<String, String>> accs = (List<Map<String, String>>) user.get("accounts");
+            if (accs != null) {
+                for (int j = 0; j < accs.size(); j++) {
+                    Map<String, String> a = accs.get(j);
+                    // SKIP GHOST ACCOUNTS: If accountId is empty, do not write this block to the file
+                    if (a.get("accountId") == null || a.get("accountId").trim().isEmpty()) {
+                        continue; 
+                    }
+                    sb.append("        {\n");
+                    sb.append(String.format("          \"accountId\": \"%s\",\n", a.get("accountId")));
+                    sb.append(String.format("          \"iban\": \"%s\",\n", a.get("iban")));
+                    sb.append(String.format("          \"ownerName\": \"%s\",\n", a.get("ownerName")));
+                    sb.append(String.format("          \"secondaryOwner\": \"%s\",\n", a.getOrDefault("secondaryOwner", "-")));
+                    sb.append(String.format("          \"balance\": \"%s\",\n", a.get("balance")));
+                    sb.append(String.format("          \"interestRate\": \"%s\"\n", a.getOrDefault("interestRate", "0%")));
+                    sb.append("        }").append(j < accs.size() - 1 ? ",\n" : "\n");
+                }
+            }
+            sb.append("      ]\n    }\n  }").append(i < records.size() - 1 ? ",\n" : "\n");
+        }
+        sb.append("]");
+        try (PrintWriter out = new PrintWriter(new FileWriter(DB_FILE))) { 
+            out.println(sb.toString()); 
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        }
+    }
 
-            for (String rawObj : rawObjects) {
-                Map<String, String> map = new HashMap<>();
-                
-                // Clean up braces
-                rawObj = rawObj.replace("{", "").replace("}", "").trim();
-                
-                // Split by comma (assuming no commas inside values for now)
-                // Note: This is a simple parser. If a user types a comma in their address, 
-                // this manual parser might break. Libraries like Jackson avoid this.
-                String[] fields = rawObj.split(",\n"); 
-                // Fallback: if not split by newline, try split by comma alone
-                if (fields.length == 1) fields = rawObj.split(",");
+    // ===========================
+    //   PRIVATE HELPERS (Parser)
+    // ===========================
 
-                for (String field : fields) {
-                    if (field.contains(":")) {
-                        String[] parts = field.split(":", 2);
-                        String key = parts[0].replaceAll("[\"\\s]", ""); // Remove quotes and spaces
-                        String value = parts[1].replaceAll("[\"\\s]", ""); // Remove quotes and spaces
-                        
-                        // If you want to keep spaces inside values (like Name), change regex above:
-                        // String value = parts[1].replace("\"", "").trim();
-                        
-                        map.put(key, cleanValue(parts[1]));
+    private static List<Map<String, Object>> parseJsonNested(String filename) {
+        List<Map<String, Object>> records = new ArrayList<>();
+        try {
+            File file = new File(filename);
+            if (!file.exists()) return records;
+
+            String content = new String(Files.readAllBytes(Paths.get(filename))).trim();
+            if (content.length() < 3) return records; 
+
+            // Remove outer brackets []
+            content = content.substring(1, content.length() - 1).trim();
+
+            // Split into "User" blocks by counting curly braces
+            List<String> userBlocks = new ArrayList<>();
+            int braceCount = 0;
+            StringBuilder sb = new StringBuilder();
+            boolean insideQuotes = false;
+
+            for (char c : content.toCharArray()) {
+                if (c == '\"') insideQuotes = !insideQuotes;
+                if (!insideQuotes) {
+                    if (c == '{') braceCount++;
+                    if (c == '}') braceCount--;
+                }
+                sb.append(c);
+                if (braceCount == 0 && sb.toString().trim().length() > 0 && !insideQuotes) {
+                    String block = sb.toString().trim();
+                    if (block.startsWith(",")) block = block.substring(1).trim();
+                    userBlocks.add(block);
+                    sb.setLength(0);
+                }
+            }
+
+            for (String block : userBlocks) {
+
+                String username = extractValue(block, "username");
+                if (username == null || username.trim().isEmpty()) {
+                    continue; // Skip this ghost block
+                }
+                
+                Map<String, Object> userData = new HashMap<>();
+                userData.put("username", extractValue(block, "username"));
+                userData.put("password", extractValue(block, "password"));
+                userData.put("name", extractValue(block, "name"));
+                userData.put("surname", extractValue(block, "surname"));
+                userData.put("taxId", extractValue(block, "taxId"));
+                userData.put("type", extractValue(block, "type"));
+                userData.put("phone", extractValue(block, "phone"));
+                userData.put("email", extractValue(block, "email"));
+
+                // Handle nested accounts array
+                List<Map<String, String>> accounts = new ArrayList<>();
+                int accStart = block.indexOf("\"accounts\": [");
+                if (accStart != -1) {
+                    int accEnd = block.lastIndexOf("]");
+                    String accsSection = block.substring(accStart + 12, accEnd).trim();
+                    
+                    // NEW CHECK: Only proceed if the section contains at least one object opening '{'
+                    if (accsSection.contains("{")) {
+                        // Split accounts by looking for closing braces of account objects
+                        String[] accParts = accsSection.split("\\},");
+                        for (String part : accParts) {
+                            if (part.trim().isEmpty()) continue;
+                            
+                            // Further safety: ensure this specific part has data
+                            String id = extractValue(part, "accountId");
+                            if (id.isEmpty()) continue; 
+
+                            Map<String, String> acc = new HashMap<>();
+                            acc.put("accountId", id);
+                            acc.put("iban", extractValue(part, "iban"));
+                            acc.put("ownerName", extractValue(part, "ownerName"));
+                            acc.put("secondaryOwner", extractValue(part, "secondaryOwner"));
+                            acc.put("balance", extractValue(part, "balance"));
+                            acc.put("interestRate", extractValue(part, "interestRate"));
+                            accounts.add(acc);
+                        }
                     }
                 }
-                dataList.add(map);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return dataList;
-    }
-
-    // --- WRITER: Converts List<Map> -> String and writes to file ---
-    private static void saveAllRecords(List<Map<String, String>> records) {
-        StringBuilder jsonBuilder = new StringBuilder();
-        jsonBuilder.append("[\n");
-
-        for (int i = 0; i < records.size(); i++) {
-            Map<String, String> record = records.get(i);
-            jsonBuilder.append("  {\n");
-
-            int fieldCount = 0;
-            for (Map.Entry<String, String> entry : record.entrySet()) {
-                jsonBuilder.append(String.format("    \"%s\": \"%s\"", entry.getKey(), entry.getValue()));
+                userData.put("accounts", accounts);
                 
-                // Add comma if not the last field
-                if (fieldCount < record.size() - 1) {
-                    jsonBuilder.append(",\n");
-                } else {
-                    jsonBuilder.append("\n");
-                }
-                fieldCount++;
+                Map<String, Object> wrapper = new HashMap<>();
+                wrapper.put("user", userData);
+                records.add(wrapper);
             }
-
-            jsonBuilder.append("  }");
-            
-            // Add comma between objects if not the last object
-            if (i < records.size() - 1) {
-                jsonBuilder.append(",\n");
-            } else {
-                jsonBuilder.append("\n");
-            }
-        }
-        jsonBuilder.append("]");
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(DB_FILE))) {
-            writer.write(jsonBuilder.toString());
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return records;
     }
 
-    // Helper to clean up quotes and extra spaces from values
-    private static String cleanValue(String raw) {
-        return raw.replace("\"", "").trim();
+    private static String extractValue(String block, String key) {
+        String search = "\"" + key + "\":";
+        int index = block.indexOf(search);
+        if (index == -1) return "";
+        
+        // Find the opening quote after the colon
+        int start = block.indexOf("\"", index + search.length()) + 1;
+        if (start == 0) return ""; // Not found
+        
+        // Find the closing quote
+        int end = block.indexOf("\"", start);
+        if (end == -1) return "";
+        
+        return block.substring(start, end);
     }
 }

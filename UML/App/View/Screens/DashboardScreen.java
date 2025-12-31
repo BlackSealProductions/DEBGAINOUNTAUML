@@ -32,9 +32,11 @@ public class DashboardScreen implements View_t {
     public String username = "nao";
 
     // Placeholders for dynamic content
-    public JLabel accountNumberLabel = new JLabel("Account: #00000000");
-    public JLabel balanceLabel = new JLabel("$"+userBalance);
-    public JLabel userNameLabel = new JLabel("Welcome, " + username);
+    private JLabel accountNumberLabel = new JLabel("Account: #00000000");
+    private JLabel balanceLabel = new JLabel("$"+userBalance);
+
+
+    private JLabel userNameLabel = new JLabel("Welcome, " + username);
     private RoundedButton logoutBtn = new RoundedButton("X",15);
 
 
@@ -184,8 +186,25 @@ public class DashboardScreen implements View_t {
         return panel;
     }
 
-    public void changeUser(String username, String balance){
+    public JLabel getAccountNumberLabel() {
+        return accountNumberLabel;
+    }
+
+    public JLabel getBalanceLabel() {
+        return balanceLabel;
+    }
+
+    public JLabel getUserNameLabel() {
+        return userNameLabel;
+    }
+
+    public RoundedButton getLogoutBtn(){
+        return this.logoutBtn;
+    }
+
+    public void setAccountDetails(String username, String balance, String acctId){
         userNameLabel.setText("Welcome, " + username);
+        accountNumberLabel.setText("Account: #" + acctId);
         if(Float.parseFloat(balance) <= 0){
 
             balanceLabel.setText(balance+" $ (8a se valoun mesa se ligo :())");
