@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.stream.IntStream;
 
-public class RegisterScreen implements View_t {
+public class RegisterIndividualScreen implements View_t {
 
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;

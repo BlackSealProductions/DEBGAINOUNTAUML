@@ -4,7 +4,7 @@ import App.Controller.Controller_t;
 import App.Model.Database.JsonDatabase; // Import Database
 import App.Model.ModelHandler;
 import App.View.Screens.LoginScreen;
-import App.View.Screens.RegisterScreen;
+import App.View.Screens.RegisterIndividualScreen;
 import App.View.ViewHandler;
 import App.View.ViewSession;
 
@@ -15,13 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class RegisterCon implements Controller_t {
+public class RegisterIndividualCon implements Controller_t {
 
-    private RegisterScreen view;
+    private RegisterIndividualScreen view;
     private ModelHandler model;
     private ViewHandler viewHandler;
 
-    public RegisterCon(RegisterScreen view, ModelHandler model, ViewHandler viewHandler) {
+    public RegisterIndividualCon(RegisterIndividualScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
