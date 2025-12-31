@@ -8,7 +8,7 @@ import App.Model.ModelHandler;
 import App.Model.Session;
 import App.View.Screens.DashboardScreen;
 import App.View.Screens.LoginScreen;
-import App.View.Screens.RegisterScreen;
+import App.View.Screens.RegisterIndividualScreen;
 import App.View.ViewHandler; // IMPORT THIS
 import App.View.ViewSession;
 

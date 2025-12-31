@@ -36,7 +36,7 @@ public class TypeSelectionCon implements Controller_t{
     private void handleIndividual(){
 
         view.hide();
-        RegisterScreen next = viewHandler.getRegisterScreen();
+        RegisterIndividualScreen next = viewHandler.getRegisterScreen();
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
 

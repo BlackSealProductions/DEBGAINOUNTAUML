@@ -1,6 +1,7 @@
 package App.Controller;
 
 import App.View.ViewHandler;
+import App.View.Screens.RegisterCompanyScreen;
 import App.Controller.ScreenControllers.*;
 import App.Model.ModelHandler;
 
@@ -8,7 +9,8 @@ public class ControllerHandler {
 
     private ViewHandler v;
     private ModelHandler m;
-    private Controller_t register_con;
+    private Controller_t registerindiv_con;
+    private Controller_t registercomp_con;
     private Controller_t login_con;
     private Controller_t firstpage_con;
     private Controller_t mainframe_con;
@@ -32,8 +34,11 @@ public class ControllerHandler {
         login_con = new LoginCon(v.getLoginScreen(), m, v);
         login_con.init();
         
-        register_con = new RegisterCon(v.getRegisterScreen(), m, v);
-        register_con.init();
+        registerindiv_con = new RegisterIndividualCon(v.getRegisterScreen(), m, v);
+        registerindiv_con.init();
+
+        registercomp_con = new RegisterCompanyCon(v.getRegisterCompanyScreen(),m ,v);
+        registercomp_con.init();
 
         firstpage_con = new FirstPageCon(v.getFirstPageScreen(), m, v);
         firstpage_con.init();

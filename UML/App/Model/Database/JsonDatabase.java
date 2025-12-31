@@ -53,48 +53,74 @@ public class JsonDatabase {
     //   PRIVATE HELPERS (Writer)
     // ===========================
 
-    private static void saveAllRecords(List<Map<String, Object>> records) {
-        StringBuilder sb = new StringBuilder("[\n");
-        for (int i = 0; i < records.size(); i++) {
-            Map<String, Object> user = (Map<String, Object>) records.get(i).get("user");
-            sb.append("  {\n    \"user\": {\n");
-            
-            // Basic fields
-            String[] fields = {"username", "password", "name", "surname", "phone", "email", "type", "taxId"};
-            for (String f : fields) {
-                sb.append(String.format("      \"%s\": \"%s\",\n", f, user.get(f)));
+    public static void saveAllRecords(List<Map<String, Object>> allRecords) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[\n");
+    
+        for (int i = 0; i < allRecords.size(); i++) {
+            Map<String, Object> wrapper = allRecords.get(i);
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            String type = (String) user.get("type");
+    
+            sb.append("  {\n");
+            sb.append("    \"user\": {\n");
+            sb.append(String.format("      \"username\": \"%s\",\n", user.get("username")));
+            sb.append(String.format("      \"password\": \"%s\",\n", user.get("password")));
+    
+            // --- Conditional Logic based on User Type ---
+            if ("Company".equalsIgnoreCase(type)) {
+                // For companies, we prioritize companyName. 
+                // We use name as a fallback or if companyName was mapped there.
+                String cName = user.containsKey("companyName") ? (String)user.get("companyName") : (String)user.get("name");
+                sb.append(String.format("      \"companyName\": \"%s\",\n", cName));
+            } else {
+                // For individuals, use standard name and surname
+                sb.append(String.format("      \"name\": \"%s\",\n", user.get("name")));
+                sb.append(String.format("      \"surname\": \"%s\",\n", user.get("surname")));
             }
-
-            // Accounts Array
+    
+            sb.append(String.format("      \"phone\": \"%s\",\n", user.get("phone")));
+            sb.append(String.format("      \"email\": \"%s\",\n", user.get("email")));
+            sb.append(String.format("      \"type\": \"%s\",\n", type));
+            sb.append(String.format("      \"taxId\": \"%s\",\n", user.get("taxId")));
+    
+            // --- Accounts Section ---
             sb.append("      \"accounts\": [\n");
-            List<Map<String, String>> accs = (List<Map<String, String>>) user.get("accounts");
-            if (accs != null) {
-                for (int j = 0; j < accs.size(); j++) {
-                    Map<String, String> a = accs.get(j);
-                    // SKIP GHOST ACCOUNTS: If accountId is empty, do not write this block to the file
-                    if (a.get("accountId") == null || a.get("accountId").trim().isEmpty()) {
-                        continue; 
-                    }
+            List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
+            if (accounts != null) {
+                for (int j = 0; j < accounts.size(); j++) {
+                    Map<String, String> acc = accounts.get(j);
+                    // Skip ghost accounts as discussed previously
+                    if (acc.get("accountId") == null || acc.get("accountId").isEmpty()) continue;
+    
                     sb.append("        {\n");
-                    sb.append(String.format("          \"accountId\": \"%s\",\n", a.get("accountId")));
-                    sb.append(String.format("          \"iban\": \"%s\",\n", a.get("iban")));
-                    sb.append(String.format("          \"ownerName\": \"%s\",\n", a.get("ownerName")));
-                    sb.append(String.format("          \"secondaryOwner\": \"%s\",\n", a.getOrDefault("secondaryOwner", "-")));
-                    sb.append(String.format("          \"balance\": \"%s\",\n", a.get("balance")));
-                    sb.append(String.format("          \"interestRate\": \"%s\"\n", a.getOrDefault("interestRate", "0%")));
-                    sb.append("        }").append(j < accs.size() - 1 ? ",\n" : "\n");
+                    sb.append(String.format("          \"accountId\": \"%s\",\n", acc.get("accountId")));
+                    sb.append(String.format("          \"iban\": \"%s\",\n", acc.get("iban")));
+                    sb.append(String.format("          \"ownerName\": \"%s\",\n", acc.get("ownerName")));
+                    sb.append(String.format("          \"secondaryOwner\": \"%s\",\n", acc.get("secondaryOwner")));
+                    sb.append(String.format("          \"balance\": \"%s\",\n", acc.get("balance")));
+                    sb.append(String.format("          \"interestRate\": \"%s\"\n", acc.get("interestRate")));
+                    sb.append("        }");
+                    if (j < accounts.size() - 1) sb.append(",");
+                    sb.append("\n");
                 }
             }
-            sb.append("      ]\n    }\n  }").append(i < records.size() - 1 ? ",\n" : "\n");
+            sb.append("      ]\n");
+            sb.append("    }\n");
+            sb.append("  }");
+            if (i < allRecords.size() - 1) sb.append(",");
+            sb.append("\n");
         }
+    
         sb.append("]");
-        try (PrintWriter out = new PrintWriter(new FileWriter(DB_FILE))) { 
-            out.println(sb.toString()); 
-        } catch (IOException e) { 
-            e.printStackTrace(); 
+    
+        // Write to file
+        try (java.io.PrintWriter out = new java.io.PrintWriter("accounts.json")) {
+            out.println(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
     // ===========================
     //   PRIVATE HELPERS (Parser)
     // ===========================
@@ -206,3 +232,5 @@ public class JsonDatabase {
         return block.substring(start, end);
     }
 }
+
+

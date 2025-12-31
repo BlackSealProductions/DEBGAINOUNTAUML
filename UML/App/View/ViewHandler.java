@@ -15,14 +15,14 @@ public class ViewHandler {
     private MainFrame mainframe;
     private View_t login;
     private View_t billpayment;
-    private View_t register;
+    private View_t registerindiv;
+    private View_t registercompany;
     private View_t statements;
     private View_t standingorders;
     private View_t accountmgmt;
     private View_t firstpage;
     private View_t dashboard;
     private View_t deposit;
-    private View_t registercompany;
     private View_t typeselection;
     private View_t acctselection;
     private View_t acctcreation;
@@ -37,9 +37,9 @@ public class ViewHandler {
         login.init();
         mainframe.addPanel(login.getMainPanel());
 
-        this.register = new RegisterScreen();
-        this.register.init(); 
-        mainframe.addPanel(register.getMainPanel());
+        this.registerindiv = new RegisterIndividualScreen();
+        this.registerindiv.init(); 
+        mainframe.addPanel(registerindiv.getMainPanel());
 
         this.billpayment = new BillPaymentScreen();
         this.billpayment.init(); 
@@ -103,7 +103,7 @@ public class ViewHandler {
     
     public void showRegisterScreen() {
         
-        register.show();
+        registerindiv.show();
     }
     
     public void showLoginScreen() {
@@ -116,10 +116,9 @@ public class ViewHandler {
     public LoginScreen getLoginScreen() {
         return (LoginScreen) this.login; 
     }
-    public RegisterScreen getRegisterScreen() {
-        return (RegisterScreen) this.register;
+    public RegisterIndividualScreen getRegisterScreen() {
+        return (RegisterIndividualScreen) this.registerindiv;
     }
-
     public RegisterCompanyScreen getRegisterCompanyScreen() {
         return (RegisterCompanyScreen) this.registercompany;
     }
