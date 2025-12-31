@@ -171,8 +171,7 @@
     "user": {
       "username": "cafe",
       "password": "coffee",
-      "name": "TUC",
-      "surname": "Cafeteria",
+      "companyName": "TUC",
       "phone": "2821037000",
       "email": "cafe@tuc.gr",
       "type": "Company",
@@ -223,8 +222,7 @@
     "user": {
       "username": "bank",
       "password": "root",
-      "name": "Bank",
-      "surname": "Of TUC",
+      "companyName": "Bank",
       "phone": "2821000000",
       "email": "info@bankoftuc.gr",
       "type": "Company",
@@ -267,8 +265,7 @@
     "user": {
       "username": "aziz",
       "password": "123",
-      "name": "null",
-      "surname": "null",
+      "companyName": "null",
       "phone": "6955555555",
       "email": "osaker@gmail.com",
       "type": "Company",
@@ -331,6 +328,27 @@
       "email": "q",
       "type": "Individual",
       "taxId": "q",
+      "accounts": [
+        {
+          "accountId": "ID_10643754",
+          "iban": "GR6925679255646201696520316",
+          "ownerName": "q",
+          "secondaryOwner": "werty",
+          "balance": "0",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "fs",
+      "password": "123",
+      "companyName": "FSTUC",
+      "phone": "333",
+      "email": "fss",
+      "type": "Company",
+      "taxId": "444",
       "accounts": [
       ]
     }

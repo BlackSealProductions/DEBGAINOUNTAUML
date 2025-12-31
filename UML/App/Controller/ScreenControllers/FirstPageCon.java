@@ -7,7 +7,7 @@ import App.View.ViewSession;
 import App.View.Screens.TypeSelectionScreen;
 import App.View.Screens.FirstPageScreen;
 import App.View.Screens.LoginScreen;
-import App.View.Screens.RegisterScreen;
+import App.View.Screens.RegisterIndividualScreen;
 
 public class FirstPageCon implements Controller_t {
     private FirstPageScreen view;

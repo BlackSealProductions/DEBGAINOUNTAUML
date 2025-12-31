@@ -14,7 +14,7 @@ import App.View.ViewHandler;
 import App.View.ViewSession;
 import App.View.Screens.LoginScreen;
 import App.View.Screens.RegisterCompanyScreen;
-import App.View.Screens.RegisterScreen;
+import App.View.Screens.RegisterIndividualScreen;
 
 public class RegisterCompanyCon implements Controller_t{
     
