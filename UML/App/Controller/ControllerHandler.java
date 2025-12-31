@@ -18,6 +18,8 @@ public class ControllerHandler {
     private Controller_t typeselection_con;
     private Controller_t acctselection_con;
     private Controller_t acctcreation_con;
+    private Controller_t deposit_con;
+    private Controller_t withdraw_con;
     
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
@@ -54,6 +56,12 @@ public class ControllerHandler {
 
         acctcreation_con = new AccountCreationCon(v.getAccountCreationScreen(), m, v);
         acctcreation_con.init();
+
+        deposit_con = new DepositCon(v.getDepositScreen(), m, v);
+        deposit_con.init();
+
+        withdraw_con = new WithdrawCon(v.getWithdrawScreen(), m, v);
+        withdraw_con.init();
 
 
 

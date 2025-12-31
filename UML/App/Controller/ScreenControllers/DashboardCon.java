@@ -48,12 +48,12 @@ public class DashboardCon implements Controller_t{
 
         view.kinhseisBtn.addActionListener(e -> handleKinhseis());
 
-        // // metafores entos
-        // view.metEntosBtn.addActionListener(e -> handleMetEntos());
+        // anoigma neou logarismou
+        view.createAccBtn.addActionListener(e -> handleCreateAcc());
 
         // metafore ektos
         
-        view.metEktosBtn.addActionListener(e -> handleMetEktos());
+        view.metaforesBtn.addActionListener(e -> handleMetEktos());
         
         // pagies 
         
@@ -61,6 +61,14 @@ public class DashboardCon implements Controller_t{
         
         // diaxeirisi logarismou
         view.diaxeirisiBtn.addActionListener(e -> handleDiaxeirisi());
+
+        // deposit
+
+        view.depositBtn.addActionListener(e -> handleDeposit());
+
+        // withdraw
+
+         view.withdrawBtn.addActionListener(e -> handleWithdraw());
 
 
     }
@@ -114,12 +122,40 @@ public class DashboardCon implements Controller_t{
 
     private void handleMetEktos(){
         view.hide();
-        DepositScreen metEktos = viewHandler.getDepositScreen();
+        MetaforaScreen metEktos = viewHandler.getMetaforaScreen();
         Account user = Session.getInstance().getActiveAccount();
         metEktos.setBalance(user.getBalance());
         metEktos.show();
         ViewSession.getInstance().updateScreenHistory(metEktos);
 
+    }
+
+    private void handleCreateAcc(){
+        view.hide();
+        AccountCreationScreen next = viewHandler.getAccountCreationScreen();
+        next.setHelloMessage(Session.getInstance().getUsername());
+        next.setPrimaryOwnerLabel(Session.getInstance().getUsername());
+        next.show();
+        ViewSession.getInstance().updateScreenHistory(next);
+        
+    }
+
+    private void handleDeposit(){
+        view.hide();
+        DepositScreen next = viewHandler.getDepositScreen();
+        Account user = Session.getInstance().getActiveAccount();
+        next.setCurrentBalance(user.getBalance());
+        next.show();
+        ViewSession.getInstance().updateScreenHistory(next);
+    }
+
+    private void handleWithdraw(){
+        view.hide();
+        WithdrawScreen next = viewHandler.getWithdrawScreen();
+        Account user = Session.getInstance().getActiveAccount();
+        next.setCurrentBalance(user.getBalance());
+        next.show();
+        ViewSession.getInstance().updateScreenHistory(next);
     }
 
         

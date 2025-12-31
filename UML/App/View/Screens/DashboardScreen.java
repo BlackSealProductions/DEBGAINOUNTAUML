@@ -33,7 +33,7 @@ public class DashboardScreen implements View_t {
 
     // Placeholders for dynamic content
     private JLabel accountNumberLabel = new JLabel("Account: #00000000");
-    private JLabel balanceLabel = new JLabel("$"+userBalance);
+    private JLabel balanceLabel = new JLabel(userBalance+" €");
 
 
     private JLabel userNameLabel = new JLabel("Welcome, " + username);
@@ -42,10 +42,12 @@ public class DashboardScreen implements View_t {
 
     public RoundedButton plhrwmhBtn = createMenuButton("Πληρωμή λογαριασμού");
     public RoundedButton kinhseisBtn = createMenuButton("Κινήσεις λογαριασμού");
-    public RoundedButton metEntosBtn = createMenuButton("Μεταφορές εντός τράπεζας");
-    public RoundedButton metEktosBtn = createMenuButton("Μεταφορές σε λογαριασμό");
+    public RoundedButton createAccBtn = createMenuButton("Δημιουργία Λογαριασμού");
+    public RoundedButton metaforesBtn = createMenuButton("Μεταφορά σε λογαριασμό");
     public RoundedButton pagiesBtn = createMenuButton("Πάγιες πληρωμές");
     public RoundedButton diaxeirisiBtn = createMenuButton("Διαχείριση λογαριασμού");
+    public RoundedButton depositBtn = createMenuButton("Κατάθεση");
+    public RoundedButton withdrawBtn = createMenuButton("Ανάλυψη");
 
 
 
@@ -112,7 +114,7 @@ public class DashboardScreen implements View_t {
         // --- ACTION BUTTONS GRID (2x3) ---
         JPanel actionsPanel = new JPanel();
         // 2 rows, 3 columns, 20px gaps
-        actionsPanel.setLayout(new GridLayout(2, 3, 25, 25)); 
+        actionsPanel.setLayout(new GridLayout(2, 4, 25, 25)); 
         actionsPanel.setBounds(100, 330, 1400, 500);
         actionsPanel.setOpaque(false);
 
@@ -151,22 +153,28 @@ public class DashboardScreen implements View_t {
         plhrwmhBtn.setForeground(Color.white);
         kinhseisBtn.setBackground(red);
         kinhseisBtn.setForeground(Color.white);
-        metEntosBtn.setBackground(red);
-        metEntosBtn.setForeground(Color.white);
-        metEktosBtn.setBackground(red);
-        metEktosBtn.setForeground(Color.white);
+        metaforesBtn.setBackground(red);
+        metaforesBtn.setForeground(Color.white);
+        createAccBtn.setBackground(red);
+        createAccBtn.setForeground(Color.white);
         pagiesBtn.setBackground(red);
         pagiesBtn.setForeground(Color.white);
         diaxeirisiBtn.setBackground(red);
         diaxeirisiBtn.setForeground(Color.white);
+        depositBtn.setBackground(red);
+        depositBtn.setForeground(Color.white);
+        withdrawBtn.setBackground(red);
+        withdrawBtn.setForeground(Color.white);
 
         
         actionsPanel.add(plhrwmhBtn);
         actionsPanel.add(kinhseisBtn);
-        actionsPanel.add(metEntosBtn);
-        actionsPanel.add(metEktosBtn);
+        actionsPanel.add(metaforesBtn);
+        actionsPanel.add(createAccBtn);
         actionsPanel.add(pagiesBtn);
         actionsPanel.add(diaxeirisiBtn);
+        actionsPanel.add(depositBtn);
+        actionsPanel.add(withdrawBtn);
         
     }
 
@@ -207,13 +215,13 @@ public class DashboardScreen implements View_t {
         accountNumberLabel.setText("Account: #" + acctId);
         if(Float.parseFloat(balance) <= 0){
 
-            balanceLabel.setText(balance+" $ (8a se valoun mesa se ligo :())");
+            balanceLabel.setText(balance+" € (8a se valoun mesa se ligo :())");
         }
         else if (Float.parseFloat(balance) > 100 ) {
-           balanceLabel.setText(balance+" $ (eisai leftas :))"); 
+           balanceLabel.setText(balance+" € (eisai leftas :))"); 
         }
         else{
-            balanceLabel.setText(balance+" $ (eisai duskola :/)"); 
+            balanceLabel.setText(balance+" € (eisai duskola :/)"); 
         }
         }
     }

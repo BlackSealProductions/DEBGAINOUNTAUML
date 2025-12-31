@@ -3,12 +3,19 @@ package App.View.Screens;
 import App.View.View_t;
 import App.View.helper_classes.RoundedButton;
 import App.View.helper_classes.AccountCellRenderer; // Import your new class
+import App.View.helper_classes.FontLoader;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
 public class AccountSelectionScreen implements View_t {
+
+    String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
+    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
+    Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
 
     private JPanel panel = new JPanel();
     private Color blue = Color.decode("#C2E5FF");
@@ -27,7 +34,7 @@ public class AccountSelectionScreen implements View_t {
         panel.setBounds(0, 0, wWidth, wHeight);
 
         JLabel title = new JLabel("Επιλέξτε Λογαριασμό", SwingConstants.CENTER);
-        title.setFont(new Font("Verdana", Font.BOLD, 40));
+        title.setFont(customFont40);
         title.setBounds(0, 80, wWidth, 60);
         panel.add(title);
 
@@ -52,7 +59,7 @@ public class AccountSelectionScreen implements View_t {
         selectBtn.setBounds((wWidth - 320) / 2, 650, 320, 65);
         selectBtn.setBackground(Color.decode("#D82F4B"));
         selectBtn.setForeground(Color.white);
-        selectBtn.setFont(new Font("Verdana", Font.BOLD, 18));
+        selectBtn.setFont(customFont20);
         panel.add(selectBtn);
         
         hide();

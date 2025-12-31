@@ -66,6 +66,7 @@ public class LoginCon implements Controller_t {
             Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
             if (user.get("username").equals(inputUser) && user.get("password").equals(inputPass)) {
                 foundUser = user;
+                System.out.println(user.get("username"));
                 break;
             }
         }
@@ -92,7 +93,7 @@ public class LoginCon implements Controller_t {
                 next.show();
                 ViewSession.getInstance().updateScreenHistory(next);
                 ViewSession.getInstance().clearHistory();
-            }
+             }
             else{
                 view.hide();
                 AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
