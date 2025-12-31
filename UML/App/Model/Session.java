@@ -1,16 +1,14 @@
 package App.Model;
 
-import java.util.Map;
-
+import App.Model.Entities.UserEntities.User;
 import App.Model.Entities.UserEntities.Account;
 
 public class Session {
     private static Session instance;
 
-    private String username;
-    private String taxId;
-    private Map<String, Object> userData;    // Stores the full nested User Map
-    private Account activeAccount; // Stores the currently selected account
+    // --- CHANGED: Now we store the Object, not just the map ---
+    private User currentUser;
+    private Account activeAccount;
 
     private Session() {}
 
@@ -21,29 +19,22 @@ public class Session {
         return instance;
     }
 
-    // Called during Login
-    public void login(String username, String taxId, Map<String, Object> userData) {
-        this.username = username;
-        this.taxId = taxId;
-        this.userData = userData;
+    // --- CHANGED: Login now takes the full User Object ---
+    public void login(User user) {
+        this.currentUser = user;
     }
 
     public void logout() {
-        this.username = null;
-        this.taxId = null;
-        this.userData = null;
+        this.currentUser = null;
         this.activeAccount = null;
     }
 
-    // Getters and Setters
-    public Map<String, Object> getUserData() { return userData; }
-    public String getUsername() { return username; }
-    public String getTaxId() { return taxId; }
+    // --- NEW GETTER: This fixes "The method getCurrentUser() is undefined" ---
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
-    // public Map<String, String> getActiveAccount() { return activeAccount; }
-    // public void setActiveAccount(Map<String, String> activeAccount) { 
-    //     this.activeAccount = activeAccount; 
-    // }
+    // --- ACCOUNT HANDLING ---
     public void setActiveAccount(Account account) {
         this.activeAccount = account;
     }

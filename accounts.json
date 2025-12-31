@@ -366,6 +366,14 @@
       "type": "Company",
       "taxId": "444",
       "accounts": [
+        {
+          "accountId": "ID_86903803",
+          "iban": "GR3825338384687427530929809",
+          "ownerName": "fs",
+          "secondaryOwner": "-",
+          "balance": "2007.5",
+          "interestRate": "1%"
+        }
       ]
     }
   }

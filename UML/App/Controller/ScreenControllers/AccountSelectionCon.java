@@ -7,68 +7,74 @@ import App.View.Screens.DashboardScreen;
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
-import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.User;     // Import User Object
+import App.Model.Entities.UserEntities.Account;  // Import Account Object
 
-import java.util.*;
+import javax.swing.*;
+import java.util.List;
 
-public class AccountSelectionCon implements Controller_t{
+public class AccountSelectionCon implements Controller_t {
     private AccountSelectionScreen view;
     private ModelHandler model;
     private ViewHandler viewHandler;
 
     public AccountSelectionCon(AccountSelectionScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
-        this.model=model;
-        this.viewHandler=viewHandler;
+        this.model = model;
+        this.viewHandler = viewHandler;
     }
 
+    @Override
     public void init() {
-
-        this.view.selectBtn.addActionListener(e -> handleSelection());
-
+        if (view == null) return;
+        
+        // Setup the listener for the big red button
+        view.selectBtn.addActionListener(e -> handleSelection());
     }
-
-    // public void getUserAccounts(){
-
-    //     view.listModel.clear();
-    //     // Get user data directly from the Session
-    //     Map<String, Object> userData = (Map<String, Object>) Session.getInstance().getUserData();
-    //     List<Map<String, String>> accounts = (List<Map<String, String>>) userData.get("accounts");
-
-    //     if (accounts != null) {
-    //         for (Map<String, String> acc : accounts) {
-    //             view.listModel.addElement(acc.get("accountId") + " - " + acc.get("iban") + " (Balance: " + acc.get("balance") + ")");
-    //         }
-    //     }
-    // }
 
     private void handleSelection() {
+        // 1. Get the selected index from the list on screen
         int index = view.accountList.getSelectedIndex();
-        if (index != -1) {
-            Map<String, Object> userData = (Map<String, Object>) Session.getInstance().getUserData();
-            List<Map<String, String>> accounts = (List<Map<String, String>>) userData.get("accounts");
-            Map<String, String> rawAccount = accounts.get(index);
-            
-            // 2. Instantiate the formal Account Object
-            Account selectedAccount = new Account(
-                rawAccount.get("accountId"),
-                rawAccount.get("ownerName"),
-                rawAccount.get("iban"),
-                rawAccount.get("balance"),
-                rawAccount.get("interestRate"),
-                rawAccount.get("secondaryOwner")
-            );
+
+        if (index == -1) {
+            JOptionPane.showMessageDialog(null, "Please select an account first.");
+            return;
+        }
+
+        // 2. Get the Active User Object from Session (The New Way)
+        User currentUser = Session.getInstance().getCurrentUser();
         
-            // 3. Store the Object in the Session
+        if (currentUser == null) {
+            JOptionPane.showMessageDialog(null, "Error: No user logged in.");
+            return;
+        }
+
+        // 3. Get their list of Account Objects
+        List<Account> accounts = currentUser.getAccounts();
+
+        if (index < accounts.size()) {
+            // 4. Pick the specific Account Object based on the list index
+            Account selectedAccount = accounts.get(index);
+
+            // 5. Store this OBJECT in the Session as the "Active Account"
             Session.getInstance().setActiveAccount(selectedAccount);
+
+            // 6. Navigate to Dashboard
             view.hide();
             DashboardScreen next = viewHandler.getDashboardScreen();
-            next.setAccountDetails(selectedAccount.getOwnerName(), selectedAccount.getBalance(), selectedAccount.getCitizenId());
+            
+            // Pass the data cleanly to the Dashboard
+            next.setAccountDetails(
+                selectedAccount.getOwnerName(), 
+                selectedAccount.getBalance(), 
+                selectedAccount.getAccountId()
+            );
+            
             next.show();
             ViewSession.getInstance().updateScreenHistory(next);
-            ViewSession.getInstance().clearHistory();
+            ViewSession.getInstance().clearHistory(); // Clear back stack so you can't go back to selection
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: Account selection mismatch.");
         }
     }
-
-    public void show() { view.show(); }
 }

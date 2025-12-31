@@ -6,151 +6,118 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-
-
-
-public class MetaforaScreen implements View_t{
+public class MetaforaScreen implements View_t {
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
     private JLabel balanceLabel;
-    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
-    Font customFont50 = FontLoader.loadCustomFont(fontPath, 50f);
     Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
     Font customFont30 = FontLoader.loadCustomFont(fontPath, 30f);
     Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
 
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
-
     Color bkgColor = Color.decode("#C2E5FF");
 
-
-
     private JPanel mainPanel = new JPanel();
-
-
+    
+    // Controls for the Controller
+    private JTextField fromAccount;
+    private JTextField toAccount;
+    private JTextField totalMoney;
+    private RoundedButton depositBut; // The Confirm button
 
     @Override
-    public void init(){
+    public void init() {
         mainPanel.setBackground(bkgColor);
-        mainPanel.setBounds(0,0,wWidth,wHeight);
-        mainPanel.setBorder((new EmptyBorder(-10,0,0,0)));
+        mainPanel.setBounds(0, 0, wWidth, wHeight);
+        mainPanel.setBorder((new EmptyBorder(-10, 0, 0, 0)));
         mainPanel.setLayout(null);
 
-        
-        // BoT logo 
-        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        ImageIcon logoIcon = new ImageIcon(logo);
-        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
-        logoPanel.setBounds(50,50,400,400);
+        // --- NO LOCAL BACK BUTTON HERE (Universal one is used) ---
 
+        // Logo
+        Image logo = new ImageIcon(getClass().getResource("/App/View/Assets/bankoftuclogo.png")).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        JLabel logoLabel = new JLabel(new ImageIcon(logo));
+        logoLabel.setBounds(50, 50, 150, 150);
+        mainPanel.add(logoLabel);
 
-        // τιτλος
-        JPanel welcomePanel = new JPanel();
-        welcomePanel.setBackground(null);
-        welcomePanel.setBounds(400,120,800,200);
+        // Title
         JLabel welcomeLabel = new JLabel("Μεταφορά σε Λογαριασμό");
         welcomeLabel.setFont(customFont40);
-        welcomePanel.add(welcomeLabel);;
+        welcomeLabel.setBounds(400, 120, 800, 50);
+        mainPanel.add(welcomeLabel);
 
-        // // deposit Panel
-
-        // Image white = new ImageIcon(getClass().getResource("/Images/white_ahh_image.png")).getImage().getScaledInstance(2000, 1000, Image.SCALE_SMOOTH);
-        // ImageIcon whiteIcon = new ImageIcon(white);
-        // RoundedImage whiteLabel = new RoundedImage(whiteIcon,100);
-        // whiteLabel.setBounds(150,400,1300,200);
-
-        //depositPanel.add(whiteLabel);
-        JLabel fromAccText = new JLabel("ΑΠΟ: Λογαριασμός:");
-        fromAccText.setFont(customFont20);
-        fromAccText.setBounds(200,430,400,50);
-        JTextField fromAccount = new JTextField();
-        fromAccount.setFont(customFont30);
-        fromAccount.setBounds(200,480,400,50);
-        
-        JLabel toAccText = new JLabel("ΠΡΟΣ: Λογαριασμός:");
-        toAccText.setFont(customFont20);
-        toAccText.setBounds(700,430,400,50);
-        JTextField toAccount = new JTextField();
-        toAccount.setFont(customFont30);
-        toAccount.setBounds(700,480,400,50);
-        
-
-        JTextField totalMoney = new JTextField();
-        totalMoney.setFont(customFont20);
-        totalMoney.setBounds(1300,480,100,50);
-        
-        JLabel moneyText = new JLabel("Ποσο:");
-        moneyText.setFont(customFont20);
-        moneyText.setBounds(1300,430,100,50);
-
-        // ypoloipo 
-         JPanel rightHead = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        rightHead.setOpaque(false);
-        rightHead.setPreferredSize(new Dimension(300, 100)); 
-        rightHead.setBounds(1200, 30, 300, 100);
-        balanceLabel = new JLabel("<html><u>Υπόλοιπο: 67.69€</u></html>");
+        // Balance (Top Right)
+        balanceLabel = new JLabel("<html><u>Υπόλοιπο: 0.00€</u></html>");
         balanceLabel.setFont(customFont20);
-        balanceLabel.setForeground(Color.decode("#003366")); 
-        rightHead.add(balanceLabel);
+        balanceLabel.setForeground(Color.decode("#003366"));
+        balanceLabel.setBounds(1200, 50, 300, 50);
+        mainPanel.add(balanceLabel);
 
-
-
-        mainPanel.add(fromAccount);
-        mainPanel.add(toAccount);
-        mainPanel.add(moneyText);
-        mainPanel.add(totalMoney);
+        // --- FORM ---
+        
+        // FROM (Sender)
+        JLabel fromAccText = new JLabel("ΑΠΟ: Λογαριασμός (IBAN):");
+        fromAccText.setFont(customFont20);
+        fromAccText.setBounds(200, 350, 400, 30);
         mainPanel.add(fromAccText);
+
+        fromAccount = new JTextField();
+        fromAccount.setFont(customFont20);
+        fromAccount.setBounds(200, 390, 400, 50);
+        fromAccount.setEditable(false); // Auto-filled
+        mainPanel.add(fromAccount);
+        
+        // TO (Receiver)
+        JLabel toAccText = new JLabel("ΠΡΟΣ: Λογαριασμός (IBAN):");
+        toAccText.setFont(customFont20);
+        toAccText.setBounds(700, 350, 400, 30);
         mainPanel.add(toAccText);
 
+        toAccount = new JTextField();
+        toAccount.setFont(customFont20);
+        toAccount.setBounds(700, 390, 400, 50);
+        mainPanel.add(toAccount);
 
+        // AMOUNT
+        JLabel moneyText = new JLabel("Ποσό (€):");
+        moneyText.setFont(customFont20);
+        moneyText.setBounds(1200, 350, 200, 30);
+        mainPanel.add(moneyText);
 
+        totalMoney = new JTextField();
+        totalMoney.setFont(customFont20);
+        totalMoney.setBounds(1200, 390, 200, 50);
+        mainPanel.add(totalMoney);
 
-
-        // deposit button 
-
+        // CONFIRM BUTTON
         Color red = Color.decode("#A91A32");
-        RoundedButton depositBut = new RoundedButton("Deposit",30);
+        depositBut = new RoundedButton("Εκτέλεση", 30);
         depositBut.setBackground(red);
         depositBut.setForeground(Color.white);
-        depositBut.setFont(customFont40);
-        depositBut.setAlignmentX(Component.CENTER_ALIGNMENT);
-        depositBut.setMaximumSize(new Dimension(400, 100));
-        depositBut.setMinimumSize(new Dimension(300, 150));
+        depositBut.setFont(customFont30);
         depositBut.setFocusPainted(false);
-        depositBut.setBounds(620,670,300,90);
-
-        // add to main Panel
-        // mainPanel.add(whiteLabel);
-        mainPanel.add(logoPanel);
-        mainPanel.add(welcomePanel);
+        depositBut.setBounds((wWidth - 300) / 2, 600, 300, 80);
         mainPanel.add(depositBut);
-        mainPanel.add(rightHead);
+
         hide();
-
-
-
-
-    
     }
 
+    // --- GETTERS ---
+    public String getToIban() { return toAccount.getText(); }
+    public String getAmount() { return totalMoney.getText(); }
+    public JButton getConfirmBtn() { return depositBut; }
 
-        @Override
-    public JPanel getMainPanel(){
-        return mainPanel;
-    }
-
-    @Override
-    public void hide(){
-        this.mainPanel.setVisible(false);
-    }
-
-    @Override
-    public void show(){
-        this.mainPanel.setVisible(true);
-    }
-
+    // --- SETTERS ---
+    public void setFromIban(String text) { fromAccount.setText(text); }
     public void setBalance(String amount) {
         balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
     }
+    public void clearFields() {
+        toAccount.setText("");
+        totalMoney.setText("");
+    }
 
+    @Override public JPanel getMainPanel() { return mainPanel; }
+    @Override public void hide() { this.mainPanel.setVisible(false); }
+    @Override public void show() { this.mainPanel.setVisible(true); }
 }

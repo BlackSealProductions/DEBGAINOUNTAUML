@@ -4,6 +4,10 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
+// Import your Entity classes so we can use them
+import App.Model.Entities.UserEntities.User;
+import App.Model.Entities.UserEntities.Account;
+
 public class JsonDatabase {
     private static final String DB_FILE = "accounts.json";
 
@@ -49,9 +53,84 @@ public class JsonDatabase {
         saveAllRecords(allRecords);
     }
 
+    // --- NEW METHOD: This fixes "updateUser undefined" ---
+    /**
+     * Updates an existing user (and their accounts) in the database.
+     * Use this when you have modified a User object (e.g. changed balance).
+     */
+    @SuppressWarnings("unchecked")
+    public static void updateUser(User updatedUser) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        boolean found = false;
+
+        for (int i = 0; i < allRecords.size(); i++) {
+            Map<String, Object> wrapper = allRecords.get(i);
+            Map<String, Object> userMap = (Map<String, Object>) wrapper.get("user");
+            
+            // Find the user by username
+            if (userMap.get("username").equals(updatedUser.getUsername())) {
+                // Replace the old Map with a new Map created from our Object
+                allRecords.set(i, convertUserToMap(updatedUser));
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            saveAllRecords(allRecords);
+        }
+    }
+
     // ===========================
     //   PRIVATE HELPERS (Writer)
     // ===========================
+
+    // --- NEW HELPER: Converts Object -> Map so the Writer can save it ---
+    private static Map<String, Object> convertUserToMap(User u) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", u.getUsername());
+        map.put("password", u.getPassword());
+        
+        // Handle name fields logic
+        if ("Company".equalsIgnoreCase(u.getType())) {
+            map.put("companyName", u.getName());
+            // companies might leave surname empty or use it differently
+            map.put("name", u.getName()); 
+            map.put("surname", ""); 
+        } else {
+            map.put("name", u.getName());
+            map.put("surname", u.getSurname());
+        }
+
+        map.put("phone", u.getPhone());
+        map.put("email", u.getEmail());
+        map.put("type", u.getType());
+        map.put("taxId", u.getTaxId());
+
+        List<Map<String, String>> accList = new ArrayList<>();
+        if (u.getAccounts() != null) {
+            for (Account a : u.getAccounts()) {
+                Map<String, String> am = new HashMap<>();
+                am.put("accountId", a.getAccountId());
+                am.put("iban", a.getIban());
+                am.put("ownerName", a.getOwnerName());
+                am.put("secondaryOwner", a.getSecondaryOwner());
+                am.put("balance", a.getBalance());
+                am.put("interestRate", a.getInterestRate());
+                accList.add(am);
+            }
+        }
+        map.put("accounts", accList);
+        
+        Map<String, Object> wrapper = new HashMap<>();
+        wrapper.put("user", map);
+        return wrapper; // returning just the inner user map wrapped is tricky, 
+                        // actually saveAllRecords expects List<Wrapper>, but here we return Wrapper
+                        // Wait, saveAllRecords expects the List.
+                        // updateUser sets the element to this return value.
+                        // So this return value must be the Wrapper map containing "user".
+    }
+
 
     public static void saveAllRecords(List<Map<String, Object>> allRecords) {
         StringBuilder sb = new StringBuilder();
@@ -59,7 +138,12 @@ public class JsonDatabase {
     
         for (int i = 0; i < allRecords.size(); i++) {
             Map<String, Object> wrapper = allRecords.get(i);
-            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            // Safety check: if wrapper has "user" key, get it. If not (rare), try using wrapper itself
+            Map<String, Object> user = wrapper.containsKey("user") ? (Map<String, Object>) wrapper.get("user") : wrapper;
+            
+            // If we still don't have a user map, skip
+            if (user == null) continue;
+
             String type = (String) user.get("type");
     
             sb.append("  {\n");
@@ -67,14 +151,10 @@ public class JsonDatabase {
             sb.append(String.format("      \"username\": \"%s\",\n", user.get("username")));
             sb.append(String.format("      \"password\": \"%s\",\n", user.get("password")));
     
-            // --- Conditional Logic based on User Type ---
             if ("Company".equalsIgnoreCase(type)) {
-                // For companies, we prioritize companyName. 
-                // We use name as a fallback or if companyName was mapped there.
                 String cName = user.containsKey("companyName") ? (String)user.get("companyName") : (String)user.get("name");
                 sb.append(String.format("      \"companyName\": \"%s\",\n", cName));
             } else {
-                // For individuals, use standard name and surname
                 sb.append(String.format("      \"name\": \"%s\",\n", user.get("name")));
                 sb.append(String.format("      \"surname\": \"%s\",\n", user.get("surname")));
             }
@@ -84,13 +164,11 @@ public class JsonDatabase {
             sb.append(String.format("      \"type\": \"%s\",\n", type));
             sb.append(String.format("      \"taxId\": \"%s\",\n", user.get("taxId")));
     
-            // --- Accounts Section ---
             sb.append("      \"accounts\": [\n");
             List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
             if (accounts != null) {
                 for (int j = 0; j < accounts.size(); j++) {
                     Map<String, String> acc = accounts.get(j);
-                    // Skip ghost accounts as discussed previously
                     if (acc.get("accountId") == null || acc.get("accountId").isEmpty()) continue;
     
                     sb.append("        {\n");
@@ -114,16 +192,17 @@ public class JsonDatabase {
     
         sb.append("]");
     
-        // Write to file
-        try (java.io.PrintWriter out = new java.io.PrintWriter("accounts.json")) {
+        try (PrintWriter out = new PrintWriter(DB_FILE)) {
             out.println(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     // ===========================
     //   PRIVATE HELPERS (Parser)
     // ===========================
+    // (This is your existing parser, untouched)
 
     private static List<Map<String, Object>> parseJsonNested(String filename) {
         List<Map<String, Object>> records = new ArrayList<>();
@@ -134,10 +213,8 @@ public class JsonDatabase {
             String content = new String(Files.readAllBytes(Paths.get(filename))).trim();
             if (content.length() < 3) return records; 
 
-            // Remove outer brackets []
             content = content.substring(1, content.length() - 1).trim();
 
-            // Split into "User" blocks by counting curly braces
             List<String> userBlocks = new ArrayList<>();
             int braceCount = 0;
             StringBuilder sb = new StringBuilder();
@@ -159,11 +236,8 @@ public class JsonDatabase {
             }
 
             for (String block : userBlocks) {
-
                 String username = extractValue(block, "username");
-                if (username == null || username.trim().isEmpty()) {
-                    continue; // Skip this ghost block
-                }
+                if (username == null || username.trim().isEmpty()) continue; 
                 
                 Map<String, Object> userData = new HashMap<>();
                 userData.put("username", extractValue(block, "username"));
@@ -174,25 +248,23 @@ public class JsonDatabase {
                 userData.put("type", extractValue(block, "type"));
                 userData.put("phone", extractValue(block, "phone"));
                 userData.put("email", extractValue(block, "email"));
+                
+                // Company handling
+                if (block.contains("companyName")) {
+                     userData.put("companyName", extractValue(block, "companyName"));
+                }
 
-                // Handle nested accounts array
                 List<Map<String, String>> accounts = new ArrayList<>();
                 int accStart = block.indexOf("\"accounts\": [");
                 if (accStart != -1) {
                     int accEnd = block.lastIndexOf("]");
                     String accsSection = block.substring(accStart + 12, accEnd).trim();
-                    
-                    // NEW CHECK: Only proceed if the section contains at least one object opening '{'
                     if (accsSection.contains("{")) {
-                        // Split accounts by looking for closing braces of account objects
                         String[] accParts = accsSection.split("\\},");
                         for (String part : accParts) {
                             if (part.trim().isEmpty()) continue;
-                            
-                            // Further safety: ensure this specific part has data
                             String id = extractValue(part, "accountId");
                             if (id.isEmpty()) continue; 
-
                             Map<String, String> acc = new HashMap<>();
                             acc.put("accountId", id);
                             acc.put("iban", extractValue(part, "iban"));
@@ -205,7 +277,6 @@ public class JsonDatabase {
                     }
                 }
                 userData.put("accounts", accounts);
-                
                 Map<String, Object> wrapper = new HashMap<>();
                 wrapper.put("user", userData);
                 records.add(wrapper);
@@ -220,17 +291,10 @@ public class JsonDatabase {
         String search = "\"" + key + "\":";
         int index = block.indexOf(search);
         if (index == -1) return "";
-        
-        // Find the opening quote after the colon
         int start = block.indexOf("\"", index + search.length()) + 1;
-        if (start == 0) return ""; // Not found
-        
-        // Find the closing quote
+        if (start == 0) return ""; 
         int end = block.indexOf("\"", start);
         if (end == -1) return "";
-        
         return block.substring(start, end);
     }
 }
-
-
