@@ -66,6 +66,7 @@ public class LoginCon implements Controller_t {
             Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
             if (user.get("username").equals(inputUser) && user.get("password").equals(inputPass)) {
                 foundUser = user;
+                System.out.println(user.get("username"));
                 break;
             }
         }
