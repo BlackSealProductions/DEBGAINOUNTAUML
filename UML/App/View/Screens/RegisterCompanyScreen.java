@@ -15,7 +15,9 @@ public class RegisterCompanyScreen implements View_t {
 
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
     Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
     Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+
 
     private JPanel panel = new JPanel();
     
@@ -45,8 +47,8 @@ public class RegisterCompanyScreen implements View_t {
         topPanel.setOpaque(false);
         
         titleLabel = new JLabel("Εγγραφή Επιχείρησης", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Verdana", Font.BOLD, 60)); 
-        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setFont(customFont60); 
+        // titleLabel.setForeground(Color.BLACK);
         
         topPanel.add(titleLabel, BorderLayout.CENTER);
         panel.add(topPanel, BorderLayout.NORTH);

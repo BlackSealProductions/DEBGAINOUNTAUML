@@ -16,7 +16,9 @@ public class RegisterScreen implements View_t {
 
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
     Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
+    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
     Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+
 
     // --- 1. View_t Essentials ---
     private JPanel panel = new JPanel();
@@ -56,8 +58,8 @@ public class RegisterScreen implements View_t {
         
         
         titleLabel = new JLabel("Εγγραφή Χρήστη", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Verdana", Font.BOLD, 60)); 
-        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setFont(customFont60); 
+        // titleLabel.setForeground(Color.BLACK);
         
         // topPanel.add(backContainer, BorderLayout.WEST);
         topPanel.add(titleLabel, BorderLayout.CENTER);

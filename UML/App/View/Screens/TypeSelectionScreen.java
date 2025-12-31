@@ -12,7 +12,6 @@ public class TypeSelectionScreen implements View_t {
 
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
     Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
-    Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
     Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
 
     final int wWidth = Utils.GlobalConsts.wWidth;
@@ -26,55 +25,61 @@ public class TypeSelectionScreen implements View_t {
 
     private RoundedButton individualBtn;
     private RoundedButton companyBtn;
+    private JLabel titleLabel;
 
-    // @Override
+    @Override
     public void init() {
         // --- Setup Main Panel ---
-        
+        panel.setLayout(new BorderLayout());
         panel.setBackground(blue); 
         panel.setBounds(0, 0, wWidth, wHeight);
-        panel.setLayout(new BorderLayout()); 
+        // Matching the padding of your RegisterCompanyScreen
+        panel.setBorder(new EmptyBorder(40, 60, 40, 60));
 
-        // --- 1. Top Logo Section ---
-        // JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 40));
-        // topPanel.setOpaque(false);
+        // --- 1. Top Bar (Logo and Title) ---
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setOpaque(false);
         
-        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        // Logo (Absolute positioned or added to topPanel)
+        Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png"))
+                        .getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon logoIcon = new ImageIcon(logo);
-        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
-        logoPanel.setBounds(50,50,200,200);
-        // topPanel.add(logoPanel);
+        RoundedImage logoPanel = new RoundedImage(logoIcon, 20);
+        
+        // Container for Logo to prevent it from stretching in BorderLayout
+        JPanel logoWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        logoWrapper.setOpaque(false);
+        logoWrapper.add(logoPanel);
 
+        // Title Label matched to RegisterCompanyScreen style
+        titleLabel = new JLabel("Εγγραφή Χρήστη", SwingConstants.CENTER);
+        titleLabel.setFont(customFont60 != null ? customFont60 : new Font("Verdana", Font.BOLD, 60)); 
+        // titleLabel.setForeground(Color.BLACK);
+        
+        // topPanel.add(logoWrapper, BorderLayout.WEST);
+        topPanel.add(titleLabel, BorderLayout.CENTER);
+        
+        panel.add(topPanel, BorderLayout.NORTH);
         panel.add(logoPanel);
+        logoPanel.setBounds(50,50,200,200);
+
 
         // --- 2. Center Selection Section ---
-        // Using BoxLayout to stack Title and Buttons vertically
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.setOpaque(false);
-
-        // Add spacing at the top to push content down
-        centerPanel.add(Box.createVerticalGlue());
-
-        // Title Text
-        JLabel titleLabel = new JLabel("Εγγραφή Χρήστη");
-        titleLabel.setFont(customFont40);
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        centerPanel.add(titleLabel);
-
-        // Subtitle
+        JPanel centerWrapper = new JPanel(new GridBagLayout());
+        centerWrapper.setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
+        
+        // Selection Instruction
         JLabel subTitle = new JLabel("Επιλέξτε τύπο λογαριασμού:");
         subTitle.setFont(customFont20);
-        subTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        centerPanel.add(Box.createVerticalStrut(20)); // Spacing
-        centerPanel.add(subTitle);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(0, 0, 40, 0);
+        centerWrapper.add(subTitle, gbc);
 
-        centerPanel.add(Box.createVerticalStrut(50)); // Spacing before buttons
-
-        // Buttons Panel
+        // Buttons Row
         JPanel buttonsRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 0));
         buttonsRow.setOpaque(false);
-        buttonsRow.setMaximumSize(new Dimension(wWidth, 200));
 
         individualBtn = new RoundedButton("Ιδιώτης", 30);
         styleChoiceButton(individualBtn);
@@ -85,22 +90,17 @@ public class TypeSelectionScreen implements View_t {
         buttonsRow.add(individualBtn);
         buttonsRow.add(companyBtn);
 
-        centerPanel.add(buttonsRow);
-        
-        // Add spacing at the bottom to keep it centered
-        centerPanel.add(Box.createVerticalGlue());
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        centerWrapper.add(buttonsRow, gbc);
 
-        panel.add(centerPanel, BorderLayout.CENTER);
-
-   
-        // panel.revalidate();
-        // panel.repaint();
+        panel.add(centerWrapper, BorderLayout.CENTER);
 
         hide();
     }
 
     private void styleChoiceButton(RoundedButton btn) {
-        btn.setPreferredSize(new Dimension(280, 150));
+        btn.setPreferredSize(new Dimension(320, 180));
         btn.setBackground(Color.WHITE);
         btn.setForeground(red);
         btn.setFont(customFont20);
@@ -108,17 +108,17 @@ public class TypeSelectionScreen implements View_t {
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
+    @Override
     public JPanel getMainPanel() { return panel; }
 
-
+    @Override
     public void show() { 
         this.panel.setVisible(true); 
-        
     }
 
+    @Override
     public void hide() { this.panel.setVisible(false); }
 
-    // Getters for your Controller
     public RoundedButton getIndividualBtn() { return individualBtn; }
     public RoundedButton getCompanyBtn() { return companyBtn; }
 }
