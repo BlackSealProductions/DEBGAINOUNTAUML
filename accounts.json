@@ -2,7 +2,7 @@
   {
     "user": {
       "username": "ckadas",
-      "password": "445445Cr",
+      "password": "ckadas",
       "name": "Christos",
       "surname": "Kadas",
       "phone": "0000000011",
@@ -20,6 +20,62 @@
         },
         {
           "accountId": "ID_69696969",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_70707070",
+          "iban": "GR6900000000000000800000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_23232323",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_13131313",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_90909090",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_84848484",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_45454545",
+          "iban": "GR6900000000000000000000011",
+          "ownerName": "Kadas",
+          "secondaryOwner": "Omen",
+          "balance": "31000",
+          "interestRate": "12%"
+        },
+        {
+          "accountId": "ID_34343434",
           "iban": "GR6900000000000000000000011",
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
@@ -204,6 +260,78 @@
           "balance": "24.0",
           "interestRate": "0.5%"
         }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "aziz",
+      "password": "123",
+      "name": "null",
+      "surname": "null",
+      "phone": "6955555555",
+      "email": "osaker@gmail.com",
+      "type": "Company",
+      "taxId": "25324",
+      "accounts": [
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "nigga1",
+      "password": "123",
+      "name": "nig",
+      "surname": "nigz",
+      "phone": "124235",
+      "email": "nig@gmail.com",
+      "type": "Individual",
+      "taxId": "111",
+      "accounts": [
+        {
+          "accountId": "ID_83848571",
+          "iban": "GR0434868378581762882502325",
+          "ownerName": "nig",
+          "secondaryOwner": "nigger2",
+          "balance": "0",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "osak",
+      "password": "123",
+      "name": "osaka",
+      "surname": "h",
+      "phone": "345",
+      "email": "a",
+      "type": "Individual",
+      "taxId": "7788",
+      "accounts": [
+        {
+          "accountId": "ID_18081025",
+          "iban": "GR4721132123635377234428151",
+          "ownerName": "osak",
+          "secondaryOwner": "osak2",
+          "balance": "0",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "q",
+      "password": "q",
+      "name": "q",
+      "surname": "q",
+      "phone": "q",
+      "email": "q",
+      "type": "Individual",
+      "taxId": "q",
+      "accounts": [
       ]
     }
   }

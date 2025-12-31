@@ -14,6 +14,8 @@ public class ControllerHandler {
     private Controller_t mainframe_con;
     private Controller_t dashboard_con;
     private Controller_t typeselection_con;
+    private Controller_t acctselection_con;
+    private Controller_t acctcreation_con;
     
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
@@ -42,6 +44,13 @@ public class ControllerHandler {
         typeselection_con = new TypeSelectionCon(v.getChooseRegisterType(), m, v);
         typeselection_con.init();
 
+        acctselection_con = new AccountSelectionCon(v.getAccountSelectionScreen(), m, v);
+        acctselection_con.init();
+
+        acctcreation_con = new AccountCreationCon(v.getAccountCreationScreen(), m, v);
+        acctcreation_con.init();
+
+
 
     }
 
@@ -56,6 +65,9 @@ public class ControllerHandler {
         v.initStartScreen();
     }
 
+    public AccountSelectionCon getAccountSelectionCon(){
+        return (AccountSelectionCon) this.acctselection_con;
+    }
 
     
 }

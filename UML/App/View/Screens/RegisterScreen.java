@@ -29,7 +29,7 @@ public class RegisterScreen implements View_t {
 
     // --- 3. Form Components ---
     // Make sure all these are Class Variables!
-    private JTextField nameField, surnameField, emailField, addressField, phoneField, citizenIdField;
+    private JTextField nameField, surnameField, emailField, phoneField, citizenIdField;
     // You also need Username/Password fields for registration!
     private JTextField usernameField;
     private JPasswordField passwordField;
@@ -191,7 +191,6 @@ public class RegisterScreen implements View_t {
     public String getSurname() { return surnameField.getText(); }
     public String getCitizenId() { return citizenIdField.getText(); }
     public String getEmail() { return emailField.getText(); }
-    public String getAddress() { return addressField.getText(); }
     public String getPhone() { return phoneField.getText(); }
 
     public RoundedButton getRegisterBtn() { return registerBtn; } 

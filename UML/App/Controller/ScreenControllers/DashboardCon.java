@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class DashboardCon implements Controller_t{
 
-     private DashboardScreen view;
+    private DashboardScreen view;
     private ModelHandler model; 
     
     private ViewHandler viewHandler;
@@ -31,6 +31,15 @@ public class DashboardCon implements Controller_t{
     @Override
     public void init() {
         if (view == null)return;
+
+        view.getLogoutBtn().addActionListener(e -> {
+            Session.getInstance().logout();
+            view.hide();
+            FirstPageScreen next = viewHandler.getFirstPageScreen();
+            next.show();
+            ViewSession.getInstance().updateScreenHistory(next);
+            ViewSession.getInstance().clearHistory();
+        });
 
         // PLhrwmh Logarismoy
         view.plhrwmhBtn.addActionListener(e -> handlePlhrwmh());
@@ -62,7 +71,7 @@ public class DashboardCon implements Controller_t{
     private void handlePlhrwmh(){
         view.hide();
         BillPaymentScreen plhrwmh = viewHandler.getBillPaymentScreen();
-        Account user = Session.getInstance().getAccount();
+        Account user = Session.getInstance().getActiveAccount();
         plhrwmh.setBalance(user.getBalance());
         plhrwmh.show();
         ViewSession.getInstance().updateScreenHistory(plhrwmh);
@@ -72,7 +81,7 @@ public class DashboardCon implements Controller_t{
     private void handleKinhseis(){
         view.hide();
         StatementsScreen kinhseis = viewHandler.getStatementsScreen();
-        Account user = Session.getInstance().getAccount();
+        Account user = Session.getInstance().getActiveAccount();
         kinhseis.setBalance(user.getBalance());
         kinhseis.show();
         ViewSession.getInstance().updateScreenHistory(kinhseis);
@@ -82,7 +91,7 @@ public class DashboardCon implements Controller_t{
     private void handlePagies(){
         view.hide();
         StandingOrdersScreen pagies = viewHandler.getStandingOrdersScreen();
-        Account user = Session.getInstance().getAccount();
+        Account user = Session.getInstance().getActiveAccount();
         pagies.setBalance(user.getBalance());
         pagies.show();
         ViewSession.getInstance().updateScreenHistory(pagies);
@@ -92,7 +101,7 @@ public class DashboardCon implements Controller_t{
     private void handleDiaxeirisi(){
         view.hide();
         AccountManagementScreen actmgmt = viewHandler.getAccountManagementScreen();
-        Account user = Session.getInstance().getAccount();
+        Account user = Session.getInstance().getActiveAccount();
         actmgmt.setBalance(user.getBalance());
         actmgmt.setIBAN(user.getIban());
         actmgmt.setName(user.getOwnerName());
@@ -106,7 +115,7 @@ public class DashboardCon implements Controller_t{
     private void handleMetEktos(){
         view.hide();
         DepositScreen metEktos = viewHandler.getDepositScreen();
-        Account user = Session.getInstance().getAccount();
+        Account user = Session.getInstance().getActiveAccount();
         metEktos.setBalance(user.getBalance());
         metEktos.show();
         ViewSession.getInstance().updateScreenHistory(metEktos);

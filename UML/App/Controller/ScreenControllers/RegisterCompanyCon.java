@@ -1,27 +1,28 @@
 package App.Controller.ScreenControllers;
 
-import App.Controller.Controller_t;
-import App.Model.Database.JsonDatabase; // Import Database
-import App.Model.ModelHandler;
-import App.View.Screens.LoginScreen;
-import App.View.Screens.RegisterScreen;
-import App.View.ViewHandler;
-import App.View.ViewSession;
-
-import javax.swing.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class RegisterCon implements Controller_t {
+import javax.swing.JOptionPane;
 
-    private RegisterScreen view;
+import App.Controller.Controller_t;
+import App.Model.ModelHandler;
+import App.Model.Database.JsonDatabase;
+import App.View.ViewHandler;
+import App.View.ViewSession;
+import App.View.Screens.LoginScreen;
+import App.View.Screens.RegisterCompanyScreen;
+import App.View.Screens.RegisterScreen;
+
+public class RegisterCompanyCon implements Controller_t{
+    
+    private RegisterCompanyScreen view;
     private ModelHandler model;
     private ViewHandler viewHandler;
 
-    public RegisterCon(RegisterScreen view, ModelHandler model, ViewHandler viewHandler) {
+    public RegisterCompanyCon(RegisterCompanyScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
@@ -30,9 +31,6 @@ public class RegisterCon implements Controller_t {
     @Override
     public void init() {
         if (view == null) return;
-
-        // 1. BACK BUTTON
-        // view.getBackBtn().addActionListener(e -> handleBack());
 
         // 2. REGISTER BUTTON
         view.getRegisterBtn().addActionListener(e -> handleRegister());
@@ -45,8 +43,7 @@ public class RegisterCon implements Controller_t {
         // 1. Collect data from view
         String user = view.getUsername();
         String pass = view.getPassword();
-        String name = view.getName();
-        String sname = view.getSurname();
+        String cname = view.getCompanyName();
         String email = view.getEmail();
         String phone = view.getPhone();
         String taxId = view.getCitizenId(); // Now mapping to taxId
@@ -61,12 +58,11 @@ public class RegisterCon implements Controller_t {
         Map<String, Object> newUser = new HashMap<>();
         newUser.put("username", user);
         newUser.put("password", pass);
-        newUser.put("name", name);
-        newUser.put("surname", sname);
-        newUser.put("phone", phone);
+        newUser.put("companyName", cname);
         newUser.put("email", email);
-        newUser.put("type", "Individual");
+        newUser.put("phone", phone);
         newUser.put("taxId", taxId);
+        newUser.put("type", "Company");
         
         // Add default empty accounts list
         newUser.put("accounts", new ArrayList<Map<String, String>>());

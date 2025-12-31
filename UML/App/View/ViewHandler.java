@@ -24,10 +24,10 @@ public class ViewHandler {
     private View_t deposit;
     private View_t registercompany;
     private View_t typeselection;
+    private View_t acctselection;
+    private View_t acctcreation;
     
     
-
-    JPanel wh = new JPanel();
     
     public void init(){
 
@@ -76,6 +76,14 @@ public class ViewHandler {
         this.typeselection = new TypeSelectionScreen();
         this.typeselection.init();
         mainframe.addPanel(typeselection.getMainPanel());
+
+        this.acctselection = new AccountSelectionScreen();
+        this.acctselection.init();
+        mainframe.addPanel(acctselection.getMainPanel());
+
+        this.acctcreation = new AccountCreationScreen();
+        this.acctcreation.init();
+        mainframe.addPanel(acctcreation.getMainPanel());
         
 
         
@@ -142,6 +150,14 @@ public class ViewHandler {
     public TypeSelectionScreen getChooseRegisterType(){
         return (TypeSelectionScreen) this.typeselection;
     }
+    
+    public AccountSelectionScreen getAccountSelectionScreen() {
+        return (AccountSelectionScreen) this.acctselection;
+    }
+
+    public AccountCreationScreen getAccountCreationScreen() {
+        return (AccountCreationScreen) this.acctcreation;
+    }
 
     public MainFrame getMainframe() {
         return mainframe;
@@ -152,5 +168,8 @@ public class ViewHandler {
         ViewSession.getInstance().setCurrentScreen(screen);
         ViewSession.getInstance().clearHistory();
     }
+
+
+
     
 }

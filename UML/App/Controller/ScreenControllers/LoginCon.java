@@ -1,11 +1,14 @@
 package App.Controller.ScreenControllers;
 
+import App.Controller.ControllerHandler;
 import App.Controller.Controller_t; 
 import App.Model.Database.JsonDatabase;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.ModelHandler;
 import App.Model.Session;
 import App.View.Screens.TypeSelectionScreen;
+import App.View.Screens.AccountCreationScreen;
+import App.View.Screens.AccountSelectionScreen;
 import App.View.Screens.DashboardScreen;
 import App.View.Screens.LoginScreen;
 import App.View.Screens.RegisterScreen;
@@ -55,48 +58,51 @@ public class LoginCon implements Controller_t {
     private void handleLogin() {
         String inputUser = view.getUsername();
         String inputPass = view.getPassword();
-
-        if (inputUser.isEmpty() || inputPass.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill in all fields.");
-            return;
-        }
-
-        List<Map<String, String>> records = JsonDatabase.getAllRecords();
-        boolean found = false;
-        Map<String, String> userRecord = null;
-
-        for (Map<String, String> record : records) {
-            if (record.get("username").equals(inputUser) && record.get("password").equals(inputPass)) {
-                found = true;
-                userRecord = record;
+    
+        List<Map<String, Object>> records = JsonDatabase.getAllRecords();
+        Map<String, Object> foundUser = null;
+    
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            if (user.get("username").equals(inputUser) && user.get("password").equals(inputPass)) {
+                foundUser = user;
                 break;
             }
         }
-
-        if (found && userRecord != null) {
-            Account activeAccount = new Account(
-                userRecord.get("citizenId"),
-                userRecord.get("name") + " " + userRecord.get("surname"),
-                userRecord.get("iban"),
-                userRecord.get("balance"),
-                userRecord.get("interestRate"),
-                userRecord.get("secondaryOwner")
-            );
-
-            Session.getInstance().login(inputUser, userRecord.get("citizenId"), activeAccount);
+    
+        if (foundUser != null) {
+            // Store the whole user object in the session
+            Session.getInstance().login((String)foundUser.get("username"), (String)foundUser.get("taxId"), foundUser);
             
-            
-            JOptionPane.showMessageDialog(null, "Login Successful! Welcome " + inputUser);
-            // Switch to Dashboard
-            view.hide();
-            DashboardScreen next = viewHandler.getDashboardScreen();
-            next.changeUser(inputUser, userRecord.get("balance"));
-            next.show();
-            ViewSession.getInstance().updateScreenHistory(next);
-            ViewSession.getInstance().clearHistory();
+            List<Map<String, String>> accountsList = (List<Map<String, String>>) foundUser.get("accounts");
+            // boolean trulyEmpty = (accountsList == null || accountsList.isEmpty());
 
+            // if (!trulyEmpty) {
+            //     // Check if the first entry is just a "ghost" map with no real ID
+            //     String firstId = accountsList.get(0).get("accountId");
+            //     if (firstId == null || firstId.trim().isEmpty()) {
+            //         trulyEmpty = true;
+            //     }
+            // }
+            if ((accountsList == null || accountsList.isEmpty())){
+                view.hide();
+                AccountCreationScreen next = viewHandler.getAccountCreationScreen();
+                next.setHelloMessage((String)foundUser.get("name"));
+                next.setPrimaryOwnerLabel((String)foundUser.get("username"));
+                next.show();
+                ViewSession.getInstance().updateScreenHistory(next);
+                ViewSession.getInstance().clearHistory();
+            }
+            else{
+                view.hide();
+                AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
+                next.populateAccounts(accountsList);
+                next.show();
+                ViewSession.getInstance().updateScreenHistory(next);
+                ViewSession.getInstance().clearHistory();
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Invalid Username or Password.");
+            JOptionPane.showMessageDialog(null, "Invalid Credentials");
         }
     }
 }
