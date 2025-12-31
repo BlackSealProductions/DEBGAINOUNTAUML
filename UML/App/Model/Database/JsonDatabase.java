@@ -164,12 +164,20 @@ public class JsonDatabase {
                 if (username == null || username.trim().isEmpty()) {
                     continue; // Skip this ghost block
                 }
+
+                String type = extractValue(block, "type");
+
                 
                 Map<String, Object> userData = new HashMap<>();
                 userData.put("username", extractValue(block, "username"));
                 userData.put("password", extractValue(block, "password"));
-                userData.put("name", extractValue(block, "name"));
-                userData.put("surname", extractValue(block, "surname"));
+                if("Company".equalsIgnoreCase(type)){
+                    userData.put("companyName", extractValue(block, "companyName"));
+                }
+                else{
+                    userData.put("name", extractValue(block, "name"));
+                    userData.put("surname", extractValue(block, "surname"));
+                }
                 userData.put("taxId", extractValue(block, "taxId"));
                 userData.put("type", extractValue(block, "type"));
                 userData.put("phone", extractValue(block, "phone"));
