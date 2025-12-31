@@ -2,19 +2,17 @@ package App.View.Screens;
 
 import App.View.View_t;
 import App.View.helper_classes.*;
-import Utils.GlobalConsts;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class DepositScreen implements View_t {
-
-    final int wWidth = Utils.GlobalConsts.wWidth;
-    final int wHeight = Utils.GlobalConsts.wHeight;
-
+public class WithdrawScreen implements View_t {
     private JPanel panel = new JPanel();
     private Color blue = Color.decode("#C2E5FF");
     private Color red = Color.decode("#D82F4B");
+
+    final int wWidth = Utils.GlobalConsts.wWidth;
+    final int wHeight = Utils.GlobalConsts.wHeight;
     
     // Fonts
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
@@ -25,7 +23,7 @@ public class DepositScreen implements View_t {
     private JTextField amountField;
     private RoundedButton confirmBtn, checkBtn;
     private JLabel balanceLabel, newBalanceLabel;
-    private double currentBalance = 0.0; // This should be updated by your Controller
+    private double currentBalance = 0.0;
 
     @Override
     public void init() {
@@ -39,18 +37,20 @@ public class DepositScreen implements View_t {
         logoPanel.setBounds(50,50,200,200);
         panel.add(logoPanel);
 
+        
+
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setOpaque(false);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.insets = new Insets(10, 0, 10, 0);
 
-        JLabel title = new JLabel("Κατάθεση Χρημάτων");
+        JLabel title = new JLabel("Ανάληψη Χρημάτων");
         title.setFont(customFont40);
         gbc.gridy = 0;
         centerPanel.add(title, gbc);
 
-        balanceLabel = new JLabel("Τρέχον Υπόλοιπο: " + currentBalance + "€");
+        balanceLabel = new JLabel("Διαθέσιμο Υπόλοιπο: " + currentBalance + "€");
         balanceLabel.setFont(customFont20);
         gbc.gridy = 1;
         centerPanel.add(balanceLabel, gbc);
@@ -63,22 +63,20 @@ public class DepositScreen implements View_t {
         gbc.insets = new Insets(30, 0, 10, 0);
         centerPanel.add(amountField, gbc);
 
-        // Check Button
-        checkBtn = new RoundedButton("Υπολογισμός", 10);
+        checkBtn = new RoundedButton("Έλεγχος Υπολοίπου", 10);
         checkBtn.setFont(customFont12);
-        checkBtn.setPreferredSize(new Dimension(150, 30));
-        checkBtn.addActionListener(e -> calculateNewBalance(true));
+        checkBtn.setPreferredSize(new Dimension(180, 30));
+        checkBtn.addActionListener(e -> calculateNewBalance(false));
         gbc.gridy = 3;
         centerPanel.add(checkBtn, gbc);
 
-        newBalanceLabel = new JLabel("Νέο Υπόλοιπο: "+currentBalance+"€");
+        newBalanceLabel = new JLabel("Υπόλοιπο μετά: --€");
         newBalanceLabel.setFont(customFont12);
-        newBalanceLabel.setForeground(Color.DARK_GRAY);
         gbc.gridy = 4;
         gbc.insets = new Insets(5, 0, 30, 0);
         centerPanel.add(newBalanceLabel, gbc);
 
-        confirmBtn = new RoundedButton("Επιβεβαίωση", 15);
+        confirmBtn = new RoundedButton("Ανάληψη", 15);
         confirmBtn.setBackground(red);
         confirmBtn.setForeground(Color.WHITE);
         confirmBtn.setPreferredSize(new Dimension(250, 60));
@@ -93,20 +91,26 @@ public class DepositScreen implements View_t {
     private void calculateNewBalance(boolean isDeposit) {
         try {
             double amount = Double.parseDouble(amountField.getText());
-            double result = isDeposit ? (currentBalance + amount) : (currentBalance - amount);
-            newBalanceLabel.setText("Νέο Υπόλοιπο: " + String.format("%.2f", result) + "€");
+            double result = currentBalance - amount;
+            if (result < 0) {
+                newBalanceLabel.setText("Ανεπαρκές Υπόλοιπο!");
+                newBalanceLabel.setForeground(Color.RED);
+            } else {
+                newBalanceLabel.setText("Υπόλοιπο μετά: " + String.format("%.2f", result) + "€");
+                newBalanceLabel.setForeground(Color.DARK_GRAY);
+            }
         } catch (NumberFormatException e) {
-            newBalanceLabel.setText("Σφάλμα: Έγκυρο ποσό παρακαλώ");
+            newBalanceLabel.setText("Σφάλμα στην τιμή");
         }
     }
 
     public JPanel getMainPanel() { return this.panel; }
-    public void show() { this.panel.setVisible(true);amountField.requestFocusInWindow();}
+    public void show() { this.panel.setVisible(true);amountField.requestFocusInWindow(); }
     public void hide() { this.panel.setVisible(false); }
     public void setCurrentBalance(String bal) { 
         this.currentBalance = Float.parseFloat(bal); 
-        balanceLabel.setText("Τρέχον Υπόλοιπο: " + bal + "€");
+        balanceLabel.setText("Διαθέσιμο Υπόλοιπο: " + bal + "€");
         newBalanceLabel.setText(bal);
     }
     public JButton getConfirmBtn() { return confirmBtn; }
-}
+} 

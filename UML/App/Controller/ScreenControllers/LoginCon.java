@@ -93,7 +93,7 @@ public class LoginCon implements Controller_t {
                 next.show();
                 ViewSession.getInstance().updateScreenHistory(next);
                 ViewSession.getInstance().clearHistory();
-            }
+             }
             else{
                 view.hide();
                 AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
