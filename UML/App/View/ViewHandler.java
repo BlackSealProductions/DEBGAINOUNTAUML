@@ -26,6 +26,8 @@ public class ViewHandler {
     private View_t typeselection;
     private View_t acctselection;
     private View_t acctcreation;
+    private View_t metafora;
+    private View_t withdraw;
     
     
     
@@ -65,9 +67,9 @@ public class ViewHandler {
         this.dashboard.init();
         mainframe.addPanel(dashboard.getMainPanel());
 
-        this.deposit = new DepositScreen();
-        this.deposit.init();
-        mainframe.addPanel(deposit.getMainPanel());
+        this.metafora = new MetaforaScreen();
+        this.metafora.init();
+        mainframe.addPanel(metafora.getMainPanel());
 
         this.registercompany = new RegisterCompanyScreen();
         this.registercompany.init();
@@ -85,6 +87,13 @@ public class ViewHandler {
         this.acctcreation.init();
         mainframe.addPanel(acctcreation.getMainPanel());
         
+        this.deposit = new DepositScreen();
+        this.deposit.init();
+        mainframe.addPanel(deposit.getMainPanel());
+        
+        this.withdraw = new WithdrawScreen();
+        this.withdraw.init();
+        mainframe.addPanel(withdraw.getMainPanel());
 
         
     }
@@ -143,8 +152,8 @@ public class ViewHandler {
         return (AccountManagementScreen) this.accountmgmt;
     }
     
-    public DepositScreen getDepositScreen() {
-        return (DepositScreen) this.deposit;
+    public MetaforaScreen getMetaforaScreen() {
+        return (MetaforaScreen) this.metafora;
     }
     public TypeSelectionScreen getChooseRegisterType(){
         return (TypeSelectionScreen) this.typeselection;
@@ -156,6 +165,13 @@ public class ViewHandler {
 
     public AccountCreationScreen getAccountCreationScreen() {
         return (AccountCreationScreen) this.acctcreation;
+    }
+    public DepositScreen getDepositScreen() {
+        return (DepositScreen) this.deposit;
+    }
+
+    public WithdrawScreen getWithdrawScreen() {
+        return (WithdrawScreen) this.withdraw;
     }
 
     public MainFrame getMainframe() {

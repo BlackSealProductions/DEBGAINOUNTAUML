@@ -171,7 +171,7 @@
     "user": {
       "username": "cafe",
       "password": "coffee",
-      "companyName": "TUC",
+      "companyName": "",
       "phone": "2821037000",
       "email": "cafe@tuc.gr",
       "type": "Company",
@@ -222,7 +222,7 @@
     "user": {
       "username": "bank",
       "password": "root",
-      "companyName": "Bank",
+      "companyName": "",
       "phone": "2821000000",
       "email": "info@bankoftuc.gr",
       "type": "Company",
@@ -257,6 +257,22 @@
           "secondaryOwner": "None",
           "balance": "24.0",
           "interestRate": "0.5%"
+        },
+        {
+          "accountId": "ID_20411552",
+          "iban": "GR9393319356273823426639169",
+          "ownerName": "arisgod04",
+          "secondaryOwner": "steligger",
+          "balance": "0",
+          "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_66344270",
+          "iban": "GR5419917103776692680082703",
+          "ownerName": "arisgod04",
+          "secondaryOwner": "thanasis",
+          "balance": "0",
+          "interestRate": "1%"
         }
       ]
     }
@@ -265,7 +281,7 @@
     "user": {
       "username": "aziz",
       "password": "123",
-      "companyName": "null",
+      "companyName": "",
       "phone": "6955555555",
       "email": "osaker@gmail.com",
       "type": "Company",
@@ -344,7 +360,7 @@
     "user": {
       "username": "fs",
       "password": "123",
-      "companyName": "FSTUC",
+      "companyName": "",
       "phone": "333",
       "email": "fss",
       "type": "Company",
