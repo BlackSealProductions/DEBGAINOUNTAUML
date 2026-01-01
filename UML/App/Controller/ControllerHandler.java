@@ -20,6 +20,7 @@ public class ControllerHandler {
     private Controller_t acctcreation_con;
     private Controller_t deposit_con;
     private Controller_t withdraw_con;
+    private Controller_t metafora_con;
     
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
@@ -63,7 +64,8 @@ public class ControllerHandler {
         withdraw_con = new WithdrawCon(v.getWithdrawScreen(), m, v);
         withdraw_con.init();
 
-
+        metafora_con = new MetaforaCon(v.getMetaforaScreen(), m, v);
+        metafora_con.init();
 
     }
 
