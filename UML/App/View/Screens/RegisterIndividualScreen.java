@@ -87,7 +87,7 @@ public class RegisterIndividualScreen implements View_t {
         // Create Password Field manually since it's unique
         passwordField = new JPasswordField("Password");
         passwordField.setPreferredSize(new Dimension(450, 55));
-        passwordField.setFont(new Font("Bodoni MT", Font.ITALIC, 24));
+        passwordField.setFont(customFont20);
         passwordField.setForeground(placeholderColor);
         passwordField.setEchoChar((char)0); // Visible placeholder
         OnFocusEventHelper.setOnFocusText(passwordField, "Password", textColor, placeholderColor);

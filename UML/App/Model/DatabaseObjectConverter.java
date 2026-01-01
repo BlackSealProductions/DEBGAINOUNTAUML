@@ -33,6 +33,7 @@ public class DatabaseObjectConverter {
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("password", password);
+        userData.put("type", type);
         if("Company".equalsIgnoreCase(type)){
             String cname = ((Company)activeCustomer).getCompanyName();
             userData.put("companyName", cname);
@@ -53,7 +54,7 @@ public class DatabaseObjectConverter {
                 for (Account account : customerAccounts) {
                     
                     Map<String, String> acc = new HashMap<>();
-                    acc.put("accountId", account.getCitizenId());
+                    acc.put("accountId", account.getAccountId());
                     acc.put("iban", account.getIban());
                     acc.put("ownerName", account.getOwnerName());
                     acc.put("secondaryOwner", account.getSecondaryOwner());

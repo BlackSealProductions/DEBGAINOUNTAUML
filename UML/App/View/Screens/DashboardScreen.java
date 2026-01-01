@@ -17,6 +17,8 @@ public class DashboardScreen implements View_t {
     Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
     Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
     Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
+    Font customFont15 = FontLoader.loadCustomFont(fontPath, 15f);
+
 
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
@@ -34,7 +36,7 @@ public class DashboardScreen implements View_t {
     // Placeholders for dynamic content
     private JLabel accountNumberLabel = new JLabel("Account: #00000000");
     private JLabel balanceLabel = new JLabel(userBalance+" €");
-
+    private JLabel usertype = new JLabel();
 
     private JLabel userNameLabel = new JLabel("Welcome, " + username);
     private RoundedButton logoutBtn = new RoundedButton("X",15);
@@ -79,6 +81,10 @@ public class DashboardScreen implements View_t {
         accountNumberLabel.setFont(customFont20);
         accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
+        usertype.setBounds(0,80, wWidth,50);
+        usertype.setFont(customFont15);
+        usertype.setHorizontalAlignment(SwingConstants.CENTER);
+
         switchBtn.setBounds(1380, 50, 110, 50);
         switchBtn.setBackground(Color.blue);
         switchBtn.setForeground(Color.white);
@@ -93,12 +99,13 @@ public class DashboardScreen implements View_t {
         logoutBtn.setFocusPainted(false);
 
         // User Name (To the left of the logout button)
-        userNameLabel.setBounds(1100, 50, 380, 50);
+        userNameLabel.setBounds(990, 50, 380, 50);
         userNameLabel.setFont(customFont20);
         userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         header.add(logo);
         header.add(accountNumberLabel); // This stays centered because of wWidth bounds
+        header.add(usertype);
         header.add(userNameLabel);
         header.add(switchBtn);
         header.add(logoutBtn);
@@ -222,9 +229,10 @@ public class DashboardScreen implements View_t {
         return this.switchBtn;
     }
 
-    public void setAccountDetails(String username, String balance, String acctId){
+    public void setAccountDetails(String username, String balance, String acctId, String type){
         userNameLabel.setText("Welcome, " + username);
         accountNumberLabel.setText("Account: #" + acctId);
+        usertype.setText(type);
         if(Float.parseFloat(balance) <= 0){
 
             balanceLabel.setText(balance+" € (8a se valoun mesa se ligo :())");

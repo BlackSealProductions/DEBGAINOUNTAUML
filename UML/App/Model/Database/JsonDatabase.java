@@ -65,16 +65,12 @@ public class JsonDatabase {
     /**
      * Saves a NEW user during registration.
      */
-    public void saveRecord(Map<String, Object> userData) {
+    public void saveRecord(Map<String, Object> userWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
-        Map<String, Object> wrapper = new HashMap<>();
-        wrapper.put("user", userData);
-        allRecords.add(wrapper);
+        // Map<String, Object> wrapper = new HashMap<>();
+        // wrapper.put("user", userData);
+        allRecords.add(userWrapper);
         saveAllRecords(allRecords);
-    }
-
-    public void save(Map<String, Object> userWrapper){
-        updateUserRecord(userWrapper);
     }
 
     public void updateUserRecord(Map<String, Object> updatedWrapper) {

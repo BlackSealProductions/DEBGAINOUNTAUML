@@ -88,9 +88,9 @@ public class Session {
         }
 
         List<Map<String, String>> accountsList = (List<Map<String, String>>) userData.get("accounts");
-        customerAccounts =  new ArrayList<Account>();
+        customerAccounts = new ArrayList<Account>();
 
-        Boolean foundAcc = false;
+        // Boolean foundAcc = false;
         
         for (Map<String, String> acc : accountsList) {
 
@@ -104,20 +104,15 @@ public class Session {
             String rate = acc.get("interestRate");
 
             customerAccounts.add(new Account(acctId, pOwner, iban, balance, rate, sOwner));
-            foundAcc=true;
+            // foundAcc=true;
         }
-
-        if(foundAcc==false) customerAccounts=null;
 
     }
     public Account getAccountByIdx(int idx){
         return customerAccounts.get(idx);
     }
 
-    // public void saveToDB(JsonDatabase db){
 
-    //     db.updateUserRecord(convertActiveUserToMap());
-    // }
     public Map<String, Object> convertActiveUserToMap(){
 
         String username = activeCustomer.getUsername();
@@ -131,6 +126,7 @@ public class Session {
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("password", password);
+        userData.put("type", type);
         if("Company".equalsIgnoreCase(type)){
             String cname = ((Company)activeCustomer).getCompanyName();
             userData.put("companyName", cname);
@@ -151,7 +147,7 @@ public class Session {
                 for (Account account : customerAccounts) {
                     
                     Map<String, String> acc = new HashMap<>();
-                    acc.put("accountId", account.getCitizenId());
+                    acc.put("accountId", account.getAccountId());
                     acc.put("iban", account.getIban());
                     acc.put("ownerName", account.getOwnerName());
                     acc.put("secondaryOwner", account.getSecondaryOwner());

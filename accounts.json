@@ -389,5 +389,56 @@
         }
       ]
     }
+  },
+  {
+    "user": {
+      "username": "a",
+      "password": "a",
+      "name": "a",
+      "surname": "a",
+      "phone": "a",
+      "email": "a",
+      "type": "Individual",
+      "taxId": "a",
+      "accounts": [
+        {
+          "accountId": "ID_51259348",
+          "iban": "GR6086248002856772322430785",
+          "ownerName": "a",
+          "secondaryOwner": "nigg",
+          "balance": "0",
+          "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_56165136",
+          "iban": "GR1386827574990737208056975",
+          "ownerName": "a",
+          "secondaryOwner": "nigzzzzz",
+          "balance": "0",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "b",
+      "password": "b",
+      "companyName": "b",
+      "phone": "b",
+      "email": "b",
+      "type": "Company",
+      "taxId": "b",
+      "accounts": [
+        {
+          "accountId": "ID_81038014",
+          "iban": "GR6409068716948369530842178",
+          "ownerName": "b",
+          "secondaryOwner": "nigab",
+          "balance": "0",
+          "interestRate": "1%"
+        }
+      ]
+    }
   }
 ]

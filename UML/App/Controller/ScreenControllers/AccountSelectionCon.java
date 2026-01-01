@@ -8,6 +8,8 @@ import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
 import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Company;
+import App.Model.Entities.UserEntities.Individual;
 
 import java.util.*;
 
@@ -40,7 +42,19 @@ public class AccountSelectionCon implements Controller_t{
             Session.getInstance().setActiveAccount(selectedAccount);
             view.hide();
             DashboardScreen next = viewHandler.getDashboardScreen();
-            next.setAccountDetails(selectedAccount.getOwnerName(), selectedAccount.getBalance(), selectedAccount.getCitizenId());
+
+            String type = Session.getInstance().getActiveCustomer().getUserTypeString();
+            String name;
+            if(type.equals("Company")){
+                name = ((Company)Session.getInstance().getActiveCustomer()).getCompanyName();
+            }
+            else if (type.equals("Individual")){
+                name = ((Individual)Session.getInstance().getActiveCustomer()).getFirstName();
+            }
+            else{
+                name = Session.getInstance().getActiveCustomer().getUsername();
+            }
+            next.setAccountDetails(name, selectedAccount.getBalance(), selectedAccount.getAccountId(), type);
             next.show();
             ViewSession.getInstance().updateScreenHistory(next);
             ViewSession.getInstance().clearHistory();

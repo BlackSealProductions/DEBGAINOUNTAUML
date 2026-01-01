@@ -61,6 +61,7 @@ public class AccountSelectionScreen implements View_t {
         selectBtn.setBackground(Color.decode("#D82F4B"));
         selectBtn.setForeground(Color.white);
         selectBtn.setFont(customFont20);
+        selectBtn.setFocusPainted(false);
         panel.add(selectBtn);
         
         hide();
@@ -77,7 +78,7 @@ public class AccountSelectionScreen implements View_t {
         selectBtn.setEnabled(true);
         for (Account acc : accounts) {
             // Passing the ID; the renderer will format it
-            listModel.addElement(acc.getCitizenId());
+            listModel.addElement(acc.getAccountId());
         }
     }
 

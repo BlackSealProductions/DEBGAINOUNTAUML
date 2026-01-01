@@ -5,7 +5,9 @@ import App.Model.ModelHandler;
 import App.Model.Session;
 import App.Model.Database.JsonDatabase;
 import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
+import App.Model.Entities.UserEntities.Individual;
 import App.View.ViewHandler;
 import App.View.ViewSession;
 import App.View.Screens.AccountCreationScreen;
@@ -51,7 +53,7 @@ public class AccountCreationCon implements Controller_t {
         List<Account> currentAccounts = Session.getInstance().getCustomerAccounts();
 
         // 2. Business Logic Validation: Companies can only have one account
-        if ("Company".equalsIgnoreCase(user.getUserTypeString()) && currentAccounts != null) {
+        if ("Company".equalsIgnoreCase(user.getUserTypeString()) && !currentAccounts.isEmpty()) {
             JOptionPane.showMessageDialog(null, 
                 "Σφάλμα: Οι εταιρικοί λογαριασμοί επιτρέπεται να έχουν μόνο έναν τραπεζικό λογαριασμό.", 
                 "Περιορισμός Λογαριασμού", 
@@ -86,11 +88,21 @@ public class AccountCreationCon implements Controller_t {
         model.saveChangesToDB_sess();
 
         JOptionPane.showMessageDialog(null, "Ο λογαριασμός δημιουργήθηκε επιτυχώς!\nIBAN: " + newIban);
-
+        String type = Session.getInstance().getActiveCustomer().getUserTypeString();
+        String name;
+        if(type.equals("Company")){
+            name = ((Company)Session.getInstance().getActiveCustomer()).getCompanyName();
+        }
+        else if (type.equals("Individual")){
+            name = ((Individual)Session.getInstance().getActiveCustomer()).getFirstName();
+        }
+        else{
+            name = Session.getInstance().getActiveCustomer().getUsername();
+        }
         // 5. Transition to Dashboard
         view.hide();
         DashboardScreen next = viewHandler.getDashboardScreen();
-        next.setAccountDetails(pOwner, initialBalance, newId);
+        next.setAccountDetails(name, initialBalance, newId, type);
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
         ViewSession.getInstance().clearHistory();

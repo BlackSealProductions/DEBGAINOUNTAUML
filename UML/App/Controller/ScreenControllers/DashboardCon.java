@@ -11,6 +11,7 @@ import App.View.Screens.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +47,7 @@ public class DashboardCon implements Controller_t{
             model.saveChangesToDB_sess();
             view.hide();
             AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
+            next.populateAccounts((ArrayList<Account>)Session.getInstance().getCustomerAccounts());
             next.show();
             ViewSession.getInstance().updateScreenHistory(next);
         });
@@ -123,6 +125,8 @@ public class DashboardCon implements Controller_t{
     private void handleCreateAcc(){
         view.hide();
         AccountCreationScreen next = viewHandler.getAccountCreationScreen();
+        next.setTitle1("Φτιάξτε επιπλέον");
+        next.setTitle2("λογαριασμό");
         next.setHelloMessage(Session.getInstance().getActiveCustomer().getUsername());
         next.setPrimaryOwnerLabel(Session.getInstance().getActiveCustomer().getUsername());
         next.show();

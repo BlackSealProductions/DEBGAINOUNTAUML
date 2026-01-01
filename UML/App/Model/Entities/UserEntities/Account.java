@@ -18,7 +18,7 @@ public class Account {
     }
 
     // --- Getters ---
-    public String getCitizenId() { return accountId; }
+    public String getAccountId() { return accountId; }
     public String getOwnerName() { return ownerName; }
     public String getIban() { return iban; }
     public String getBalance() { return balance; }
