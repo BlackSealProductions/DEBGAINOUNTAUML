@@ -25,12 +25,14 @@ public class PayBillCon implements Controller_t {
     private LoginScreen view;
     private ModelHandler model; 
     private ViewHandler viewHandler;
+    
 
           // --- 2. UPDATE CONSTRUCTOR TO RECEIVE IT ---
     public PayBillCon(LoginScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler; // Save it!
+    
     }
 
         @Override

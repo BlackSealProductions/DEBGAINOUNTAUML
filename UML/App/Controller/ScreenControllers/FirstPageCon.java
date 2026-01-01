@@ -2,6 +2,7 @@ package App.Controller.ScreenControllers;
 
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
+import App.Model.Session;
 import App.View.ViewHandler;
 import App.View.ViewSession;
 import App.View.Screens.TypeSelectionScreen;
@@ -12,13 +13,14 @@ import App.View.Screens.RegisterIndividualScreen;
 public class FirstPageCon implements Controller_t {
     private FirstPageScreen view;
     private ModelHandler model; 
-    
     private ViewHandler viewHandler;
+   
 
     public FirstPageCon(FirstPageScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
+       
     }
 
     @Override

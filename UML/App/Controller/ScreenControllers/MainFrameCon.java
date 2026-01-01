@@ -30,19 +30,18 @@ public class MainFrameCon implements Controller_t{
     }
 
     private void goBackOne(){
-        ViewSession inst = ViewSession.getInstance();
 
-        Boolean noHistory = inst.isHistoryEmpty();
-        Boolean isLoginWithNoHistory = (noHistory && inst.getCurrentScreen().equals(view.getLoginScreen()));
+        Boolean noHistory = ViewSession.getInstance().isHistoryEmpty();
+        Boolean isLoginWithNoHistory = (noHistory && ViewSession.getInstance().getCurrentScreen().equals(view.getLoginScreen()));
 
         if(!noHistory){
-            inst.getCurrentScreen().hide();
-            inst.goBack();
-            inst.getCurrentScreen().show();
+            ViewSession.getInstance().getCurrentScreen().hide();
+            ViewSession.getInstance().goBack();
+            ViewSession.getInstance().getCurrentScreen().show();
         }
         else if (isLoginWithNoHistory){
             FirstPageScreen firstpage = view.getFirstPageScreen();
-            inst.getCurrentScreen().hide();
+            ViewSession.getInstance().getCurrentScreen().hide();
             firstpage.show();
             ViewSession.getInstance().updateScreenHistory(firstpage);
             ViewSession.getInstance().clearHistory();

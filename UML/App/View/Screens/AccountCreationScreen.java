@@ -32,6 +32,8 @@ public class AccountCreationScreen implements View_t {
     private RoundedButton logoutBtn;
     private RoundedButton finishBtn;
     private JTextField secondaryOwnerField;
+    private JLabel title1;
+    private JLabel title2;
 
     @Override
     public void init() {
@@ -66,11 +68,11 @@ public class AccountCreationScreen implements View_t {
         centerContainer.setBounds(0, 100, wWidth, 600); 
 
         // Titles
-        JLabel title1 = new JLabel("Δεν βρέθηκε λογαριασμος,");
+        title1 = new JLabel("Δεν βρέθηκε λογαριασμος,");
         title1.setFont(customFont60);
         title1.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel title2 = new JLabel("φτιάξτε έναν:");
+        title2 = new JLabel("φτιάξτε έναν:");
         title2.setFont(customFont60);
         title2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -130,6 +132,14 @@ public class AccountCreationScreen implements View_t {
 
     public void setPrimaryOwnerLabel(String username) {
         primaryOwnerLabel.setText("Primary owner: " + username);
+    }
+
+    public void setTitle1(String title){
+        title1.setText(title);
+    }
+
+    public void setTitle2(String title){
+        title2.setText(title);
     }
 
     public RoundedButton getFinishBtn(){ return this.finishBtn; }

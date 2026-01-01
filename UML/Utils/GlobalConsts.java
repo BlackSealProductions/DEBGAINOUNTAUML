@@ -16,4 +16,10 @@ public class GlobalConsts {
         BUSINESS
     } 
 
+    static public userType getUserTypeByString(String type){
+        if (type.equalsIgnoreCase("Company")){return userType.BUSINESS;}
+        else if (type.equalsIgnoreCase("Individual")){return userType.INDIVIDUAL;}
+        else return null;
+    }
+
 }

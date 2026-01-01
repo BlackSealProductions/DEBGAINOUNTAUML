@@ -4,6 +4,9 @@ import App.Controller.ControllerHandler;
 import App.Controller.Controller_t; 
 import App.Model.Database.JsonDatabase;
 import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Company;
+import App.Model.Entities.UserEntities.Customer;
+import App.Model.Entities.UserEntities.Individual;
 import App.Model.ModelHandler;
 import App.Model.Session;
 import App.View.Screens.TypeSelectionScreen;
@@ -18,6 +21,7 @@ import App.View.ViewSession;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,14 +29,15 @@ public class LoginCon implements Controller_t {
 
     private LoginScreen view;
     private ModelHandler model; 
-    
     private ViewHandler viewHandler;
+
 
     // --- 2. UPDATE CONSTRUCTOR TO RECEIVE IT ---
     public LoginCon(LoginScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler; // Save it!
+       
     }
 
     @Override
@@ -41,7 +46,6 @@ public class LoginCon implements Controller_t {
 
         // Login Button Logic
         view.getLoginBtn().addActionListener(e -> handleLogin());
-
 
         // Register Button Logic
         view.getRegisterBtn().addActionListener(e -> handleRegister());
@@ -53,47 +57,45 @@ public class LoginCon implements Controller_t {
         TypeSelectionScreen next = viewHandler.getChooseRegisterType();
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
+        
     }
 
     private void handleLogin() {
         String inputUser = view.getUsername();
         String inputPass = view.getPassword();
-    
-        List<Map<String, Object>> records = JsonDatabase.getAllRecords();
-        Map<String, Object> foundUser = null;
-    
-        for (Map<String, Object> wrapper : records) {
-            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
-            if (user.get("username").equals(inputUser) && user.get("password").equals(inputPass)) {
-                foundUser = user;
-                System.out.println(user.get("username"));
-                break;
-            }
-        }
+
+        JsonDatabase db = model.getDB();
+        Map<String, Object> foundUser = db.findUserWithPassword(inputUser, inputPass);
     
         if (foundUser != null) {
             // Store the whole user object in the session
-            Session.getInstance().login((String)foundUser.get("username"), (String)foundUser.get("taxId"), foundUser);
             
-            List<Map<String, String>> accountsList = (List<Map<String, String>>) foundUser.get("accounts");
-            // boolean trulyEmpty = (accountsList == null || accountsList.isEmpty());
+            
+            Session.getInstance().login(foundUser);
 
-            // if (!trulyEmpty) {
-            //     // Check if the first entry is just a "ghost" map with no real ID
-            //     String firstId = accountsList.get(0).get("accountId");
-            //     if (firstId == null || firstId.trim().isEmpty()) {
-            //         trulyEmpty = true;
-            //     }
-            // }
+            Customer user = Session.getInstance().getActiveCustomer();
+
+            String name = null;
+            if (user.getUserType().equals(Utils.GlobalConsts.userType.BUSINESS)){
+                name = ((Company)user).getCompanyName();
+            }
+            else if(user.getUserType().equals(Utils.GlobalConsts.userType.INDIVIDUAL)){
+                name = ((Individual)user).getFirstName();
+            }
+            else{ 
+                name = user.getUsername();
+            }
+            
+            List<Account> accountsList = (ArrayList<Account>)Session.getInstance().getCustomerAccounts();
             if ((accountsList == null || accountsList.isEmpty())){
                 view.hide();
                 AccountCreationScreen next = viewHandler.getAccountCreationScreen();
-                next.setHelloMessage((String)foundUser.get("name"));
-                next.setPrimaryOwnerLabel((String)foundUser.get("username"));
+                next.setHelloMessage(name);
+                next.setPrimaryOwnerLabel(user.getUsername());
                 next.show();
                 ViewSession.getInstance().updateScreenHistory(next);
                 ViewSession.getInstance().clearHistory();
-             }
+            }
             else{
                 view.hide();
                 AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();

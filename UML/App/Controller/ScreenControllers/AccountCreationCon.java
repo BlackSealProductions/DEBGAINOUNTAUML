@@ -5,6 +5,9 @@ import App.Model.ModelHandler;
 import App.Model.Session;
 import App.Model.Database.JsonDatabase;
 import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Company;
+import App.Model.Entities.UserEntities.Customer;
+import App.Model.Entities.UserEntities.Individual;
 import App.View.ViewHandler;
 import App.View.ViewSession;
 import App.View.Screens.AccountCreationScreen;
@@ -19,11 +22,13 @@ public class AccountCreationCon implements Controller_t {
     private AccountCreationScreen view;
     private ModelHandler model;
     private ViewHandler viewHandler;
+   
 
     public AccountCreationCon(AccountCreationScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
+       
     }
 
     @Override
@@ -44,13 +49,11 @@ public class AccountCreationCon implements Controller_t {
 
     private void handleAcctCreation() {
 
-        // 1. Get User Data from Session
-        Map<String, Object> userData = Session.getInstance().getUserData();
-        String userType = (String) userData.get("type");
-        List<Map<String, String>> currentAccounts = (List<Map<String, String>>) userData.get("accounts");
+        Customer user = Session.getInstance().getActiveCustomer();
+        List<Account> currentAccounts = Session.getInstance().getCustomerAccounts();
 
         // 2. Business Logic Validation: Companies can only have one account
-        if ("Company".equalsIgnoreCase(userType) && currentAccounts != null && !currentAccounts.isEmpty()) {
+        if ("Company".equalsIgnoreCase(user.getUserTypeString()) && !currentAccounts.isEmpty()) {
             JOptionPane.showMessageDialog(null, 
                 "Σφάλμα: Οι εταιρικοί λογαριασμοί επιτρέπεται να έχουν μόνο έναν τραπεζικό λογαριασμό.", 
                 "Περιορισμός Λογαριασμού", 
@@ -64,10 +67,13 @@ public class AccountCreationCon implements Controller_t {
         String pOwner = view.getPrimaryOwner();
         String sOwner = view.getSecondaryOwner();
 
-        if (pOwner.isEmpty() || pOwner.equals("Primary owner")) {
-            JOptionPane.showMessageDialog(null, "Παρακαλώ εισάγετε το όνομα του κύριου κατόχου.");
-            return;
-        }
+
+        // primaryOwner is now a label not a jfield so it cant be empty
+
+        // if (pOwner.isEmpty() || pOwner.equals("Primary owner")) {
+        //     JOptionPane.showMessageDialog(null, "Παρακαλώ εισάγετε το όνομα του κύριου κατόχου.");
+        //     return;
+        // }
 
         // 1. Generate Unique Data
         String newId = generateUniqueID();
@@ -75,48 +81,37 @@ public class AccountCreationCon implements Controller_t {
         String initialBalance = "0";
         String rate = "1%";
 
-        // 2. Create the Map for JsonDatabase
-        Map<String, String> newAccountMap = new HashMap<>();
-        newAccountMap.put("accountId", newId);
-        newAccountMap.put("iban", newIban);
-        newAccountMap.put("ownerName", pOwner);
-        newAccountMap.put("secondaryOwner", sOwner.equals("Secondary owner") ? "-" : sOwner);
-        newAccountMap.put("balance", initialBalance);
-        newAccountMap.put("interestRate", rate);
+        Account newAccount = new Account(newId, pOwner, newIban, initialBalance, rate, sOwner);
+        Session.getInstance().appendCustomerAccounts(newAccount);
+        Session.getInstance().setActiveAccount(newAccount);
 
-        // 3. Update Database
-        String currentUsername = Session.getInstance().getUsername();
-        JsonDatabase.addAccountToUser(currentUsername, newAccountMap);
-
-        // 4. Update Session with the new formal Account Object
-        Account activeAcc = new Account(newId, newIban, pOwner, sOwner, initialBalance, rate);
-        Session.getInstance().setActiveAccount(activeAcc);
+        model.saveChangesToDB_sess();
 
         JOptionPane.showMessageDialog(null, "Ο λογαριασμός δημιουργήθηκε επιτυχώς!\nIBAN: " + newIban);
-
+        String type = Session.getInstance().getActiveCustomer().getUserTypeString();
+        String name;
+        if(type.equals("Company")){
+            name = ((Company)Session.getInstance().getActiveCustomer()).getCompanyName();
+        }
+        else if (type.equals("Individual")){
+            name = ((Individual)Session.getInstance().getActiveCustomer()).getFirstName();
+        }
+        else{
+            name = Session.getInstance().getActiveCustomer().getUsername();
+        }
         // 5. Transition to Dashboard
         view.hide();
         DashboardScreen next = viewHandler.getDashboardScreen();
-        next.setAccountDetails(pOwner, initialBalance, newId);
+        next.setAccountDetails(name, initialBalance, newId, type);
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
         ViewSession.getInstance().clearHistory();
     }
 
     private String generateUniqueID() {
-        List<Map<String, Object>> records = JsonDatabase.getAllRecords();
-        Set<String> existingIds = new HashSet<>();
 
-        // Collect all IDs currently in the system
-        for (Map<String, Object> wrapper : records) {
-            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
-            List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
-            if (accounts != null) {
-                for (Map<String, String> acc : accounts) {
-                    existingIds.add(acc.get("accountId"));
-                }
-            }
-        }
+        JsonDatabase db = model.getDB();
+        Set<String> existingIds = db.getExistingAcctIds();
 
         // Generate a random ID and ensure it's not a duplicate
         Random rand = new Random();

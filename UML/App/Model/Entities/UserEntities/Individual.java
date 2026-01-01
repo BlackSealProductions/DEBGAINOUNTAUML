@@ -8,11 +8,10 @@ public class Individual extends Customer{
     String lastName;
     String dateOfBirth;
 
-    public Individual(String firstName, String lastName, String dateOfBirth, String taxId, String userID, String username, String password, String email, String phone, GlobalConsts.userType customerType) {
+    public Individual(String firstName, String lastName, String dateOfBirth, String taxId, String username, String password, String email, String phone, GlobalConsts.userType customerType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.userID = userID;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -31,10 +30,6 @@ public class Individual extends Customer{
 
     public String getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public String getTaxId() {
-        return taxId;
     }
 
 
