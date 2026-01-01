@@ -2,16 +2,18 @@ package App.Controller.ScreenControllers;
 
 import App.Controller.Controller_t;
 import App.Model.Database.JsonDatabase; // Import Database
+import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Company;
+import App.Model.Entities.UserEntities.Individual;
 import App.Model.ModelHandler;
 import App.View.Screens.LoginScreen;
 import App.View.Screens.RegisterIndividualScreen;
 import App.View.ViewHandler;
 import App.View.ViewSession;
-
 import javax.swing.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,10 +23,12 @@ public class RegisterIndividualCon implements Controller_t {
     private ModelHandler model;
     private ViewHandler viewHandler;
 
+
     public RegisterIndividualCon(RegisterIndividualScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
+
     }
 
     @Override
@@ -57,22 +61,14 @@ public class RegisterIndividualCon implements Controller_t {
             return;
         }
 
-        // 2. Build the User Map (Matching the JSON structure)
-        Map<String, Object> newUser = new HashMap<>();
-        newUser.put("username", user);
-        newUser.put("password", pass);
-        newUser.put("name", name);
-        newUser.put("surname", sname);
-        newUser.put("phone", phone);
-        newUser.put("email", email);
-        newUser.put("type", "Individual");
-        newUser.put("taxId", taxId);
-        
-        // Add default empty accounts list
-        newUser.put("accounts", new ArrayList<Map<String, String>>());
+        Individual newUser = new Individual(name, sname, null, taxId, user, pass, email, phone, Utils.GlobalConsts.userType.INDIVIDUAL);
+        List<Account> defaultAccList = new ArrayList<Account>();
+
+        Map<String, Object> newUserWrapper = model.getConverter().convertUserToMap(newUser, defaultAccList);
 
         // 3. Save to Database
-        JsonDatabase.saveRecord(newUser);
+        JsonDatabase db = model.getDB();
+        db.saveRecord(newUserWrapper);
 
         JOptionPane.showMessageDialog(null, "Registration Successful!\n Please login");
         
@@ -82,6 +78,7 @@ public class RegisterIndividualCon implements Controller_t {
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
         ViewSession.getInstance().clearHistory();
+
 }
     // Helper to make a fake GR IBAN
     private String generateFakeIBAN() {

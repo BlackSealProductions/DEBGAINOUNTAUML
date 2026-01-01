@@ -1,5 +1,6 @@
 package App.View.Screens;
 
+import App.Model.Entities.UserEntities.Account;
 import App.View.View_t;
 import App.View.helper_classes.RoundedButton;
 import App.View.helper_classes.AccountCellRenderer; // Import your new class
@@ -65,7 +66,7 @@ public class AccountSelectionScreen implements View_t {
         hide();
     }
 
-    public void populateAccounts(List<Map<String, String>> accounts) {
+    public void populateAccounts(List<Account> accounts) {
         listModel.clear();
         if (accounts == null || accounts.isEmpty()) {
             listModel.addElement("No accounts found");
@@ -74,9 +75,9 @@ public class AccountSelectionScreen implements View_t {
         }
         
         selectBtn.setEnabled(true);
-        for (Map<String, String> acc : accounts) {
+        for (Account acc : accounts) {
             // Passing the ID; the renderer will format it
-            listModel.addElement(acc.get("accountId"));
+            listModel.addElement(acc.getCitizenId());
         }
     }
 

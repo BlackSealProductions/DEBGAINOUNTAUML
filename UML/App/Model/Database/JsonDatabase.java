@@ -4,24 +4,68 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
+import App.Model.Session;
+
 public class JsonDatabase {
     private static final String DB_FILE = "accounts.json";
+
+
+    public JsonDatabase(){
+
+    }
 
     // ===========================
     //      PUBLIC METHODS
     // ===========================
 
+    public Map<String, Object> findUserWithPassword(String inputUser, String inputPass){
+
+        List<Map<String, Object>> records = getAllRecords();
+        Map<String, Object> foundUser = null;
+
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            if (user.get("username").equals(inputUser) && user.get("password").equals(inputPass)) {
+                foundUser = user;
+                System.out.println(user.get("username"));
+                break;
+            }
+        }
+        return foundUser;
+    }
+
+    public Set<String> getExistingAcctIds(){
+
+        List<Map<String, Object>> records = getAllRecords();
+        Set<String> existingIds = new HashSet<>();
+
+        // Collect all IDs currently in the system
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
+            if (accounts != null) {
+                for (Map<String, String> acc : accounts) {
+                    existingIds.add(acc.get("accountId"));
+                }
+            }
+        }
+
+        return existingIds;
+    }
+
+
     /**
      * Loads all records from the JSON file.
      */
-    public static List<Map<String, Object>> getAllRecords() {
+    public List<Map<String, Object>> getAllRecords() {
         return parseJsonNested(DB_FILE);
     }
+
 
     /**
      * Saves a NEW user during registration.
      */
-    public static void saveRecord(Map<String, Object> userData) {
+    public void saveRecord(Map<String, Object> userData) {
         List<Map<String, Object>> allRecords = getAllRecords();
         Map<String, Object> wrapper = new HashMap<>();
         wrapper.put("user", userData);
@@ -29,10 +73,42 @@ public class JsonDatabase {
         saveAllRecords(allRecords);
     }
 
+    public void save(Map<String, Object> userWrapper){
+        updateUserRecord(userWrapper);
+    }
+
+    public void updateUserRecord(Map<String, Object> updatedWrapper) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        
+        // Extract the updated username to find the match
+        Map<String, Object> updatedUser = (Map<String, Object>) updatedWrapper.get("user");
+        String targetUsername = (String) updatedUser.get("username");
+    
+        boolean found = false;
+        for (int i = 0; i < allRecords.size(); i++) {
+            Map<String, Object> currentWrapper = allRecords.get(i);
+            Map<String, Object> currentUser = (Map<String, Object>) currentWrapper.get("user");
+    
+            if (currentUser.get("username").equals(targetUsername)) {
+                // Replace the old user data with the new updated version
+                allRecords.set(i, updatedWrapper);
+                found = true;
+                break;
+            }
+        }
+    
+        if (found) {
+            saveAllRecords(allRecords); // Overwrites the file with the updated list
+        } else {
+            // If for some reason the user wasn't there, treat it as a new record
+            saveRecord((Map<String, Object>) updatedWrapper.get("user"));
+        }
+    }
+
     /**
      * Adds a new account to an existing user identified by username.
      */
-    public static void addAccountToUser(String username, Map<String, String> newAccount) {
+    public void addAccountToUser(String username, Map<String, String> newAccount) {
         List<Map<String, Object>> allRecords = getAllRecords();
         for (Map<String, Object> wrapper : allRecords) {
             Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
@@ -49,11 +125,12 @@ public class JsonDatabase {
         saveAllRecords(allRecords);
     }
 
+
     // ===========================
     //   PRIVATE HELPERS (Writer)
     // ===========================
 
-    public static void saveAllRecords(List<Map<String, Object>> allRecords) {
+    public void saveAllRecords(List<Map<String, Object>> allRecords) {
         StringBuilder sb = new StringBuilder();
         sb.append("[\n");
     
@@ -167,7 +244,7 @@ public class JsonDatabase {
 
                 String type = extractValue(block, "type");
 
-                
+                 
                 Map<String, Object> userData = new HashMap<>();
                 userData.put("username", extractValue(block, "username"));
                 userData.put("password", extractValue(block, "password"));

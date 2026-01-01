@@ -184,6 +184,9 @@ public class ViewHandler {
         ViewSession.getInstance().clearHistory();
     }
 
+    public ViewSession getViewSessionInst(){
+        return ViewSession.getInstance();
+    }
 
 
     

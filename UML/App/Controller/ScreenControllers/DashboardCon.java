@@ -18,14 +18,14 @@ public class DashboardCon implements Controller_t{
 
     private DashboardScreen view;
     private ModelHandler model; 
-    
     private ViewHandler viewHandler;
-
+  
     // --- 2. UPDATE CONSTRUCTOR TO RECEIVE IT ---
     public DashboardCon(DashboardScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler; // Save it!
+     
     }
 
     @Override
@@ -33,6 +33,7 @@ public class DashboardCon implements Controller_t{
         if (view == null)return;
 
         view.getLogoutBtn().addActionListener(e -> {
+            model.saveChangesToDB_sess();
             Session.getInstance().logout();
             view.hide();
             FirstPageScreen next = viewHandler.getFirstPageScreen();
@@ -41,34 +42,23 @@ public class DashboardCon implements Controller_t{
             ViewSession.getInstance().clearHistory();
         });
 
-        // PLhrwmh Logarismoy
+        view.getSwitchBtn().addActionListener(e -> {
+            model.saveChangesToDB_sess();
+            view.hide();
+            AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
+            next.show();
+            ViewSession.getInstance().updateScreenHistory(next);
+        });
+
+
         view.plhrwmhBtn.addActionListener(e -> handlePlhrwmh());
-
-        // Kinhseis Logariasmou
-
         view.kinhseisBtn.addActionListener(e -> handleKinhseis());
-
-        // anoigma neou logarismou
         view.createAccBtn.addActionListener(e -> handleCreateAcc());
-
-        // metafore ektos
-        
         view.metaforesBtn.addActionListener(e -> handleMetEktos());
-        
-        // pagies 
-        
         view.pagiesBtn.addActionListener(e -> handlePagies());
-        
-        // diaxeirisi logarismou
         view.diaxeirisiBtn.addActionListener(e -> handleDiaxeirisi());
-
-        // deposit
-
         view.depositBtn.addActionListener(e -> handleDeposit());
-
-        // withdraw
-
-         view.withdrawBtn.addActionListener(e -> handleWithdraw());
+        view.withdrawBtn.addActionListener(e -> handleWithdraw());
 
 
     }
@@ -133,8 +123,8 @@ public class DashboardCon implements Controller_t{
     private void handleCreateAcc(){
         view.hide();
         AccountCreationScreen next = viewHandler.getAccountCreationScreen();
-        next.setHelloMessage(Session.getInstance().getUsername());
-        next.setPrimaryOwnerLabel(Session.getInstance().getUsername());
+        next.setHelloMessage(Session.getInstance().getActiveCustomer().getUsername());
+        next.setPrimaryOwnerLabel(Session.getInstance().getActiveCustomer().getUsername());
         next.show();
         ViewSession.getInstance().updateScreenHistory(next);
         

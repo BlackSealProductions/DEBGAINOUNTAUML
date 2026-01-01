@@ -73,6 +73,11 @@ public class ControllerHandler {
         v.init();
     }
 
+    public void initModel(){
+
+        m.init();
+    }
+
     public void initStartScreen(){
         
         v.initStartScreen();

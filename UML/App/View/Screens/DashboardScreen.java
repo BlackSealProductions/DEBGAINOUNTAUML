@@ -38,6 +38,7 @@ public class DashboardScreen implements View_t {
 
     private JLabel userNameLabel = new JLabel("Welcome, " + username);
     private RoundedButton logoutBtn = new RoundedButton("X",15);
+    private RoundedButton switchBtn = new RoundedButton("switch", 15);
 
 
     public RoundedButton plhrwmhBtn = createMenuButton("Πληρωμή λογαριασμού");
@@ -78,6 +79,12 @@ public class DashboardScreen implements View_t {
         accountNumberLabel.setFont(customFont20);
         accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
+        switchBtn.setBounds(1380, 50, 110, 50);
+        switchBtn.setBackground(Color.blue);
+        switchBtn.setForeground(Color.white);
+        switchBtn.setFont(customFont20);
+        switchBtn.setFocusPainted(false);
+
         // Logout Button (Square, far right)
         logoutBtn.setBounds(1500, 50, 50, 50);
         logoutBtn.setBackground(red);
@@ -93,6 +100,7 @@ public class DashboardScreen implements View_t {
         header.add(logo);
         header.add(accountNumberLabel); // This stays centered because of wWidth bounds
         header.add(userNameLabel);
+        header.add(switchBtn);
         header.add(logoutBtn);
 
         // --- BALANCE SECTION ---
@@ -208,6 +216,10 @@ public class DashboardScreen implements View_t {
 
     public RoundedButton getLogoutBtn(){
         return this.logoutBtn;
+    }
+
+    public RoundedButton getSwitchBtn(){
+        return this.switchBtn;
     }
 
     public void setAccountDetails(String username, String balance, String acctId){

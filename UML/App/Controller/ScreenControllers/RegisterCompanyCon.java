@@ -2,6 +2,7 @@ package App.Controller.ScreenControllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -9,12 +10,16 @@ import javax.swing.JOptionPane;
 
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
+import App.Model.Session;
 import App.Model.Database.JsonDatabase;
+import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Company;
 import App.View.ViewHandler;
 import App.View.ViewSession;
 import App.View.Screens.LoginScreen;
 import App.View.Screens.RegisterCompanyScreen;
 import App.View.Screens.RegisterIndividualScreen;
+import Utils.GlobalConsts.userType;
 
 public class RegisterCompanyCon implements Controller_t{
     
@@ -54,21 +59,14 @@ public class RegisterCompanyCon implements Controller_t{
             return;
         }
 
-        // 2. Build the User Map (Matching the JSON structure)
-        Map<String, Object> newUser = new HashMap<>();
-        newUser.put("username", user);
-        newUser.put("password", pass);
-        newUser.put("companyName", cname);
-        newUser.put("email", email);
-        newUser.put("phone", phone);
-        newUser.put("taxId", taxId);
-        newUser.put("type", "Company");
-        
-        // Add default empty accounts list
-        newUser.put("accounts", new ArrayList<Map<String, String>>());
+        Company newUser = new Company(taxId, user, pass, cname, email, phone, Utils.GlobalConsts.userType.BUSINESS);
+        List<Account> defaultAccList = new ArrayList<Account>();
+
+        Map<String, Object> newUserWrapper = model.getConverter().convertUserToMap(newUser, defaultAccList);
 
         // 3. Save to Database
-        JsonDatabase.saveRecord(newUser);
+        JsonDatabase db = model.getDB();
+        db.saveRecord(newUserWrapper);
 
         JOptionPane.showMessageDialog(null, "Registration Successful!\n Please login");
         

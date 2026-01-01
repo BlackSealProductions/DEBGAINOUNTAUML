@@ -12,7 +12,6 @@ import App.View.Screens.WithdrawScreen;
 public class WithdrawCon implements Controller_t {
     private WithdrawScreen view;
     private ModelHandler model; 
-    
     private ViewHandler viewHandler;
 
     public WithdrawCon(WithdrawScreen view, ModelHandler model, ViewHandler viewHandler) {
