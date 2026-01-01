@@ -6,7 +6,7 @@ import java.util.List;
 import App.Model.Entities.OperationEntities.Transaction;
 
 public class Account {
-    private String accountId; 
+    private String accountId;
     private String ownerName;
     private String iban;
     private String balance;
@@ -24,11 +24,11 @@ public class Account {
         this.secondaryOwner = secondaryOwner;
     }
 
-    // --- Getters ---
+    // --- GETTERS (Fixes "undefined" errors) ---
     public String getAccountId() { return accountId; }
     public String getOwnerName() { return ownerName; }
-    public String getIban() { return iban; }
-    public String getBalance() { return balance; }
+    public String getIban()      { return iban; }
+    public String getBalance()   { return balance; }
     public String getInterestRate() { return interestRate; }
     public String getSecondaryOwner() { return secondaryOwner; }
     
