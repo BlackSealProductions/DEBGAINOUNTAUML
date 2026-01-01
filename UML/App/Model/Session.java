@@ -19,7 +19,7 @@ public class Session {
     private String taxId;
     // private Map<String, Object> userData;    // Stores the full nested User Map
 
-
+    
     private Account activeAccount=null;
     private Customer activeCustomer=null;
                                                                                                                    
