@@ -95,6 +95,7 @@ public class ViewHandler {
         this.withdraw.init();
         mainframe.addPanel(withdraw.getMainPanel());
 
+
         
     }
 

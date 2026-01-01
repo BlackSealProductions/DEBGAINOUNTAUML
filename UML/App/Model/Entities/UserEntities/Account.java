@@ -44,4 +44,10 @@ public class Account {
     public List<Transaction> getTransactions() {
         return transactions;
     }
+
+    public void setSecondaryOwner(String secondaryOwner) {
+        this.secondaryOwner = secondaryOwner;
+    }
+
+    
 }

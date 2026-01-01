@@ -113,4 +113,19 @@ public class WithdrawScreen implements View_t {
         newBalanceLabel.setText(bal);
     }
     public JButton getConfirmBtn() { return confirmBtn; }
-} 
+
+    public JTextField getAmountField() {
+        return amountField;
+    }
+
+    public void showInputError(String message) {
+    // 1. Create a label to apply your custom font
+    JLabel messageLabel = new JLabel(message);
+    messageLabel.setFont(customFont20);
+    
+    // "panel" is passed as the parent so the popup centers over your app
+    JOptionPane.showMessageDialog(panel,message,"Insufficient funds!!!",JOptionPane.ERROR_MESSAGE);
+
+    
+    } 
+}

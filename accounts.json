@@ -254,8 +254,8 @@
           "accountId": "ACC_ARIS_01",
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
-          "secondaryOwner": "None",
-          "balance": "24.0",
+          "secondaryOwner": "h mana sou",
+          "balance": "1111.0",
           "interestRate": "0.5%"
         },
         {
@@ -263,7 +263,7 @@
           "iban": "GR9393319356273823426639169",
           "ownerName": "arisgod04",
           "secondaryOwner": "steligger",
-          "balance": "0",
+          "balance": "952.0",
           "interestRate": "1%"
         },
         {

@@ -1,8 +1,9 @@
 package App.Model.Entities.OperationEntities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-public abstract class Transaction {
+public class Transaction {
     private String transactionId;
     private String senderId;
     private String recieverId;
@@ -14,14 +15,14 @@ public abstract class Transaction {
 
 
 
-public Transaction(String id, String sender, String receiver, float amount, String date, String desc, String type) {
-    this.transactionId = id;
-    this.senderId = sender;
-    this.recieverId = receiver;
-    this.amount = amount;
-    this.description = desc;
-    this.type = type;
-}
+    public Transaction(String id, String sender, String receiver, float amount, LocalDate date, String desc, String type) {
+        this.transactionId = id;
+        this.senderId = sender;
+        this.recieverId = receiver;
+        this.amount = amount;
+        this.description = desc;
+        this.type = type;
+    }
 
 
 
