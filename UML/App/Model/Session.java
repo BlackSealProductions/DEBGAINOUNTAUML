@@ -17,12 +17,13 @@ public class Session {
 
     private String username;
     private String taxId;
+    private List<Account> accounts=null;
     // private Map<String, Object> userData;    // Stores the full nested User Map
 
 
     private Account activeAccount=null;
     private Customer activeCustomer=null;
-    private List<Account> customerAccounts=null;
+    
                                                                                                                    
     private Session() {}
 

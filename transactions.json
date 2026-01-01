@@ -1,0 +1,28 @@
+[
+    {
+        "account" : {
+            "accountId" : "ID_51259348",
+            "transactions" : [
+                {
+                    "transactionId" : "2",
+                    "senderId" : "98712394",
+                    "recieverId" : "3241234",
+                    "ammount" : 123.0,
+                    "date" : "12/34./34",
+                    "description" : "10 douvlonia sth mana sou",
+                    "type" : "idk gng"
+                },
+                {
+                    "transactionId" : "2",
+                    "senderId" : "98712394",
+                    "recieverId" : "3241234",
+                    "ammount" : 123.0,
+                    "date" : "12/34./34",
+                    "description" : "10 douvlonia sth mana sou",
+                    "type" : "idk gng"
+                }
+
+            ]
+        }
+    }
+]

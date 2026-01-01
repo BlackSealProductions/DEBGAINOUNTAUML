@@ -1,5 +1,7 @@
 package App.Model.Entities.UserEntities;
 
+import java.util.List;
+
 import Utils.GlobalConsts;
 
 public abstract class Customer extends User{
@@ -9,6 +11,7 @@ public abstract class Customer extends User{
     String phone;
     GlobalConsts.userType customerType;
     String taxId;
+    
 
 
     // public String getUserID() {
