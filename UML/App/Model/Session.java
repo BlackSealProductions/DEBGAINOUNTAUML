@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.tools.JavaFileObject;
+
 import App.Model.Database.JsonDatabase;
+import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
 import App.Model.Entities.UserEntities.Individual;
+
 
 public class Session {
     private static Session instance;
@@ -162,6 +166,7 @@ public class Session {
     }
 
 
+
     public void appendCustomerAccounts(Account account){
         this.activeCustomer.getAccounts().add(account);
     }
@@ -181,4 +186,6 @@ public class Session {
     public Customer getActiveCustomer(){
         return this.activeCustomer;
     }
+
+
 }

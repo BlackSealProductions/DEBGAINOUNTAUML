@@ -1,0 +1,47 @@
+{
+  "ACC_ARIS_01": {
+    "transactions": [
+      {
+        "transactionId": "104701410923",
+        "senderId": "17454535",
+        "recieverId": "12341234",
+        "amount": 123,
+        "date": "12/21/12",
+        "description": "Deposit",
+        "type": "deposit"
+      },
+      {
+        "transactionId": "7845687923",
+        "senderId": "12432342",
+        "recieverId": "76341234",
+        "amount": 50,
+        "date": "12/31/12",
+        "description": "Withdrawal",
+        "type": "withdraw"
+      }
+    ]
+  },
+  "ID_51259348": {
+    "transactions": [
+      {
+        "transactionId": "asdf",
+        "senderId": "17454asdf535",
+        "recieverId": "12341asdf234",
+        "amount": 123,
+        "date": "12/21/12",
+        "description": "Depasdfosit",
+        "type": "deposit"
+      },
+      {
+        "transactionId": "asdf",
+        "senderId": "12432342",
+        "recieverId": "76341234",
+        "amount": 50,
+        "date": "12/31/12",
+        "description": "Withdrawal",
+        "type": "withdraw"
+      }
+    ]
+  }
+
+}
