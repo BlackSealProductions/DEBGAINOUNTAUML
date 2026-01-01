@@ -22,7 +22,6 @@ public class Session {
 
     private Account activeAccount=null;
     private Customer activeCustomer=null;
-    private List<Account> customerAccounts=null;
                                                                                                                    
     private Session() {}
 
@@ -35,9 +34,7 @@ public class Session {
 
     // Called during Login
     public void login(Map<String, Object> userData) {
-        // this.username = username;
-        // this.taxId = taxId;
-        // this.userData = userData;
+
         loadUser(userData);
     }
 
@@ -88,7 +85,7 @@ public class Session {
         }
 
         List<Map<String, String>> accountsList = (List<Map<String, String>>) userData.get("accounts");
-        customerAccounts = new ArrayList<Account>();
+        List<Account> customerAccounts = new ArrayList<Account>();
 
         // Boolean foundAcc = false;
         
@@ -96,7 +93,6 @@ public class Session {
 
             String acctId = acc.get("accountId");
             // if (acctId.isEmpty()) continue;
-
             String iban = acc.get("iban");
             String pOwner = acc.get("ownerName");
             String sOwner = acc.get("secondaryOwner");
@@ -106,10 +102,11 @@ public class Session {
             customerAccounts.add(new Account(acctId, pOwner, iban, balance, rate, sOwner));
             // foundAcc=true;
         }
+        activeCustomer.setAccounts(customerAccounts);
 
     }
     public Account getAccountByIdx(int idx){
-        return customerAccounts.get(idx);
+        return activeCustomer.getAccounts().get(idx);
     }
 
 
@@ -144,7 +141,7 @@ public class Session {
         // Handle nested accounts array
         List<Map<String, String>> accounts = new ArrayList<>();
     
-                for (Account account : customerAccounts) {
+                for (Account account : activeCustomer.getAccounts()) {
                     
                     Map<String, String> acc = new HashMap<>();
                     acc.put("accountId", account.getAccountId());
@@ -166,7 +163,7 @@ public class Session {
 
 
     public void appendCustomerAccounts(Account account){
-        this.customerAccounts.add(account);
+        this.activeCustomer.getAccounts().add(account);
     }
 
     public void setActiveAccount(Account account) {
@@ -178,7 +175,7 @@ public class Session {
     }
 
     public List<Account> getCustomerAccounts(){
-        return this.customerAccounts;
+        return this.activeCustomer.getAccounts();
     }
 
     public Customer getActiveCustomer(){

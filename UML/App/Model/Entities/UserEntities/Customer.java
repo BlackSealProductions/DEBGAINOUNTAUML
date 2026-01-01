@@ -1,5 +1,7 @@
 package App.Model.Entities.UserEntities;
 
+import java.util.List;
+
 import Utils.GlobalConsts;
 
 public abstract class Customer extends User{
@@ -9,17 +11,8 @@ public abstract class Customer extends User{
     String phone;
     GlobalConsts.userType customerType;
     String taxId;
+    List<Account> accounts;
 
-
-    // public String getUserID() {
-    //     return userID;
-    // }
-    // public String getUsername() {
-    //     return username;
-    // }
-    // public String getPassword() {
-    //     return password;
-    // }
     public String getEmail() {
         return email;
     }
@@ -34,6 +27,12 @@ public abstract class Customer extends User{
     }
     public String getTaxId(){
         return taxId;
+    }
+    public List<Account> getAccounts(){
+        return this.accounts;
+    }
+    public void setAccounts(List<Account> accs){
+        this.accounts = accs;
     }
     
 }

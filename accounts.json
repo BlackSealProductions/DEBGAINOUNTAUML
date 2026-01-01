@@ -416,6 +416,14 @@
           "secondaryOwner": "nigzzzzz",
           "balance": "0",
           "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_57587679",
+          "iban": "GR9160312536722710199329770",
+          "ownerName": "a",
+          "secondaryOwner": "trherg",
+          "balance": "0",
+          "interestRate": "1%"
         }
       ]
     }
