@@ -133,7 +133,8 @@ public class TransactionDB {
                     sb.append(String.format("          \"recieverId\": \"%s\",\n", tr.get("recieverId")));
                     sb.append(String.format("          \"amount\": \"%s\",\n", tr.get("amount")));
                     sb.append(String.format("          \"date\": \"%s\",\n", tr.get("date")));
-                    sb.append(String.format("          \"description\": \"%s\"\n", tr.get("description")));
+                    sb.append(String.format("          \"time\": \"%s\",\n", tr.get("time")));
+                    sb.append(String.format("          \"description\": \"%s\",\n", tr.get("description")));
                     sb.append(String.format("          \"type\": \"%s\"\n", tr.get("type")));
                     sb.append("        }");
                     if (j < transactions.size() - 1) sb.append(",");
@@ -230,6 +231,7 @@ public class TransactionDB {
                             tr.put("recieverId", extractValue(part, "recieverId"));
                             tr.put("amount", extractValue(part, "amount"));
                             tr.put("date", extractValue(part, "date"));
+                            tr.put("time", extractValue(part, "time"));
                             tr.put("description", extractValue(part, "description"));
                             tr.put("type", extractValue(part, "type"));
                             transactions.add(tr);

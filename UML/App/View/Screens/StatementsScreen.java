@@ -13,6 +13,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import App.Model.Entities.OperationEntities.*;
+import App.Model.Entities.UserEntities.Account;
+
 
 public class StatementsScreen implements View_t {
 
@@ -24,6 +29,8 @@ public class StatementsScreen implements View_t {
 
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
+
+    List<Statement> allStatements = new ArrayList<>();
 
     // --- 1. View_t Essentials ---
     private JPanel panel = new JPanel();
@@ -115,6 +122,7 @@ public class StatementsScreen implements View_t {
         // 2. Transaction List Panel
         transactionListPanel = new JPanel(new GridLayout(0, 1, 0, 0)); 
         transactionListPanel.setBackground(lightBlueCard); // NEW COLOR HERE
+        
 
         // --- POPULATE DATA ---
         addTransaction("Τετάρτη 12/11/2025", "202511120993432782", "RIOT GAMES", "-25.00€");
@@ -122,9 +130,21 @@ public class StatementsScreen implements View_t {
         addTransaction("Τετάρτη 14/11/2025", "202511140948930574", "GUANG GUANG", "-ΟΛΑ ΤΑ ΕΥΡΩ€");
         addTransaction("Τετάρτη 32/11/2025", "202511320947671476", "ΛΕΣΧΗ TUC", "-2.60€");
         
-        for(int i=0; i<6; i++) {
-             addTransaction("Δευτέρα 01/01/2026", "TRANS_ID_" + i, "TEST USER", "+100.00€");
+        String sign;
+
+        if(allStatements != null){
+            for(Statement state : allStatements){
+                if(state.getTransaction().getType() == "Recieve"){
+                    sign = "+";
+                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+String.valueOf(state.getTransaction().getAmount())+"€");
+                }
+                else if(state.getTransaction().getType() == "Send"){
+                    sign = "-";
+                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+String.valueOf(state.getTransaction().getAmount())+"€");
+                }
+            }
         }
+        
 
         // 3. Scroll Pane
         JPanel aligner = new JPanel(new BorderLayout());
@@ -198,6 +218,52 @@ public class StatementsScreen implements View_t {
     public void setBalance(String amount) {
         balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
     }
+
+    public void giveAccStatements(List<Statement> statements) {
+    // 1. Optional: Clear the old hardcoded/previous list items before adding new ones
+    // If you don't do this, the new items will just stack underneath the hardcoded ones.
+    transactionListPanel.removeAll(); 
+
+    String sign = "";
+    
+    // 2. Update the class level variable (optional, strictly speaking, but good practice)
+    this.allStatements = statements;
+
+    if (statements != null && !statements.isEmpty()) {
+        
+        // 3. FIX: Iterate over the passed 'statements', NOT 'allStatements'
+        for (Statement state : statements) {
+            
+            // 4. FIX: Use .equals() or .equalsIgnoreCase() for Strings in Java, never ==
+            String type = state.getTransaction().getType();
+            
+            if ("recieve".equalsIgnoreCase(type)) {
+                sign = "+";
+            } else {
+                sign = "-";
+            }
+
+            addTransaction(
+                state.getDate().toString(), 
+                state.getStatementId(), 
+                state.getTransaction().getSenderId(), 
+                sign + String.valueOf(state.getTransaction().getAmount()) + "€"
+            );
+        }
+        System.out.println("Valid: Loaded " + statements.size() + " transactions.");
+    } else {
+        System.out.println("Empty statement list");
+    }
+
+    // 5. CRITICAL FIX: Refresh the UI
+    // revalidate() tells the layout manager to recalculate the component sizes/positions
+    transactionListPanel.revalidate();
+    // repaint() tells the screen to draw the new pixels
+    transactionListPanel.repaint();
+}
+
+
+
 
 
 

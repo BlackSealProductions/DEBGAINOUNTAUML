@@ -1,6 +1,7 @@
 package App.Controller;
 
 import App.View.ViewHandler;
+import App.View.Screens.AccountManagementScreen;
 import App.View.Screens.RegisterCompanyScreen;
 import App.Controller.ScreenControllers.*;
 import App.Model.ModelHandler;
@@ -20,6 +21,11 @@ public class ControllerHandler {
     private Controller_t acctcreation_con;
     private Controller_t deposit_con;
     private Controller_t withdraw_con;
+    private Controller_t statement_con;
+    private Controller_t accmgmt_con;
+    
+    // --- NEW: Add the PayBill Controller field ---
+    private Controller_t paybill_con; 
     
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
@@ -45,25 +51,33 @@ public class ControllerHandler {
         firstpage_con = new FirstPageCon(v.getFirstPageScreen(), m, v);
         firstpage_con.init();
 
-        dashboard_con = new DashboardCon(v.getDashboardScreen(), m, v);
-        dashboard_con.init();
-
+        
         typeselection_con = new TypeSelectionCon(v.getChooseRegisterType(), m, v);
         typeselection_con.init();
-
+        
         acctselection_con = new AccountSelectionCon(v.getAccountSelectionScreen(), m, v);
         acctselection_con.init();
-
+        
         acctcreation_con = new AccountCreationCon(v.getAccountCreationScreen(), m, v);
         acctcreation_con.init();
 
-        deposit_con = new DepositCon(v.getDepositScreen(), m, v);
+        statement_con = new StatementCon(v.getStatementsScreen(), m, v);
+        statement_con.init();
+        
+        dashboard_con = new DashboardCon(v.getDashboardScreen(), m, v, (StatementCon)statement_con);
+        dashboard_con.init();
+
+        deposit_con = new DepositCon(v.getDepositScreen(), m, v, dashboard_con);
         deposit_con.init();
-
-        withdraw_con = new WithdrawCon(v.getWithdrawScreen(), m, v);
+        
+        withdraw_con = new WithdrawCon(v.getWithdrawScreen(), m, v, dashboard_con);
         withdraw_con.init();
+        
+        accmgmt_con = new AccountManagementCon(v.getAccountManagementScreen(), m, v);
+        accmgmt_con.init();
 
-
+        paybill_con = new PayBillCon(v.getBillPaymentScreen(), m, v);
+        paybill_con.init();
 
     }
 
@@ -87,5 +101,9 @@ public class ControllerHandler {
         return (AccountSelectionCon) this.acctselection_con;
     }
 
-    
+
+    public Controller_t getStatement_con() {
+        return statement_con;
+    }
+
 }

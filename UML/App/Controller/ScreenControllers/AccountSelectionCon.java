@@ -55,7 +55,9 @@ public class AccountSelectionCon implements Controller_t{
                 name = Session.getInstance().getActiveCustomer().getUsername();
             }
             next.setAccountDetails(name, selectedAccount.getBalance(), selectedAccount.getAccountId(), type);
+            Session.getInstance().activateAccount(model, selectedAccount);
             next.show();
+            // System.out.println("\n"+Session.getInstance().getActiveAccount().getTransactions()+"\n");
             ViewSession.getInstance().updateScreenHistory(next);
             ViewSession.getInstance().clearHistory();
         }

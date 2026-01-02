@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+import App.Model.Session;
+import App.Model.Entities.UserEntities.Account;
 import App.View.View_t;
 import App.View.helper_classes.*;
 
@@ -243,5 +245,11 @@ public class DashboardScreen implements View_t {
         else{
             balanceLabel.setText(balance+" € (eisai duskola :/)"); 
         }
-        }
     }
+
+    public void refresh(Account account){
+        setAccountDetails(account.getOwnerName(), account.getBalance(), account.getAccountId(), Session.getInstance().getActiveCustomer().getUserTypeString());
+
+    }
+
+}

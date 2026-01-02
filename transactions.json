@@ -1,14 +1,15 @@
 [
   {
-    "account":{
-      "accountId":"ACC_ADMIN_MAIN",
+    "account": {
+      "accountId": "ACC_ADMIN_MAIN",
       "transactions": [
         {
           "transactionId": "104701410923",
           "senderId": "17454535",
           "recieverId": "12341234",
-          "amount": 123,
+          "amount": "date",
           "date": "12/21/12",
+          "time": "",
           "description": "Deposit",
           "type": "deposit"
         },
@@ -16,8 +17,9 @@
           "transactionId": "7845687923",
           "senderId": "12432342",
           "recieverId": "76341234",
-          "amount": 50,
+          "amount": "date",
           "date": "12/31/12",
+          "time": "",
           "description": "Withdrawal",
           "type": "withdraw"
         }
@@ -25,15 +27,16 @@
     }
   },
   {
-    "account":{
-      "accountId":"ACC_CAFE_01",
+    "account": {
+      "accountId": "ACC_CAFE_01",
       "transactions": [
         {
           "transactionId": "104701410924",
           "senderId": "174234535",
           "recieverId": "123234234",
-          "amount": 123,
+          "amount": "date",
           "date": "12/21/12",
+          "time": "",
           "description": "Deposit",
           "type": "deposit"
         },
@@ -41,13 +44,77 @@
           "transactionId": "7845687923",
           "senderId": "124436342",
           "recieverId": "76461234",
-          "amount": 50,
+          "amount": "date",
           "date": "12/29/12",
+          "time": "",
           "description": "Withdrawal",
           "type": "withdraw"
         }
       ]
     }
+  },
+  {
+    "account": {
+      "accountId": "ID_67676767",
+      "transactions": [
+        {
+          "transactionId": "1767323526272",
+          "senderId": "ID_67676767",
+          "recieverId": "RF22223371237614278431943",
+          "amount": "100.0",
+          "date": "2026-01-02",
+          "time": "13:00",
+          "description": "Bill Payment",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767323841577",
+          "senderId": "ID_67676767",
+          "recieverId": "RF41288709933909648957565",
+          "amount": "25.0",
+          "date": "2026-01-02",
+          "time": "13:00",
+          "description": "Bill Payment",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767326753733",
+          "senderId": "ID_67676767",
+          "recieverId": "RF69683064141007775709728",
+          "amount": "14000.0",
+          "date": "2026-01-02",
+          "time": "13:00",
+          "description": "Bill Payment",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767326780191",
+          "senderId": "ID_67676767",
+          "recieverId": "RF69683064141007775709728",
+          "amount": "700.0",
+          "date": "2026-01-02",
+          "time": "13:00",
+          "description": "Bill Payment",
+          "type": "send"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ACC_ARIS_01",
+      "transactions": [
+        {
+          "transactionId": "1767326235963",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "RF41288709933909648957565",
+          "amount": "100.0",
+          "date": "2026-01-02",
+          "time": "13:00",
+          "description": "Bill Payment",
+          "type": "send"
+        }
+      ]
+    }
   }
-
 ]

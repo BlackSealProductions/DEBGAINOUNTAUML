@@ -12,6 +12,7 @@ public class Account {
     private String balance;
     private String interestRate;
     private String secondaryOwner;
+    private String rfCode;
 
     private List<Transaction> transactions;
 
@@ -23,6 +24,15 @@ public class Account {
         this.interestRate = interestRate;
         this.secondaryOwner = secondaryOwner;
     }
+    public Account(String citizenId, String ownerName, String iban, String balance, String interestRate, String secondaryOwner, String rfCode) {
+        this.accountId = citizenId;
+        this.ownerName = ownerName;
+        this.iban = iban;
+        this.balance = balance;
+        this.interestRate = interestRate;
+        this.secondaryOwner = secondaryOwner;
+        this.rfCode = rfCode;
+    }
 
     // --- Getters ---
     public String getAccountId() { return accountId; }
@@ -31,12 +41,19 @@ public class Account {
     public String getBalance() { return balance; }
     public String getInterestRate() { return interestRate; }
     public String getSecondaryOwner() { return secondaryOwner; }
+    public String getRfCode() { return rfCode; }
+
     
     // Setters
     public void setBalance(String balance) { this.balance = balance; }
+    public void setRfCode(String rfCode) { this.rfCode = rfCode; }
 
     public void addTransaction(Transaction t) {
         if (t != null) {
+            if(transactions==null){
+                this.transactions= new ArrayList<Transaction>();
+            }
+       
             this.transactions.add(t);
         }
     }
@@ -48,4 +65,10 @@ public class Account {
     public List<Transaction> getTransactions() {
         return transactions;
     }
+
+    public void setSecondaryOwner(String secondaryOwner) {
+        this.secondaryOwner = secondaryOwner;
+    }
+
+    
 }

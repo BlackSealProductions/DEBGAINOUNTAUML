@@ -1,12 +1,8 @@
 package App.Model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import javax.tools.JavaFileObject;
 
 import App.Model.Database.TransactionDB;
 import App.Model.Database.UserDB;
@@ -15,7 +11,7 @@ import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
 import App.Model.Entities.UserEntities.Individual;
-
+import App.Model.DatabaseObjectConverter; // Ensure this import matches your package structure
 
 public class Session {
     private static Session instance;
@@ -41,22 +37,17 @@ public class Session {
     public void login(Map<String, Object> userData, ModelHandler model) {
 
         loadUser(userData);
-        TransactionDB tDB = model.get_tDB();
-        loadTransactions(tDB.findAccountWithId(activeAccount.getAccountId()));
-
-
-
+ 
     }
 
     public void logout() {
         this.username = null;
         this.taxId = null;
-        // this.userData = null;
         this.activeAccount = null;
         this.activeCustomer = null;
     }
 
-    private void loadUser(Map<String,Object> userData){
+    private void loadUser(Map<String, Object> userData){
 
         String username = (String)userData.get("username");
         String password = (String)userData.get("password");
@@ -98,28 +89,41 @@ public class Session {
         List<Map<String, String>> accountsList = (List<Map<String, String>>) userData.get("accounts");
         List<Account> customerAccounts = new ArrayList<Account>();
 
-        // Boolean foundAcc = false;
-        
-        for (Map<String, String> acc : accountsList) {
+        if (accountsList != null) {
+            for (Map<String, String> acc : accountsList) {
 
-            String acctId = acc.get("accountId");
-            // if (acctId.isEmpty()) continue;
-            String iban = acc.get("iban");
-            String pOwner = acc.get("ownerName");
-            String sOwner = acc.get("secondaryOwner");
-            String balance = acc.get("balance");
-            String rate = acc.get("interestRate");
+                String acctId = acc.get("accountId");
+                String iban = acc.get("iban");
+                String pOwner = acc.get("ownerName");
+                String sOwner = acc.get("secondaryOwner");
+                String balance = acc.get("balance");
+                String rate = acc.get("interestRate");
 
-            customerAccounts.add(new Account(acctId, pOwner, iban, balance, rate, sOwner));
-            // foundAcc=true;
+                // --- FIX: Read RF Code from Database ---
+                String rf = acc.containsKey("rfCode") ? acc.get("rfCode") : "";
+                // ---------------------------------------
+
+                Account newAccount = new Account(acctId, pOwner, iban, balance, rate, sOwner);
+                newAccount.setRfCode(rf); // Load it into the object
+                
+                customerAccounts.add(newAccount);
+            }
         }
         activeCustomer.setAccounts(customerAccounts);
 
     }
+    
     public Account getAccountByIdx(int idx){
         return activeCustomer.getAccounts().get(idx);
     }
 
+    // --- UPDATED: Uses DatabaseObjectConverter ---
+    public Map<String, Object> convertActiveUserToMap(){
+        DatabaseObjectConverter converter = new DatabaseObjectConverter();
+        // Delegate the work to the new class
+        return converter.convertUserToMap(this.activeCustomer, this.activeCustomer.getAccounts());
+    }
+    // ---------------------------------------------
    
     public void loadTransactions(Map<String, Object> accData){
 
@@ -135,11 +139,12 @@ public class Session {
             String recieverId = tr.get("recieverId");
             String amount = tr.get("amount");
             String date = tr.get("date");
+            String time = tr.get("time");
             String description = tr.get("description");
             String type = tr.get("type");
 
 
-            accountTransactions.add(new Transaction(transactionId, senderId, recieverId, Float.parseFloat(amount), date, description, type));
+            accountTransactions.add(new Transaction(transactionId, senderId, recieverId, Float.parseFloat(amount), date, time, description, type));
             // foundAcc=true;
         }
         activeAccount.setTransactions(accountTransactions);
@@ -147,11 +152,22 @@ public class Session {
 
 
     public void appendCustomerAccounts(Account account){
-        this.activeCustomer.getAccounts().add(account);
+        if (this.activeCustomer != null) {
+            this.activeCustomer.getAccounts().add(account);
+        }
     }
 
     public void setActiveAccount(Account account) {
         this.activeAccount = account;
+    }
+
+    public void activateAccount(ModelHandler m, Account acc){
+        setActiveAccount(acc);
+        TransactionDB tDB = m.get_tDB();
+        Map<String, Object> acctMap = tDB.findAccountWithId(activeAccount.getAccountId());
+        if (acctMap!=null){
+            loadTransactions(acctMap);
+        }
     }
 
     public Account getActiveAccount() {
@@ -159,12 +175,11 @@ public class Session {
     }
 
     public List<Account> getCustomerAccounts(){
+        if (this.activeCustomer == null) return new ArrayList<>();
         return this.activeCustomer.getAccounts();
     }
 
     public Customer getActiveCustomer(){
         return this.activeCustomer;
     }
-
-
 }
