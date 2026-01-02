@@ -28,7 +28,6 @@ public class AccountCreationCon implements Controller_t {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
-       
     }
 
     @Override
@@ -58,22 +57,11 @@ public class AccountCreationCon implements Controller_t {
                 "Σφάλμα: Οι εταιρικοί λογαριασμοί επιτρέπεται να έχουν μόνο έναν τραπεζικό λογαριασμό.", 
                 "Περιορισμός Λογαριασμού", 
                 JOptionPane.WARNING_MESSAGE);
-            
-            // If they came from the Dashboard, take them back. 
-            // If they just logged in, this case shouldn't realistically happen due to your Login logic,
-            // but we return here to prevent any DB writing.
             return;
         }
+
         String pOwner = view.getPrimaryOwner();
         String sOwner = view.getSecondaryOwner();
-
-
-        // primaryOwner is now a label not a jfield so it cant be empty
-
-        // if (pOwner.isEmpty() || pOwner.equals("Primary owner")) {
-        //     JOptionPane.showMessageDialog(null, "Παρακαλώ εισάγετε το όνομα του κύριου κατόχου.");
-        //     return;
-        // }
 
         // 1. Generate Unique Data
         String newId = generateUniqueID();
@@ -82,12 +70,25 @@ public class AccountCreationCon implements Controller_t {
         String rate = "1%";
 
         Account newAccount = new Account(newId, pOwner, newIban, initialBalance, rate, sOwner);
+
+        // --- NEW: Generate RF Code if the user is a Company ---
+        if ("Company".equalsIgnoreCase(user.getUserTypeString())) {
+            String rfCode = generateRFCode();
+            newAccount.setRfCode(rfCode);
+            
+        }
+        // -----------------------------------------------------
+
         Session.getInstance().appendCustomerAccounts(newAccount);
         Session.getInstance().setActiveAccount(newAccount);
 
+        // Save to Database (This will now include the RF code because we updated JsonDatabase earlier)
         model.saveChangesToDB_sess();
 
-        JOptionPane.showMessageDialog(null, "Ο λογαριασμός δημιουργήθηκε επιτυχώς!\nIBAN: " + newIban);
+        if (!"Company".equalsIgnoreCase(user.getUserTypeString())) {
+             JOptionPane.showMessageDialog(null, "Ο λογαριασμός δημιουργήθηκε επιτυχώς!\nIBAN: " + newIban);
+        }
+
         String type = Session.getInstance().getActiveCustomer().getUserTypeString();
         String name;
         if(type.equals("Company")){
@@ -99,6 +100,7 @@ public class AccountCreationCon implements Controller_t {
         else{
             name = Session.getInstance().getActiveCustomer().getUsername();
         }
+        
         // 5. Transition to Dashboard
         view.hide();
         DashboardScreen next = viewHandler.getDashboardScreen();
@@ -109,7 +111,6 @@ public class AccountCreationCon implements Controller_t {
     }
 
     private String generateUniqueID() {
-
         JsonDatabase db = model.getDB();
         Set<String> existingIds = db.getExistingAcctIds();
 
@@ -127,6 +128,17 @@ public class AccountCreationCon implements Controller_t {
         Random rand = new Random();
         StringBuilder sb = new StringBuilder("GR");
         for (int i = 0; i < 25; i++) {
+            sb.append(rand.nextInt(10));
+        }
+        return sb.toString();
+    }
+
+    // --- NEW HELPER ---
+    private String generateRFCode() {
+        Random rand = new Random();
+        StringBuilder sb = new StringBuilder("RF");
+        // RF codes are usually 25 chars total (RF + 23 digits)
+        for (int i = 0; i < 23; i++) {
             sb.append(rand.nextInt(10));
         }
         return sb.toString();

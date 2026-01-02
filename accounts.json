@@ -16,7 +16,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "15000",
-          "interestRate": "11%"
+          "interestRate": "11%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_69696969",
@@ -24,7 +25,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_70707070",
@@ -32,7 +34,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_23232323",
@@ -40,7 +43,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_13131313",
@@ -48,7 +52,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_90909090",
@@ -56,7 +61,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_84848484",
@@ -64,7 +70,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_45454545",
@@ -72,7 +79,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_34343434",
@@ -80,7 +88,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
           "balance": "31000",
-          "interestRate": "12%"
+          "interestRate": "12%",
+          "rfCode": ""
         }
       ]
     }
@@ -102,7 +111,8 @@
           "ownerName": "Iostarios",
           "secondaryOwner": "Gyros Zepelis",
           "balance": "67.69",
-          "interestRate": "5%"
+          "interestRate": "5%",
+          "rfCode": ""
         }
       ]
     }
@@ -124,7 +134,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "-",
           "balance": "9999.99",
-          "interestRate": "10%"
+          "interestRate": "10%",
+          "rfCode": ""
         },
         {
           "accountId": "ACC_ADMIN_SAVINGS",
@@ -132,7 +143,8 @@
           "ownerName": "Kadas",
           "secondaryOwner": "-",
           "balance": "50000.00",
-          "interestRate": "2%"
+          "interestRate": "2%",
+          "rfCode": ""
         }
       ]
     }
@@ -154,7 +166,8 @@
           "ownerName": "Pliroforikos",
           "secondaryOwner": "Mrs. Pliroforikou",
           "balance": "120500.75",
-          "interestRate": "6%"
+          "interestRate": "6%",
+          "rfCode": ""
         },
         {
           "accountId": "ACC_PROF_RESEARCH",
@@ -162,7 +175,8 @@
           "ownerName": "Pliroforikos",
           "secondaryOwner": "TUC",
           "balance": "250000.00",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }
@@ -182,8 +196,9 @@
           "iban": "GR5555555555555555555555555",
           "ownerName": "Cafeteria",
           "secondaryOwner": "Prytanis",
-          "balance": "8540.20",
-          "interestRate": "0%"
+          "balance": "8553.2",
+          "interestRate": "0%",
+          "rfCode": "RF12345"
         }
       ]
     }
@@ -205,7 +220,8 @@
           "ownerName": "Antetokounmpo",
           "secondaryOwner": "Thanasis",
           "balance": "50000000.00",
-          "interestRate": "10%"
+          "interestRate": "10%",
+          "rfCode": ""
         },
         {
           "accountId": "ACC_NBA_MILWAUKEE",
@@ -213,7 +229,8 @@
           "ownerName": "Antetokounmpo",
           "secondaryOwner": "Bucks",
           "balance": "1200000.00",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }
@@ -234,7 +251,8 @@
           "ownerName": "Of TUC",
           "secondaryOwner": "-",
           "balance": "10000000.00",
-          "interestRate": "0%"
+          "interestRate": "0%",
+          "rfCode": ""
         }
       ]
     }
@@ -256,7 +274,8 @@
           "ownerName": "Pitsoulis",
           "secondaryOwner": "h mana sou",
           "balance": "1111.0",
-          "interestRate": "0.5%"
+          "interestRate": "0.5%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_20411552",
@@ -264,7 +283,8 @@
           "ownerName": "arisgod04",
           "secondaryOwner": "steligger",
           "balance": "952.0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_66344270",
@@ -272,7 +292,8 @@
           "ownerName": "arisgod04",
           "secondaryOwner": "thanasis",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }
@@ -307,7 +328,8 @@
           "ownerName": "nig",
           "secondaryOwner": "nigger2",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }
@@ -329,7 +351,8 @@
           "ownerName": "osak",
           "secondaryOwner": "osak2",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }
@@ -351,7 +374,8 @@
           "ownerName": "q",
           "secondaryOwner": "werty",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }
@@ -360,12 +384,21 @@
     "user": {
       "username": "fs",
       "password": "123",
-      "companyName": "",
+      "companyName": "fs",
       "phone": "333",
       "email": "fss",
       "type": "Company",
       "taxId": "444",
       "accounts": [
+        {
+          "accountId": "ID_45882085",
+          "iban": "GR3529345747154017510425940",
+          "ownerName": "fs",
+          "secondaryOwner": "Secondary owner",
+          "balance": "1056.0",
+          "interestRate": "1%",
+          "rfCode": "null"
+        }
       ]
     }
   },
@@ -386,7 +419,8 @@
           "ownerName": "a",
           "secondaryOwner": "nigg",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_56165136",
@@ -394,7 +428,8 @@
           "ownerName": "a",
           "secondaryOwner": "nigzzzzz",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         },
         {
           "accountId": "ID_57587679",
@@ -402,7 +437,8 @@
           "ownerName": "a",
           "secondaryOwner": "trherg",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }
@@ -423,7 +459,53 @@
           "ownerName": "b",
           "secondaryOwner": "nigab",
           "balance": "0",
-          "interestRate": "1%"
+          "interestRate": "1%",
+          "rfCode": ""
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "mamo123",
+      "password": "123",
+      "companyName": "MamoInc",
+      "phone": "6944556677",
+      "email": "mamo@gmail.com",
+      "type": "Company",
+      "taxId": "998800123",
+      "accounts": [
+        {
+          "accountId": "ID_22953810",
+          "iban": "GR5572952312178892854303288",
+          "ownerName": "mamo123",
+          "secondaryOwner": "Secondary owner",
+          "balance": "556.0",
+          "interestRate": "1%",
+          "rfCode": "RF20802301162002433921495"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "okok",
+      "password": "okok123",
+      "name": "ok",
+      "surname": "ok",
+      "phone": "1234567890",
+      "email": "ok@gmai.com",
+      "type": "Individual",
+      "taxId": "567890",
+      "accounts": [
+        {
+          "accountId": "ID_97130640",
+          "iban": "GR5768048692919648181597093",
+          "ownerName": "okok",
+          "secondaryOwner": "Secondary owner",
+          "balance": "9500.0",
+          "interestRate": "1%",
+          "rfCode": ""
         }
       ]
     }

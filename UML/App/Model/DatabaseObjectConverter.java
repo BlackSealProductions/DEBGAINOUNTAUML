@@ -12,15 +12,10 @@ import App.Model.Entities.UserEntities.Individual;
 
 public class DatabaseObjectConverter {
 
-
     public DatabaseObjectConverter(){
-
     }
     
     public Map<String, Object> convertUserToMap(Customer activeCustomer, List<Account> customerAccounts){
-
-        // Customer activeCustomer = Session.getInstance().getActiveCustomer();
-        // List<Account> customerAccounts = Session.getInstance().getCustomerAccounts();
 
         String username = activeCustomer.getUsername();
         String password = activeCustomer.getPassword();
@@ -29,11 +24,11 @@ public class DatabaseObjectConverter {
         String phone = activeCustomer.getPhone();
         String email = activeCustomer.getEmail();
 
-
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("password", password);
         userData.put("type", type);
+        
         if("Company".equalsIgnoreCase(type)){
             String cname = ((Company)activeCustomer).getCompanyName();
             userData.put("companyName", cname);
@@ -51,25 +46,29 @@ public class DatabaseObjectConverter {
         // Handle nested accounts array
         List<Map<String, String>> accounts = new ArrayList<>();
     
-                for (Account account : customerAccounts) {
-                    
-                    Map<String, String> acc = new HashMap<>();
-                    acc.put("accountId", account.getAccountId());
-                    acc.put("iban", account.getIban());
-                    acc.put("ownerName", account.getOwnerName());
-                    acc.put("secondaryOwner", account.getSecondaryOwner());
-                    acc.put("balance", account.getBalance());
-                    acc.put("interestRate", account.getInterestRate());
-                    accounts.add(acc);
-                }
+        for (Account account : customerAccounts) {
             
-                
+            Map<String, String> acc = new HashMap<>();
+            acc.put("accountId", account.getAccountId());
+            acc.put("iban", account.getIban());
+            acc.put("ownerName", account.getOwnerName());
+            acc.put("secondaryOwner", account.getSecondaryOwner());
+            acc.put("balance", account.getBalance());
+            acc.put("interestRate", account.getInterestRate());
+            
+            // --- CRITICAL FIX: ADD THIS LINE ---
+            // Without this, your RF codes will be deleted when you save!
+            String rf = (account.getRfCode() == null) ? "" : account.getRfCode();
+            acc.put("rfCode", rf);
+            // -----------------------------------
+
+            accounts.add(acc);
+        }
+            
         userData.put("accounts", accounts);
                 
         Map<String, Object> wrapper = new HashMap<>();
         wrapper.put("user", userData);
         return wrapper;
     }
-
-
 }

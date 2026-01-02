@@ -12,6 +12,7 @@ public class Account {
     private String balance;
     private String interestRate;
     private String secondaryOwner;
+    private String rfCode;
 
     private List<Transaction> transactions = new ArrayList<>();
 
@@ -31,9 +32,12 @@ public class Account {
     public String getBalance() { return balance; }
     public String getInterestRate() { return interestRate; }
     public String getSecondaryOwner() { return secondaryOwner; }
+    public String getRfCode() { return rfCode; }
+
     
     // Setters
     public void setBalance(String balance) { this.balance = balance; }
+    public void setRfCode(String rfCode) { this.rfCode = rfCode; }
 
     public void addTransaction(Transaction t) {
         if (t != null) {

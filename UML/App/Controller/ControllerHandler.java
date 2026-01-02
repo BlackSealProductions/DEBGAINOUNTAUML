@@ -24,6 +24,9 @@ public class ControllerHandler {
     private Controller_t statement_con;
     private Controller_t accmgmt_con;
     
+    // --- NEW: Add the PayBill Controller field ---
+    private Controller_t paybill_con; 
+    
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
         this.v=v;
@@ -74,6 +77,10 @@ public class ControllerHandler {
         accmgmt_con = new AccountManagementCon(v.getAccountManagementScreen(), m, v);
         accmgmt_con.init();
 
+        // --- NEW: Initialize PayBillCon ---
+        // This connects your Controller to the View!
+        paybill_con = new PayBillCon(v.getBillPaymentScreen(), m, v);
+        paybill_con.init();
 
     }
 
@@ -102,7 +109,4 @@ public class ControllerHandler {
         return statement_con;
     }
 
-
-    
-    
 }

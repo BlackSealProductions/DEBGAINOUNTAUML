@@ -136,11 +136,11 @@ public class StatementsScreen implements View_t {
             for(Statement state : allStatements){
                 if(state.getTransaction().getType() == "Recieve"){
                     sign = "+";
-                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+Float.toString(state.getTransaction().getAmmount())+"€");
+                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+String.valueOf(state.getTransaction().getAmount())+"€");
                 }
                 else if(state.getTransaction().getType() == "Send"){
                     sign = "-";
-                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+Float.toString(state.getTransaction().getAmmount())+"€");
+                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+String.valueOf(state.getTransaction().getAmount())+"€");
                 }
             }
         }
@@ -248,7 +248,7 @@ public class StatementsScreen implements View_t {
                 state.getDate().toString(), 
                 state.getStatementId(), 
                 state.getTransaction().getSenderId(), 
-                sign + Float.toString(state.getTransaction().getAmmount()) + "€"
+                sign + String.valueOf(state.getTransaction().getAmount()) + "€"
             );
         }
         System.out.println("Valid: Loaded " + statements.size() + " transactions.");

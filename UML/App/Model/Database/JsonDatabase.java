@@ -4,14 +4,12 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-import App.Model.Session;
+import App.Model.Entities.OperationEntities.Transaction;
 
 public class JsonDatabase {
     private static final String DB_FILE = "accounts.json";
 
-
     public JsonDatabase(){
-
     }
 
     // ===========================
@@ -19,7 +17,6 @@ public class JsonDatabase {
     // ===========================
 
     public Map<String, Object> findUserWithPassword(String inputUser, String inputPass){
-
         List<Map<String, Object>> records = getAllRecords();
         Map<String, Object> foundUser = null;
 
@@ -35,7 +32,6 @@ public class JsonDatabase {
     }
 
     public Set<String> getExistingAcctIds(){
-
         List<Map<String, Object>> records = getAllRecords();
         Set<String> existingIds = new HashSet<>();
 
@@ -49,10 +45,8 @@ public class JsonDatabase {
                 }
             }
         }
-
         return existingIds;
     }
-
 
     /**
      * Loads all records from the JSON file.
@@ -61,14 +55,11 @@ public class JsonDatabase {
         return parseJsonNested(DB_FILE);
     }
 
-
     /**
      * Saves a NEW user during registration.
      */
     public void saveRecord(Map<String, Object> userWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
-        // Map<String, Object> wrapper = new HashMap<>();
-        // wrapper.put("user", userData);
         allRecords.add(userWrapper);
         saveAllRecords(allRecords);
     }
@@ -142,12 +133,9 @@ public class JsonDatabase {
     
             // --- Conditional Logic based on User Type ---
             if ("Company".equalsIgnoreCase(type)) {
-                // For companies, we prioritize companyName. 
-                // We use name as a fallback or if companyName was mapped there.
                 String cName = user.containsKey("companyName") ? (String)user.get("companyName") : (String)user.get("name");
                 sb.append(String.format("      \"companyName\": \"%s\",\n", cName));
             } else {
-                // For individuals, use standard name and surname
                 sb.append(String.format("      \"name\": \"%s\",\n", user.get("name")));
                 sb.append(String.format("      \"surname\": \"%s\",\n", user.get("surname")));
             }
@@ -163,7 +151,7 @@ public class JsonDatabase {
             if (accounts != null) {
                 for (int j = 0; j < accounts.size(); j++) {
                     Map<String, String> acc = accounts.get(j);
-                    // Skip ghost accounts as discussed previously
+                    // Skip ghost accounts
                     if (acc.get("accountId") == null || acc.get("accountId").isEmpty()) continue;
     
                     sb.append("        {\n");
@@ -172,7 +160,11 @@ public class JsonDatabase {
                     sb.append(String.format("          \"ownerName\": \"%s\",\n", acc.get("ownerName")));
                     sb.append(String.format("          \"secondaryOwner\": \"%s\",\n", acc.get("secondaryOwner")));
                     sb.append(String.format("          \"balance\": \"%s\",\n", acc.get("balance")));
-                    sb.append(String.format("          \"interestRate\": \"%s\"\n", acc.get("interestRate")));
+                    // Added comma to interestRate line below so we can add rfCode after it
+                    sb.append(String.format("          \"interestRate\": \"%s\",\n", acc.get("interestRate"))); 
+                    // Added rfCode line exactly as requested
+                    sb.append(String.format("          \"rfCode\": \"%s\"\n", acc.get("rfCode")));
+                    
                     sb.append("        }");
                     if (j < accounts.size() - 1) sb.append(",");
                     sb.append("\n");
@@ -194,6 +186,7 @@ public class JsonDatabase {
             e.printStackTrace();
         }
     }
+
     // ===========================
     //   PRIVATE HELPERS (Parser)
     // ===========================
@@ -210,7 +203,6 @@ public class JsonDatabase {
             // Remove outer brackets []
             content = content.substring(1, content.length() - 1).trim();
 
-            // Split into "User" blocks by counting curly braces
             List<String> userBlocks = new ArrayList<>();
             int braceCount = 0;
             StringBuilder sb = new StringBuilder();
@@ -235,11 +227,10 @@ public class JsonDatabase {
 
                 String username = extractValue(block, "username");
                 if (username == null || username.trim().isEmpty()) {
-                    continue; // Skip this ghost block
+                    continue; 
                 }
 
                 String type = extractValue(block, "type");
-
                  
                 Map<String, Object> userData = new HashMap<>();
                 userData.put("username", extractValue(block, "username"));
@@ -263,14 +254,11 @@ public class JsonDatabase {
                     int accEnd = block.lastIndexOf("]");
                     String accsSection = block.substring(accStart + 12, accEnd).trim();
                     
-                    // NEW CHECK: Only proceed if the section contains at least one object opening '{'
                     if (accsSection.contains("{")) {
-                        // Split accounts by looking for closing braces of account objects
                         String[] accParts = accsSection.split("\\},");
                         for (String part : accParts) {
                             if (part.trim().isEmpty()) continue;
                             
-                            // Further safety: ensure this specific part has data
                             String id = extractValue(part, "accountId");
                             if (id.isEmpty()) continue; 
 
@@ -281,6 +269,7 @@ public class JsonDatabase {
                             acc.put("secondaryOwner", extractValue(part, "secondaryOwner"));
                             acc.put("balance", extractValue(part, "balance"));
                             acc.put("interestRate", extractValue(part, "interestRate"));
+                            acc.put("rfCode", extractValue(part, "rfCode")); // Already here, this is good
                             accounts.add(acc);
                         }
                     }
@@ -302,16 +291,78 @@ public class JsonDatabase {
         int index = block.indexOf(search);
         if (index == -1) return "";
         
-        // Find the opening quote after the colon
         int start = block.indexOf("\"", index + search.length()) + 1;
-        if (start == 0) return ""; // Not found
+        if (start == 0) return ""; 
         
-        // Find the closing quote
         int end = block.indexOf("\"", start);
         if (end == -1) return "";
         
         return block.substring(start, end);
     }
+
+    public void saveTransaction(String accountId, Transaction t) {
+        try {
+            File file = new File("transactions.json");
+            if (!file.exists()) {
+                file.createNewFile();
+                try (PrintWriter out = new PrintWriter(file)) { out.println("{}"); }
+            }
+
+            String content = new String(Files.readAllBytes(Paths.get("transactions.json"))).trim();
+            if (content.length() < 2) content = "{}";
+
+            // Format the new transaction as JSON
+            String newTransJson = String.format(
+                "      {\n" +
+                "        \"transactionId\": \"%s\",\n" +
+                "        \"senderId\": \"%s\",\n" +
+                "        \"recieverId\": \"%s\",\n" +
+                "        \"amount\": %s,\n" +
+                "        \"date\": \"%s\",\n" +
+                "        \"time\": \"%s\",\n" + 
+                "        \"description\": \"%s\",\n" +
+                "        \"type\": \"%s\"\n" +
+                "      }",
+                t.getTransactionId(), t.getSenderId(), t.getRecieverId(), 
+                String.valueOf(t.getAmount()), t.getDate(), t.getTime(), 
+                t.getDescription(), t.getType()
+            );
+
+            StringBuilder sb = new StringBuilder(content);
+            String searchKey = "\"" + accountId + "\": {";
+            int accIndex = sb.indexOf(searchKey);
+
+            if (accIndex != -1) {
+                // Account exists, find the start of the "transactions" list
+                int transListStart = sb.indexOf("\"transactions\": [", accIndex);
+                if (transListStart != -1) {
+                    // Insert right after the opening bracket '['
+                    // We add a comma to ensure valid JSON if the list wasn't empty
+                    sb.insert(transListStart + 17, "\n" + newTransJson + ","); 
+                }
+            } else {
+                // Account doesn't exist in file yet, add the whole block
+                // Remove the last closing brace '}' of the file
+                int lastBrace = sb.lastIndexOf("}");
+                if (lastBrace != -1) sb.deleteCharAt(lastBrace);
+
+                String prefix = (content.length() > 5) ? "," : ""; 
+                String newBlock = prefix + "\n" +
+                "  \"" + accountId + "\": {\n" +
+                "    \"transactions\": [\n" +
+                        newTransJson + "\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}"; 
+                sb.append(newBlock);
+            }
+
+            try (PrintWriter out = new PrintWriter("transactions.json")) {
+                out.println(sb.toString());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-
