@@ -257,7 +257,7 @@
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
           "secondaryOwner": "faker",
-          "balance": "61.86",
+          "balance": "290.0",
           "interestRate": "0.5%"
         },
         {
@@ -274,6 +274,14 @@
           "ownerName": "arisgod04",
           "secondaryOwner": "thanasis",
           "balance": "0",
+          "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_77595156",
+          "iban": "GR5323171109728152707781800",
+          "ownerName": "arisgod04",
+          "secondaryOwner": "serj Tankian",
+          "balance": "200000.0",
           "interestRate": "1%"
         }
       ]
