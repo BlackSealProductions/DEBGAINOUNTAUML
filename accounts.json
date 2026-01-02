@@ -256,8 +256,8 @@
           "accountId": "ACC_ARIS_01",
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
-          "secondaryOwner": "h mana sou",
-          "balance": "1011.0",
+          "secondaryOwner": "faker",
+          "balance": "313.0",
           "interestRate": "0.5%"
         },
         {
@@ -265,7 +265,7 @@
           "iban": "GR9393319356273823426639169",
           "ownerName": "arisgod04",
           "secondaryOwner": "steligger",
-          "balance": "952.0",
+          "balance": "1029.0",
           "interestRate": "1%"
         },
         {
@@ -529,7 +529,7 @@
           "iban": "GR8571025449687529640477360",
           "ownerName": "w",
           "secondaryOwner": "ww",
-          "balance": "125.0",
+          "balance": "325.0",
           "rfCode": "RF41288709933909648957565",
           "interestRate": "1%"
         }
@@ -551,7 +551,7 @@
           "iban": "GR4003342224706066500262588",
           "ownerName": "stelios",
           "secondaryOwner": "paris",
-          "balance": "14700.0",
+          "balance": "15300.0",
           "rfCode": "RF69683064141007775709728",
           "interestRate": "1%"
         }

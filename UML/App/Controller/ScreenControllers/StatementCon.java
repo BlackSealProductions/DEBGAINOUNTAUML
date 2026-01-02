@@ -58,13 +58,15 @@ public class StatementCon  implements Controller_t{
     //
     public List<Statement> genStatements(List<Transaction> trans, Account acc){
 
-
         List<Statement> finalStatements = new ArrayList<Statement>();
 
-        for(Transaction transaction : trans){
-        
-            finalStatements.add(new Statement(generatePin(6),acc,LocalDate.now(),transaction));
+        if(trans !=null){
 
+            for(Transaction transaction : trans){
+            
+                finalStatements.add(new Statement(generatePin(6),acc,LocalDate.now(),transaction));
+
+            }
         }
 
         return finalStatements;
