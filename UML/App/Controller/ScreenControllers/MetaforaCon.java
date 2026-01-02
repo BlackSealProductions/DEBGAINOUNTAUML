@@ -4,6 +4,7 @@ import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
 import App.Model.Database.UserDB;
+import App.Model.Entities.OperationEntities.Transaction;
 import App.View.Screens.MetaforaScreen;
 import App.View.ViewHandler;
 import App.Model.DatabaseObjectConverter;
@@ -149,7 +150,6 @@ public class MetaforaCon implements Controller_t {
                     saveTransactionHistory(myAccount, (String)receivingUser.get("name")+" "+(String)receivingUser.get("surname"), amountToSend, fee, isInBank);
                 }
             
-
             // 5. Update UI
             view.setBalance(myAccount.getBalance());
             view.getAmountField().setText("");
@@ -167,46 +167,12 @@ public class MetaforaCon implements Controller_t {
         String dateNow = java.time.LocalDate.now().toString();
         String timeNow = java.time.LocalTime.now().toString().substring(0, 5);
         String transID = String.valueOf(System.currentTimeMillis());
-
-        Map<String, String> newTransaction = new HashMap<>();
-        newTransaction.put("transactionId", transID);
-        newTransaction.put("senderId", myAccount.getAccountId());
-        newTransaction.put("recieverId", targetIban);
-        // Show total amount deducted or just sent amount? Usually sent amount in description, fee separate.
-        // For simplicity, let's record the Amount Sent, and mention fee in description if external.
-        newTransaction.put("amount", String.valueOf(amount + fee)); 
-        newTransaction.put("date", dateNow);
-        newTransaction.put("time", timeNow);
-        
         String desc = isInBank ? "Transfer to TUC" : "External Transfer (Fee: " + fee + ")";
-        newTransaction.put("description", desc);
-        newTransaction.put("type", "send");
 
-        boolean accountFoundInHistory = false;
-        for (Map<String, Object> wrapper : transRecords) {
-            Map<String, Object> acctMap = (Map<String, Object>) wrapper.get("account");
-            if (acctMap.get("accountId").equals(myAccount.getAccountId())) {
-                List<Map<String, String>> tList = (List<Map<String, String>>) acctMap.get("transactions");
-                if (tList == null) {
-                    tList = new ArrayList<>();
-                    acctMap.put("transactions", tList);
-                }
-                tList.add(newTransaction);
-                accountFoundInHistory = true;
-                break;
-            }
-        }
+        Transaction tr = new Transaction(transID, myAccount.getAccountId(), targetIban, amount, dateNow, timeNow, desc, "send");
 
-        if (!accountFoundInHistory) {
-            Map<String, Object> newWrapper = new HashMap<>();
-            Map<String, Object> newAcctMap = new HashMap<>();
-            List<Map<String, String>> tList = new ArrayList<>();
-            tList.add(newTransaction);
-            newAcctMap.put("accountId", myAccount.getAccountId());
-            newAcctMap.put("transactions", tList);
-            newWrapper.put("account", newAcctMap);
-            transRecords.add(newWrapper);
-        }
-        model.get_tDB().saveAllRecords(transRecords);
+        Session.getInstance().getActiveAccount().addTransaction(tr);
+        
+        model.saveChanges();
     }
 }

@@ -259,7 +259,7 @@
           "transactionId": "1767373631482",
           "senderId": "ID_45882085",
           "recieverId": "p9jfpirv-9jrvoijrv",
-          "amount": "43.86",
+          "amount": "43.86000061035156",
           "date": "2026-01-02",
           "time": "19:07",
           "description": "External Transfer (Fee: 0.86)",
@@ -269,7 +269,7 @@
           "transactionId": "1767377990930",
           "senderId": "ID_45882085",
           "recieverId": "Christos Kadas",
-          "amount": "99.14",
+          "amount": "99.13999938964844",
           "date": "2026-01-02",
           "time": "20:19",
           "description": "Transfer to TUC",
@@ -329,10 +329,237 @@
           "transactionId": "1767383838785",
           "senderId": "ID_45882085",
           "recieverId": "Unknown",
-          "amount": "10.2",
+          "amount": "10.199999809265137",
           "date": "2026-01-02",
           "time": "21:57",
           "description": "External Transfer (Fee: 0.2)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767384198478",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "10.199999809265137",
+          "date": "2026-01-02",
+          "time": "22:03",
+          "description": "External Transfer (Fee: 0.2)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767384870420",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "10.0",
+          "date": "2026-01-02",
+          "time": "22:14:30.423746048",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767384912266",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "2.0399999618530273",
+          "date": "2026-01-02",
+          "time": "22:15",
+          "description": "External Transfer (Fee: 0.04)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767386114555",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "10.0",
+          "date": "2026-01-02",
+          "time": "22:35",
+          "description": "External Transfer (Fee: 0.2)",
+          "type": "send"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_45882085",
+      "transactions": [
+        {
+          "transactionId": "1767362484802",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "10.0",
+          "date": "2026-01-02",
+          "time": "16:01:24.807062211",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767371492743",
+          "senderId": "ID_45882085",
+          "recieverId": "GR8571025449687529640477360",
+          "amount": "66.0",
+          "date": "2026-01-02",
+          "time": "18:31",
+          "description": "Transfer to Account",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767371518686",
+          "senderId": "ID_45882085",
+          "recieverId": "GR8571025449687529640477360",
+          "amount": "1.0",
+          "date": "2026-01-02",
+          "time": "18:31",
+          "description": "Transfer to Account",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767373500803",
+          "senderId": "ID_45882085",
+          "recieverId": "GR6086248002856772322430785",
+          "amount": "5.0",
+          "date": "2026-01-02",
+          "time": "19:05",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767373613125",
+          "senderId": "ID_45882085",
+          "recieverId": "ourgv[oioubhiher[ihg",
+          "amount": "51.0",
+          "date": "2026-01-02",
+          "time": "19:06",
+          "description": "External Transfer (Fee: 1.0)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767373631482",
+          "senderId": "ID_45882085",
+          "recieverId": "p9jfpirv-9jrvoijrv",
+          "amount": "43.86000061035156",
+          "date": "2026-01-02",
+          "time": "19:07",
+          "description": "External Transfer (Fee: 0.86)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767377990930",
+          "senderId": "ID_45882085",
+          "recieverId": "Christos Kadas",
+          "amount": "99.13999938964844",
+          "date": "2026-01-02",
+          "time": "20:19",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767378363159",
+          "senderId": "ID_45882085",
+          "recieverId": "Ioannis Iostarios",
+          "amount": "100.0",
+          "date": "2026-01-02",
+          "time": "20:26",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767378440458",
+          "senderId": "ID_45882085",
+          "recieverId": "Ioannis Iostarios",
+          "amount": "100.0",
+          "date": "2026-01-02",
+          "time": "20:27",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767378637780",
+          "senderId": "ID_45882085",
+          "recieverId": "Ioannis Iostarios",
+          "amount": "100.0",
+          "date": "2026-01-02",
+          "time": "20:30",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767379012066",
+          "senderId": "ID_45882085",
+          "recieverId": "Ioannis Iostarios",
+          "amount": "100.0",
+          "date": "2026-01-02",
+          "time": "20:36",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767379159825",
+          "senderId": "ID_45882085",
+          "recieverId": "Ioannis Iostarios",
+          "amount": "100.0",
+          "date": "2026-01-02",
+          "time": "20:39",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767383838785",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "10.199999809265137",
+          "date": "2026-01-02",
+          "time": "21:57",
+          "description": "External Transfer (Fee: 0.2)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767384198478",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "10.199999809265137",
+          "date": "2026-01-02",
+          "time": "22:03",
+          "description": "External Transfer (Fee: 0.2)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767384870420",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "10.0",
+          "date": "2026-01-02",
+          "time": "22:14:30.423746048",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767384912266",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "2.0399999618530273",
+          "date": "2026-01-02",
+          "time": "22:15",
+          "description": "External Transfer (Fee: 0.04)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767386114555",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "10.0",
+          "date": "2026-01-02",
+          "time": "22:35",
+          "description": "External Transfer (Fee: 0.2)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767386486801",
+          "senderId": "ID_45882085",
+          "recieverId": "MamoInc",
+          "amount": "3.0",
+          "date": "2026-01-02",
+          "time": "13:00",
+          "description": "Bill Payment",
           "type": "send"
         }
       ]

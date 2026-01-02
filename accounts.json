@@ -389,7 +389,7 @@
           "iban": "GR3529345747154017510425940",
           "ownerName": "fs",
           "secondaryOwner": "Secondary owner",
-          "balance": "489.8",
+          "balance": "451.92",
           "rfCode": "null",
           "interestRate": "1%"
         }
@@ -471,7 +471,7 @@
           "iban": "GR5572952312178892854303288",
           "ownerName": "mamo123",
           "secondaryOwner": "Secondary owner",
-          "balance": "556.0",
+          "balance": "559.0",
           "rfCode": "RF20802301162002433921495",
           "interestRate": "1%"
         }
