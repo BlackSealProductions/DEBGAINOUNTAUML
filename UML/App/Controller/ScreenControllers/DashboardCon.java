@@ -126,6 +126,7 @@ public class DashboardCon implements Controller_t{
         Account user = Session.getInstance().getActiveAccount();
         metEktos.setBalance(user.getBalance());
         refresh(user);
+        metEktos.setFromAccountLabel(user.getIban());
         metEktos.show();
         ViewSession.getInstance().updateScreenHistory(metEktos);
 

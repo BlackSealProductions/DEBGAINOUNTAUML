@@ -20,6 +20,11 @@ public class ModelHandler {
         this.conv = new DatabaseObjectConverter();
     }
 
+    public void saveChanges(){
+        saveChangesToUDB_conv();
+        saveChangesToTDB_conv();
+    }
+
     public void saveChangesToUDB_conv(){
         Customer user = Session.getInstance().getActiveCustomer();
         this.uDB.updateUserRecord(conv.convertUserToMap(user, user.getAccounts()));

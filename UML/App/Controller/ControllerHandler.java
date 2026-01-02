@@ -1,8 +1,6 @@
 package App.Controller;
 
 import App.View.ViewHandler;
-import App.View.Screens.AccountManagementScreen;
-import App.View.Screens.RegisterCompanyScreen;
 import App.Controller.ScreenControllers.*;
 import App.Model.ModelHandler;
 
@@ -10,6 +8,8 @@ public class ControllerHandler {
 
     private ViewHandler v;
     private ModelHandler m;
+    
+    // Controller Definitions
     private Controller_t registerindiv_con;
     private Controller_t registercomp_con;
     private Controller_t login_con;
@@ -23,16 +23,16 @@ public class ControllerHandler {
     private Controller_t withdraw_con;
     private Controller_t statement_con;
     private Controller_t accmgmt_con;
-    
-    // --- NEW: Add the PayBill Controller field ---
     private Controller_t paybill_con; 
     
+    // --- NEW: Add Metafora Controller ---
+    private Controller_t metafora_con;
+    // ------------------------------------
 
     public ControllerHandler(ViewHandler v, ModelHandler m){
         this.v=v;
         this.m=m;
     }
-
 
    public void initControllers() {
 
@@ -50,7 +50,6 @@ public class ControllerHandler {
 
         firstpage_con = new FirstPageCon(v.getFirstPageScreen(), m, v);
         firstpage_con.init();
-
         
         typeselection_con = new TypeSelectionCon(v.getChooseRegisterType(), m, v);
         typeselection_con.init();
@@ -79,21 +78,24 @@ public class ControllerHandler {
         paybill_con = new PayBillCon(v.getBillPaymentScreen(), m, v);
         paybill_con.init();
 
+        // --- NEW: Initialize Metafora Controller ---
+        // Make sure ViewHandler has getMetaforaScreen()!
+        metafora_con = new MetaforaCon(v.getMetaforaScreen(), m, v);
+        metafora_con.init();
+        // -------------------------------------------
+
     }
 
 
     public void initViews(){
-
         v.init();
     }
 
     public void initModel(){
-
         m.init();
     }
 
     public void initStartScreen(){
-        
         v.initStartScreen();
     }
 
@@ -101,9 +103,7 @@ public class ControllerHandler {
         return (AccountSelectionCon) this.acctselection_con;
     }
 
-
     public Controller_t getStatement_con() {
         return statement_con;
     }
-
 }

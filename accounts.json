@@ -101,7 +101,7 @@
           "iban": "GR1770137038471374039483827",
           "ownerName": "Iostarios",
           "secondaryOwner": "Gyros Zepelis",
-          "balance": "67.69",
+          "balance": "167.69000244140625",
           "interestRate": "5%"
         }
       ]
@@ -381,7 +381,7 @@
           "iban": "GR3529345747154017510425940",
           "ownerName": "fs",
           "secondaryOwner": "Secondary owner",
-          "balance": "1056.0",
+          "balance": "500.0",
           "rfCode": "null",
           "interestRate": "1%"
         }
@@ -404,7 +404,7 @@
           "iban": "GR6086248002856772322430785",
           "ownerName": "a",
           "secondaryOwner": "nigg",
-          "balance": "0",
+          "balance": "5.0",
           "interestRate": "1%"
         },
         {
@@ -529,7 +529,7 @@
           "iban": "GR8571025449687529640477360",
           "ownerName": "w",
           "secondaryOwner": "ww",
-          "balance": "325.0",
+          "balance": "392.0",
           "rfCode": "RF41288709933909648957565",
           "interestRate": "1%"
         }
