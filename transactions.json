@@ -324,6 +324,16 @@
           "time": "20:39",
           "description": "Transfer to TUC",
           "type": "send"
+        },
+        {
+          "transactionId": "1767383838785",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "10.2",
+          "date": "2026-01-02",
+          "time": "21:57",
+          "description": "External Transfer (Fee: 0.2)",
+          "type": "send"
         }
       ]
     }
