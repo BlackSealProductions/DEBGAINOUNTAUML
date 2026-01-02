@@ -2,7 +2,7 @@ package App.Controller.ScreenControllers;
 
 
 import App.Controller.Controller_t; 
-import App.Model.Database.JsonDatabase;
+import App.Model.Database.UserDB;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.ModelHandler;
 import App.Model.Session;

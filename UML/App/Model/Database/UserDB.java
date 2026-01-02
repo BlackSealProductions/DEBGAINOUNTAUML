@@ -6,11 +6,11 @@ import java.util.*;
 
 import App.Model.Session;
 
-public class JsonDatabase {
+public class UserDB {
     private static final String DB_FILE = "accounts.json";
 
 
-    public JsonDatabase(){
+    public UserDB(){
 
     }
 
@@ -97,7 +97,7 @@ public class JsonDatabase {
             saveAllRecords(allRecords); // Overwrites the file with the updated list
         } else {
             // If for some reason the user wasn't there, treat it as a new record
-            saveRecord((Map<String, Object>) updatedWrapper.get("user"));
+            saveRecord((Map<String, Object>) updatedWrapper);
         }
     }
 
@@ -240,7 +240,6 @@ public class JsonDatabase {
 
                 String type = extractValue(block, "type");
 
-                 
                 Map<String, Object> userData = new HashMap<>();
                 userData.put("username", extractValue(block, "username"));
                 userData.put("password", extractValue(block, "password"));

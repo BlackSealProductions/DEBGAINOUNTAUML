@@ -2,7 +2,7 @@ package App.Controller.ScreenControllers;
 
 import App.Controller.ControllerHandler;
 import App.Controller.Controller_t; 
-import App.Model.Database.JsonDatabase;
+import App.Model.Database.UserDB;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
@@ -64,14 +64,14 @@ public class LoginCon implements Controller_t {
         String inputUser = view.getUsername();
         String inputPass = view.getPassword();
 
-        JsonDatabase db = model.getDB();
+        UserDB db = model.get_uDB();
         Map<String, Object> foundUser = db.findUserWithPassword(inputUser, inputPass);
     
         if (foundUser != null) {
             // Store the whole user object in the session
             
             
-            Session.getInstance().login(foundUser);
+            Session.getInstance().login(foundUser, model);
 
             Customer user = Session.getInstance().getActiveCustomer();
 

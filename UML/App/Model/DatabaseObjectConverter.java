@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
@@ -19,8 +20,6 @@ public class DatabaseObjectConverter {
     
     public Map<String, Object> convertUserToMap(Customer activeCustomer, List<Account> customerAccounts){
 
-        // Customer activeCustomer = Session.getInstance().getActiveCustomer();
-        // List<Account> customerAccounts = Session.getInstance().getCustomerAccounts();
 
         String username = activeCustomer.getUsername();
         String password = activeCustomer.getPassword();
@@ -63,13 +62,45 @@ public class DatabaseObjectConverter {
                     accounts.add(acc);
                 }
             
-                
+        
         userData.put("accounts", accounts);
                 
         Map<String, Object> wrapper = new HashMap<>();
         wrapper.put("user", userData);
         return wrapper;
     }
+
+    
+    public Map<String, Object> convertAcctTransactionsToMap(Account activeAccount){
+    
+        String accountId = activeAccount.getAccountId();
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("accountId", accountId);
+       
+        // Handle nested accounts array
+        List<Map<String, String>> transactions = new ArrayList<>();
+    
+                for (Transaction transaction : activeAccount.getTransactions()) {
+                    
+                    Map<String, String> tr = new HashMap<>();
+                    tr.put("transactionId", transaction.getTransactionId());
+                    tr.put("senderId", transaction.getSenderId());
+                    tr.put("recieverId", transaction.getRecieverId());
+                    tr.put("amount", String.valueOf(transaction.getAmmount()));
+                    tr.put("date", String.valueOf(transaction.getDate()));
+                    tr.put("description", transaction.getDescription());
+                    tr.put("type", transaction.getType());
+                    transactions.add(tr);
+                }
+                
+        userData.put("transactions", transactions);
+                
+        Map<String, Object> wrapper = new HashMap<>();
+        wrapper.put("account", userData);
+        return wrapper;
+    }
+
 
 
 }

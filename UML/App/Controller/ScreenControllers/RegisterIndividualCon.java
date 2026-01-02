@@ -1,7 +1,7 @@
 package App.Controller.ScreenControllers;
 
 import App.Controller.Controller_t;
-import App.Model.Database.JsonDatabase; // Import Database
+import App.Model.Database.UserDB; // Import Database
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Individual;
@@ -67,7 +67,7 @@ public class RegisterIndividualCon implements Controller_t {
         Map<String, Object> newUserWrapper = model.getConverter().convertUserToMap(newUser, defaultAccList);
 
         // 3. Save to Database
-        JsonDatabase db = model.getDB();
+        UserDB db = model.get_uDB();
         db.saveRecord(newUserWrapper);
 
         JOptionPane.showMessageDialog(null, "Registration Successful!\n Please login");

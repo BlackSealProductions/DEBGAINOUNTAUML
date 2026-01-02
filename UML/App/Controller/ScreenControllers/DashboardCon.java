@@ -34,7 +34,7 @@ public class DashboardCon implements Controller_t{
         if (view == null)return;
 
         view.getLogoutBtn().addActionListener(e -> {
-            model.saveChangesToDB_sess();
+            model.saveChangesToUDB_conv();
             Session.getInstance().logout();
             view.hide();
             FirstPageScreen next = viewHandler.getFirstPageScreen();
@@ -44,7 +44,7 @@ public class DashboardCon implements Controller_t{
         });
 
         view.getSwitchBtn().addActionListener(e -> {
-            model.saveChangesToDB_sess();
+            model.saveChangesToUDB_conv();
             view.hide();
             AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
             next.populateAccounts((ArrayList<Account>)Session.getInstance().getCustomerAccounts());

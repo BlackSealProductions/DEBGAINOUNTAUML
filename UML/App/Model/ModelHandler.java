@@ -2,28 +2,44 @@ package App.Model;
 
 import java.util.List;
 import java.util.Map;
-import App.Model.Database.JsonDatabase;
+
+import App.Model.Database.TransactionDB;
+import App.Model.Database.UserDB;
+import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Customer;
 
 public class ModelHandler {
 
-    private JsonDatabase db;
+    private UserDB uDB;
+    private TransactionDB tDB;
     private DatabaseObjectConverter conv;
 
     public void init(){
-        this.db = new JsonDatabase();
+        this.uDB = new UserDB();
+        this.tDB = new TransactionDB();
         this.conv = new DatabaseObjectConverter();
     }
 
-    public void saveChangesToDB_conv(){
-        this.db.updateUserRecord(conv.convertUserToMap(Session.getInstance().getActiveCustomer(), Session.getInstance().getCustomerAccounts()));
+    public void saveChangesToUDB_conv(){
+        Customer user = Session.getInstance().getActiveCustomer();
+        this.uDB.updateUserRecord(conv.convertUserToMap(user, user.getAccounts()));
     }
 
-    public void saveChangesToDB_sess(){
-        this.db.updateUserRecord(Session.getInstance().convertActiveUserToMap());
+    public void saveChangesToTDB_conv(){
+        Account acct = Session.getInstance().getActiveAccount();
+        this.tDB.updateUserRecord(conv.convertAcctTransactionsToMap(acct));
     }
 
-    public JsonDatabase getDB(){
-        return this.db;
+    // public void saveChangesToDB_sess(){
+    //     this.db.updateUserRecord(Session.getInstance().convertActiveUserToMap());
+    // }
+
+    public UserDB get_uDB(){
+        return this.uDB;
+    } 
+
+    public TransactionDB get_tDB(){
+        return this.tDB;
     } 
 
     public Session getSessionInst(){

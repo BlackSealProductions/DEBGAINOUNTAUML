@@ -3,7 +3,7 @@ package App.Controller.ScreenControllers;
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
-import App.Model.Database.JsonDatabase;
+import App.Model.Database.UserDB;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
@@ -85,7 +85,7 @@ public class AccountCreationCon implements Controller_t {
         Session.getInstance().appendCustomerAccounts(newAccount);
         Session.getInstance().setActiveAccount(newAccount);
 
-        model.saveChangesToDB_sess();
+        model.saveChangesToUDB_conv();
 
         JOptionPane.showMessageDialog(null, "Ο λογαριασμός δημιουργήθηκε επιτυχώς!\nIBAN: " + newIban);
         String type = Session.getInstance().getActiveCustomer().getUserTypeString();
@@ -110,7 +110,7 @@ public class AccountCreationCon implements Controller_t {
 
     private String generateUniqueID() {
 
-        JsonDatabase db = model.getDB();
+        UserDB db = model.get_uDB();
         Set<String> existingIds = db.getExistingAcctIds();
 
         // Generate a random ID and ensure it's not a duplicate
