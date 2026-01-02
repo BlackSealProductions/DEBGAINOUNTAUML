@@ -133,6 +133,16 @@
           "time": "15:48:46.145039",
           "description": "Deposit",
           "type": "receive"
+        },
+        {
+          "transactionId": "1767363291313",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "Ανάλυψη",
+          "amount": "23.0",
+          "date": "2026-01-02",
+          "time": "16:14:51.313554900",
+          "description": "Withdraw",
+          "type": "send"
         }
       ]
     }
@@ -177,6 +187,23 @@
           "time": "15:15:32.381429",
           "description": "Deposit",
           "type": "recieve"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_77595156",
+      "transactions": [
+        {
+          "transactionId": "1767363324883",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_77595156",
+          "amount": "200000.0",
+          "date": "2026-01-02",
+          "time": "16:15:24.883106200",
+          "description": "Deposit",
+          "type": "receive"
         }
       ]
     }
