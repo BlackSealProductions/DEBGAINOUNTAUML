@@ -30,11 +30,6 @@ public Transaction(String id, String sender, String receiver, float amount, Stri
 }
 
 
-
-
-
-
-
     public String getTransactionId() {
         return transactionId;
     }

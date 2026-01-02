@@ -35,7 +35,7 @@ public class DashboardCon implements Controller_t{
     @Override
     public void init() {
         if (view == null)return;
-
+        
         
         view.getLogoutBtn().addActionListener(e -> {
             model.saveChangesToUDB_conv();

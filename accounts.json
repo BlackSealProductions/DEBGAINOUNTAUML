@@ -257,7 +257,7 @@
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
           "secondaryOwner": "faker",
-          "balance": "313.0",
+          "balance": "61.86",
           "interestRate": "0.5%"
         },
         {
@@ -507,7 +507,7 @@
           "iban": "GR7263923592798249730846540",
           "ownerName": "n",
           "secondaryOwner": "nigga",
-          "balance": "100.0",
+          "balance": "113.0",
           "rfCode": "RF22223371237614278431943",
           "interestRate": "1%"
         }
@@ -529,7 +529,7 @@
           "iban": "GR8571025449687529640477360",
           "ownerName": "w",
           "secondaryOwner": "ww",
-          "balance": "392.0",
+          "balance": "508.760009765625",
           "rfCode": "RF41288709933909648957565",
           "interestRate": "1%"
         }

@@ -133,11 +133,22 @@ public class MetaforaCon implements Controller_t {
 
 
             // 4. Save History (TransactionDB)
-            if(receivingUser.containsKey("companyName")){
-                saveTransactionHistory(myAccount,(String)receivingUser.get("companyName"), amountToSend, fee, isInBank);
-            }else{    
-                saveTransactionHistory(myAccount, (String)receivingUser.get("name")+" "+(String)receivingUser.get("surname"), amountToSend, fee, isInBank);
-            }
+            // if (!targetFoundInDb){
+                
+
+
+            // }
+
+
+                if(!targetFoundInDb && !isInBank){
+                    saveTransactionHistory(myAccount,"Unknown", amountToSend, fee, isInBank);
+                }
+                else if(receivingUser.containsKey("companyName")){
+                    saveTransactionHistory(myAccount,(String)receivingUser.get("companyName"), amountToSend, fee, isInBank);
+                }else{    
+                    saveTransactionHistory(myAccount, (String)receivingUser.get("name")+" "+(String)receivingUser.get("surname"), amountToSend, fee, isInBank);
+                }
+            
 
             // 5. Update UI
             view.setBalance(myAccount.getBalance());

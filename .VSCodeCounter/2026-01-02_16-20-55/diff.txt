@@ -1,0 +1,37 @@
+Date : 2026-01-02 16:20:55
+Directory : c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML
+Total : 5 files,  34 codes, 6 comments, -6 blanks, all 34 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |          3 |         23 |          6 |         -6 |         23 |
+| JSON     |          2 |         11 |          0 |          0 |         11 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                       | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                          |          5 |         34 |          6 |         -6 |         34 |
+| . (Files)                                                                                                  |          2 |         11 |          0 |          0 |         11 |
+| UML                                                                                                        |          3 |         23 |          6 |         -6 |         23 |
+| UML\App                                                                                                    |          3 |         23 |          6 |         -6 |         23 |
+| UML\App\Controller                                                                                         |          2 |         43 |         12 |         11 |         66 |
+| UML\App\Controller\ScreenControllers                                                                       |          2 |         43 |         12 |         11 |         66 |
+| UML\App\View                                                                                               |          1 |        -20 |         -6 |        -17 |        -43 |
+| UML\App\View\Screens                                                                                       |          1 |        -20 |         -6 |        -17 |        -43 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                   | language | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\DepositCon.java  | Java     |         17 |          5 |          4 |         26 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\WithdrawCon.java | Java     |         26 |          7 |          7 |         40 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\StatementsScreen.java            | Java     |        -20 |         -6 |        -17 |        -43 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\accounts.json                                         | JSON     |          8 |          0 |          0 |          8 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\transactions.json                                     | JSON     |          3 |          0 |          0 |          3 |
+| Total                                                                                                      |          |         34 |          6 |         -6 |         34 |
++------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

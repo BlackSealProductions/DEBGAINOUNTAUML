@@ -133,6 +133,26 @@
           "time": "15:48:46.145039",
           "description": "Deposit",
           "type": "receive"
+        },
+        {
+          "transactionId": "1767382175175",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "w",
+          "amount": "29.0",
+          "date": "2026-01-02",
+          "time": "21:29",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767382474735",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "Unknown",
+          "amount": "7.14",
+          "date": "2026-01-02",
+          "time": "21:34",
+          "description": "External Transfer (Fee: 0.14)",
+          "type": "send"
         }
       ]
     }
