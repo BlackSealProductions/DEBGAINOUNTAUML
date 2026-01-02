@@ -109,4 +109,8 @@ public class DepositScreen implements View_t {
         newBalanceLabel.setText(bal);
     }
     public JButton getConfirmBtn() { return confirmBtn; }
+
+    public JTextField getAmountField() {
+        return amountField;
+    }
 }

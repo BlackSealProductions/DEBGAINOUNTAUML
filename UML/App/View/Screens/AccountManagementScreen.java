@@ -2,6 +2,7 @@ package App.View.Screens;
 
 import App.View.View_t;
 import App.View.helper_classes.*; // Using your custom button for "Change"
+import javax.swing.JOptionPane;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -111,7 +112,7 @@ public class AccountManagementScreen implements View_t {
         contentPanel.add(Box.createVerticalStrut(20));
 
         // Name Row
-        changeNameBtn = createSmallButton("αλλαγή");
+        // changeNameBtn = createSmallButton("αλλαγή");
         JLabel nameLabel = new JLabel("• Όνομα Κατόχου: Ιωάννης Ιοστάριος");
         this.nameLabel = nameLabel;
         contentPanel.add(createRow(nameLabel, changeNameBtn));
@@ -204,6 +205,23 @@ public class AccountManagementScreen implements View_t {
     public void setSecOwner(String secOwn){
         secOwnerLabel.setText("• Δευτερεύοντας Κάτοχος: "+secOwn);
     }
+
+    public String showInputPopup(String message) {
+        // 1. Create a label to apply your custom font
+        JLabel messageLabel = new JLabel(message);
+        messageLabel.setFont(customFont20);
+
+        // 2. Show the Input Dialog
+        // "panel" is passed as the parent so the popup centers over your app
+        String result = JOptionPane.showInputDialog(
+            panel,                  // Parent component
+            messageLabel,           // The message (as a styled label)
+            "Επεξεργασία",          // Title of the popup window
+            JOptionPane.PLAIN_MESSAGE // Icon type (PLAIN means no extra icon)
+        );
+
+    return result;
+}
 
 
 

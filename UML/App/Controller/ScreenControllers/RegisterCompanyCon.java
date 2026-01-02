@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
-import App.Model.Database.JsonDatabase;
+import App.Model.Database.UserDB;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.View.ViewHandler;
@@ -65,7 +65,7 @@ public class RegisterCompanyCon implements Controller_t{
         Map<String, Object> newUserWrapper = model.getConverter().convertUserToMap(newUser, defaultAccList);
 
         // 3. Save to Database
-        JsonDatabase db = model.getDB();
+        UserDB db = model.get_uDB();
         db.saveRecord(newUserWrapper);
 
         JOptionPane.showMessageDialog(null, "Registration Successful!\n Please login");

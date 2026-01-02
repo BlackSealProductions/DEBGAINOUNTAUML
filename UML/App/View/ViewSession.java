@@ -45,7 +45,7 @@ public class ViewSession {
 
         screen_history.push(curr);
         curr = nextScreen;
-        System.out.println("\ncurr:" + curr + " prevs:" + screen_history);
+        // System.out.println("\ncurr:" + curr + " prevs:" + screen_history);
     }
 
     public void goBack(){
@@ -53,14 +53,14 @@ public class ViewSession {
         if(!screen_history.isEmpty()){
 
             curr = screen_history.pop();
-            System.out.println("\ncurr:" + curr + " prevs:" + screen_history);
+            // System.out.println("\ncurr:" + curr + " prevs:" + screen_history);
         }
 
     }
 
     public void clearHistory(){
         screen_history.clear();
-        System.out.println("\ncurr:" + curr + " prevs:" + screen_history);
+        // System.out.println("\ncurr:" + curr + " prevs:" + screen_history);
 
     }
 

@@ -15,7 +15,7 @@
           "iban": "GR6700000000000000000000000",
           "ownerName": "Kadas",
           "secondaryOwner": "Omen",
-          "balance": "15000",
+          "balance": "38.0",
           "interestRate": "11%"
         },
         {
@@ -182,7 +182,8 @@
           "iban": "GR5555555555555555555555555",
           "ownerName": "Cafeteria",
           "secondaryOwner": "Prytanis",
-          "balance": "8540.20",
+          "balance": "8553.2",
+          "rfCode": "RF12345",
           "interestRate": "0%"
         }
       ]
@@ -234,6 +235,7 @@
           "ownerName": "Of TUC",
           "secondaryOwner": "-",
           "balance": "10000000.00",
+          "rfCode": "",
           "interestRate": "0%"
         }
       ]
@@ -254,8 +256,8 @@
           "accountId": "ACC_ARIS_01",
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
-          "secondaryOwner": "None",
-          "balance": "24.0",
+          "secondaryOwner": "h mana sou",
+          "balance": "1011.0",
           "interestRate": "0.5%"
         },
         {
@@ -263,7 +265,7 @@
           "iban": "GR9393319356273823426639169",
           "ownerName": "arisgod04",
           "secondaryOwner": "steligger",
-          "balance": "0",
+          "balance": "952.0",
           "interestRate": "1%"
         },
         {
@@ -306,6 +308,14 @@
           "iban": "GR0434868378581762882502325",
           "ownerName": "nig",
           "secondaryOwner": "nigger2",
+          "balance": "1000.0",
+          "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_75491145",
+          "iban": "GR0507574741847728595205700",
+          "ownerName": "nigga1",
+          "secondaryOwner": "r",
           "balance": "0",
           "interestRate": "1%"
         }
@@ -360,31 +370,19 @@
     "user": {
       "username": "fs",
       "password": "123",
-      "companyName": "",
+      "companyName": "fs",
       "phone": "333",
       "email": "fss",
       "type": "Company",
       "taxId": "444",
       "accounts": [
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "adele",
-      "password": "123",
-      "companyName": "The Smiths",
-      "phone": "69999",
-      "email": "sdbiq",
-      "type": "Company",
-      "taxId": "321",
-      "accounts": [
         {
-          "accountId": "ID_34171658",
-          "iban": "GR2333896631261655470216931",
-          "ownerName": "adele",
-          "secondaryOwner": "niggerr",
-          "balance": "0",
+          "accountId": "ID_45882085",
+          "iban": "GR3529345747154017510425940",
+          "ownerName": "fs",
+          "secondaryOwner": "Secondary owner",
+          "balance": "1056.0",
+          "rfCode": "null",
           "interestRate": "1%"
         }
       ]
@@ -416,6 +414,14 @@
           "secondaryOwner": "nigzzzzz",
           "balance": "0",
           "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_57587679",
+          "iban": "GR9160312536722710199329770",
+          "ownerName": "a",
+          "secondaryOwner": "trherg",
+          "balance": "0",
+          "interestRate": "1%"
         }
       ]
     }
@@ -436,6 +442,117 @@
           "ownerName": "b",
           "secondaryOwner": "nigab",
           "balance": "0",
+          "rfCode": "",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "mamo123",
+      "password": "123",
+      "companyName": "MamoInc",
+      "phone": "6944556677",
+      "email": "mamo@gmail.com",
+      "type": "Company",
+      "taxId": "998800123",
+      "accounts": [
+        {
+          "accountId": "ID_22953810",
+          "iban": "GR5572952312178892854303288",
+          "ownerName": "mamo123",
+          "secondaryOwner": "Secondary owner",
+          "balance": "556.0",
+          "rfCode": "RF20802301162002433921495",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "okok",
+      "password": "okok123",
+      "name": "ok",
+      "surname": "ok",
+      "phone": "1234567890",
+      "email": "ok@gmai.com",
+      "type": "Individual",
+      "taxId": "567890",
+      "accounts": [
+        {
+          "accountId": "ID_97130640",
+          "iban": "GR5768048692919648181597093",
+          "ownerName": "okok",
+          "secondaryOwner": "Secondary owner",
+          "balance": "9500.0",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "n",
+      "password": "n",
+      "companyName": "n",
+      "phone": "n",
+      "email": "n",
+      "type": "Company",
+      "taxId": "n",
+      "accounts": [
+        {
+          "accountId": "ID_29984252",
+          "iban": "GR7263923592798249730846540",
+          "ownerName": "n",
+          "secondaryOwner": "nigga",
+          "balance": "100.0",
+          "rfCode": "RF22223371237614278431943",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "w",
+      "password": "w",
+      "companyName": "w",
+      "phone": "w",
+      "email": "w",
+      "type": "Company",
+      "taxId": "w",
+      "accounts": [
+        {
+          "accountId": "ID_71708282",
+          "iban": "GR8571025449687529640477360",
+          "ownerName": "w",
+          "secondaryOwner": "ww",
+          "balance": "125.0",
+          "rfCode": "RF41288709933909648957565",
+          "interestRate": "1%"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "stelios",
+      "password": "123",
+      "companyName": "s",
+      "phone": "s",
+      "email": "s",
+      "type": "Company",
+      "taxId": "s",
+      "accounts": [
+        {
+          "accountId": "ID_39195955",
+          "iban": "GR4003342224706066500262588",
+          "ownerName": "stelios",
+          "secondaryOwner": "paris",
+          "balance": "14700.0",
+          "rfCode": "RF69683064141007775709728",
           "interestRate": "1%"
         }
       ]
