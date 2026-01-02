@@ -134,11 +134,11 @@ public class StatementsScreen implements View_t {
 
         if(allStatements != null){
             for(Statement state : allStatements){
-                if(state.getTransaction().getType() == "Recieve"){
+                if(state.getTransaction().getType() == "receive"){
                     sign = "+";
-                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+String.valueOf(state.getTransaction().getAmount())+"€");
+                    addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getRecieverId(), sign+String.valueOf(state.getTransaction().getAmount())+"€");
                 }
-                else if(state.getTransaction().getType() == "Send"){
+                else if(state.getTransaction().getType() == "send"){
                     sign = "-";
                     addTransaction(state.getDate().toString(), state.getStatementId(), state.getTransaction().getSenderId(), sign+String.valueOf(state.getTransaction().getAmount())+"€");
                 }
@@ -237,18 +237,24 @@ public class StatementsScreen implements View_t {
             // 4. FIX: Use .equals() or .equalsIgnoreCase() for Strings in Java, never ==
             String type = state.getTransaction().getType();
             
-            if ("recieve".equalsIgnoreCase(type)) {
+            if ("receive".equalsIgnoreCase(type)) {
                 sign = "+";
+                addTransaction(
+                    state.getDate().toString(), 
+                    state.getStatementId(), 
+                    state.getTransaction().getSenderId(), 
+                    sign + String.valueOf(state.getTransaction().getAmount()) + "€"
+                );
             } else {
                 sign = "-";
+                addTransaction(
+                    state.getDate().toString(), 
+                    state.getStatementId(), 
+                    state.getTransaction().getRecieverId(), 
+                    sign + String.valueOf(state.getTransaction().getAmount()) + "€"
+                );
             }
 
-            addTransaction(
-                state.getDate().toString(), 
-                state.getStatementId(), 
-                state.getTransaction().getSenderId(), 
-                sign + String.valueOf(state.getTransaction().getAmount()) + "€"
-            );
         }
         System.out.println("Valid: Loaded " + statements.size() + " transactions.");
     } else {
