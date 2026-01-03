@@ -77,7 +77,7 @@ public class UserDB {
     /**
      * Saves a NEW user during registration.
      */
-    public void saveRecord(Map<String, Object> userWrapper) {
+    private void saveRecord(Map<String, Object> userWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
         allRecords.add(userWrapper);
         saveAllRecords(allRecords);

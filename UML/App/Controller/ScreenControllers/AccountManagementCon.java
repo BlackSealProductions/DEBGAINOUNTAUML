@@ -41,6 +41,7 @@ public class AccountManagementCon implements Controller_t{
                 view.setSecOwner(newOwner);
                 Account user = Session.getInstance().getActiveAccount();
                 user.setSecondaryOwner(newOwner);
+                model.saveChangesToUDB_conv();
                 // TODO: Update your Database/Model here
             }
         });

@@ -388,8 +388,8 @@
           "accountId": "ID_45882085",
           "iban": "GR3529345747154017510425940",
           "ownerName": "fs",
-          "secondaryOwner": "Secondary owner",
-          "balance": "451.92",
+          "secondaryOwner": "FS TUC",
+          "balance": "450.90000000000003",
           "rfCode": "null",
           "interestRate": "1%"
         }

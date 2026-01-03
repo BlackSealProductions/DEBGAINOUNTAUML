@@ -39,6 +39,12 @@ public class StandingOrdersScreen implements View_t {
     private JTextField nameField, ibanField, dateField, frequencyField, amountField;
     private RoundedButton completeBtn;
     private JLabel balanceLabel;
+    private JComboBox<String> freqBox;
+
+    private int currRow = 1;
+    private GridBagConstraints gbcForm; 
+    private JPanel listContainer;
+
 
     @Override
     public void init() {
@@ -101,7 +107,7 @@ public class StandingOrdersScreen implements View_t {
         leftColumn.add(listTitle, BorderLayout.NORTH);
 
         // 1. The Container for rows (GridBagLayout)
-        JPanel listContainer = new JPanel(new GridBagLayout());
+        listContainer = new JPanel(new GridBagLayout());
         listContainer.setOpaque(false); // Make transparent
         GridBagConstraints gbcList = new GridBagConstraints();
         gbcList.fill = GridBagConstraints.HORIZONTAL;
@@ -111,13 +117,13 @@ public class StandingOrdersScreen implements View_t {
         addListHeader(listContainer, gbcList);
 
         // 3. Add Many Rows (Simulating scrolling)
-        addListRow(listContainer, gbcList, 1, "Ρεύμα", "9807410239...", "1η του Μήνα", "Μηνιαία", "50€");
-        addListRow(listContainer, gbcList, 2, "Netflix", "7663456243...", "1η του Μήνα", "Μηνιαία", "12€");
+        // addListRow(listContainer, gbcList, 1, "Ρεύμα", "9807410239...", "1η του Μήνα", "Μηνιαία", "50€");
+        // addListRow(listContainer, gbcList, 2, "Netflix", "7663456243...", "1η του Μήνα", "Μηνιαία", "12€");
         
         // Loop to create dummy data so you can test scrolling
-        for (int i = 3; i < 20; i++) {
-             addListRow(listContainer, gbcList, i, "Test " + i, "GR1234562345452345452435", "15η του Μήνα", "Μηνιαία", (i*10)+"€");
-        }
+        // for (int i = 3; i < 20; i++) {
+        //      addListRow(listContainer, gbcList, i, "Test " + i, "GR1234562345452345452435", "15η του Μήνα", "Μηνιαία", (i*10)+"€");
+        // }
         
         // Push content to top
         GridBagConstraints spacer = new GridBagConstraints();
@@ -141,7 +147,7 @@ public class StandingOrdersScreen implements View_t {
         rightColumn.setBackground(formBg); 
         rightColumn.setBorder(new EmptyBorder(20, 20, 20, 20)); 
 
-        GridBagConstraints gbcForm = new GridBagConstraints();
+        gbcForm = new GridBagConstraints();
         gbcForm.gridx = 0;
         gbcForm.insets = new Insets(10, 0, 10, 0);
         gbcForm.fill = GridBagConstraints.HORIZONTAL;
@@ -158,8 +164,20 @@ public class StandingOrdersScreen implements View_t {
         nameField = addFormField(rightColumn, "ΟΝΟΜΑ", "name", gbcForm, 1);
         ibanField = addFormField(rightColumn, "ΠΡΟΣ: ΛΟΓΑΡΙΑΣΜΟΣ", "IBAN", gbcForm, 3);
         dateField = addFormField(rightColumn, "ΗΜΕΡΟΜΗΝΙΑ ΠΛΗΡΩΜΗΣ", "date", gbcForm, 5);
-        frequencyField = addFormField(rightColumn, "ΚΑΘΕ ΠΟΤΕ", "ΜΕΡΑ / ΜΗΝΑ / ΧΡΟΝΟΣ", gbcForm, 7);
+        // frequencyField = addFormField(rightColumn, "ΚΑΘΕ ΠΟΤΕ", "ΜΕΡΑ / ΜΗΝΑ / ΧΡΟΝΟΣ", gbcForm, 7);
         amountField = addFormField(rightColumn, "ΠΟΣΟ ΠΛΗΡΩΜΗΣ", "$", gbcForm, 9);
+
+        JLabel boxlabel = new JLabel("ΚΑΘΕ ΠΟΤΕ");
+        boxlabel.setFont(customFont12);
+        boxlabel.setForeground(Color.GRAY);
+        gbcForm.gridy = 7;
+        rightColumn.add(boxlabel, gbcForm);
+
+        String[] choices = {"ΜΗΝΑ", "ΧΡΟΝΟ"};
+        freqBox = createStyledComboBox(choices, 100);
+
+        gbcForm.gridy = 7 + 1;
+        rightColumn.add(freqBox, gbcForm);
 
         completeBtn = new RoundedButton("Ολοκλήρωση",15);
         completeBtn.setBackground(red);
@@ -181,6 +199,19 @@ public class StandingOrdersScreen implements View_t {
     }
 
     // --- Helpers ---
+
+    private JComboBox<String> createStyledComboBox(String[] items, int width) {
+        JComboBox<String> box = new JComboBox<>(items);
+        box.setBackground(Color.WHITE);
+        box.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
+        box.setPreferredSize(new Dimension(width, 40));
+        // box.setPreferredSize(new Dimension(300, 40));
+        box.setFont(customFont16);
+        box.setForeground(placeholderColor);
+        box.setBackground(Color.WHITE);
+        box.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0)); 
+        return box;
+    }
 
     private JTextField addFormField(JPanel parent, String labelText, String placeholder, GridBagConstraints gbc, int y) {
         JLabel label = new JLabel(labelText);
@@ -215,18 +246,34 @@ public class StandingOrdersScreen implements View_t {
         }
     }
 
-    private void addListRow(JPanel parent, GridBagConstraints gbc, int row, String name, String acc, String date, String type, String amount) {
-        gbc.gridy = row;
-        String[] data = {name, acc, date, type, amount};
+    // private void addListRow(JPanel parent, GridBagConstraints gbc, int row, String name, String acc, String date, String type, String amount) {
+    //     gbc.gridy = row;
+    //     String[] data = {name, acc, date, type, amount};
+    //     int x = 0;
+    //     for (String d : data) {
+    //         JLabel label = new JLabel(d);
+    //         label.setFont(customFont12);
+    //         gbc.gridx = x++;
+    //         gbc.weightx = (x == 2) ? 2.0 : 1.0;
+    //         parent.add(label, gbc);
+    //     }
+    // }
+
+    public void addListRow2(String[] data) {
+        GridBagConstraints gbc = this.gbcForm;
+        gbc.gridy = this.currRow;
+        // String[] data = {name, acc, date, type, amount};
         int x = 0;
         for (String d : data) {
             JLabel label = new JLabel(d);
             label.setFont(customFont12);
             gbc.gridx = x++;
             gbc.weightx = (x == 2) ? 2.0 : 1.0;
-            parent.add(label, gbc);
+            this.listContainer.add(label, gbc);
         }
+        this.currRow++;
     }
+
 
     @Override
     public JPanel getMainPanel() { return panel; }
@@ -245,6 +292,9 @@ public class StandingOrdersScreen implements View_t {
         balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
     }
 
+    public JComboBox<String> getFreqBox() {
+        return freqBox;
+    }
 
-
+    
 }

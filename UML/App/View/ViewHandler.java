@@ -149,6 +149,7 @@ public class ViewHandler {
     public StandingOrdersScreen getStandingOrdersScreen() {
         return (StandingOrdersScreen) this.standingorders;
     }
+    
     public AccountManagementScreen getAccountManagementScreen() {
         return (AccountManagementScreen) this.accountmgmt;
     }

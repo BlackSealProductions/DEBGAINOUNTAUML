@@ -3,6 +3,7 @@ package App.Model.Entities.UserEntities;
 import java.util.ArrayList;
 import java.util.List;
 
+import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.OperationEntities.Transaction;
 
 public class Account {
@@ -15,6 +16,7 @@ public class Account {
     private String rfCode;
 
     private List<Transaction> transactions;
+    private List<StandingOrder> standingorders;
 
     public Account(String citizenId, String ownerName, String iban, String balance, String interestRate, String secondaryOwner) {
         this.accountId = citizenId;
@@ -47,28 +49,52 @@ public class Account {
     // Setters
     public void setBalance(String balance) { this.balance = balance; }
     public void setRfCode(String rfCode) { this.rfCode = rfCode; }
-
+    
+    public void setSecondaryOwner(String secondaryOwner) {
+        this.secondaryOwner = secondaryOwner;
+    }
+    
     public void addTransaction(Transaction t) {
         if (t != null) {
-            if(transactions==null){
+            if(this.transactions==null){
                 this.transactions= new ArrayList<Transaction>();
             }
        
             this.transactions.add(t);
         }
     }
-
+    
+    
     public void setTransactions(List<Transaction> transactions){
         this.transactions = transactions;
     }
-
+    
     public List<Transaction> getTransactions() {
         return transactions;
     }
+    
+    
+        public void addOrder(StandingOrder s) {
+            if (s != null) {
+                if(this.standingorders==null){
+                    this.standingorders= new ArrayList<StandingOrder>();
+                }
+           
+                this.standingorders.add(s);
+            }
+        }
 
-    public void setSecondaryOwner(String secondaryOwner) {
-        this.secondaryOwner = secondaryOwner;
+    public void setStandingorders(List<StandingOrder> standingorders) {
+        this.standingorders = standingorders;
     }
+
+    public List<StandingOrder> getStandingorders() {
+        return standingorders;
+    }
+
+
+
+
 
     
 }

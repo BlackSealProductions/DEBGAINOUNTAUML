@@ -22,13 +22,12 @@ public class DepositCon implements Controller_t {
     private DepositScreen view;
     private ModelHandler model; 
     private ViewHandler viewHandler;
-    private DashboardCon dashcon;
+    // private DashboardCon dashcon;
 
-    public DepositCon(DepositScreen view, ModelHandler model, ViewHandler viewHandler, Controller_t dashcon) {
+    public DepositCon(DepositScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
-        this.dashcon = (DashboardCon)dashcon;
        
     }
 
@@ -84,7 +83,7 @@ public class DepositCon implements Controller_t {
             DashboardScreen next = viewHandler.getDashboardScreen();
             
             // Refresh dashboard with new balance
-            dashcon.refresh(user);
+            next.refresh(user);
             next.show();
             ViewSession.getInstance().updateScreenHistory(next);
 

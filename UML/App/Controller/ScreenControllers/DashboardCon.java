@@ -4,6 +4,7 @@ import App.Controller.ControllerHandler;
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
+import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.UserEntities.Account;
 import App.View.ViewHandler;
 import App.View.ViewSession;
@@ -100,6 +101,13 @@ public class DashboardCon implements Controller_t{
         Account user = Session.getInstance().getActiveAccount();
         pagies.setBalance(user.getBalance());
         refresh(user);
+        List<StandingOrder> orders = user.getStandingorders();
+        if(orders!=null){
+            for(StandingOrder order : orders){
+                String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount())};
+                viewHandler.getStandingOrdersScreen().addListRow2(dataForList);
+            }
+        }
         pagies.show();
         ViewSession.getInstance().updateScreenHistory(pagies);
 

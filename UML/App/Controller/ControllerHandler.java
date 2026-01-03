@@ -24,6 +24,7 @@ public class ControllerHandler {
     private Controller_t statement_con;
     private Controller_t accmgmt_con;
     private Controller_t paybill_con; 
+    private Controller_t standingorders_con;
     
     // --- NEW: Add Metafora Controller ---
     private Controller_t metafora_con;
@@ -66,10 +67,10 @@ public class ControllerHandler {
         dashboard_con = new DashboardCon(v.getDashboardScreen(), m, v, (StatementCon)statement_con);
         dashboard_con.init();
 
-        deposit_con = new DepositCon(v.getDepositScreen(), m, v, dashboard_con);
+        deposit_con = new DepositCon(v.getDepositScreen(), m, v);
         deposit_con.init();
         
-        withdraw_con = new WithdrawCon(v.getWithdrawScreen(), m, v, dashboard_con);
+        withdraw_con = new WithdrawCon(v.getWithdrawScreen(), m, v);
         withdraw_con.init();
         
         accmgmt_con = new AccountManagementCon(v.getAccountManagementScreen(), m, v);
@@ -78,11 +79,11 @@ public class ControllerHandler {
         paybill_con = new PayBillCon(v.getBillPaymentScreen(), m, v);
         paybill_con.init();
 
-        // --- NEW: Initialize Metafora Controller ---
-        // Make sure ViewHandler has getMetaforaScreen()!
         metafora_con = new MetaforaCon(v.getMetaforaScreen(), m, v);
         metafora_con.init();
-        // -------------------------------------------
+
+        standingorders_con = new StandingOrdersCon(v.getStandingOrdersScreen(), m, v);
+        standingorders_con.init();
 
     }
 

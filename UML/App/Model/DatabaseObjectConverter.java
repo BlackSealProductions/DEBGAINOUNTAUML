@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
@@ -103,6 +104,35 @@ public class DatabaseObjectConverter {
                 }
                 
         userData.put("transactions", transactions);
+                
+        Map<String, Object> wrapper = new HashMap<>();
+        wrapper.put("account", userData);
+        return wrapper;
+    }
+
+    public Map<String, Object> convertAcctOrdersToMap(Account activeAccount){
+        String accountId = activeAccount.getAccountId();
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("accountId", accountId);
+       
+        // Handle nested accounts array
+        List<Map<String, String>> orders = new ArrayList<>();
+
+        for(StandingOrder order : activeAccount.getStandingorders()){
+
+            Map<String, String> so = new HashMap<>();
+            so.put("name", order.getName());
+            so.put("targetIban", order.getAccountIban());
+            so.put("transactionId", order.getTransaction().getTransactionId());
+            so.put("orderId", order.getOrderId());
+            so.put("amount", String.valueOf(order.getAmount()));
+            so.put("day", order.getPresentDay());
+            so.put("frequency", order.getPaymentFrequency());
+            orders.add(so);
+        }
+
+        userData.put("orders", orders);
                 
         Map<String, Object> wrapper = new HashMap<>();
         wrapper.put("account", userData);

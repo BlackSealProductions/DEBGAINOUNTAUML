@@ -374,6 +374,16 @@
           "time": "22:35",
           "description": "External Transfer (Fee: 0.2)",
           "type": "send"
+        },
+        {
+          "transactionId": "1767414908113",
+          "senderId": "ID_45882085",
+          "recieverId": "Unknown",
+          "amount": "1.0",
+          "date": "2026-01-03",
+          "time": "06:35",
+          "description": "External Transfer (Fee: 0.02)",
+          "type": "send"
         }
       ]
     }

@@ -4,32 +4,30 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import App.Model.Entities.UserEntities.Account;
-
+ 
 
 
 public class StandingOrder {
-    private Account account;
+    private String accountIban;
     private Transaction transaction;
     private String orderId;
-    private float amount;
-    private LocalDate presentDay;
-    private LocalDate nextIssueDay;
-    private Frequency paymentFrequency;
+    private double amount;
+    private String presentDay;
+    private String nextIssueDay;
+    private String paymentFrequency;
     private boolean isNotPaidOnTime;
-
-    public enum Frequency {
-        DAY,
-        WEEK,
-        MONTH,
-        YEAR
-    }
+    private String name;
     
+        public enum Frequency {
+            DAY,
+            WEEK,
+            MONTH,
+            YEAR
+        }
     
-
-
-    public StandingOrder(Account account, Transaction transaction, String orderId, float amount, LocalDate presentDay,
-            Frequency paymentFrequency) {
-        this.account = account;
+        public StandingOrder(String name, String accountIban, Transaction transaction, String orderId, double amount, String presentDay, String paymentFrequency) {
+            this.name = name;
+        this.accountIban = accountIban;
         this.transaction = transaction;
         this.orderId = orderId;
         this.amount = amount;
@@ -38,13 +36,10 @@ public class StandingOrder {
         isNotPaidOnTime = false;
     }
 
-
-
-
     
 
-    public Account getAccount() {
-        return account;
+    public String getAccountIban() {
+        return accountIban;
     }
     public Transaction getTransaction() {
         return transaction;
@@ -52,16 +47,16 @@ public class StandingOrder {
     public String getOrderId() {
         return orderId;
     }
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
-    public LocalDate getPresentDay() {
+    public String getPresentDay() {
         return presentDay;
     }
-    public LocalDate getNextIssueDay() {
+    public String getNextIssueDay() {
         return nextIssueDay;
     }
-    public Frequency getPaymentFrequency() {
+    public String getPaymentFrequency() {
         return paymentFrequency;
     }
 
@@ -69,8 +64,8 @@ public class StandingOrder {
         return isNotPaidOnTime;
     }
 
-    public void setNotPaidOnTime(boolean isNotPaidOnTime) {
-        this.isNotPaidOnTime = isNotPaidOnTime;
+    public void setNotPaidOnTime(boolean value) {
+        this.isNotPaidOnTime = value;
     }
 
 
@@ -87,6 +82,10 @@ public class StandingOrder {
     public void completePayment(){
 
 
+    }
+
+    public String getName() {
+        return name;
     }
 
     

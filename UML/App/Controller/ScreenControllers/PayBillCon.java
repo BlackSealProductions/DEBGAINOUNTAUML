@@ -121,7 +121,8 @@ public class PayBillCon implements Controller_t {
 
             TransactionDB tDB = model.get_tDB();
             
-            tDB.saveRecord(model.getConverter().convertAcctTransactionsToMap(myAccount));
+            // tDB.saveRecord(model.getConverter().convertAcctTransactionsToMap(myAccount));
+            model.addEntryToTDB_conv(myAccount);
 
             // 6. Update GUI
             String newBal = String.valueOf(myBalance - amountToPay);

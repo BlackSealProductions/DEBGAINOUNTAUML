@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.math.BigDecimal;
 
 import App.Model.Session;
 import App.Model.Entities.UserEntities.Account;
@@ -235,7 +236,7 @@ public class DashboardScreen implements View_t {
         userNameLabel.setText("Welcome, " + username);
         accountNumberLabel.setText("Account: #" + acctId);
         usertype.setText(type);
-        if(Float.parseFloat(balance) <= 0){
+        if(Float.parseFloat(balance)  <= 0){
 
             balanceLabel.setText(balance+" € (8a se valoun mesa se ligo :())");
         }
