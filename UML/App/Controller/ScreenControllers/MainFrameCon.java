@@ -52,5 +52,4 @@ public class MainFrameCon implements Controller_t{
             ViewSession.getInstance().clearHistory();
         }
     }
-
 }

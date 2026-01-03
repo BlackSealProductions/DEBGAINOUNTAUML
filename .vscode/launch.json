@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainSimGUI",
+            "request": "launch",
+            "mainClass": "App.MainSimGUI",
+            "projectName": "DEBGAINOUNTAUML_7fa5f62"
+        },
+        {
+            "type": "java",
             "name": "MainGUI",
             "request": "launch",
             "mainClass": "App.MainGUI",
