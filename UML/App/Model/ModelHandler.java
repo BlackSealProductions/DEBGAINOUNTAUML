@@ -1,5 +1,54 @@
 package App.Model;
 
+import java.util.List;
+import java.util.Map;
+
+import App.Model.Database.TransactionDB;
+import App.Model.Database.UserDB;
+import App.Model.Entities.UserEntities.Account;
+import App.Model.Entities.UserEntities.Customer;
+
 public class ModelHandler {
-    
+
+    private UserDB uDB;
+    private TransactionDB tDB;
+    private DatabaseObjectConverter conv;
+
+    public void init(){
+        this.uDB = new UserDB();
+        this.tDB = new TransactionDB();
+        this.conv = new DatabaseObjectConverter();
+    }
+
+    public void saveChangesToUDB_conv(){
+        Customer user = Session.getInstance().getActiveCustomer();
+        this.uDB.updateUserRecord(conv.convertUserToMap(user, user.getAccounts()));
+    }
+
+    public void saveChangesToTDB_conv(){
+        Account acct = Session.getInstance().getActiveAccount();
+        this.tDB.updateUserRecord(conv.convertAcctTransactionsToMap(acct));
+    }
+
+    // public void saveChangesToDB_sess(){
+    //     this.db.updateUserRecord(Session.getInstance().convertActiveUserToMap());
+    // }
+
+    public UserDB get_uDB(){
+        return this.uDB;
+    } 
+
+    public TransactionDB get_tDB(){
+        return this.tDB;
+    } 
+
+    public Session getSessionInst(){
+        return Session.getInstance();
+    }
+
+    public DatabaseObjectConverter getConverter(){
+        return this.conv;
+    }
+
 }
+

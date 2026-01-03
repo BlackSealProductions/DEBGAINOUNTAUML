@@ -8,6 +8,13 @@ public abstract class User {
     String userID;
     String username;
     String password;
+    
+    public String getUsername() {
+        return username;
+    }
+    public String getPassword() {
+        return password;
+    }
 
     void ManageInfo(String newName,String newPassword){
         if(newName != null){

@@ -1,7 +1,7 @@
 package App.Controller;
-import App.View.View_t;
 
 public interface Controller_t {
+
+    public abstract void init();
     
-    public View_t getViewTemplate();
 }
