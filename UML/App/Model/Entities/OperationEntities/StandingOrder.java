@@ -2,6 +2,7 @@ package App.Model.Entities.OperationEntities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import App.Model.Entities.UserEntities.Account;
  
@@ -25,14 +26,14 @@ public class StandingOrder {
             YEAR
         }
     
-        public StandingOrder(String name, String accountIban, Transaction transaction, String orderId, double amount, String presentDay, String paymentFrequency) {
+        public StandingOrder(String name, String accountIban, String orderId, double amount, String presentDay, String paymentFrequency) {
             this.name = name;
         this.accountIban = accountIban;
-        this.transaction = transaction;
         this.orderId = orderId;
         this.amount = amount;
         this.presentDay = presentDay;
         this.paymentFrequency = paymentFrequency;
+        // this.nextIssueDay = calcNextDate(paymentFrequency,presentDay);
         isNotPaidOnTime = false;
     }
 
@@ -67,15 +68,29 @@ public class StandingOrder {
     public void setNotPaidOnTime(boolean value) {
         this.isNotPaidOnTime = value;
     }
+    
+
+    public void setNextIssueDay(String nextIssueDay) {
+        this.nextIssueDay = nextIssueDay;
+    }
 
 
-    public LocalDate calcNextDate(Frequency freq){
+
+    public void calcNextDate(String freq,String present){
         LocalDate nextDate=null;
 
-        
+        DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+        LocalDate birthdayOfOrder = LocalDate.parse(present,form);
 
-        return nextDate;
+        if(freq == "ΜΗΝΑ"){
+            nextDate = birthdayOfOrder.plusMonths(1);
+        }
+        else if (freq == "ΧΡΟΝΟ"){
+            nextDate = birthdayOfOrder.plusYears(1);
+        }
+
+        setNextIssueDay(nextDate.format(form));
     }
 
 

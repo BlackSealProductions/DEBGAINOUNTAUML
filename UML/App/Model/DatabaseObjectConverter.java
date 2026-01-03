@@ -124,10 +124,11 @@ public class DatabaseObjectConverter {
             Map<String, String> so = new HashMap<>();
             so.put("name", order.getName());
             so.put("targetIban", order.getAccountIban());
-            so.put("transactionId", order.getTransaction().getTransactionId());
+            //so.put("transactionId", order.getTransaction().getTransactionId());
             so.put("orderId", order.getOrderId());
             so.put("amount", String.valueOf(order.getAmount()));
             so.put("day", order.getPresentDay());
+            so.put("dueDate", order.getNextIssueDay());
             so.put("frequency", order.getPaymentFrequency());
             orders.add(so);
         }

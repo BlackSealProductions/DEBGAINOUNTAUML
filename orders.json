@@ -1,16 +1,16 @@
 [
   {
     "account": {
-      "accountId": "ID_45882085",
+      "accountId": "ACC_ARIS_01",
       "orders": [
         {
-          "name": "a",
-          "targetIban": "aa",
-          "transactionId": "1767424232492",
-          "orderId": "1767424232493",
-          "amount": "23.0",
-          "day": "1",
-          "frequency": "ΜΗΝΑ"
+          "name": "Ενοικιο",
+          "targetIban": "GR23490213847092387523045245",
+          "orderId": "1767477019653",
+          "amount": "12.0",
+          "day": "05/01/2026",
+          "dueDate": "05/01/2027",
+          "frequency": "ΧΡΟΝΟ"
         }
       ]
     }

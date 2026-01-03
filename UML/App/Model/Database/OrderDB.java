@@ -109,15 +109,15 @@ public class OrderDB {
                     for (int j = 0; j < orders.size(); j++) {
                         Map<String, String> so = orders.get(j);
                         // Skip ghost accounts as discussed previously
-                        if (so.get("transactionId") == null || so.get("transactionId").isEmpty()) continue;
+                        if (so.get("orderId") == null || so.get("orderId").isEmpty()) continue;
         
                         sb.append("        {\n");
                         sb.append(String.format("          \"name\": \"%s\",\n", so.get("name")));
                         sb.append(String.format("          \"targetIban\": \"%s\",\n", so.get("targetIban")));
-                        sb.append(String.format("          \"transactionId\": \"%s\",\n", so.get("transactionId")));
                         sb.append(String.format("          \"orderId\": \"%s\",\n", so.get("orderId")));
                         sb.append(String.format("          \"amount\": \"%s\",\n", so.get("amount")));
                         sb.append(String.format("          \"day\": \"%s\",\n", so.get("day")));
+                        sb.append(String.format("          \"dueDate\": \"%s\",\n", so.get("dueDate")));
                         sb.append(String.format("          \"frequency\": \"%s\"\n", so.get("frequency")));
                         sb.append("        }");
                         if (j < orders.size() - 1) sb.append(",");
@@ -215,6 +215,7 @@ public class OrderDB {
                                 so.put("transactionId", extractValue(part, "transactionId"));
                                 so.put("amount", extractValue(part, "amount"));
                                 so.put("day", extractValue(part, "day"));
+                                so.put("dueDate", extractValue(part, "dueDate"));
                                 so.put("frequency", extractValue(part, "frequency"));
                                 orders.add(so);
                             }

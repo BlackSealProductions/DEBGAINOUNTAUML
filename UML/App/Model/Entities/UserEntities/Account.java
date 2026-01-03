@@ -16,7 +16,7 @@ public class Account {
     private String rfCode;
 
     private List<Transaction> transactions;
-    private List<StandingOrder> standingorders;
+    private List<StandingOrder> standingOrders = new ArrayList<StandingOrder>();
 
     public Account(String citizenId, String ownerName, String iban, String balance, String interestRate, String secondaryOwner) {
         this.accountId = citizenId;
@@ -74,22 +74,17 @@ public class Account {
     }
     
     
-        public void addOrder(StandingOrder s) {
-            if (s != null) {
-                if(this.standingorders==null){
-                    this.standingorders= new ArrayList<StandingOrder>();
-                }
-           
-                this.standingorders.add(s);
-            }
-        }
+    public void addOrder(StandingOrder s) {
+       
+            this.standingOrders.add(s);
+    }
 
     public void setStandingorders(List<StandingOrder> standingorders) {
-        this.standingorders = standingorders;
+        this.standingOrders = standingorders;
     }
 
     public List<StandingOrder> getStandingorders() {
-        return standingorders;
+        return standingOrders;
     }
 
 

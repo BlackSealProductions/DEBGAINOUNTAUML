@@ -1,0 +1,119 @@
+Date : 2026-01-03 20:57:02
+Directory : c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML
+Total : 73 files,  5791 codes, 558 comments, 1568 blanks, all 7917 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |         69 |      4,920 |        558 |      1,564 |      7,042 |
+| JSON     |          3 |        869 |          0 |          3 |        872 |
+| Markdown |          1 |          2 |          0 |          1 |          3 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                 | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                    |         73 |      5,791 |        558 |      1,568 |      7,917 |
+| . (Files)                                                                                                            |          4 |        871 |          0 |          4 |        875 |
+| UML                                                                                                                  |         69 |      4,920 |        558 |      1,564 |      7,042 |
+| UML\App                                                                                                              |         68 |      4,900 |        558 |      1,558 |      7,016 |
+| UML\App (Files)                                                                                                      |          1 |         15 |          0 |          9 |         24 |
+| UML\App\Controller                                                                                                   |         18 |      1,201 |        110 |        380 |      1,691 |
+| UML\App\Controller (Files)                                                                                           |          2 |         81 |          3 |         33 |        117 |
+| UML\App\Controller\ScreenControllers                                                                                 |         16 |      1,120 |        107 |        347 |      1,574 |
+| UML\App\Model                                                                                                        |         21 |      1,265 |        145 |        427 |      1,837 |
+| UML\App\Model (Files)                                                                                                |          4 |        329 |         22 |        109 |        460 |
+| UML\App\Model\Database                                                                                               |          3 |        594 |        113 |        161 |        868 |
+| UML\App\Model\Entities                                                                                               |         14 |        342 |         10 |        157 |        509 |
+| UML\App\Model\Entities\Misc                                                                                          |          1 |          3 |          1 |          2 |          6 |
+| UML\App\Model\Entities\OperationEntities                                                                             |          7 |        175 |          7 |         90 |        272 |
+| UML\App\Model\Entities\UserEntities                                                                                  |          6 |        164 |          2 |         65 |        231 |
+| UML\App\View                                                                                                         |         28 |      2,419 |        303 |        742 |      3,464 |
+| UML\App\View (Files)                                                                                                 |          4 |        232 |          6 |         95 |        333 |
+| UML\App\View\Screens                                                                                                 |         15 |      1,953 |        237 |        569 |      2,759 |
+| UML\App\View\ViewTests                                                                                               |          1 |          8 |          0 |          6 |         14 |
+| UML\App\View\helper_classes                                                                                          |          8 |        226 |         60 |         72 |        358 |
+| UML\Utils                                                                                                            |          1 |         20 |          0 |          6 |         26 |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                             | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\README.md                                                       | Markdown |          2 |          0 |          1 |          3 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ControllerHandler.java                       | Java     |         77 |          3 |         30 |        110 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\Controller_t.java                            | Java     |          4 |          0 |          3 |          7 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\AccountCreationCon.java    | Java     |        114 |         11 |         26 |        151 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\AccountManagementCon.java  | Java     |         39 |          2 |          8 |         49 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\AccountSelectionCon.java   | Java     |         50 |          1 |         15 |         66 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\DashboardCon.java          | Java     |        148 |          1 |         38 |        187 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\DepositCon.java            | Java     |         63 |          8 |         27 |         98 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\FirstPageCon.java          | Java     |         37 |          0 |         16 |         53 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\LoginCon.java              | Java     |         86 |          4 |         21 |        111 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\MainFrameCon.java          | Java     |         41 |          4 |         12 |         57 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\MetaforaCon.java           | Java     |        116 |         28 |         34 |        178 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\PayBillCon.java            | Java     |         91 |         22 |         31 |        144 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\RegisterCompanyCon.java    | Java     |         66 |          7 |         21 |         94 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\RegisterIndividualCon.java | Java     |         64 |          9 |         21 |         94 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\StandingOrdersCon.java     | Java     |         43 |          0 |         14 |         57 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\StatementCon.java          | Java     |         60 |          3 |         24 |         87 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\TypeSelectionCon.java      | Java     |         36 |          0 |         14 |         50 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Controller\ScreenControllers\WithdrawCon.java           | Java     |         66 |          7 |         25 |         98 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\MainGUI.java                                            | Java     |         15 |          0 |          9 |         24 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\BankServices.java                                 | Java     |          3 |          0 |          3 |          6 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\DatabaseObjectConverter.java                      | Java     |        101 |          7 |         36 |        144 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Database\OrderDB.java                             | Java     |        168 |         31 |         55 |        254 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Database\TransactionDB.java                       | Java     |        183 |         52 |         53 |        288 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Database\UserDB.java                              | Java     |        243 |         30 |         53 |        326 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\Misc\AuditLog.java                       | Java     |          3 |          1 |          2 |          6 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\OperationEntities\Bill.java              | Java     |          3 |          0 |          3 |          6 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\OperationEntities\Deposit.java           | Java     |          6 |          1 |          4 |         11 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\OperationEntities\Payment.java           | Java     |          3 |          0 |          3 |          6 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\OperationEntities\StandingOrder.java     | Java     |         62 |          0 |         27 |         89 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\OperationEntities\Statement.java         | Java     |         40 |          0 |         28 |         68 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\OperationEntities\Transaction.java       | Java     |         55 |          5 |         21 |         81 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\OperationEntities\Withdrawal.java        | Java     |          6 |          1 |          4 |         11 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\UserEntities\Account.java                | Java     |         73 |          2 |         25 |        100 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\UserEntities\Admin.java                  | Java     |          3 |          0 |          2 |          5 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\UserEntities\Company.java                | Java     |         17 |          0 |         11 |         28 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\UserEntities\Customer.java               | Java     |         31 |          0 |          8 |         39 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\UserEntities\Individual.java             | Java     |         27 |          0 |         11 |         38 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Entities\UserEntities\User.java                   | Java     |         13 |          0 |          8 |         21 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\ModelHandler.java                                 | Java     |         52 |          3 |         19 |         74 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\Model\Session.java                                      | Java     |        173 |         12 |         51 |        236 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\MainFrame.java                                     | Java     |         38 |          2 |         19 |         59 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\AccountCreationScreen.java                 | Java     |        114 |         18 |         32 |        164 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\AccountManagementScreen.java               | Java     |        161 |         28 |         40 |        229 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\AccountSelectionScreen.java                | Java     |         66 |          4 |         18 |         88 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\BillPaymentScreen.java                     | Java     |        144 |         27 |         44 |        215 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\DashboardScreen.java                       | Java     |        180 |         30 |         57 |        267 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\DepositScreen.java                         | Java     |        103 |          5 |         19 |        127 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\FirstPageScreen.java                       | Java     |        132 |          7 |         74 |        213 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\LoginScreen.java                           | Java     |        111 |         14 |         31 |        156 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\MetaforaScreen.java                        | Java     |        128 |         16 |         28 |        172 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\RegisterCompanyScreen.java                 | Java     |         90 |         12 |         29 |        131 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\RegisterIndividualScreen.java              | Java     |        135 |         20 |         46 |        201 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\StandingOrdersScreen.java                  | Java     |        227 |         20 |         53 |        300 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\StatementsScreen.java                      | Java     |        176 |         21 |         44 |        241 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\TypeSelectionScreen.java                   | Java     |         82 |         12 |         30 |        124 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\Screens\WithdrawScreen.java                        | Java     |        104 |          3 |         24 |        131 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\ViewHandler.java                                   | Java     |        143 |          0 |         52 |        195 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\ViewSession.java                                   | Java     |         42 |          4 |         21 |         67 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\ViewTests\TestMainPage.java                        | Java     |          8 |          0 |          6 |         14 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\View_t.java                                        | Java     |          9 |          0 |          3 |         12 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\AccountCellRenderer.java            | Java     |         36 |          3 |          9 |         48 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\CustomFontLoader.java               | Java     |         16 |          0 |          3 |         19 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\FontLoader.java                     | Java     |         20 |          5 |          7 |         32 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\OnClickEventHelper.java             | Java     |         23 |         27 |         11 |         61 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\OnFocusEventHelper.java             | Java     |         35 |          0 |          5 |         40 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\RoundedBorder.java                  | Java     |         41 |          0 |         14 |         55 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\RoundedButton.java                  | Java     |         32 |         13 |         12 |         57 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\App\View\helper_classes\RoundedImage.java                   | Java     |         23 |         12 |         11 |         46 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\UML\Utils\GlobalConsts.java                                     | Java     |         20 |          0 |          6 |         26 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\accounts.json                                                   | JSON     |        569 |          0 |          1 |        570 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\orders.json                                                     | JSON     |          9 |          0 |          1 |         10 |
+| c:\Users\arisp\Documents\UML_Project\DEBGAINOUNTAUML\transactions.json                                               | JSON     |        291 |          0 |          1 |        292 |
+| Total                                                                                                                |          |      5,791 |        558 |      1,568 |      7,917 |
++----------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

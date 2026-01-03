@@ -35,6 +35,8 @@ public class StandingOrdersCon implements Controller_t{
         String freq = view.getFreqBox().getSelectedItem().toString();
         Double amount = 0.0;
 
+
+        if(!view.validateInputs()){return;}
         try {
             amount = Double.parseDouble(view.getAmount());
         } catch (NumberFormatException e) {
@@ -43,15 +45,19 @@ public class StandingOrdersCon implements Controller_t{
         String transID = String.valueOf(System.currentTimeMillis());
         String orderID = String.valueOf(System.currentTimeMillis()+1);
 
-
-        Transaction tr = new Transaction(transID, Session.getInstance().getActiveAccount().getAccountId(), acc, amount, date, date, "Standing order", "send");
-        StandingOrder order = new StandingOrder(name, acc, tr, orderID, amount, date, freq);
-
+        //Transaction tr = new Transaction(transID, Session.getInstance().getActiveAccount().getAccountId(), acc, amount, date, date, "Standing order", "send");
+        StandingOrder order = new StandingOrder(name, acc, orderID, amount, date, freq);
+        order.calcNextDate(freq, date);
         Session.getInstance().getActiveAccount().addOrder(order);
+        
 
         System.out.println(Session.getInstance().getActiveAccount().getStandingorders());
 
         model.saveChangesToODB_conv();
+
+        if(Session.getInstance().getActiveAccount().getStandingorders().isEmpty()){
+            view.resetRowCounter();
+        }
         String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount())};
         view.addListRow2(dataForList);
 

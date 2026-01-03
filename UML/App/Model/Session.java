@@ -39,7 +39,6 @@ public class Session {
     public void login(Map<String, Object> userData, ModelHandler model) {
 
         loadUser(userData);
- 
     }
 
     public void logout() {
@@ -164,13 +163,13 @@ public class Session {
             String acc = so.get("targetIban");
             TransactionDB tDB = m.get_tDB();
             Map<String, Object> trMap = tDB.findTransactionWithId(so.get("transactionId"));
-            Transaction tr = genTransactionObject(trMap);
+            // Transaction tr = genTransactionObject(trMap);
             String orderId = so.get("orderId");
             Double amount = Double.parseDouble(so.get("amount"));
             String day = so.get("day");
             String freq = so.get("frequency");
 
-            accountOrders.add(new StandingOrder(name, acc, tr, orderId, amount, day, freq));
+            accountOrders.add(new StandingOrder(name, acc, orderId, amount, day, freq));
             // foundAcc=true;
         }
         activeAccount.setStandingorders(accountOrders);
