@@ -9,43 +9,41 @@ import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.Scanner;
 
-public class SimulationScreen {
+import App.View.View_t; // Make sure this is imported!
 
-    private JFrame frame;
+public class SimulationScreen implements View_t {
+
     private JPanel mainPanel;
 
     // --- Components ---
     private JTextField botCountField, actionsField;
-    private JComboBox<String> delayBox;
     private JButton runButton, backButton;
     private JTextArea terminalArea;
     private JLabel totalTxLabel, volumeLabel, errorsLabel;
 
     // --- Terminal State ---
-    private int lastPromptPosition = 0; // Where the user can start typing
-    private File currentDirectory = new File(System.getProperty("user.dir")); // Track "cd"
-    private final String PROMPT = "admin@bank_system: " + currentDirectory.getName() + " $ ";
-
+    private int lastPromptPosition = 0; 
+    private File currentDirectory = new File(System.getProperty("user.dir")); 
+    
     // --- Styles ---
     private final Color COLOR_BG = Color.decode("#C2E5FF");
     private final Color COLOR_RED = Color.decode("#DC3545");
     private final Color COLOR_DARK = Color.decode("#333333");
-    private final Font FONT_TERMINAL = new Font("Consolas", Font.PLAIN, 14); // Monospace is critical
+    private final Font FONT_TERMINAL = new Font("Consolas", Font.PLAIN, 14); 
 
     public SimulationScreen() {
-        initialize();
-        startTerminalSession(); // Initialize the shell prompt
+        // We leave the constructor empty or minimal
     }
 
-    private void initialize() {
-        frame = new JFrame("Bank of TUC - Command Center");
-        frame.setBounds(100, 100, 1100, 750);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+    // --- View_t Interface Method ---
+    @Override
+    public void init() {
+        // We do NOT create a new JFrame here anymore. 
+        // We just build the JPanel that AdminMenuCon will display.
+        
         mainPanel = new JPanel(new BorderLayout(15, 15));
         mainPanel.setBackground(COLOR_BG);
         mainPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        frame.setContentPane(mainPanel);
 
         // 1. HEADER
         JPanel headerPanel = new JPanel(new BorderLayout());
@@ -78,7 +76,30 @@ public class SimulationScreen {
 
         // 3. BOTTOM Stats
         mainPanel.add(createStatsPanel(), BorderLayout.SOUTH);
+
+        // Start the terminal prompt
+        startTerminalSession();
     }
+
+    // --- CRITICAL: This is what the Controller looks for ---
+    @Override
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    @Override
+    public void show() {
+        if (mainPanel != null) mainPanel.setVisible(true);
+    }
+
+    @Override
+    public void hide() {
+        if (mainPanel != null) mainPanel.setVisible(false);
+    }
+
+    // ============================================================
+    //      TERMINAL LOGIC
+    // ============================================================
 
     private JPanel createRealTerminalPanel() {
         JPanel panel = new JPanel(new BorderLayout());
@@ -92,31 +113,26 @@ public class SimulationScreen {
         terminalArea.setBackground(Color.BLACK);
         terminalArea.setForeground(Color.GREEN);
         terminalArea.setCaretColor(Color.WHITE);
-        terminalArea.setEditable(true); // ENABLE TYPING!
+        terminalArea.setEditable(true);
         terminalArea.setMargin(new Insets(10, 10, 10, 10));
 
-        // AUTO-SCROLL
         DefaultCaret caret = (DefaultCaret) terminalArea.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
-        // --- KEY LISTENER FOR COMMAND EXECUTION ---
         terminalArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    e.consume(); // Prevent default newline
+                    e.consume(); 
                     executeUserCommand();
                 } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                    // Prevent deleting the prompt
                     if (terminalArea.getCaretPosition() <= lastPromptPosition) {
                         e.consume();
                     }
                 }
             }
-            
             @Override
             public void keyTyped(KeyEvent e) {
-                // Ensure user can't type before the prompt
                 if (terminalArea.getCaretPosition() < lastPromptPosition) {
                     terminalArea.setCaretPosition(terminalArea.getDocument().getLength());
                 }
@@ -128,25 +144,24 @@ public class SimulationScreen {
         return panel;
     }
 
-    // --- THE CORE LOGIC: EXECUTE REAL COMMANDS ---
     private void executeUserCommand() {
         try {
-            // 1. Get the command typed after the last prompt
             String fullText = terminalArea.getText();
-            String command = fullText.substring(lastPromptPosition).trim();
+            // Safety check in case prompt positions get messed up
+            if (lastPromptPosition > fullText.length()) lastPromptPosition = fullText.length();
             
-            terminalArea.append("\n"); // Move to next line
+            String command = fullText.substring(lastPromptPosition).trim();
+            terminalArea.append("\n");
 
             if (command.isEmpty()) {
                 printPrompt();
                 return;
             }
 
-            // 2. Handle "cd" manually (ProcessBuilder resets dir otherwise)
             if (command.startsWith("cd ")) {
                 String path = command.substring(3).trim();
                 File newDir = new File(currentDirectory, path);
-                if (!newDir.exists()) newDir = new File(path); // Try absolute path
+                if (!newDir.exists()) newDir = new File(path);
                 
                 if (newDir.exists() && newDir.isDirectory()) {
                     currentDirectory = newDir.getCanonicalFile();
@@ -159,23 +174,19 @@ public class SimulationScreen {
             
             if (command.equals("clear") || command.equals("cls")) {
                 terminalArea.setText("");
-                printPrompt(); // Reset prompt at top
-                // Reset tracker
-                lastPromptPosition = terminalArea.getDocument().getLength();
-                // Fix prompt pos logic since text is gone
-                 // The printPrompt below handles it, but we need to reset the tracker 
-                 // effectively inside printPrompt usually.
-                 // Actually printPrompt appends. So setText("") clears it.
-                 // let's just let it fall through to printPrompt()
-                 return;
-            }
-            
-            if (command.equals("exit")) {
-                frame.dispose();
+                lastPromptPosition = 0;
+                printPrompt();
                 return;
             }
+            
+            // Note: 'exit' now just clears logic or does nothing 
+            // because we don't want to close the whole App frame
+            if (command.equals("exit")) {
+               terminalArea.append("Use the Back button to exit simulation.\n");
+               printPrompt();
+               return;
+            }
 
-            // 3. Run the command on the OS
             runOSCommand(command);
 
         } catch (Exception ex) {
@@ -196,28 +207,23 @@ public class SimulationScreen {
                     pb = new ProcessBuilder("/bin/bash", "-c", command);
                 }
 
-                pb.directory(currentDirectory); // Set the working directory
-                pb.redirectErrorStream(true); // Combine Error and Output
+                pb.directory(currentDirectory);
+                pb.redirectErrorStream(true);
                 Process p = pb.start();
 
-                // Read output live
                 InputStream is = p.getInputStream();
-                Scanner s = new Scanner(is).useDelimiter("\\A");
-                
-                // Buffer reading to avoid GUI freeze
+                // Simple byte read to avoid complicated Scanner issues in Thread
                 byte[] buffer = new byte[1024];
                 int len;
                 while ((len = is.read(buffer)) != -1) {
                     String outputChunk = new String(buffer, 0, len);
                     SwingUtilities.invokeLater(() -> terminalArea.append(outputChunk));
                 }
-                
                 p.waitFor();
 
             } catch (Exception e) {
                 SwingUtilities.invokeLater(() -> terminalArea.append("Execution Failed: " + e.getMessage() + "\n"));
             } finally {
-                // When done, print the new prompt
                 SwingUtilities.invokeLater(this::printPrompt);
             }
         }).start();
@@ -236,9 +242,11 @@ public class SimulationScreen {
         printPrompt();
     }
 
-    // --- OTHER UI HELPERS (Config, Stats) ---
+    // ============================================================
+    //      UI PANELS
+    // ============================================================
+
     private JPanel createConfigPanel() {
-        // (Same config code as before - keeping it brief for the copy-paste)
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(Color.WHITE);
         panel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -287,7 +295,7 @@ public class SimulationScreen {
     }
 
     // --- GETTERS ---
-    public JFrame getFrame() { return frame; }
+    // Note: Used JButton explicitly to match this specific design
     public JButton getRunButton() { return runButton; }
     public JButton getBackButton() { return backButton; }
     public String getBotCount() { return botCountField.getText(); }
@@ -295,12 +303,11 @@ public class SimulationScreen {
     public void setTotalTx(String val) { totalTxLabel.setText(val); }
     public void setVolume(String val) { volumeLabel.setText(val + "€"); }
     
-    // Helper so SimulationCon can still print to terminal
+    // Helper for Controller to log events
     public void appendLog(String msg) {
-        // Move caret to end before appending to avoid messing up user typing
-        terminalArea.setCaretPosition(terminalArea.getDocument().getLength());
-        terminalArea.append("\n[SIMULATION]: " + msg);
-        // We DON'T reprint prompt here because it might interrupt user typing
-        // But in a real terminal, async logs are messy. This is fine for now.
+        SwingUtilities.invokeLater(() -> {
+            terminalArea.append("\n[SIM_LOG]: " + msg);
+            // Don't print prompt here, just let the log sit
+        });
     }
 }

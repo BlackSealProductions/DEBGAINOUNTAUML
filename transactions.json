@@ -1,27 +1,1148 @@
 [
   {
     "account": {
-      "accountId": "ACC_ADMIN_MAIN",
+      "accountId": "ACC_PROF_01",
       "transactions": [
         {
-          "transactionId": "104701410923",
-          "senderId": "17454535",
-          "recieverId": "12341234",
-          "amount": "date",
-          "date": "12/21/12",
-          "time": "",
-          "description": "Deposit",
-          "type": "deposit"
+          "transactionId": "1767478265327",
+          "senderId": "ACC_PROF_01",
+          "recieverId": "ATM",
+          "amount": "360.4953722456781",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         },
         {
-          "transactionId": "7845687923",
-          "senderId": "12432342",
-          "recieverId": "76341234",
-          "amount": "date",
-          "date": "12/31/12",
-          "time": "",
-          "description": "Withdrawal",
-          "type": "withdraw"
+          "transactionId": "1767478273994",
+          "senderId": "ACC_PROF_01",
+          "recieverId": "ATM",
+          "amount": "14.530261092543498",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478295728",
+          "senderId": "ACC_PROF_01",
+          "recieverId": "ATM",
+          "amount": "31.46060720763061",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478304720",
+          "senderId": "ACC_PROF_01",
+          "recieverId": "ACC_PROF_01",
+          "amount": "325.0384981282029",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478304294",
+          "senderId": "ACC_PROF_01",
+          "recieverId": "SERVICE",
+          "amount": "181.66414979379545",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478299115",
+          "senderId": "ACC_PROF_01",
+          "recieverId": "ACC_PROF_01",
+          "amount": "108.98634757460229",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767480732564",
+          "senderId": "ACC_PROF_01",
+          "recieverId": "ACC_NBA_01",
+          "amount": "379.08623584482814",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ACC_ADMIN_SAVINGS",
+      "transactions": [
+        {
+          "transactionId": "1767478269506",
+          "senderId": "ACC_ADMIN_SAVINGS",
+          "recieverId": "ACC_ADMIN_SAVINGS",
+          "amount": "61.199832078250616",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478264121",
+          "senderId": "ACC_ADMIN_SAVINGS",
+          "recieverId": "ID_10643754",
+          "amount": "18.211136895366128",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478305669",
+          "senderId": "ACC_ADMIN_SAVINGS",
+          "recieverId": "ID_75491145",
+          "amount": "413.2355668025822",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480728437",
+          "senderId": "ACC_ADMIN_SAVINGS",
+          "recieverId": "SERVICE",
+          "amount": "380.45097748735856",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480736531",
+          "senderId": "ACC_ADMIN_SAVINGS",
+          "recieverId": "SERVICE",
+          "amount": "49.228908934495365",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_34343434",
+      "transactions": [
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ACC_NBA_MILWAUKEE",
+      "transactions": [
+        {
+          "transactionId": "1767478265717",
+          "senderId": "ACC_NBA_MILWAUKEE",
+          "recieverId": "ID_34343434",
+          "amount": "272.9304827374475",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478270849",
+          "senderId": "ACC_NBA_MILWAUKEE",
+          "recieverId": "ATM",
+          "amount": "328.1106288655331",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478270565",
+          "senderId": "ACC_NBA_MILWAUKEE",
+          "recieverId": "SERVICE",
+          "amount": "182.01227221238474",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Phone",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478301777",
+          "senderId": "ACC_NBA_MILWAUKEE",
+          "recieverId": "SERVICE",
+          "amount": "399.9649120408428",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480727949",
+          "senderId": "ACC_NBA_MILWAUKEE",
+          "recieverId": "ACC_NBA_MILWAUKEE",
+          "amount": "249.4796854490915",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767480729241",
+          "senderId": "ACC_NBA_MILWAUKEE",
+          "recieverId": "ATM",
+          "amount": "143.8782827074046",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_56165136",
+      "transactions": [
+        {
+          "transactionId": "1767478270982",
+          "senderId": "ID_56165136",
+          "recieverId": "ID_56165136",
+          "amount": "109.7758732255729",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478271877",
+          "senderId": "ID_56165136",
+          "recieverId": "SERVICE",
+          "amount": "100.68565254497796",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478272139",
+          "senderId": "ID_56165136",
+          "recieverId": "ATM",
+          "amount": "384.06911961038173",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478289457",
+          "senderId": "ID_56165136",
+          "recieverId": "ID_56165136",
+          "amount": "455.7225577504506",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478284738",
+          "senderId": "ID_56165136",
+          "recieverId": "ID_71708282",
+          "amount": "89.40568629258445",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480736691",
+          "senderId": "ID_56165136",
+          "recieverId": "SERVICE",
+          "amount": "169.49776328951336",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480736910",
+          "senderId": "ID_56165136",
+          "recieverId": "ID_56165136",
+          "amount": "286.74025487569986",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767480734491",
+          "senderId": "ID_56165136",
+          "recieverId": "SERVICE",
+          "amount": "255.6622268633094",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480729912",
+          "senderId": "ID_56165136",
+          "recieverId": "ID_56165136",
+          "amount": "171.00913689404047",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_10643754",
+      "transactions": [
+        {
+          "transactionId": "1767478268763",
+          "senderId": "ID_10643754",
+          "recieverId": "SERVICE",
+          "amount": "262.5988499131222",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478265481",
+          "senderId": "ID_10643754",
+          "recieverId": "ID_10643754",
+          "amount": "383.1598876756505",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478284632",
+          "senderId": "ID_10643754",
+          "recieverId": "SERVICE",
+          "amount": "198.26722558964588",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478287995",
+          "senderId": "ID_10643754",
+          "recieverId": "SERVICE",
+          "amount": "445.3602214080238",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478300530",
+          "senderId": "ID_10643754",
+          "recieverId": "ID_10643754",
+          "amount": "151.21410197702411",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ACC_BANK_RESERVE",
+      "transactions": [
+        {
+          "transactionId": "1767478265450",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "SERVICE",
+          "amount": "440.01526743607735",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478265972",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "SERVICE",
+          "amount": "140.16526959080497",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Water Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478272612",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ACC_PROF_01",
+          "amount": "397.0500962770921",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478269378",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "SERVICE",
+          "amount": "336.83849983095547",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478283077",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ID_71708282",
+          "amount": "218.1371630086637",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478284216",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ACC_BANK_RESERVE",
+          "amount": "228.4015574686886",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478289126",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ACC_BANK_RESERVE",
+          "amount": "66.90953144357235",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478300204",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ATM",
+          "amount": "266.13626561725357",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478299066",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ACC_PROF_RESEARCH",
+          "amount": "449.85458056160644",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480727582",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "SERVICE",
+          "amount": "147.48263951647124",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480736485",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ID_23232323",
+          "amount": "179.46607837519448",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480734950",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ID_81038014",
+          "amount": "372.771966280634",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480730842",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ID_71708282",
+          "amount": "322.81905722397073",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480731911",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ID_71708282",
+          "amount": "459.5471507047363",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480737995",
+          "senderId": "ACC_BANK_RESERVE",
+          "recieverId": "ACC_BANK_RESERVE",
+          "amount": "112.04796263727907",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_22953810",
+      "transactions": [
+        {
+          "transactionId": "1767478271575",
+          "senderId": "ID_22953810",
+          "recieverId": "ATM",
+          "amount": "334.6334391893685",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478266863",
+          "senderId": "ID_22953810",
+          "recieverId": "SERVICE",
+          "amount": "367.301008120533",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478288119",
+          "senderId": "ID_22953810",
+          "recieverId": "ID_10643754",
+          "amount": "365.0192820235062",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478282126",
+          "senderId": "ID_22953810",
+          "recieverId": "ID_22953810",
+          "amount": "475.57584206969506",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478291330",
+          "senderId": "ID_22953810",
+          "recieverId": "ID_22953810",
+          "amount": "330.1627748660301",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478301337",
+          "senderId": "ID_22953810",
+          "recieverId": "ATM",
+          "amount": "461.499966553133",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478305686",
+          "senderId": "ID_22953810",
+          "recieverId": "ATM",
+          "amount": "121.76482582225577",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478305213",
+          "senderId": "ID_22953810",
+          "recieverId": "ID_22953810",
+          "amount": "125.08430174799632",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478300348",
+          "senderId": "ID_22953810",
+          "recieverId": "ACC_ADMIN_SAVINGS",
+          "amount": "494.8345026201985",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480729701",
+          "senderId": "ID_22953810",
+          "recieverId": "ID_22953810",
+          "amount": "61.32471219496714",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767480735396",
+          "senderId": "ID_22953810",
+          "recieverId": "ATM",
+          "amount": "313.6536090123637",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767480738525",
+          "senderId": "ID_22953810",
+          "recieverId": "ID_22953810",
+          "amount": "426.56702354195085",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_29984252",
+      "transactions": [
+        {
+          "transactionId": "1767478269369",
+          "senderId": "ID_29984252",
+          "recieverId": "SERVICE",
+          "amount": "34.18831621672539",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Water Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478269725",
+          "senderId": "ID_29984252",
+          "recieverId": "SERVICE",
+          "amount": "447.4453371558402",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478288293",
+          "senderId": "ID_29984252",
+          "recieverId": "ID_29984252",
+          "amount": "88.13639844722805",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478288393",
+          "senderId": "ID_29984252",
+          "recieverId": "ID_29984252",
+          "amount": "365.4656906170145",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478282850",
+          "senderId": "ID_29984252",
+          "recieverId": "ACC_NBA_01",
+          "amount": "40.96719234003528",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478282746",
+          "senderId": "ID_29984252",
+          "recieverId": "SERVICE",
+          "amount": "155.0142669827941",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478303941",
+          "senderId": "ID_29984252",
+          "recieverId": "SERVICE",
+          "amount": "10.796753640237686",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478296842",
+          "senderId": "ID_29984252",
+          "recieverId": "ID_29984252",
+          "amount": "224.66381992041266",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478302426",
+          "senderId": "ID_29984252",
+          "recieverId": "ACC_PROF_01",
+          "amount": "407.90550548828503",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480730137",
+          "senderId": "ID_29984252",
+          "recieverId": "SERVICE",
+          "amount": "73.94208839742227",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Water Bill",
+          "type": "Payment"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_45882085",
+      "transactions": [
+        {
+          "transactionId": "1767478274176",
+          "senderId": "ID_45882085",
+          "recieverId": "SERVICE",
+          "amount": "22.242137908935547",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478272212",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_45882085",
+          "amount": "421.7278137207031",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478281798",
+          "senderId": "ID_45882085",
+          "recieverId": "ACC_PROF_01",
+          "amount": "293.4943542480469",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478290015",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_45882085",
+          "amount": "469.804931640625",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478284127",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_57587679",
+          "amount": "349.641357421875",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478301645",
+          "senderId": "ID_45882085",
+          "recieverId": "ATM",
+          "amount": "23.537078857421875",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478300614",
+          "senderId": "ID_45882085",
+          "recieverId": "SERVICE",
+          "amount": "173.4705352783203",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478305543",
+          "senderId": "ID_45882085",
+          "recieverId": "ACC_BANK_RESERVE",
+          "amount": "138.0031280517578",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478298549",
+          "senderId": "ID_45882085",
+          "recieverId": "ATM",
+          "amount": "46.54768753051758",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478576991",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "10.0",
+          "date": "2026-01-04",
+          "time": "00:16:16.991602655",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767478620887",
+          "senderId": "ID_45882085",
+          "recieverId": "Ανάλυψη",
+          "amount": "110.0",
+          "date": "2026-01-04",
+          "time": "00:17:00.887395261",
+          "description": "Withdraw",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767478724658",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "10.0",
+          "date": "2026-01-04",
+          "time": "00:18:44.658839972",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767480738761",
+          "senderId": "ID_45882085",
+          "recieverId": "SERVICE",
+          "amount": "28.5865535736084",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Phone",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767481115239",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "10.0",
+          "date": "2026-01-04",
+          "time": "00:58:35.239704365",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767481216844",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "110.0",
+          "date": "2026-01-04",
+          "time": "01:00:16.849392702",
+          "description": "Deposit",
+          "type": "receive"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_51259348",
+      "transactions": [
+        {
+          "transactionId": "1767478272458",
+          "senderId": "ID_51259348",
+          "recieverId": "SERVICE",
+          "amount": "19.23634818771493",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Water Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478288034",
+          "senderId": "ID_51259348",
+          "recieverId": "ID_81038014",
+          "amount": "23.077838367582736",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478299842",
+          "senderId": "ID_51259348",
+          "recieverId": "ATM",
+          "amount": "42.883247435893146",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_90909090",
+      "transactions": [
+        {
+          "transactionId": "1767478266185",
+          "senderId": "ID_90909090",
+          "recieverId": "ATM",
+          "amount": "314.9241607851665",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767480730461",
+          "senderId": "ID_90909090",
+          "recieverId": "ID_90909090",
+          "amount": "419.30182073621233",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_75491145",
+      "transactions": [
+        {
+          "transactionId": "1767478270667",
+          "senderId": "ID_75491145",
+          "recieverId": "ATM",
+          "amount": "15.282346457831302",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478272919",
+          "senderId": "ID_75491145",
+          "recieverId": "ID_75491145",
+          "amount": "226.09461954707646",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478268880",
+          "senderId": "ID_75491145",
+          "recieverId": "ID_75491145",
+          "amount": "365.6366672524406",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478271214",
+          "senderId": "ID_75491145",
+          "recieverId": "ACC_ADMIN_SAVINGS",
+          "amount": "106.9696291745947",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478284262",
+          "senderId": "ID_75491145",
+          "recieverId": "SERVICE",
+          "amount": "82.9946027471142",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478289900",
+          "senderId": "ID_75491145",
+          "recieverId": "ID_75491145",
+          "amount": "343.483425468721",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478284130",
+          "senderId": "ID_75491145",
+          "recieverId": "ID_75491145",
+          "amount": "471.3535879011319",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478284771",
+          "senderId": "ID_75491145",
+          "recieverId": "SERVICE",
+          "amount": "85.66087388846972",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480734352",
+          "senderId": "ID_75491145",
+          "recieverId": "ID_75491145",
+          "amount": "174.6166935047952",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767480729090",
+          "senderId": "ID_75491145",
+          "recieverId": "ID_75491145",
+          "amount": "429.17683487707086",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767480734365",
+          "senderId": "ID_75491145",
+          "recieverId": "ID_75491145",
+          "amount": "489.43318363012645",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_77595156",
+      "transactions": [
+        {
+          "transactionId": "1767478265674",
+          "senderId": "ID_77595156",
+          "recieverId": "ID_10643754",
+          "amount": "215.18717693008844",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478270395",
+          "senderId": "ID_77595156",
+          "recieverId": "SERVICE",
+          "amount": "386.1400696023137",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478271994",
+          "senderId": "ID_77595156",
+          "recieverId": "ID_77595156",
+          "amount": "425.65682432612823",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478282523",
+          "senderId": "ID_77595156",
+          "recieverId": "ID_90909090",
+          "amount": "131.4226501983105",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478289651",
+          "senderId": "ID_77595156",
+          "recieverId": "ACC_NBA_01",
+          "amount": "214.75842863977957",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
         }
       ]
     }
@@ -31,71 +1152,181 @@
       "accountId": "ACC_CAFE_01",
       "transactions": [
         {
-          "transactionId": "104701410924",
-          "senderId": "174234535",
-          "recieverId": "123234234",
-          "amount": "date",
-          "date": "12/21/12",
-          "time": "",
-          "description": "Deposit",
-          "type": "deposit"
+          "transactionId": "1767478267676",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "ID_10643754",
+          "amount": "456.82823656794494",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
         },
         {
-          "transactionId": "7845687923",
-          "senderId": "124436342",
-          "recieverId": "76461234",
-          "amount": "date",
-          "date": "12/29/12",
-          "time": "",
-          "description": "Withdrawal",
-          "type": "withdraw"
+          "transactionId": "1767478266083",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "ID_57587679",
+          "amount": "38.58254590118322",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478268667",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "SERVICE",
+          "amount": "100.56647168323046",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478284503",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "ATM",
+          "amount": "68.61754224855318",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478288039",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "ACC_CAFE_01",
+          "amount": "417.9915623591673",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478300100",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "ID_29984252",
+          "amount": "294.8941668346715",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478302154",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "SERVICE",
+          "amount": "186.97115437697008",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478298158",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "SERVICE",
+          "amount": "52.16231480745548",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Phone",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478298351",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "ATM",
+          "amount": "434.6642408607988",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767480732775",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "SERVICE",
+          "amount": "14.997085503804175",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480734374",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "SERVICE",
+          "amount": "463.1182346929399",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480737102",
+          "senderId": "ACC_CAFE_01",
+          "recieverId": "ATM",
+          "amount": "307.30626395268325",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         }
       ]
     }
   },
   {
     "account": {
-      "accountId": "ID_67676767",
+      "accountId": "ACC_PROF_RESEARCH",
       "transactions": [
         {
-          "transactionId": "1767323526272",
-          "senderId": "ID_67676767",
-          "recieverId": "RF22223371237614278431943",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "13:00",
-          "description": "Bill Payment",
-          "type": "send"
+          "transactionId": "1767478267493",
+          "senderId": "ACC_PROF_RESEARCH",
+          "recieverId": "ATM",
+          "amount": "272.1242850024679",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         },
         {
-          "transactionId": "1767323841577",
-          "senderId": "ID_67676767",
-          "recieverId": "RF41288709933909648957565",
-          "amount": "25.0",
-          "date": "2026-01-02",
-          "time": "13:00",
-          "description": "Bill Payment",
-          "type": "send"
+          "transactionId": "1767478282305",
+          "senderId": "ACC_PROF_RESEARCH",
+          "recieverId": "ID_71708282",
+          "amount": "124.70374554908484",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
         },
         {
-          "transactionId": "1767326753733",
-          "senderId": "ID_67676767",
-          "recieverId": "RF69683064141007775709728",
-          "amount": "14000.0",
-          "date": "2026-01-02",
-          "time": "13:00",
-          "description": "Bill Payment",
-          "type": "send"
+          "transactionId": "1767478299177",
+          "senderId": "ACC_PROF_RESEARCH",
+          "recieverId": "ACC_PROF_RESEARCH",
+          "amount": "223.82693377247983",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
         },
         {
-          "transactionId": "1767326780191",
-          "senderId": "ID_67676767",
-          "recieverId": "RF69683064141007775709728",
-          "amount": "700.0",
-          "date": "2026-01-02",
-          "time": "13:00",
-          "description": "Bill Payment",
-          "type": "send"
+          "transactionId": "1767478299968",
+          "senderId": "ACC_PROF_RESEARCH",
+          "recieverId": "ACC_PROF_RESEARCH",
+          "amount": "37.19640106072336",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767480738223",
+          "senderId": "ACC_PROF_RESEARCH",
+          "recieverId": "SERVICE",
+          "amount": "135.70886037012883",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
         }
       ]
     }
@@ -105,463 +1336,582 @@
       "accountId": "ACC_ARIS_01",
       "transactions": [
         {
-          "transactionId": "1767326235963",
+          "transactionId": "1767478268430",
           "senderId": "ACC_ARIS_01",
-          "recieverId": "RF41288709933909648957565",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "13:00",
-          "description": "Bill Payment",
-          "type": "send"
+          "recieverId": "SERVICE",
+          "amount": "316.44753840736865",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
         },
         {
-          "transactionId": "1767361532073",
+          "transactionId": "1767478269827",
           "senderId": "ACC_ARIS_01",
-          "recieverId": "Ανάλυψη",
-          "amount": "311.0",
-          "date": "2026-01-02",
-          "time": "15:45:32.083021",
-          "description": "Withdraw",
-          "type": "send"
+          "recieverId": "ATM",
+          "amount": "444.0015448783871",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         },
         {
-          "transactionId": "1767361726144",
-          "senderId": "Κατάθεση",
+          "transactionId": "1767478269846",
+          "senderId": "ACC_ARIS_01",
           "recieverId": "ACC_ARIS_01",
-          "amount": "13.0",
-          "date": "2026-01-02",
-          "time": "15:48:46.145039",
-          "description": "Deposit",
-          "type": "receive"
+          "amount": "245.59359871962528",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
         },
         {
-          "transactionId": "1767382175175",
+          "transactionId": "1767478288493",
           "senderId": "ACC_ARIS_01",
-          "recieverId": "w",
-          "amount": "29.0",
-          "date": "2026-01-02",
-          "time": "21:29",
-          "description": "Transfer to TUC",
-          "type": "send"
+          "recieverId": "SERVICE",
+          "amount": "45.21006700545984",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Water Bill",
+          "type": "Payment"
         },
         {
-          "transactionId": "1767382474735",
+          "transactionId": "1767480731326",
           "senderId": "ACC_ARIS_01",
-          "recieverId": "Unknown",
-          "amount": "7.14",
-          "date": "2026-01-02",
-          "time": "21:34",
-          "description": "External Transfer (Fee: 0.14)",
-          "type": "send"
+          "recieverId": "ID_57587679",
+          "amount": "123.126955698634",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480733914",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "ATM",
+          "amount": "411.37614153781743",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         }
       ]
     }
   },
   {
     "account": {
-      "accountId": "ID_20411552",
+      "accountId": "ACC_NBA_01",
       "transactions": [
         {
-          "transactionId": "1767359700583",
-          "senderId": "irl wallet",
-          "recieverId": "ID_20411552",
-          "amount": "43.0",
-          "date": "2026-01-02",
-          "time": "15:15:00.592233200",
-          "description": "Deposit",
-          "type": "recieve"
+          "transactionId": "1767478270985",
+          "senderId": "ACC_NBA_01",
+          "recieverId": "ACC_NBA_01",
+          "amount": "258.7217112060432",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478282141",
+          "senderId": "ACC_NBA_01",
+          "recieverId": "ID_18081025",
+          "amount": "300.5782820510308",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478290782",
+          "senderId": "ACC_NBA_01",
+          "recieverId": "ATM",
+          "amount": "27.331329257588045",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478288635",
+          "senderId": "ACC_NBA_01",
+          "recieverId": "ACC_NBA_01",
+          "amount": "451.42204759634075",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478300085",
+          "senderId": "ACC_NBA_01",
+          "recieverId": "SERVICE",
+          "amount": "316.7240234258571",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
         }
       ]
     }
   },
   {
     "account": {
-      "accountId": "ID_20411552",
+      "accountId": "ID_13131313",
       "transactions": [
         {
-          "transactionId": "1767359700583",
-          "senderId": "irl wallet",
-          "recieverId": "ID_20411552",
-          "amount": "43.0",
-          "date": "2026-01-02",
-          "time": "15:15:00.592233200",
-          "description": "Deposit",
-          "type": "recieve"
+          "transactionId": "1767478265650",
+          "senderId": "ID_13131313",
+          "recieverId": "ACC_CAFE_01",
+          "amount": "216.94052517988314",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
         },
         {
-          "transactionId": "1767359732381",
-          "senderId": "irl wallet",
-          "recieverId": "ID_20411552",
-          "amount": "34.0",
-          "date": "2026-01-02",
-          "time": "15:15:32.381429",
-          "description": "Deposit",
-          "type": "recieve"
+          "transactionId": "1767478289066",
+          "senderId": "ID_13131313",
+          "recieverId": "SERVICE",
+          "amount": "440.3257647007979",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Phone",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478282585",
+          "senderId": "ID_13131313",
+          "recieverId": "SERVICE",
+          "amount": "32.68433486285505",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Water Bill",
+          "type": "Payment"
         }
       ]
     }
   },
   {
     "account": {
-      "accountId": "ID_45882085",
+      "accountId": "ID_71708282",
       "transactions": [
         {
-          "transactionId": "1767362484802",
-          "senderId": "Κατάθεση",
-          "recieverId": "ID_45882085",
-          "amount": "10.0",
-          "date": "2026-01-02",
-          "time": "16:01:24.807062211",
-          "description": "Deposit",
-          "type": "receive"
+          "transactionId": "1767478274320",
+          "senderId": "ID_71708282",
+          "recieverId": "ATM",
+          "amount": "339.74299744633566",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         },
         {
-          "transactionId": "1767371492743",
-          "senderId": "ID_45882085",
-          "recieverId": "GR8571025449687529640477360",
-          "amount": "66.0",
-          "date": "2026-01-02",
-          "time": "18:31",
-          "description": "Transfer to Account",
-          "type": "send"
+          "transactionId": "1767478272464",
+          "senderId": "ID_71708282",
+          "recieverId": "ATM",
+          "amount": "433.4124637280951",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         },
         {
-          "transactionId": "1767371518686",
-          "senderId": "ID_45882085",
-          "recieverId": "GR8571025449687529640477360",
-          "amount": "1.0",
-          "date": "2026-01-02",
-          "time": "18:31",
-          "description": "Transfer to Account",
-          "type": "send"
+          "transactionId": "1767478285550",
+          "senderId": "ID_71708282",
+          "recieverId": "SERVICE",
+          "amount": "127.12759317893772",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Phone",
+          "type": "Payment"
         },
         {
-          "transactionId": "1767373500803",
-          "senderId": "ID_45882085",
-          "recieverId": "GR6086248002856772322430785",
-          "amount": "5.0",
-          "date": "2026-01-02",
-          "time": "19:05",
-          "description": "Transfer to TUC",
-          "type": "send"
+          "transactionId": "1767478282692",
+          "senderId": "ID_71708282",
+          "recieverId": "ID_71708282",
+          "amount": "71.44729892678875",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
         },
         {
-          "transactionId": "1767373613125",
-          "senderId": "ID_45882085",
-          "recieverId": "ourgv[oioubhiher[ihg",
-          "amount": "51.0",
-          "date": "2026-01-02",
-          "time": "19:06",
-          "description": "External Transfer (Fee: 1.0)",
-          "type": "send"
+          "transactionId": "1767478303937",
+          "senderId": "ID_71708282",
+          "recieverId": "ID_71708282",
+          "amount": "209.54127770235962",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
         },
         {
-          "transactionId": "1767373631482",
-          "senderId": "ID_45882085",
-          "recieverId": "p9jfpirv-9jrvoijrv",
-          "amount": "43.86000061035156",
-          "date": "2026-01-02",
-          "time": "19:07",
-          "description": "External Transfer (Fee: 0.86)",
-          "type": "send"
+          "transactionId": "1767478304528",
+          "senderId": "ID_71708282",
+          "recieverId": "SERVICE",
+          "amount": "176.44615595097142",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
         },
         {
-          "transactionId": "1767377990930",
-          "senderId": "ID_45882085",
-          "recieverId": "Christos Kadas",
-          "amount": "99.13999938964844",
-          "date": "2026-01-02",
-          "time": "20:19",
-          "description": "Transfer to TUC",
-          "type": "send"
+          "transactionId": "1767478298271",
+          "senderId": "ID_71708282",
+          "recieverId": "ID_71708282",
+          "amount": "488.03307915447607",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
         },
         {
-          "transactionId": "1767378363159",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:26",
-          "description": "Transfer to TUC",
-          "type": "send"
+          "transactionId": "1767478303160",
+          "senderId": "ID_71708282",
+          "recieverId": "ATM",
+          "amount": "102.0244993394876",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         },
         {
-          "transactionId": "1767378440458",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:27",
-          "description": "Transfer to TUC",
-          "type": "send"
+          "transactionId": "1767478296700",
+          "senderId": "ID_71708282",
+          "recieverId": "SERVICE",
+          "amount": "321.5310818532207",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Internet",
+          "type": "Payment"
         },
         {
-          "transactionId": "1767378637780",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:30",
-          "description": "Transfer to TUC",
-          "type": "send"
+          "transactionId": "1767478296354",
+          "senderId": "ID_71708282",
+          "recieverId": "SERVICE",
+          "amount": "368.48041122620384",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
         },
         {
-          "transactionId": "1767379012066",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:36",
-          "description": "Transfer to TUC",
-          "type": "send"
+          "transactionId": "1767480733006",
+          "senderId": "ID_71708282",
+          "recieverId": "ID_22953810",
+          "amount": "33.02571756476653",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
         },
         {
-          "transactionId": "1767379159825",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:39",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767383838785",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "10.199999809265137",
-          "date": "2026-01-02",
-          "time": "21:57",
-          "description": "External Transfer (Fee: 0.2)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767384198478",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "10.199999809265137",
-          "date": "2026-01-02",
-          "time": "22:03",
-          "description": "External Transfer (Fee: 0.2)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767384870420",
-          "senderId": "Κατάθεση",
-          "recieverId": "ID_45882085",
-          "amount": "10.0",
-          "date": "2026-01-02",
-          "time": "22:14:30.423746048",
-          "description": "Deposit",
-          "type": "receive"
-        },
-        {
-          "transactionId": "1767384912266",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "2.0399999618530273",
-          "date": "2026-01-02",
-          "time": "22:15",
-          "description": "External Transfer (Fee: 0.04)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767386114555",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "10.0",
-          "date": "2026-01-02",
-          "time": "22:35",
-          "description": "External Transfer (Fee: 0.2)",
-          "type": "send"
+          "transactionId": "1767480730699",
+          "senderId": "ID_71708282",
+          "recieverId": "SERVICE",
+          "amount": "46.024699178890714",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
         }
       ]
     }
   },
   {
     "account": {
-      "accountId": "ID_45882085",
+      "accountId": "ID_57587679",
       "transactions": [
         {
-          "transactionId": "1767362484802",
-          "senderId": "Κατάθεση",
-          "recieverId": "ID_45882085",
-          "amount": "10.0",
-          "date": "2026-01-02",
-          "time": "16:01:24.807062211",
-          "description": "Deposit",
-          "type": "receive"
+          "transactionId": "1767478301001",
+          "senderId": "ID_57587679",
+          "recieverId": "SERVICE",
+          "amount": "311.7136974929302",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
         },
         {
-          "transactionId": "1767371492743",
-          "senderId": "ID_45882085",
-          "recieverId": "GR8571025449687529640477360",
-          "amount": "66.0",
-          "date": "2026-01-02",
-          "time": "18:31",
-          "description": "Transfer to Account",
-          "type": "send"
+          "transactionId": "1767478299171",
+          "senderId": "ID_57587679",
+          "recieverId": "ATM",
+          "amount": "356.0589035102235",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
         },
         {
-          "transactionId": "1767371518686",
-          "senderId": "ID_45882085",
-          "recieverId": "GR8571025449687529640477360",
-          "amount": "1.0",
-          "date": "2026-01-02",
-          "time": "18:31",
-          "description": "Transfer to Account",
-          "type": "send"
+          "transactionId": "1767478297725",
+          "senderId": "ID_57587679",
+          "recieverId": "ACC_IOAN_01",
+          "amount": "298.7641827853332",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
         },
         {
-          "transactionId": "1767373500803",
-          "senderId": "ID_45882085",
-          "recieverId": "GR6086248002856772322430785",
-          "amount": "5.0",
-          "date": "2026-01-02",
-          "time": "19:05",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767373613125",
-          "senderId": "ID_45882085",
-          "recieverId": "ourgv[oioubhiher[ihg",
-          "amount": "51.0",
-          "date": "2026-01-02",
-          "time": "19:06",
-          "description": "External Transfer (Fee: 1.0)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767373631482",
-          "senderId": "ID_45882085",
-          "recieverId": "p9jfpirv-9jrvoijrv",
-          "amount": "43.86000061035156",
-          "date": "2026-01-02",
-          "time": "19:07",
-          "description": "External Transfer (Fee: 0.86)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767377990930",
-          "senderId": "ID_45882085",
-          "recieverId": "Christos Kadas",
-          "amount": "99.13999938964844",
-          "date": "2026-01-02",
-          "time": "20:19",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767378363159",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:26",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767378440458",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:27",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767378637780",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:30",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767379012066",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:36",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767379159825",
-          "senderId": "ID_45882085",
-          "recieverId": "Ioannis Iostarios",
-          "amount": "100.0",
-          "date": "2026-01-02",
-          "time": "20:39",
-          "description": "Transfer to TUC",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767383838785",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "10.199999809265137",
-          "date": "2026-01-02",
-          "time": "21:57",
-          "description": "External Transfer (Fee: 0.2)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767384198478",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "10.199999809265137",
-          "date": "2026-01-02",
-          "time": "22:03",
-          "description": "External Transfer (Fee: 0.2)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767384870420",
-          "senderId": "Κατάθεση",
-          "recieverId": "ID_45882085",
-          "amount": "10.0",
-          "date": "2026-01-02",
-          "time": "22:14:30.423746048",
-          "description": "Deposit",
-          "type": "receive"
-        },
-        {
-          "transactionId": "1767384912266",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "2.0399999618530273",
-          "date": "2026-01-02",
-          "time": "22:15",
-          "description": "External Transfer (Fee: 0.04)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767386114555",
-          "senderId": "ID_45882085",
-          "recieverId": "Unknown",
-          "amount": "10.0",
-          "date": "2026-01-02",
-          "time": "22:35",
-          "description": "External Transfer (Fee: 0.2)",
-          "type": "send"
-        },
-        {
-          "transactionId": "1767386486801",
-          "senderId": "ID_45882085",
-          "recieverId": "MamoInc",
-          "amount": "3.0",
-          "date": "2026-01-02",
-          "time": "13:00",
-          "description": "Bill Payment",
-          "type": "send"
+          "transactionId": "1767480732702",
+          "senderId": "ID_57587679",
+          "recieverId": "ID_57587679",
+          "amount": "490.30217895675116",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
         }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ACC_IOAN_01",
+      "transactions": [
+        {
+          "transactionId": "1767478272393",
+          "senderId": "ACC_IOAN_01",
+          "recieverId": "ACC_CAFE_01",
+          "amount": "331.3458264502857",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480731108",
+          "senderId": "ACC_IOAN_01",
+          "recieverId": "ID_22953810",
+          "amount": "191.2087693849997",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767480730160",
+          "senderId": "ACC_IOAN_01",
+          "recieverId": "SERVICE",
+          "amount": "223.45368279168486",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Electricity Bill",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767480735817",
+          "senderId": "ACC_IOAN_01",
+          "recieverId": "ACC_IOAN_01",
+          "amount": "381.22913557506297",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_81038014",
+      "transactions": [
+        {
+          "transactionId": "1767478270745",
+          "senderId": "ID_81038014",
+          "recieverId": "ID_81038014",
+          "amount": "431.7327167434647",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478285425",
+          "senderId": "ID_81038014",
+          "recieverId": "ATM",
+          "amount": "291.1233273696943",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478291584",
+          "senderId": "ID_81038014",
+          "recieverId": "ID_71708282",
+          "amount": "267.7123190518107",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478302330",
+          "senderId": "ID_81038014",
+          "recieverId": "ID_81038014",
+          "amount": "206.81233589303218",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Deposit",
+          "type": "Deposit"
+        },
+        {
+          "transactionId": "1767478299370",
+          "senderId": "ID_81038014",
+          "recieverId": "ACC_ADMIN_SAVINGS",
+          "amount": "204.52349121854562",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478305268",
+          "senderId": "ID_81038014",
+          "recieverId": "ATM",
+          "amount": "170.69902487711954",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_18081025",
+      "transactions": [
+        {
+          "transactionId": "1767478280747",
+          "senderId": "ID_18081025",
+          "recieverId": "ATM",
+          "amount": "71.9756466146061",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478285126",
+          "senderId": "ID_18081025",
+          "recieverId": "SERVICE",
+          "amount": "28.225729294174485",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Insurance",
+          "type": "Payment"
+        },
+        {
+          "transactionId": "1767478289087",
+          "senderId": "ID_18081025",
+          "recieverId": "ATM",
+          "amount": "280.989133879835",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_67676767",
+      "transactions": [
+        {
+          "transactionId": "1767478286539",
+          "senderId": "ID_67676767",
+          "recieverId": "SERVICE",
+          "amount": "90.4558924989078",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_83848571",
+      "transactions": [
+        {
+          "transactionId": "1767478286034",
+          "senderId": "ID_83848571",
+          "recieverId": "ID_57587679",
+          "amount": "222.19036252701844",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        },
+        {
+          "transactionId": "1767478301729",
+          "senderId": "ID_83848571",
+          "recieverId": "ATM",
+          "amount": "372.07977777037826",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478305318",
+          "senderId": "ID_83848571",
+          "recieverId": "ID_71708282",
+          "amount": "123.47501416854891",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Transfer",
+          "type": "Transfer"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ACC_ADMIN_MAIN",
+      "transactions": [
+        {
+          "transactionId": "1767478282844",
+          "senderId": "ACC_ADMIN_MAIN",
+          "recieverId": "ATM",
+          "amount": "281.22124544278284",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767478305762",
+          "senderId": "ACC_ADMIN_MAIN",
+          "recieverId": "ATM",
+          "amount": "257.02515801168283",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "ATM Withdrawal",
+          "type": "Withdrawal"
+        },
+        {
+          "transactionId": "1767480732122",
+          "senderId": "ACC_ADMIN_MAIN",
+          "recieverId": "SERVICE",
+          "amount": "341.4587584325908",
+          "date": "2026-01-03",
+          "time": "12:00",
+          "description": "Tax",
+          "type": "Payment"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_23232323",
+      "transactions": [
       ]
     }
   }
