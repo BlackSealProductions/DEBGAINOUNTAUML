@@ -3,6 +3,15 @@
     "account": {
       "accountId": "ID_45882085",
       "orders": [
+        {
+          "name": "a",
+          "targetIban": "aa",
+          "transactionId": "1767424232492",
+          "orderId": "1767424232493",
+          "amount": "23.0",
+          "day": "1",
+          "frequency": "ΜΗΝΑ"
+        }
       ]
     }
   }

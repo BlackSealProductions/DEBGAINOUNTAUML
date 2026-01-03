@@ -26,6 +26,7 @@ public class ModelHandler {
     public void saveChanges(){
         saveChangesToUDB_conv();
         saveChangesToTDB_conv();
+        saveChangesToODB_conv();
     }
 
     public void saveChangesToUDB_conv(){
@@ -40,24 +41,8 @@ public class ModelHandler {
 
     public void saveChangesToODB_conv(){
         Account acct = Session.getInstance().getActiveAccount();
-        this.oDB.updateUserRecord(conv.convertAcctTransactionsToMap(acct));
+        this.oDB.updateUserRecord(conv.convertAcctOrdersToMap(acct));
     }
-
-    public void addEntryToUDB_conv(Customer user){
-        // Customer user = Session.getInstance().getActiveCustomer();
-        this.uDB.updateUserRecord(conv.convertUserToMap(user, user.getAccounts()));
-    }
-
-    public void addEntryToTDB_conv(Account acct){
-        // Account acct = Session.getInstance().getActiveAccount();
-        this.tDB.updateUserRecord(conv.convertAcctTransactionsToMap(acct));
-    }
-
-    public void addEntryToODB_conv(Account acct){
-        // Account acct = Session.getInstance().getActiveAccount();
-        this.oDB.updateUserRecord(conv.convertAcctTransactionsToMap(acct));
-    }
-
 
 
     // public void saveChangesToDB_sess(){

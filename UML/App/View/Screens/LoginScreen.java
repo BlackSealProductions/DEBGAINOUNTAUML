@@ -73,23 +73,25 @@ public class LoginScreen implements View_t {
         int startY = 280+70; 
 
         // --- Username field ---
-        usernameField = new JTextField("Username: ");
+        String userPlaceholder = "Username";
+        usernameField = new JTextField(userPlaceholder);
         usernameField.setBounds(centerX, startY, fieldWidth, fieldHeight);
         usernameField.setBackground(Color.white);
         usernameField.setForeground(placeholderColor);
         usernameField.setFont(customFont20);
         usernameField.setBorder(new EmptyBorder(0, 15, 0, 15));
-        OnFocusEventHelper.setOnFocusText(usernameField, "Username: ", Color.black, placeholderColor);
+        OnFocusEventHelper.setOnFocusText(usernameField, userPlaceholder, Color.black, placeholderColor);
 
         // --- Password field ---
-        passwordField = new JPasswordField("Password: ");
+        String passPlaceholder = "Password";
+        passwordField = new JPasswordField(passPlaceholder);
         passwordField.setEchoChar((char) 0);
         passwordField.setBounds(centerX, startY + 90, fieldWidth, fieldHeight); // Tight 15px gap (90 - 75)
         passwordField.setBackground(Color.white);
         passwordField.setForeground(placeholderColor);
         passwordField.setFont(customFont20);
         passwordField.setBorder(new EmptyBorder(0, 15, 0, 15));
-        OnFocusEventHelper.setOnFocusText(passwordField, "Password: ", Color.black, placeholderColor);
+        OnFocusEventHelper.setOnFocusText(passwordField, passPlaceholder, Color.black, placeholderColor);
 
         // --- Login Button ---
         loginButton = new RoundedButton("login", 20);

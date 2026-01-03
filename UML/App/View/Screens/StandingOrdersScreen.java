@@ -2,22 +2,16 @@ package App.View.Screens;
 
 import App.View.View_t;
 import App.View.helper_classes.*;
+import Utils.GlobalConsts;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class StandingOrdersScreen implements View_t {
 
     String fontPath = "/App/Fonts/RobotoMono-Bold.ttf";
-    Font customFont60 = FontLoader.loadCustomFont(fontPath, 60f);
-    Font customFont50 = FontLoader.loadCustomFont(fontPath, 50f);
     Font customFont40 = FontLoader.loadCustomFont(fontPath, 40f);
-    Font customFont30 = FontLoader.loadCustomFont(fontPath, 30f);
     Font customFont20 = FontLoader.loadCustomFont(fontPath, 20f);
     Font customFont12 = FontLoader.loadCustomFont(fontPath, 12f);
     Font customFont16 = FontLoader.loadCustomFont(fontPath, 16f);
@@ -25,18 +19,15 @@ public class StandingOrdersScreen implements View_t {
     final int wWidth = Utils.GlobalConsts.wWidth;
     final int wHeight = Utils.GlobalConsts.wHeight;
 
-    // --- 1. View_t Essentials ---
     private JPanel panel = new JPanel();
 
-    // --- 2. Colors ---
+    // --- Colors ---
     Color blue = Color.decode("#C2E5FF");   
-    Color formBg = Color.decode("#FFE8B6"); 
     Color red = Color.decode("#D82F4B");    
     Color placeholderColor = Color.decode("#C6D3D0");
     Color textColor = Color.BLACK;
 
-    // --- 3. Form Components ---
-    private JTextField nameField, ibanField, dateField, frequencyField, amountField;
+    private JTextField nameField, ibanField, dateField, amountField;
     private RoundedButton completeBtn;
     private JLabel balanceLabel;
     private JComboBox<String> freqBox;
@@ -45,51 +36,43 @@ public class StandingOrdersScreen implements View_t {
     private GridBagConstraints gbcForm; 
     private JPanel listContainer;
 
+    private JLabel titleLabel;
 
     @Override
     public void init() {
-        // --- Setup Main Panel ---
         panel.setLayout(new BorderLayout());
         panel.setBackground(blue);
         panel.setBorder(new EmptyBorder(20, 40, 20, 40));
         panel.setBounds(0, 0, wWidth, wHeight);
 
-
         // --- A. Header Section ---
         JPanel headerPanel = new JPanel(new BorderLayout()); 
         headerPanel.setOpaque(false);
-        headerPanel.setBorder(new EmptyBorder(10, 0, 20, 0));
+        headerPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
 
-        // 1. LEFT Logo
+        // 1. Logo
         JPanel leftHead = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftHead.setOpaque(false);
         leftHead.setPreferredSize(new Dimension(300, 100)); 
-        
-   
         Image logo = new ImageIcon(getClass().getResource("/Images/bankOfTucLogo_white.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        ImageIcon logoIcon = new ImageIcon(logo);
-        RoundedImage logoPanel = new RoundedImage(logoIcon,20);
-        logoPanel.setBounds(50,50,100,100);
+        RoundedImage logoPanel = new RoundedImage(new ImageIcon(logo), 20);
         leftHead.add(logoPanel);
 
-        // 2. CENTER Title
-        JPanel centerHead = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        centerHead.setOpaque(false);
-        JLabel titleLabel = new JLabel("Πάγιες Πληρωμές");
+        // 2. Title
+        titleLabel = new JLabel("Πάγιες Πληρωμές", SwingConstants.CENTER);
         titleLabel.setFont(customFont40); 
-        centerHead.add(titleLabel);
 
-        // 3. RIGHT Balance
+        // 3. Balance
         JPanel rightHead = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         rightHead.setOpaque(false);
         rightHead.setPreferredSize(new Dimension(300, 100)); 
-        balanceLabel = new JLabel("<html><u>Υπόλοιπο: 67.69€</u></html>");
+        balanceLabel = new JLabel("<html><u>Υπόλοιπο: 0.00€</u></html>");
         balanceLabel.setFont(customFont20);
         balanceLabel.setForeground(Color.decode("#003366")); 
         rightHead.add(balanceLabel);
 
         headerPanel.add(leftHead, BorderLayout.WEST);
-        headerPanel.add(centerHead, BorderLayout.CENTER);
+        headerPanel.add(titleLabel, BorderLayout.CENTER);
         headerPanel.add(rightHead, BorderLayout.EAST);
         panel.add(headerPanel, BorderLayout.NORTH);
 
@@ -101,89 +84,80 @@ public class StandingOrdersScreen implements View_t {
         JPanel leftColumn = new JPanel(new BorderLayout());
         leftColumn.setOpaque(false);
         
-        JLabel listTitle = new JLabel("Ενεργές Πάγιες Πληρωμές", SwingConstants.CENTER);
+        JLabel listTitle = new JLabel("Ενεργές Πάγιες Πληρωμές", SwingConstants.LEFT);
         listTitle.setFont(customFont20);
-        listTitle.setBorder(new EmptyBorder(0,0,10,0));
+        listTitle.setBorder(new EmptyBorder(0, 10, 15, 0));
         leftColumn.add(listTitle, BorderLayout.NORTH);
 
-        // 1. The Container for rows (GridBagLayout)
         listContainer = new JPanel(new GridBagLayout());
-        listContainer.setOpaque(false); // Make transparent
+        listContainer.setOpaque(false); 
+        
         GridBagConstraints gbcList = new GridBagConstraints();
         gbcList.fill = GridBagConstraints.HORIZONTAL;
-        gbcList.insets = new Insets(10, 5, 10, 5); 
+        gbcList.anchor = GridBagConstraints.NORTH; // Anchor to the top
         
-        // 2. Add Headers
+        // 1. Add Headers
         addListHeader(listContainer, gbcList);
-
-        // 3. Add Many Rows (Simulating scrolling)
-        // addListRow(listContainer, gbcList, 1, "Ρεύμα", "9807410239...", "1η του Μήνα", "Μηνιαία", "50€");
-        // addListRow(listContainer, gbcList, 2, "Netflix", "7663456243...", "1η του Μήνα", "Μηνιαία", "12€");
+    
+        // 2. Add the initial vertical glue/spacer at row 999
+        // This pushes everything added to rows 0-998 to the top.
+        GridBagConstraints glueGbc = new GridBagConstraints();
+        glueGbc.gridx = 0;
+        glueGbc.gridy = 999; // A very high number to stay at the bottom
+        glueGbc.weighty = 1.0;
+        glueGbc.fill = GridBagConstraints.BOTH;
+        listContainer.add(Box.createVerticalGlue(), glueGbc);
         
-        // Loop to create dummy data so you can test scrolling
-        // for (int i = 3; i < 20; i++) {
-        //      addListRow(listContainer, gbcList, i, "Test " + i, "GR1234562345452345452435", "15η του Μήνα", "Μηνιαία", (i*10)+"€");
-        // }
-        
-        // Push content to top
-        GridBagConstraints spacer = new GridBagConstraints();
-        spacer.gridy = 100;
-        spacer.weighty = 1.0;
-        listContainer.add(Box.createVerticalGlue(), spacer);
-
-        // 4. THE SCROLL PANE WRAPPER
         JScrollPane scrollPane = new JScrollPane(listContainer);
         scrollPane.setOpaque(false);
-        scrollPane.getViewport().setOpaque(false); // Transparent background
-        scrollPane.setBorder(null); // Remove ugly border
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Faster scrolling speed
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         leftColumn.add(scrollPane, BorderLayout.CENTER);
         contentPanel.add(leftColumn);
 
-        // --- RIGHT COLUMN: Create Form (Unchanged) ---
+        // --- RIGHT COLUMN: Create Form ---
+        // Removed yellow background, used a very light transparent white or just kept it clean
         JPanel rightColumn = new JPanel(new GridBagLayout());
-        rightColumn.setBackground(formBg); 
-        rightColumn.setBorder(new EmptyBorder(20, 20, 20, 20)); 
+        rightColumn.setOpaque(false); 
+        rightColumn.setBorder(new EmptyBorder(10, 20, 10, 20)); 
 
         gbcForm = new GridBagConstraints();
         gbcForm.gridx = 0;
-        gbcForm.insets = new Insets(10, 0, 10, 0);
+        gbcForm.insets = new Insets(5, 0, 5, 0);
         gbcForm.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel formTitle = new JLabel("Δημιουργία Πάγιας Χρέωσης");
         formTitle.setFont(customFont20);
-        formTitle.setHorizontalAlignment(SwingConstants.CENTER);
         gbcForm.gridy = 0;
-        gbcForm.insets = new Insets(0, 0, 30, 0); 
+        gbcForm.insets = new Insets(0, 0, 25, 0); 
         rightColumn.add(formTitle, gbcForm);
 
-        gbcForm.insets = new Insets(5, 0, 15, 0);
-
-        nameField = addFormField(rightColumn, "ΟΝΟΜΑ", "name", gbcForm, 1);
-        ibanField = addFormField(rightColumn, "ΠΡΟΣ: ΛΟΓΑΡΙΑΣΜΟΣ", "IBAN", gbcForm, 3);
-        dateField = addFormField(rightColumn, "ΗΜΕΡΟΜΗΝΙΑ ΠΛΗΡΩΜΗΣ", "date", gbcForm, 5);
-        // frequencyField = addFormField(rightColumn, "ΚΑΘΕ ΠΟΤΕ", "ΜΕΡΑ / ΜΗΝΑ / ΧΡΟΝΟΣ", gbcForm, 7);
-        amountField = addFormField(rightColumn, "ΠΟΣΟ ΠΛΗΡΩΜΗΣ", "$", gbcForm, 9);
-
+        nameField = addFormField(rightColumn, "ΟΝΟΜΑ", "π.χ. Ενοίκιο", gbcForm, 1);
+        ibanField = addFormField(rightColumn, "ΠΡΟΣ: ΛΟΓΑΡΙΑΣΜΟΣ (IBAN)", "GR...", gbcForm, 3);
+        dateField = addFormField(rightColumn, "ΗΜΕΡΟΜΗΝΙΑ (ΗΗ/ΜΜ)", "π.χ. 01/01", gbcForm, 5);
+        
         JLabel boxlabel = new JLabel("ΚΑΘΕ ΠΟΤΕ");
         boxlabel.setFont(customFont12);
         boxlabel.setForeground(Color.GRAY);
         gbcForm.gridy = 7;
+        gbcForm.insets = new Insets(5, 0, 2, 0);
         rightColumn.add(boxlabel, gbcForm);
 
         String[] choices = {"ΜΗΝΑ", "ΧΡΟΝΟ"};
-        freqBox = createStyledComboBox(choices, 100);
-
-        gbcForm.gridy = 7 + 1;
+        freqBox = createStyledComboBox(choices, 300);
+        gbcForm.gridy = 8;
+        gbcForm.insets = new Insets(0, 0, 15, 0);
         rightColumn.add(freqBox, gbcForm);
 
-        completeBtn = new RoundedButton("Ολοκλήρωση",15);
+        amountField = addFormField(rightColumn, "ΠΟΣΟ ΠΛΗΡΩΜΗΣ", "0.00", gbcForm, 9);
+
+        completeBtn = new RoundedButton("Ολοκλήρωση", 15);
         completeBtn.setBackground(red);
         completeBtn.setForeground(Color.WHITE);
         completeBtn.setFont(customFont20);
-        completeBtn.setPreferredSize(new Dimension(200, 50));
+        completeBtn.setPreferredSize(new Dimension(220, 55));
         completeBtn.setFocusPainted(false);
 
         gbcForm.gridy = 11;
@@ -198,103 +172,129 @@ public class StandingOrdersScreen implements View_t {
         hide();
     }
 
-    // --- Helpers ---
-
     private JComboBox<String> createStyledComboBox(String[] items, int width) {
         JComboBox<String> box = new JComboBox<>(items);
-        box.setBackground(Color.WHITE);
-        box.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
-        box.setPreferredSize(new Dimension(width, 40));
-        // box.setPreferredSize(new Dimension(300, 40));
         box.setFont(customFont16);
-        box.setForeground(placeholderColor);
+        box.setPreferredSize(new Dimension(width, 45));
         box.setBackground(Color.WHITE);
-        box.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0)); 
+        box.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(placeholderColor, 1),
+            BorderFactory.createEmptyBorder(0, 10, 0, 0)
+        ));
         return box;
     }
 
     private JTextField addFormField(JPanel parent, String labelText, String placeholder, GridBagConstraints gbc, int y) {
         JLabel label = new JLabel(labelText);
         label.setFont(customFont12);
-        label.setForeground(Color.GRAY);
+        label.setForeground(Color.DARK_GRAY);
         gbc.gridy = y;
+        gbc.insets = new Insets(5, 0, 2, 0);
         parent.add(label, gbc);
 
         JTextField field = new JTextField(placeholder);
-        field.setPreferredSize(new Dimension(300, 40));
+        field.setPreferredSize(new Dimension(300, 45));
         field.setFont(customFont16);
         field.setForeground(placeholderColor);
         field.setBackground(Color.WHITE);
+        field.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(placeholderColor, 1),
+            BorderFactory.createEmptyBorder(0, 15, 0, 15)
+        ));
         OnFocusEventHelper.setOnFocusText(field, placeholder, textColor, placeholderColor);
-        field.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0)); 
 
         gbc.gridy = y + 1;
+        gbc.insets = new Insets(0, 0, 15, 0);
         parent.add(field, gbc);
         return field;
     }
 
+    public void addListRow2(String[] data) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridy = this.currRow;
+        gbc.gridx = 0;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.insets = new Insets(10, 10, 10, 10); // Increased spacing between cards
+    
+        // 1. Prepare the Rounded Background Image
+        // Replace "PATH_TO_WHITE_IMAGE" with your actual path later
+        Image whiteImg = new ImageIcon(getClass().getResource("/App/View/Assets/white_ahh_image.png"))
+                            .getImage().getScaledInstance(800, 100, Image.SCALE_SMOOTH);
+        ImageIcon whiteIcon = new ImageIcon(whiteImg);
+        
+        // Create the rounded panel using your helper class
+        RoundedImage rowCard = new RoundedImage(whiteIcon, 25);
+        rowCard.setLayout(new GridLayout(1, 5, 10, 0));
+        rowCard.setPreferredSize(new Dimension(620, 100)); // Bigger cells
+        rowCard.setBorder(new EmptyBorder(0, 20, 0, 20)); // Internal padding
+    
+        // 2. Add Data with bigger font
+        for (String d : data) {
+            JLabel label = new JLabel(d);
+            label.setFont(customFont20); // Using bigger custom font as requested
+            label.setForeground(textColor);
+            rowCard.add(label);
+        }
+    
+        // 3. Add the card to the container
+        this.listContainer.add(rowCard, gbc);
+        this.currRow++;
+        
+        listContainer.revalidate();
+        listContainer.repaint();
+    }
+
     private void addListHeader(JPanel parent, GridBagConstraints gbc) {
-        String[] headers = {"ΟΝΟΜΑ", "ΠΡΟΣ ΛΟΓΑΡΙΑΣΜΟΣ", "ΜΕΡΑ ΠΛΗΡΩΜΗΣ", "ΤΥΠΟΣ ΠΛΗΡΩΜΗΣ", "ΠΟΣΟ"};
+        String[] headers = {"ΟΝΟΜΑ", "ΛΟΓΑΡΙΑΣΜΟΣ", "ΗΜΕΡΑ", "ΣΥΧΝΟΤΗΤΑ", "ΠΟΣΟ"};
         gbc.gridy = 0;
-        int x = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 20, 10, 20);
+        
+        JPanel headerContainer = new JPanel(new GridLayout(1, 5, 10, 0));
+        headerContainer.setOpaque(false);
+        
         for (String h : headers) {
             JLabel label = new JLabel("<html><b>" + h + "</b></html>");
             label.setFont(customFont12);
-            gbc.gridx = x++;
-            gbc.weightx = (x == 2) ? 2.0 : 1.0; 
-            parent.add(label, gbc);
+            label.setForeground(Color.DARK_GRAY);
+            headerContainer.add(label);
         }
+        
+        gbc.gridx = 0;
+        gbc.weightx = 1.0;
+        parent.add(headerContainer, gbc);
     }
-
-    // private void addListRow(JPanel parent, GridBagConstraints gbc, int row, String name, String acc, String date, String type, String amount) {
-    //     gbc.gridy = row;
-    //     String[] data = {name, acc, date, type, amount};
-    //     int x = 0;
-    //     for (String d : data) {
-    //         JLabel label = new JLabel(d);
-    //         label.setFont(customFont12);
-    //         gbc.gridx = x++;
-    //         gbc.weightx = (x == 2) ? 2.0 : 1.0;
-    //         parent.add(label, gbc);
-    //     }
-    // }
-
-    public void addListRow2(String[] data) {
-        GridBagConstraints gbc = this.gbcForm;
-        gbc.gridy = this.currRow;
-        // String[] data = {name, acc, date, type, amount};
-        int x = 0;
-        for (String d : data) {
-            JLabel label = new JLabel(d);
-            label.setFont(customFont12);
-            gbc.gridx = x++;
-            gbc.weightx = (x == 2) ? 2.0 : 1.0;
-            this.listContainer.add(label, gbc);
-        }
-        this.currRow++;
-    }
-
 
     @Override
     public JPanel getMainPanel() { return panel; }
     @Override
-    public void show() { panel.setVisible(true); panel.requestFocusInWindow(); }
+    public void show() { panel.setVisible(true); titleLabel.requestFocusInWindow(); }
     @Override
     public void hide() { panel.setVisible(false); }
 
     public String getName() { return nameField.getText(); }
     public String getIban() { return ibanField.getText(); }
     public String getDate() { return dateField.getText(); }
-    public String getFrequency() { return frequencyField.getText(); }
+    public String getFrequency() { return (String) freqBox.getSelectedItem(); }
     public String getAmount() { return amountField.getText(); }
     public RoundedButton getCompleteBtn() { return completeBtn; }
     public void setBalance(String amount) {
-        balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        try {
+            // Parse the string to a double to perform formatting
+            double val = Double.parseDouble(amount);
+            // %.2f limits the output to exactly two decimal places
+            String formattedBalance = String.format("%.2f", val);
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + formattedBalance + "€</u></html>");
+        } catch (NumberFormatException e) {
+            // Fallback in case the string isn't a valid number
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        }
     }
+    public JComboBox<String> getFreqBox() { return freqBox; }
 
-    public JComboBox<String> getFreqBox() {
-        return freqBox;
+    public void clearListContainer(){
+        this.listContainer.removeAll();
     }
-
-    
 }

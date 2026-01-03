@@ -78,7 +78,7 @@ public class PayBillCon implements Controller_t {
                             Float newBal = Float.sum(targetBal, amountToPay);
                             receiverAccId = (String)user.get("companyName");
                             acc.put("balance", String.valueOf(newBal));
-                            System.out.println("old bal: "+targetBal+"...new bal: "+ newBal);
+                            // System.out.println("old bal: "+targetBal+"...new bal: "+ newBal);
                             foundTarget = true;
                             uDB.updateUserRecord(userWrapper);
 
@@ -118,18 +118,18 @@ public class PayBillCon implements Controller_t {
             transID, myAccount.getAccountId(), receiverAccId, amountToPay, dateNow, inputTime, "Bill Payment", "send");
             
             myAccount.addTransaction(t);
-
-            TransactionDB tDB = model.get_tDB();
+            
+            // TransactionDB tDB = model.get_tDB();
             
             // tDB.saveRecord(model.getConverter().convertAcctTransactionsToMap(myAccount));
-            model.addEntryToTDB_conv(myAccount);
+            model.saveChanges();
 
             // 6. Update GUI
             String newBal = String.valueOf(myBalance - amountToPay);
             // myAccount.setBalance(newBal);
             view.setBalance(newBal);
 
-            model.saveChangesToUDB_conv();
+            // model.saveChangesToUDB_conv();
             view.hide();
             DashboardScreen next = viewHandler.getDashboardScreen();
             next.show();

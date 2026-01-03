@@ -34,6 +34,23 @@ public class TransactionDB {
         return foundAccount;
     }
 
+    public Map<String, Object> findTransactionWithId(String id){
+
+        List<Map<String, Object>> records = getAllRecords();
+        Map<String, Object> foundTr = null;
+
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> acct = (Map<String, Object>) wrapper.get("account");
+            List<Map<String, Object>> trs = (List<Map<String, Object>>) acct.get("transactions");
+            for(Map<String, Object> tr : trs){
+                if( tr.get("transactionId").equals(id)){
+                    return tr;
+                }
+            }
+        }
+        return foundTr;
+    }
+
     /**
      * Loads all records from the JSON file.
      */
@@ -45,7 +62,7 @@ public class TransactionDB {
     /**
      * Saves a NEW user during registration.
      */
-    private void saveRecord(Map<String, Object> userWrapper) {
+    public void saveRecord(Map<String, Object> userWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
         // Map<String, Object> wrapper = new HashMap<>();
         // wrapper.put("user", userData);

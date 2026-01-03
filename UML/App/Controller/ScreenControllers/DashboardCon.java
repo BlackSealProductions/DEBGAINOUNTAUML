@@ -39,7 +39,7 @@ public class DashboardCon implements Controller_t{
         
         
         view.getLogoutBtn().addActionListener(e -> {
-            model.saveChangesToUDB_conv();
+            model.saveChanges();
             Session.getInstance().logout();
             view.hide();
             FirstPageScreen next = viewHandler.getFirstPageScreen();
@@ -49,7 +49,7 @@ public class DashboardCon implements Controller_t{
         });
 
         view.getSwitchBtn().addActionListener(e -> {
-            model.saveChangesToUDB_conv();
+            model.saveChanges();
             view.hide();
             AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
             next.populateAccounts((ArrayList<Account>)Session.getInstance().getCustomerAccounts());
@@ -103,6 +103,7 @@ public class DashboardCon implements Controller_t{
         refresh(user);
         List<StandingOrder> orders = user.getStandingorders();
         if(orders!=null){
+            pagies.clearListContainer();
             for(StandingOrder order : orders){
                 String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount())};
                 viewHandler.getStandingOrdersScreen().addListRow2(dataForList);

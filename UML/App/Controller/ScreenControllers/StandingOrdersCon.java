@@ -1,5 +1,7 @@
 package App.Controller.ScreenControllers;
 
+import javax.swing.JOptionPane;
+
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
@@ -31,18 +33,25 @@ public class StandingOrdersCon implements Controller_t{
         String acc = view.getIban();
         String date = view.getDate();
         String freq = view.getFreqBox().getSelectedItem().toString();
-        Double amount = Double.parseDouble(view.getAmount());
+        Double amount = 0.0;
 
+        try {
+            amount = Double.parseDouble(view.getAmount());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
+        }
         String transID = String.valueOf(System.currentTimeMillis());
         String orderID = String.valueOf(System.currentTimeMillis()+1);
 
 
         Transaction tr = new Transaction(transID, Session.getInstance().getActiveAccount().getAccountId(), acc, amount, date, date, "Standing order", "send");
-        StandingOrder order = new StandingOrder(name, acc, tr, orderID, 2, date, freq);
+        StandingOrder order = new StandingOrder(name, acc, tr, orderID, amount, date, freq);
 
         Session.getInstance().getActiveAccount().addOrder(order);
 
-        model.addEntryToODB_conv(Session.getInstance().getActiveAccount());
+        System.out.println(Session.getInstance().getActiveAccount().getStandingorders());
+
+        model.saveChangesToODB_conv();
         String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount())};
         view.addListRow2(dataForList);
 

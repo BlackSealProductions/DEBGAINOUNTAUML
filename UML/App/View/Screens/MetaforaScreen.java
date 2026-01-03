@@ -150,9 +150,17 @@ public class MetaforaScreen implements View_t {
     public void show() { this.mainPanel.setVisible(true); }
 
     public void setBalance(String amount) {
-        balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        try {
+            // Parse the string to a double to perform formatting
+            double val = Double.parseDouble(amount);
+            // %.2f limits the output to exactly two decimal places
+            String formattedBalance = String.format("%.2f", val);
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + formattedBalance + "€</u></html>");
+        } catch (NumberFormatException e) {
+            // Fallback in case the string isn't a valid number
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        }
     }
-
     // Getters
     public JTextField getFromAccountField() { return fromAccount; }
     public JTextField getToAccountField() { return toAccount; }

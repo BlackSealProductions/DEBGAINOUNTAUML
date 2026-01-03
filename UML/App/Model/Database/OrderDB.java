@@ -48,7 +48,7 @@ public class OrderDB {
         /**
          * Saves a NEW user during registration.
          */
-        private void saveRecord(Map<String, Object> userWrapper) {
+        public void saveRecord(Map<String, Object> userWrapper) {
             List<Map<String, Object>> allRecords = getAllRecords();
 
             allRecords.add(userWrapper);
@@ -77,7 +77,9 @@ public class OrderDB {
         
             if (found) {
                 saveAllRecords(allRecords); // Overwrites the file with the updated list
+                
             } else {
+                System.out.println("\nadded new\n");
                 // If for some reason the user wasn't there, treat it as a new record
                 saveRecord((Map<String, Object>) updatedWrapper);
             }

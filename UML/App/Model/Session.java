@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import App.Model.Database.OrderDB;
 import App.Model.Database.TransactionDB;
 import App.Model.Database.UserDB;
+import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
@@ -150,6 +152,44 @@ public class Session {
         activeAccount.setTransactions(accountTransactions);
     }
 
+    private void loadOrders(Map<String, Object> accData, ModelHandler m){
+
+        List<Map<String, String>> ordersList = (List<Map<String, String>>) accData.get("orders");
+        List<StandingOrder> accountOrders = new ArrayList<StandingOrder>();
+
+        
+        for (Map<String, String> so : ordersList) {
+
+            String name = so.get("name");
+            String acc = so.get("targetIban");
+            TransactionDB tDB = m.get_tDB();
+            Map<String, Object> trMap = tDB.findTransactionWithId(so.get("transactionId"));
+            Transaction tr = genTransactionObject(trMap);
+            String orderId = so.get("orderId");
+            Double amount = Double.parseDouble(so.get("amount"));
+            String day = so.get("day");
+            String freq = so.get("frequency");
+
+            accountOrders.add(new StandingOrder(name, acc, tr, orderId, amount, day, freq));
+            // foundAcc=true;
+        }
+        activeAccount.setStandingorders(accountOrders);
+    }
+
+    public Transaction genTransactionObject(Map<String,Object> tr){
+
+        String transactionId = (String)tr.get("transactionId");
+        String senderId = (String)tr.get("senderId");
+        String recieverId =(String) tr.get("recieverId");
+        String amount = (String)tr.get("amount");
+        String date = (String)tr.get("date");
+        String time = (String)tr.get("time");
+        String description = (String)tr.get("description");
+        String type = (String)tr.get("type");
+
+        return new Transaction(transactionId, senderId, recieverId, Float.parseFloat(amount), date, time, description, type);
+
+    }
 
     public void appendCustomerAccounts(Account account){
         if (this.activeCustomer != null) {
@@ -163,10 +203,17 @@ public class Session {
 
     public void activateAccount(ModelHandler m, Account acc){
         setActiveAccount(acc);
+
         TransactionDB tDB = m.get_tDB();
-        Map<String, Object> acctMap = tDB.findAccountWithId(activeAccount.getAccountId());
-        if (acctMap!=null){
-            loadTransactions(acctMap);
+        Map<String, Object> transMap = tDB.findAccountWithId(activeAccount.getAccountId());
+        if (transMap!=null){
+            loadTransactions(transMap);
+        }
+
+        OrderDB oDB = m.get_oDB();
+        Map<String, Object> ordersMap = oDB.findAccountWithId(activeAccount.getAccountId());
+        if (ordersMap!=null){
+            loadOrders(ordersMap, m);
         }
     }
 

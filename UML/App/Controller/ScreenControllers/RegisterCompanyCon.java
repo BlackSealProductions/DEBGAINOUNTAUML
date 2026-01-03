@@ -67,9 +67,9 @@ public class RegisterCompanyCon implements Controller_t{
 
         // 3. Save to Database
         UserDB db = model.get_uDB();
-        // db.saveRecord(newUserWrapper);
+        db.saveRecord(newUserWrapper);
 
-        model.addEntryToUDB_conv(newUser);
+        // model.addEntryToUDB_conv(newUser);
 
 
         JOptionPane.showMessageDialog(null, "Registration Successful!\n Please login");

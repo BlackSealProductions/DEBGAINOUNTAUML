@@ -190,7 +190,15 @@ public class StatementsScreen implements View_t {
     public void hide() { panel.setVisible(false); }
     
     public void setBalance(String amount) {
-        balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        try {
+            // Parse the string to a double to perform formatting
+            // %.2f limits the output to exactly two decimal places
+            String formattedBalance = String.format("%.2f", amount);
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + formattedBalance + "€</u></html>");
+        } catch (NumberFormatException e) {
+            // Fallback in case the string isn't a valid number
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        }
     }
 
     public void giveAccStatements(List<Statement> statements) {
