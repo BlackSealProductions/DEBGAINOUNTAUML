@@ -9,7 +9,7 @@ public class Individual extends Customer{
     String dateOfBirth;
 
 
-    public Individual(String firstName, String lastName, String dateOfBirth, String taxId, String userID, String username, String password, String email, String phone, GlobalConsts.userType customerType) {
+    public Individual(String firstName, String lastName, String dateOfBirth, int taxId, String userID, String username, String password, String email, String phone, GlobalConsts.userType customerType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -34,9 +34,7 @@ public class Individual extends Customer{
         return dateOfBirth;
     }
 
-    public String getTaxId() {
-        return taxId;
-    }
+    
 
 
     
