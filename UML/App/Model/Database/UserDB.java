@@ -49,7 +49,7 @@ public class UserDB {
         }
         return foundUser;  
     }
-
+                                                                       
     public Set<String> getExistingAcctIds(){
         List<Map<String, Object>> records = getAllRecords();
         Set<String> existingIds = new HashSet<>();

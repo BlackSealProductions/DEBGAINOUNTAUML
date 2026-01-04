@@ -317,5 +317,32 @@
         }
       ]
     }
+  },
+  {
+    "account": {
+      "accountId": "ID_18081025",
+      "transactions": [
+        {
+          "transactionId": "1767493621342",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_18081025",
+          "amount": "10000.0",
+          "date": "2026-01-04",
+          "time": "04:27:01.343957517",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767493647553",
+          "senderId": "ID_18081025",
+          "recieverId": "Athanasios Pliroforikos",
+          "amount": "12.0",
+          "date": "2026-01-04",
+          "time": "04:27",
+          "description": "Transfer to TUC",
+          "type": "send"
+        }
+      ]
+    }
   }
 ]

@@ -11,6 +11,9 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import App.Model.Database.UserDB;
 import App.Model.Entities.OperationEntities.*;
 
 public class StatementsScreen implements View_t {
@@ -203,6 +206,7 @@ public class StatementsScreen implements View_t {
     }
 
     public void giveAccStatements(List<Statement> statements) {
+
         transactionListPanel.removeAll(); 
         String sign = "";
         this.allStatements = statements;
@@ -211,6 +215,47 @@ public class StatementsScreen implements View_t {
             for (Statement state : statements) {
                 String type = state.getTransaction().getType();
                 String desc = state.getTransaction().getDescription(); // Get Description
+                // UserDB uDB = model.get_uDB();
+
+                if (desc == null) desc = "-"; // Safety check
+
+                if ("receive".equalsIgnoreCase(type)) {
+                    sign = "+";
+                    addTransaction(
+                        state.getDate().toString(), 
+                        state.getStatementId(), 
+                        state.getTransaction().getSenderId(), // Name
+                        desc,                                 // Description
+                        sign + String.valueOf(state.getTransaction().getAmount()) + "€"
+                    );
+                } else {
+                    sign = "-";
+                    addTransaction(
+                        state.getDate().toString(), 
+                        state.getStatementId(), 
+                        state.getTransaction().getRecieverId(), // Name
+                        desc,                                   // Description
+                        sign + String.valueOf(state.getTransaction().getAmount()) + "€"
+                    );
+                }
+            }
+        } 
+        
+        transactionListPanel.revalidate();
+        transactionListPanel.repaint();
+    }
+
+    public void giveAccStatements2(List<Map<String,Object>> statements) {
+
+        transactionListPanel.removeAll(); 
+        String sign = "";
+        // this.allStatements = statements;
+
+        if (statements != null && !statements.isEmpty()) {
+            for (Statement state : statements) {
+                String type = state.getTransaction().getType();
+                String desc = state.getTransaction().getDescription(); // Get Description
+                // UserDB uDB = model.get_uDB();
 
                 if (desc == null) desc = "-"; // Safety check
 
