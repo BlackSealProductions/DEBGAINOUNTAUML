@@ -4,16 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import App.Model.ModelHandler;
+import App.View.ViewHandler;
 import App.View.Screens.AdminMenuScreen;
-import App.View.Screens.SimulationScreen;
 import App.View.Screens.AuditLogScreen;
 import App.View.Screens.EditDataScreen;
+import App.View.Screens.LoginScreen;
+import App.View.Screens.SimulationScreen;
 
 public class AdminMenuCon {
 
     private AdminMenuScreen view;
     private ModelHandler model;
-    private JFrame mainFrame; // We will capture the main window here
+    private JFrame mainFrame; 
 
     public AdminMenuCon(AdminMenuScreen view, ModelHandler model) {
         this.view = view;
@@ -21,19 +23,21 @@ public class AdminMenuCon {
     }
 
     public void init() {
+        // Listeners for the Main Menu Buttons
         view.getSimulationBtn().addActionListener(e -> openSimulation());
         view.getAuditBtn().addActionListener(e -> openAuditLogs());
         view.getEditDataBtn().addActionListener(e -> openEditData());
         view.getLogoutBtn().addActionListener(e -> handleLogout());
     }
 
+    // --- 1. SIMULATION ---
     private void openSimulation() {
         JFrame frame = getFrame(); 
 
         SimulationScreen simView = new SimulationScreen();
-        simView.init(); // Init View FIRST
+        // [FIX]: Ensure init is called
+        simView.init(); 
 
-        // PASS THE MODEL HERE
         SimulationCon simCon = new SimulationCon(simView, this.model); 
         simCon.init();
 
@@ -41,29 +45,29 @@ public class AdminMenuCon {
         frame.revalidate();
         frame.repaint();
 
-        simView.getBackButton().addActionListener(back -> {
+        // Use direct field access for the new SimulationScreen
+        simView.backBtn.addActionListener(back -> {
             frame.setContentPane(view.getMainPanel()); 
             frame.revalidate();
             frame.repaint();
         });
     }
 
-    // --- 2. AUDIT LOGS SCREEN ---
+    // --- 2. AUDIT LOGS ---
     private void openAuditLogs() {
         JFrame frame = getFrame();
 
         AuditLogScreen auditView = new AuditLogScreen();
+        // [FIX]: Ensure init is called
         auditView.init();
         
         AuditLogCon auditCon = new AuditLogCon(auditView, this.model); 
         auditCon.init();
 
-        // SWAP
         frame.setContentPane(auditView.getMainPanel());
         frame.revalidate();
         frame.repaint();
         
-        // BACK BUTTON
         auditView.getBackBtn().addActionListener(back -> {
             frame.setContentPane(view.getMainPanel());
             frame.revalidate();
@@ -71,25 +75,22 @@ public class AdminMenuCon {
         });
     }
 
+    // --- 3. EDIT DATA ---
     private void openEditData() {
         JFrame frame = getFrame();
 
-        // 1. Create View
         EditDataScreen editView = new EditDataScreen();
-        editView.init();
+        // [FIX]: CRITICAL - Initialize the screen so userModel is created
+        editView.init(); 
 
-        // 2. Create Controller (PASS THE MODEL!)
+        // Now the controller can safely access the tables
         EditDataCon editCon = new EditDataCon(editView, this.model);
-        
-        // 3. CRITICAL: START THE CONTROLLER
-        editCon.init();  // <--- IF THIS IS MISSING, YOU SEE DUMMY DATA
+        editCon.init(); 
 
-        // 4. Swap Screen
         frame.setContentPane(editView.getMainPanel());
         frame.revalidate();
         frame.repaint();
 
-        // 5. Back Button
         editView.getBackBtn().addActionListener(back -> {
             frame.setContentPane(view.getMainPanel());
             frame.revalidate();
@@ -97,16 +98,26 @@ public class AdminMenuCon {
         });
     }
 
+    // --- 4. LOGOUT ---
     private void handleLogout() {
-        getFrame().dispose(); 
+        JFrame frame = getFrame();
+        
+        LoginScreen loginView = new LoginScreen();
+        // [FIX]: Ensure init is called
+        loginView.init();
+        
+        frame.setContentPane(loginView.getMainPanel());
+        frame.revalidate();
+        frame.repaint();
+        
+        LoginCon loginCon = new LoginCon(loginView, this.model, new ViewHandler());
+        loginCon.init();
+        
         System.out.println("Logged out.");
-        // If you want to reopen Login here, you'd need the ViewHandler logic
     }
 
-    // --- HELPER: Get the Main Window ---
     private JFrame getFrame() {
         if (mainFrame == null) {
-            // Find the window that holds our Admin View
             mainFrame = (JFrame) SwingUtilities.getWindowAncestor(view.getMainPanel());
         }
         return mainFrame;

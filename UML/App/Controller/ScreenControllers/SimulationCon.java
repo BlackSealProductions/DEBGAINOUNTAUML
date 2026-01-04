@@ -1,36 +1,37 @@
 package App.Controller.ScreenControllers;
 
-import App.View.Screens.SimulationScreen;
 import App.Model.ModelHandler;
-import App.Model.Simulator; // Import the new class
+import App.Model.Simulator;
+import App.View.Screens.SimulationScreen;
 
 public class SimulationCon {
 
     private SimulationScreen view;
     private ModelHandler model;
 
-    // Update Constructor to accept ModelHandler
     public SimulationCon(SimulationScreen view, ModelHandler model) {
         this.view = view;
         this.model = model;
     }
 
     public void init() {
-        view.getRunButton().addActionListener(e -> runSimulation());
-    }
+        Simulator simulator = new Simulator(model, view);
 
-    private void runSimulation() {
-        try {
-            // Get inputs from the GUI
-            int botCount = Integer.parseInt(view.getBotCount());
-            int actions = Integer.parseInt(view.getActionsCount());
-            
-            // Start the Simulator
-            Simulator sim = new Simulator(model, view);
-            sim.startSimulation(botCount, actions);
-
-        } catch (NumberFormatException ex) {
-            view.appendLog("ERROR: Invalid configuration. Please enter numbers for Bots/Actions.");
-        }
+        view.runBtn.addActionListener(e -> {
+            try {
+                String start = view.startDateField.getText();
+                int days = Integer.parseInt(view.daysField.getText());
+                
+                // Start the Time-Step Simulation
+                simulator.startSimulation(start, days);
+                
+            } catch (NumberFormatException ex) {
+                view.appendLog("ERROR: Duration must be a number.");
+            } catch (Exception ex) {
+                view.appendLog("ERROR: " + ex.getMessage());
+            }
+        });
+        
+        // Note: Back button logic is usually handled by AdminMenuCon
     }
 }
