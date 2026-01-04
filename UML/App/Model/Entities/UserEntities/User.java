@@ -8,13 +8,12 @@ public abstract class User {
     String userID;
     String username;
     String password;
+<<<<<<< Updated upstream
+
+=======
     
-    public String getUsername() {
-        return username;
-    }
-    public String getPassword() {
-        return password;
-    }
+   
+>>>>>>> Stashed changes
 
     void ManageInfo(String newName,String newPassword){
         if(newName != null){

@@ -28,7 +28,7 @@ public abstract class Customer extends User{
         this.customerType = customerType;
     }
 
-    public void setTaxId(int taxId) {
+    public void setTaxId(String taxId) {
         this.taxId = taxId;
     }
 
