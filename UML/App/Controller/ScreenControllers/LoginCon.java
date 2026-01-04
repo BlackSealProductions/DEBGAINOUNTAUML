@@ -58,19 +58,16 @@ public class LoginCon implements Controller_t {
         if (inputUser.equals("admin") && inputPass.equals("admin")) {
             System.out.println(">>> Admin Detected. Launching Dashboard...");
             
-            // Close Login Window
             view.hide();
             SwingUtilities.getWindowAncestor(view.getMainPanel()).dispose();
 
-            // Launch Admin Dashboard
             openAdminDashboard();
-            return; // STOP HERE! Do not check the database.
+            return;
         }
         // ============================================================
         //    END ADMIN CHECK
         // ============================================================
 
-        // 2. Standard User Login Logic (Your existing code)
         UserDB db = model.get_uDB();
         Map<String, Object> foundUser = db.findUserWithPassword(inputUser, inputPass);
     

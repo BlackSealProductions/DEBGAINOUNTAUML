@@ -42,8 +42,6 @@ public class Session {
     }
 
     public void logout() {
-        this.username = null;
-        this.taxId = null;
         this.activeAccount = null;
         this.activeCustomer = null;
     }
