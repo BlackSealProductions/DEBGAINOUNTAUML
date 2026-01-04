@@ -83,10 +83,10 @@ public class StandingOrder {
 
         LocalDate birthdayOfOrder = LocalDate.parse(present,form);
 
-        if(freq == "ΜΗΝΑ"){
+        if(freq.equals("ΜΗΝΑ")){
             nextDate = birthdayOfOrder.plusMonths(1);
         }
-        else if (freq == "ΧΡΟΝΟ"){
+        else if (freq.equals("ΧΡΟΝΟ")){
             nextDate = birthdayOfOrder.plusYears(1);
         }
 

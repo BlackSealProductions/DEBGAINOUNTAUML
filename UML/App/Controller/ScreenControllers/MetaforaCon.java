@@ -113,40 +113,12 @@ public class MetaforaCon implements Controller_t {
             // Update memory object
             myAccount.setBalance(String.valueOf(currentBalance - totalDeduction));
             model.saveChanges();
-            
-            // // Update Database Map
-            // for (int i = 0; i < userRecords.size(); i++) {
-            //     Map<String, Object> userWrapper = userRecords.get(i);
-            //     Map<String, Object> user = (Map<String, Object>) userWrapper.get("user");
-            //     if (user.get("username").equals(myUsername)) {
-            //         // Update the converter map with new balance
-            //         // (Re-convert to capture the new balance set in memory above)
-            //         myUpdatedMapWrapper = converter.convertUserToMap(
-            //             Session.getInstance().getActiveCustomer(), 
-            //             Session.getInstance().getCustomerAccounts()
-            //         );
-            //         userRecords.set(i, myUpdatedMapWrapper);
-            //     }
-            // }
-
-            // Save Accounts
-            // model.get_uDB().saveAllRecords(userRecords);
-
-
-            // 4. Save History (TransactionDB)
-            // if (!targetFoundInDb){
-                
-
-
-            // }
-
+        
 
                 if(!targetFoundInDb && !isInBank){
                     saveTransactionHistory(myAccount,"Unknown", amountToSend, fee, isInBank);
                 }
-                else if(receivingUser.containsKey("companyName")){
-                    saveTransactionHistory(myAccount,(String)receivingUser.get("companyName"), amountToSend, fee, isInBank);
-                }else{    
+                else{
                     saveTransactionHistory(myAccount, (String)receivingUser.get("name")+" "+(String)receivingUser.get("surname"), amountToSend, fee, isInBank);
                 }
             

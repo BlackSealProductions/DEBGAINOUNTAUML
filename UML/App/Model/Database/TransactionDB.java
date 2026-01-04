@@ -34,6 +34,22 @@ public class TransactionDB {
         return foundAccount;
     }
 
+    public Map<String, Object> addTransactionToWrapper(String id,Map<String,String> transaction){
+
+        List<Map<String, Object>> records = getAllRecords();
+        Map<String, Object> foundAccount = null;
+
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> acct = (Map<String, Object>) wrapper.get("account");
+            if (acct.get("accountId").equals(id)) {
+                List<Map<String,String>> transactions = (List<Map<String,String>>)acct.get("transactions");
+                transactions.add(transaction);
+                updateUserRecord(wrapper);
+            }
+        }
+        return foundAccount;
+    }
+
     public Map<String, Object> findTransactionWithId(String id){
 
         List<Map<String, Object>> records = getAllRecords();

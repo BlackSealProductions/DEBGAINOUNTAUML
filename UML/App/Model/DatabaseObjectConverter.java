@@ -140,6 +140,27 @@ public class DatabaseObjectConverter {
         return wrapper;
     }
 
+    public Map<String,String> convertTransactionToMap(Transaction transaction){
+
+        Map<String,Object> wrapper = new HashMap<>();
+
+        Map<String, String> tr = new HashMap<>();
+        tr.put("transactionId", transaction.getTransactionId());
+        tr.put("senderId", transaction.getSenderId());
+        tr.put("recieverId", transaction.getRecieverId());
+        tr.put("amount", String.valueOf(transaction.getAmmount()));
+        tr.put("date", String.valueOf(transaction.getDate()));
+        tr.put("time", transaction.getTime());
+        tr.put("description", transaction.getDescription());
+        tr.put("type", transaction.getType());
+
+        // wrapper.put("transaction",tr);
+
+        return tr;
+    }
+
+
+
 
 
 }

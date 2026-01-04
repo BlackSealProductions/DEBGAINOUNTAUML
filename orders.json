@@ -4,13 +4,38 @@
       "accountId": "ACC_ARIS_01",
       "orders": [
         {
-          "name": "Ενοικιο",
-          "targetIban": "GR23490213847092387523045245",
-          "orderId": "1767477019653",
-          "amount": "12.0",
+          "name": "jerkmate",
+          "targetIban": "GR3412341234123",
+          "orderId": "1767482929236",
+          "amount": "23.09",
+          "day": "07/01/2026",
+          "dueDate": "02/02/2000",
+          "frequency": "ΜΗΝΑ"
+        },
+        {
+          "name": "jerkmate",
+          "targetIban": "GR3214431234",
+          "orderId": "1767487185768",
+          "amount": "32.9",
           "day": "05/01/2026",
-          "dueDate": "05/01/2027",
+          "dueDate": "05/01/2020",
           "frequency": "ΧΡΟΝΟ"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_20411552",
+      "orders": [
+        {
+          "name": "wertwert",
+          "targetIban": "GR213452345",
+          "orderId": "1767482961476",
+          "amount": "32.12",
+          "day": "09/01/2026",
+          "dueDate": "09/02/2026",
+          "frequency": "ΜΗΝΑ"
         }
       ]
     }

@@ -101,7 +101,7 @@
           "iban": "GR1770137038471374039483827",
           "ownerName": "Iostarios",
           "secondaryOwner": "Gyros Zepelis",
-          "balance": "167.69000244140625",
+          "balance": "256.69000244140625",
           "interestRate": "5%"
         }
       ]
@@ -257,7 +257,7 @@
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
           "secondaryOwner": "faker",
-          "balance": "290.0",
+          "balance": "19.750012969970705",
           "interestRate": "0.5%"
         },
         {

@@ -15,12 +15,14 @@ public class ModelHandler {
     private TransactionDB tDB;
     private OrderDB oDB;
     private DatabaseObjectConverter conv;
+    public OrderAssesor ass;
 
     public void init(){
         this.uDB = new UserDB();
         this.tDB = new TransactionDB();
         this.oDB = new OrderDB();
         this.conv = new DatabaseObjectConverter();
+        this.ass = new OrderAssesor(this);
     }
 
     public void saveChanges(){

@@ -193,7 +193,8 @@ public class StatementsScreen implements View_t {
         try {
             // Parse the string to a double to perform formatting
             // %.2f limits the output to exactly two decimal places
-            String formattedBalance = String.format("%.2f", amount);
+            double val = Double.parseDouble(amount);
+            String formattedBalance = String.format("%.2f", val);
             balanceLabel.setText("<html><u>Υπόλοιπο: " + formattedBalance + "€</u></html>");
         } catch (NumberFormatException e) {
             // Fallback in case the string isn't a valid number

@@ -153,6 +153,36 @@
           "time": "21:34",
           "description": "External Transfer (Fee: 0.14)",
           "type": "send"
+        },
+        {
+          "transactionId": "1767481322259",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "Ioannis Iostarios",
+          "amount": "89.0",
+          "date": "2026-01-04",
+          "time": "01:02",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767490040131",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09",
+          "date": "2026-01-04",
+          "time": "03:27:20.131749200",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767490040157",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "32.9",
+          "date": "2026-01-04",
+          "time": "03:27:20.157493900",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
         }
       ]
     }
