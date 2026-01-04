@@ -12,7 +12,7 @@ import App.Model.Entities.UserEntities.Account;
 
 public class StandingOrder {
     private String accountIban;
-    private Transaction transaction;
+    // private Transaction transaction;
     private String orderId;
     private double amount;
     private String presentDay;
@@ -46,9 +46,9 @@ public class StandingOrder {
     public String getAccountIban() {
         return accountIban;
     }
-    public Transaction getTransaction() {
-        return transaction;
-    }
+    // public Transaction getTransaction() {
+    //     return transaction;
+    // }
     public String getOrderId() {
         return orderId;
     }
@@ -85,7 +85,7 @@ public class StandingOrder {
         this.nextIssueDay = nextIssueDay;
     }
 
-
+    
 
     public void calcNextDate(String freq,String present){
 
