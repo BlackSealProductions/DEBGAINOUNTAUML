@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +58,15 @@ public class DashboardCon implements Controller_t{
             ViewSession.getInstance().updateScreenHistory(next);
         });
 
+        view.getIssueBtn().addActionListener(e -> {
+            Map<String, String> billData = view.issueBill();
+            
+            // Check if the user didn't just close the dialog
+            if (billData != null && !billData.isEmpty()) {
+                handleBillIssuance(billData);
+            }
+        });
+
 
         view.plhrwmhBtn.addActionListener(e -> handlePlhrwmh());
         view.kinhseisBtn.addActionListener(e -> handleKinhseis());
@@ -68,6 +78,52 @@ public class DashboardCon implements Controller_t{
         view.withdrawBtn.addActionListener(e -> handleWithdraw());
 
 
+    }
+
+        
+
+// Helper method in DashboardCon
+    private void handleBillIssuance(Map<String, String> billData) {
+        String targetIban = billData.get("iban");
+        String amountStr = billData.get("amount");
+        
+        // 1. Validation
+        if (targetIban.isEmpty() || amountStr.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+            return;
+        }
+
+        // 2. Find the target account ID using UserDB (since bills are filed by AccountId in BillDB)
+        // We search across all users for the account that has this IBAN
+        Map<String, Object> targetAccountMap = model.get_uDB().findAccountWithIban(targetIban);
+        
+        if (targetAccountMap == null) {
+            JOptionPane.showMessageDialog(null, "Target IBAN not found in the system.");
+            return;
+        }
+
+        String targetAccountId = (String) targetAccountMap.get("accountId");
+
+        // 3. Prepare the Bill Record
+        // Generate a unique RF code (Format: RF + Timestamp)
+        String rfCode = "RF" + System.currentTimeMillis(); 
+        String dateNow = java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String dueDate = java.time.LocalDate.now().plusMonths(1).format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        Map<String, String> finalBill = new HashMap<>();
+        finalBill.put("rfCode", rfCode);
+        finalBill.put("iban", Session.getInstance().getActiveAccount().getIban()); // The Company's IBAN
+        finalBill.put("amount", amountStr);
+        finalBill.put("issue", dateNow);
+        finalBill.put("due", dueDate);
+
+        // 4. Save to BillDB
+        // We add the bill to the specific account record in bills.json
+        model.get_bDB().addBillToWrapper(targetAccountId, finalBill);
+
+        JOptionPane.showMessageDialog(null, "Bill Issued Successfully!\nRF Code: " + rfCode);
+
+        
     }
 
 

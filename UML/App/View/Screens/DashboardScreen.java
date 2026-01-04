@@ -13,6 +13,11 @@ import App.Model.Entities.UserEntities.Account;
 import App.View.View_t;
 import App.View.helper_classes.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class DashboardScreen implements View_t {
 
 
@@ -44,7 +49,9 @@ public class DashboardScreen implements View_t {
     private JLabel userNameLabel = new JLabel("Welcome, " + username);
     private RoundedButton logoutBtn = new RoundedButton("X",15);
     private RoundedButton switchBtn = new RoundedButton("switch", 15);
+    private RoundedButton issueBtn = new RoundedButton("issue bill", 15);
 
+    private JPanel header;
 
     public RoundedButton plhrwmhBtn = createMenuButton("Πληρωμή λογαριασμού");
     public RoundedButton kinhseisBtn = createMenuButton("Κινήσεις λογαριασμού");
@@ -55,8 +62,31 @@ public class DashboardScreen implements View_t {
     public RoundedButton depositBtn = createMenuButton("Κατάθεση");
     public RoundedButton withdrawBtn = createMenuButton("Ανάλυψη");
 
+    int headeroffset = 990;
+    // Boolean comp = false;
+    public void checkForCompany(){
 
+        if(usertype.getText().equals("Company")){
 
+            issueBtn.setBounds(1380-180-10, 50, 180, 50);
+            issueBtn.setBackground(Color.green);
+            issueBtn.setForeground(Color.white);
+            issueBtn.setFont(customFont20);
+            issueBtn.setFocusPainted(false);
+            header.add(issueBtn);
+            headeroffset = headeroffset - 180 - 10;
+            userNameLabel.setBounds(headeroffset, 50, 380, 50);
+            userNameLabel.setFont(customFont20);
+            userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            issueBtn.setVisible(true);
+        }
+        else{
+            issueBtn.setVisible(false);
+            userNameLabel.setBounds(headeroffset, 50, 380, 50);
+            userNameLabel.setFont(customFont20);
+            userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        }
+    }
 
     public void init() {
         panel.setBackground(blue);
@@ -64,7 +94,7 @@ public class DashboardScreen implements View_t {
         panel.setLayout(null);
 
         // --- TOP HEADER PANEL ---
-        JPanel header = new JPanel();
+        header = new JPanel();
         header.setLayout(null);
         header.setBounds(0, 0, wWidth, 150);
         header.setBackground(Color.white);
@@ -88,6 +118,7 @@ public class DashboardScreen implements View_t {
         usertype.setFont(customFont15);
         usertype.setHorizontalAlignment(SwingConstants.CENTER);
 
+
         switchBtn.setBounds(1380, 50, 110, 50);
         switchBtn.setBackground(Color.blue);
         switchBtn.setForeground(Color.white);
@@ -101,10 +132,13 @@ public class DashboardScreen implements View_t {
         logoutBtn.setFont(customFont20);
         logoutBtn.setFocusPainted(false);
 
-        // User Name (To the left of the logout button)
-        userNameLabel.setBounds(990, 50, 380, 50);
+        userNameLabel.setBounds(headeroffset, 50, 380, 50);
         userNameLabel.setFont(customFont20);
         userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        // User Name (To the left of the logout button)
+        // userNameLabel.setBounds(headeroffset-190, 50, 380, 50);
+        // userNameLabel.setFont(customFont20);
+        // userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         header.add(logo);
         header.add(accountNumberLabel); // This stays centered because of wWidth bounds
@@ -200,6 +234,7 @@ public class DashboardScreen implements View_t {
     public void show() {
         panel.setVisible(true);
         accountNumberLabel.requestFocusInWindow();
+        checkForCompany();
     }
 
     @Override
@@ -241,6 +276,10 @@ public class DashboardScreen implements View_t {
         return this.switchBtn;
     }
 
+    public RoundedButton getIssueBtn(){
+        return this.issueBtn;
+    }
+
     public void setAccountDetails(String username, String balance, String acctId, String type){
         userNameLabel.setText("Welcome, " + username);
         accountNumberLabel.setText("Account: #" + acctId);
@@ -261,6 +300,33 @@ public class DashboardScreen implements View_t {
     public void refresh(Account account){
         setAccountDetails(account.getOwnerName(), account.getBalance(), account.getAccountId(), Session.getInstance().getActiveCustomer().getUserTypeString());
 
+    }
+
+    public Map<String, String> issueBill(){
+
+        // 1. Create the fields
+        JTextField iban = new JTextField(10);
+        JTextField amount = new JTextField(10);
+
+        // 2. Create a panel to hold them
+        JPanel myPanel = new JPanel(new GridLayout(0, 1)); // 0 rows, 1 column
+        myPanel.add(new JLabel("IBAN:"));
+        myPanel.add(iban);
+        myPanel.add(Box.createVerticalStrut(15)); // Add some spacing
+        myPanel.add(new JLabel("Amount:"));
+        myPanel.add(amount);
+
+        int result = JOptionPane.showConfirmDialog(null, myPanel, 
+            "Issue New Utility Bill", JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            Map<String, String> vals = new HashMap<>();
+            vals.put("iban", iban.getText());
+            vals.put("amount", amount.getText());
+            return vals;
+        }   
+        return null; // Return null if cancelled
+        
     }
 
 }

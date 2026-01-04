@@ -1,26 +1,23 @@
 package App.Controller.ScreenControllers;
 
 import App.Controller.Controller_t;
-import App.Model.Database.TransactionDB;
-import App.Model.Database.UserDB;
+import App.Model.Entities.OperationEntities.Bill;
 import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
-import App.Model.Entities.UserEntities.Customer;
 import App.Model.ModelHandler;
 import App.Model.Session;
 import App.View.Screens.BillPaymentScreen;
 import App.View.Screens.DashboardScreen;
 import App.View.ViewHandler;
-
 import javax.swing.*;
-import java.util.List;
-import java.util.Map;
+import java.util.Iterator;
 
 public class PayBillCon implements Controller_t {
 
     private BillPaymentScreen view;
     private ModelHandler model;
     private ViewHandler viewHandler;
+    private Bill foundBill = null; 
 
     public PayBillCon(BillPaymentScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
@@ -30,115 +27,88 @@ public class PayBillCon implements Controller_t {
 
     @Override
     public void init() {
-        // MATCHING YOUR STYLE: Lambda expression pointing to a private method
+        view.getSearchBtn().addActionListener(e -> handleSearch());
         view.getCompleteBtn().addActionListener(e -> handlePayment());
     }
 
-    private void handlePayment() {
-        // 1. Get Inputs
-        String receiverAccId="";
-        String inputRf = view.getRFCode().trim(); 
-        String amountText = view.getAmount().trim();
+    private void handleSearch() {
+        String inputRf = view.getRFCode().trim();
+        Account myAccount = Session.getInstance().getActiveAccount();
+        foundBill = null;
 
-        if (inputRf.isEmpty() || amountText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+        if (myAccount.getBills() != null) {
+            for (Bill b : myAccount.getBills()) {
+                if (b.getRfCode().equals(inputRf)) {
+                    foundBill = b;
+                    break;
+                }
+            }
+        }
+
+        if (foundBill != null) {
+            view.setAmountField(String.format("%.2f", foundBill.getAmount()));
+            JOptionPane.showMessageDialog(null, "Ο λογαριασμός βρέθηκε!");
+        } else {
+            view.setAmountField("");
+            JOptionPane.showMessageDialog(null, "Δεν βρέθηκε λογαριασμός με αυτόν τον κωδικό RF.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void handlePayment() {
+        if (foundBill == null) {
+            JOptionPane.showMessageDialog(null, "Παρακαλώ αναζητήστε έναν έγκυρο λογαριασμό πρώτα.");
             return;
         }
 
-        try {
-            Float amountToPay = Float.parseFloat(amountText);
-            
-            // 2. Get User Account
-            Account myAccount = Session.getInstance().getActiveAccount();
+        Account myAccount = Session.getInstance().getActiveAccount();
+        double amountToPay = foundBill.getAmount();
+        double myBalance = Double.parseDouble(myAccount.getBalance());
 
-            double myBalance = Double.parseDouble(myAccount.getBalance());
+        if (myBalance < amountToPay) {
+            JOptionPane.showMessageDialog(null, "Ανεπαρκές υπόλοιπο!");
+            return;
+        }
 
-            if (myBalance < amountToPay) {
-                JOptionPane.showMessageDialog(null, "Insufficient Balance!");
-                return;
-            }
+        // 1. Update Objects
+        double newBal = myBalance - amountToPay;
+        myAccount.setBalance(String.valueOf(newBal));
 
-            // 3. Database Logic
-            UserDB uDB = model.get_uDB();
-            List<Map<String, Object>> allRecords = uDB.getAllRecords();
-            
-            boolean foundTarget = false;
-            boolean foundSender = false;
-
-            // Search and Update
-            for (Map<String, Object> userWrapper : allRecords) {
-                Map<String, Object> user = (Map<String, Object>) userWrapper.get("user");
-                List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
-
-                if (accounts != null) {
-                    for (Map<String, String> acc : accounts) {
-                        // Find Receiver
-                        if (acc.containsKey("rfCode") && inputRf.equals(acc.get("rfCode"))) {
-                            Float targetBal = Float.parseFloat(acc.get("balance"));
-                            Float newBal = Float.sum(targetBal, amountToPay);
-                            receiverAccId = (String)user.get("companyName");
-                            acc.put("balance", String.valueOf(newBal));
-                            // System.out.println("old bal: "+targetBal+"...new bal: "+ newBal);
-                            foundTarget = true;
-                            uDB.updateUserRecord(userWrapper);
-
-                            Account curr = Session.getInstance().getActiveAccount();
-                            Float updatedBal = Float.sum(Float.parseFloat(curr.getBalance()), ((Float)amountToPay*(-1)));
-                            curr.setBalance(String.valueOf(updatedBal));
-                        }
-                        // Find Sender
-                        // if (acc.get("accountId").equals(myAccount.getAccountId())) {
-                        //     acc.put("balance", String.valueOf(myBalance - amountToPay));
-                        //     foundSender = true;
-                        // }
-                    }
-
-
+        // 2. Remove bill from list
+        if (myAccount.getBills() != null) {
+            Iterator<Bill> it = myAccount.getBills().iterator();
+            while (it.hasNext()) {
+                if (it.next().getRfCode().equals(foundBill.getRfCode())) {
+                    it.remove();
+                    break;
                 }
             }
-
-            if (!foundTarget) {
-                JOptionPane.showMessageDialog(null, "Invalid RF Code.");
-                return;
-            }
-
-            // 4. Save Changes
-            // uDB.saveAllRecords(allRecords);
-
-
-            // 5. Transaction History
-            String inputTime = view.getPaymentTime().trim();
-            if(inputTime.isEmpty()) inputTime = "00:00";
-            String dateNow = java.time.LocalDate.now().toString();
-            String transID = String.valueOf(System.currentTimeMillis());
-            // String recieverId = uDB.findAccountWithId(receiverAccId);
-
-            // Create Transaction Object
-            Transaction t = new Transaction(
-            transID, myAccount.getAccountId(), receiverAccId, amountToPay, dateNow, inputTime, "Bill Payment", "send");
-            
-            myAccount.addTransaction(t);
-            
-            // TransactionDB tDB = model.get_tDB();
-            
-            // tDB.saveRecord(model.getConverter().convertAcctTransactionsToMap(myAccount));
-            model.saveChanges();
-
-            // 6. Update GUI
-            String newBal = String.valueOf(myBalance - amountToPay);
-            // myAccount.setBalance(newBal);
-            view.setBalance(newBal);
-
-            // model.saveChangesToUDB_conv();
-            view.hide();
-            DashboardScreen next = viewHandler.getDashboardScreen();
-            next.show();
-            next.refresh(myAccount);
-                        
-            JOptionPane.showMessageDialog(null, "Payment Successful!");
-
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Invalid Amount.");
         }
+
+        // 3. Create Transaction
+        Transaction t = new Transaction(
+            String.valueOf(System.currentTimeMillis()), 
+            myAccount.getAccountId(), 
+            foundBill.getTargetIban(), 
+            (float)amountToPay, 
+            java.time.LocalDate.now().toString(), 
+            java.time.LocalTime.now().toString().substring(0, 5), 
+            "Πληρωμή RF: " + foundBill.getRfCode(), 
+            "send"
+        );
+        myAccount.addTransaction(t);
+
+        // 4. Persistence
+        model.saveChanges(); // Balance & Transactions
+        // model.saveBills();   // Critical: Syncs bills.json
+
+        // 5. UI Update
+        view.setBalance(String.valueOf(newBal));
+        view.hide();
+        DashboardScreen dash = viewHandler.getDashboardScreen();
+        dash.refresh(myAccount);
+        dash.show();
+        
+        JOptionPane.showMessageDialog(null, "Η πληρωμή ολοκληρώθηκε επιτυχώς!");
+        foundBill = null; 
     }
 }

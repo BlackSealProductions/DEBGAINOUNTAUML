@@ -277,9 +277,7 @@ public class UserDB {
                     sb.append(String.format("          \"secondaryOwner\": \"%s\",\n", acc.get("secondaryOwner")));
                     sb.append(String.format("          \"balance\": \"%s\",\n", acc.get("balance")));
                     
-                    if("Company".equalsIgnoreCase(type)){
-                        sb.append(String.format("          \"rfCode\": \"%s\",\n", acc.get("rfCode")));
-                    }
+                
                     sb.append(String.format("          \"interestRate\": \"%s\"\n", acc.get("interestRate"))); 
                     
                     sb.append("        }");
@@ -382,9 +380,6 @@ public class UserDB {
                             acc.put("secondaryOwner", extractValue(part, "secondaryOwner"));
                             acc.put("balance", extractValue(part, "balance"));
                             acc.put("interestRate", extractValue(part, "interestRate"));
-                            if("Company".equalsIgnoreCase(type)){
-                                acc.put("rfCode", extractValue(part, "rfCode")); 
-                            }
                             accounts.add(acc);
                         }
                     }

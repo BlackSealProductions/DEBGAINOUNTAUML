@@ -3,6 +3,7 @@ package App.Model.Entities.UserEntities;
 import java.util.ArrayList;
 import java.util.List;
 
+import App.Model.Entities.OperationEntities.Bill;
 import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.OperationEntities.Transaction;
 
@@ -17,6 +18,8 @@ public class Account {
 
     private List<Transaction> transactions = new ArrayList<Transaction>();
     private List<StandingOrder> standingOrders = new ArrayList<StandingOrder>();
+    private List<Bill> bills = new ArrayList<Bill>();
+
 
     public Account(String citizenId, String ownerName, String iban, String balance, String interestRate, String secondaryOwner) {
         this.accountId = citizenId;
@@ -97,6 +100,14 @@ public class Account {
 
     public List<StandingOrder> getStandingorders() {
         return standingOrders;
+    }
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
     }
 
 

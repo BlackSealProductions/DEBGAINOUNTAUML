@@ -731,6 +731,36 @@
           "time": "09:52",
           "description": "Transfer to TUC",
           "type": "send"
+        },
+        {
+          "transactionId": "1767555308073",
+          "senderId": "ID_18081025",
+          "recieverId": "Unknown",
+          "amount": "34.0",
+          "date": "2026-01-04",
+          "time": "21:35",
+          "description": "External Transfer (Fee: 0.68)",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767561450280",
+          "senderId": "ID_18081025",
+          "recieverId": "GR6409068716948369530842178",
+          "amount": "3.0",
+          "date": "2026-01-04",
+          "time": "23:17",
+          "description": "Πληρωμή RF: RF1767561065270",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767561601464",
+          "senderId": "ID_18081025",
+          "recieverId": "GR6409068716948369530842178",
+          "amount": "3.0",
+          "date": "2026-01-04",
+          "time": "23:20",
+          "description": "Πληρωμή RF: RF1767561065270",
+          "type": "send"
         }
       ]
     }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import App.Model.Entities.OperationEntities.Bill;
 import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
@@ -192,6 +193,36 @@ public class DatabaseObjectConverter {
         // wrapper.put("transaction",tr);
 
         return tr;
+    }
+
+    /**
+     * Converts an Account's internal Bill objects into a Map for BillDB.json
+     */
+    public Map<String, Object> convertAcctBillsToMap(Account activeAccount) {
+        String accountId = activeAccount.getAccountId();
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("accountId", accountId);
+       
+        List<Map<String, String>> bills = new ArrayList<>();
+        
+        // Ensure your Account class has a getBills() method
+        if (activeAccount.getBills() != null) {
+            for (Bill bill : activeAccount.getBills()) {
+                Map<String, String> bMap = new HashMap<>();
+                bMap.put("rfCode", bill.getRfCode());
+                bMap.put("iban", bill.getTargetIban());
+                bMap.put("amount", String.valueOf(bill.getAmount()));
+                bMap.put("issue", bill.getIssueDate());
+                bMap.put("due", bill.getDueDate());
+                bills.add(bMap);
+            }
+        }
+        userData.put("bills", bills);
+        
+        Map<String, Object> wrapper = new HashMap<>();
+        wrapper.put("account", userData);
+        return wrapper;
     }
 
 

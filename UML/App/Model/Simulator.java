@@ -271,7 +271,7 @@ public class Simulator {
                 a.setPrimaryOwnerId(owner); 
                 a.setBalance(am.get("balance"));
                 a.setSecondaryOwner(am.get("secondaryOwner"));
-                if(am.containsKey("rfCode")) a.setRfCode(am.get("rfCode"));
+                // if(am.containsKey("rfCode")) a.setRfCode(am.get("rfCode"));
                 customer.addAccount(a);
             }
         }
@@ -305,7 +305,7 @@ public class Simulator {
                 aMap.put("ownerName", a.getOwnerName());
                 aMap.put("balance", a.getBalance());
                 aMap.put("secondaryOwner", a.getSecondaryOwner());
-                if (a.getRfCode() != null) aMap.put("rfCode", a.getRfCode());
+                // if (a.getRfCode() != null) aMap.put("rfCode", a.getRfCode());
                 aMap.put("interestRate", (a.getInterestRate() != null) ? a.getInterestRate() : "3.0");
                 accList.add(aMap);
             }

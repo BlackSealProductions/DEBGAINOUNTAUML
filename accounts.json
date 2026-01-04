@@ -183,7 +183,6 @@
           "ownerName": "Cafeteria",
           "secondaryOwner": "null",
           "balance": "2830.66",
-          "rfCode": "RF1659529733",
           "interestRate": "3.0"
         }
       ]
@@ -235,7 +234,6 @@
           "ownerName": "Of TUC",
           "secondaryOwner": "null",
           "balance": "10046911.92",
-          "rfCode": "RF187405495",
           "interestRate": "3.0"
         }
       ]
@@ -312,26 +310,10 @@
       "taxId": "111",
       "accounts": [
         {
-          "accountId": "ID_83848571",
-          "iban": "GR0434868378581762882502325",
-          "ownerName": "nig",
-          "secondaryOwner": "nigger2",
-          "balance": "1034.0",
-          "interestRate": "1%"
-        },
-        {
-          "accountId": "ID_75491145",
-          "iban": "GR0507574741847728595205700",
+          "accountId": "ID_38322476",
+          "iban": "GR9893617159931942389399360",
           "ownerName": "nigga1",
-          "secondaryOwner": "r",
-          "balance": "0",
-          "interestRate": "1%"
-        },
-        {
-          "accountId": "ID_79470260",
-          "iban": "GR0693269657259292897712553",
-          "ownerName": "nigga1",
-          "secondaryOwner": "nigz2",
+          "secondaryOwner": "bfyef",
           "balance": "0",
           "interestRate": "1%"
         }
@@ -354,7 +336,7 @@
           "iban": "GR4721132123635377234428151",
           "ownerName": "osak",
           "secondaryOwner": "osak2",
-          "balance": "10000.0",
+          "balance": "9959.32",
           "interestRate": "1%"
         },
         {
@@ -406,7 +388,6 @@
           "ownerName": "fs",
           "secondaryOwner": "FS TUC",
           "balance": "400010.0",
-          "rfCode": "null",
           "interestRate": "1%"
         }
       ]
@@ -466,7 +447,6 @@
           "ownerName": "b",
           "secondaryOwner": "null",
           "balance": "247.56",
-          "rfCode": "RF-1941775749",
           "interestRate": "3.0"
         }
       ]
@@ -488,7 +468,6 @@
           "ownerName": "mamo123",
           "secondaryOwner": "null",
           "balance": "876.71",
-          "rfCode": "RF1633135940",
           "interestRate": "3.0"
         }
       ]
@@ -510,7 +489,6 @@
           "ownerName": "n",
           "secondaryOwner": "null",
           "balance": "64.94",
-          "rfCode": "RF-741478171",
           "interestRate": "3.0"
         }
       ]
@@ -532,8 +510,28 @@
           "ownerName": "w",
           "secondaryOwner": "null",
           "balance": "113.72",
-          "rfCode": "RF808016843",
           "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "s",
+      "password": "s",
+      "companyName": "s",
+      "phone": "42",
+      "email": "s",
+      "type": "Company",
+      "taxId": "453",
+      "accounts": [
+        {
+          "accountId": "ID_21214597",
+          "iban": "GR9516302398641921141655116",
+          "ownerName": "s",
+          "secondaryOwner": "nigs",
+          "balance": "0",
+          "interestRate": "1%"
         }
       ]
     }

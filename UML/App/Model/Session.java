@@ -7,6 +7,7 @@ import java.util.Map;
 import App.Model.Database.OrderDB;
 import App.Model.Database.TransactionDB;
 import App.Model.Database.UserDB;
+import App.Model.Entities.OperationEntities.Bill;
 import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
@@ -99,17 +100,17 @@ public class Session {
                 String rate = acc.get("interestRate");
 
                 // --- FIX: Read RF Code from Database ---
-                String rf = acc.containsKey("rfCode") ? acc.get("rfCode") : "";
+                // String rf = acc.containsKey("rfCode") ? acc.get("rfCode") : "";
                 // ---------------------------------------
 
                 Account newAccount = new Account(acctId, pOwner, iban, balance, rate, sOwner);
-                newAccount.setRfCode(rf); // Load it into the object
+                // newAccount.setRfCode(rf); // Load it into the object
                 
                 customerAccounts.add(newAccount);
             }
+            activeCustomer.setAccounts(customerAccounts);;
         }
-        activeCustomer.setAccounts(customerAccounts);
-
+       
     }
     
     public Account getAccountByIdx(int idx){
@@ -182,6 +183,57 @@ public class Session {
         activeAccount.setStandingorders(accountOrders);
     }
 
+    // --- 1. NEW: Load Bills from Database ---
+    public void loadBills(Map<String, Object> accData) {
+        // Based on your BillDB structure, bills is a List of Maps
+        List<Map<String, String>> billsList = (List<Map<String, String>>) accData.get("bills");
+        List<Bill> accountBills = new ArrayList<>();
+
+        if (billsList != null) {
+            for (Map<String, String> bMap : billsList) {
+                String rfCode = bMap.get("rfCode");
+                String iban = bMap.get("iban");
+                // Using Double/Float based on your Bill entity constructor
+                double amount = Double.parseDouble(bMap.get("amount"));
+                String issueDate = bMap.get("issue");
+                String dueDate = bMap.get("due");
+
+                // Assuming Bill constructor: Bill(rfCode, iban, amount, issueDate, dueDate)
+                accountBills.add(new Bill(rfCode, amount, issueDate, dueDate, iban));
+            }
+        }
+        // Attach to the active account object
+        activeAccount.setBills(accountBills);
+    }
+
+    // --- 2. UPDATE: activateAccount to include Bill loading ---
+    public void activateAccount(ModelHandler m, Account acc){
+        setActiveAccount(acc);
+
+        // Load Transactions
+        TransactionDB tDB = m.get_tDB();
+        Map<String, Object> transMap = tDB.findAccountWithId(activeAccount.getAccountId());
+        if (transMap != null){
+            loadTransactions(transMap);
+        }
+
+        // Load Orders
+        OrderDB oDB = m.get_oDB();
+        Map<String, Object> ordersMap = oDB.findAccountWithId(activeAccount.getAccountId());
+        if (ordersMap != null){
+            loadOrders(ordersMap, m);
+        }
+
+        // --- NEW: Load Bills ---
+        // Accessing the BillDB you created earlier via ModelHandler
+        App.Model.Database.BillDB bDB = m.get_bDB(); 
+        Map<String, Object> billsMap = bDB.findAccountWithId(activeAccount.getAccountId());
+        if (billsMap != null) {
+            loadBills(billsMap);
+        }
+    }
+
+
     public Transaction genTransactionObject(Map<String,Object> tr){
 
         String transactionId = (String)tr.get("transactionId");
@@ -205,22 +257,6 @@ public class Session {
 
     public void setActiveAccount(Account account) {
         this.activeAccount = account;
-    }
-
-    public void activateAccount(ModelHandler m, Account acc){
-        setActiveAccount(acc);
-
-        TransactionDB tDB = m.get_tDB();
-        Map<String, Object> transMap = tDB.findAccountWithId(activeAccount.getAccountId());
-        if (transMap!=null){
-            loadTransactions(transMap);
-        }
-
-        OrderDB oDB = m.get_oDB();
-        Map<String, Object> ordersMap = oDB.findAccountWithId(activeAccount.getAccountId());
-        if (ordersMap!=null){
-            loadOrders(ordersMap, m);
-        }
     }
 
     public Account getActiveAccount() {
