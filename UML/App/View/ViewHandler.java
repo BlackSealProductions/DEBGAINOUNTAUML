@@ -189,7 +189,7 @@ public class ViewHandler {
     public ViewSession getViewSessionInst(){
         return ViewSession.getInstance();
     }
-
+    
 
     
 }

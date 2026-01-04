@@ -110,7 +110,7 @@
           "orderId": "1767510997674",
           "amount": "4.0",
           "day": "04/01/2026",
-          "dueDate": "04/06/2029",
+          "dueDate": "04/08/2029",
           "frequency": "ΜΗΝΑ",
           "pastcharges": []
         },
@@ -120,7 +120,7 @@
           "orderId": "1767511178049",
           "amount": "5.0",
           "day": "04/01/2026",
-          "dueDate": "04/04/2029",
+          "dueDate": "04/06/2029",
           "frequency": "ΜΗΝΑ",
           "pastcharges": []
         },
@@ -130,7 +130,7 @@
           "orderId": "1767511219064",
           "amount": "25.0",
           "day": "04/01/2026",
-          "dueDate": "04/01/2065",
+          "dueDate": "04/01/2067",
           "frequency": "ΧΡΟΝΟ",
           "pastcharges": []
         },
@@ -140,7 +140,7 @@
           "orderId": "1767511230667",
           "amount": "25.0",
           "day": "04/01/2026",
-          "dueDate": "04/01/2065",
+          "dueDate": "04/01/2067",
           "frequency": "ΧΡΟΝΟ",
           "pastcharges": []
         },
@@ -150,7 +150,7 @@
           "orderId": "1767511230836",
           "amount": "25.0",
           "day": "04/01/2026",
-          "dueDate": "04/01/2065",
+          "dueDate": "04/01/2067",
           "frequency": "ΧΡΟΝΟ",
           "pastcharges": []
         },
@@ -160,7 +160,7 @@
           "orderId": "1767511230936",
           "amount": "25.0",
           "day": "04/01/2026",
-          "dueDate": "04/01/2065",
+          "dueDate": "04/01/2067",
           "frequency": "ΧΡΟΝΟ",
           "pastcharges": []
         },
@@ -170,7 +170,7 @@
           "orderId": "1767511231116",
           "amount": "25.0",
           "day": "04/01/2026",
-          "dueDate": "04/01/2065",
+          "dueDate": "04/01/2067",
           "frequency": "ΧΡΟΝΟ",
           "pastcharges": []
         },
@@ -180,7 +180,7 @@
           "orderId": "1767511231433",
           "amount": "25.0",
           "day": "04/01/2026",
-          "dueDate": "04/01/2065",
+          "dueDate": "04/01/2067",
           "frequency": "ΧΡΟΝΟ",
           "pastcharges": []
         },
@@ -190,7 +190,7 @@
           "orderId": "1767511231864",
           "amount": "25.0",
           "day": "04/01/2026",
-          "dueDate": "04/01/2065",
+          "dueDate": "04/01/2067",
           "frequency": "ΧΡΟΝΟ",
           "pastcharges": []
         }
@@ -217,13 +217,6 @@
   {
     "account": {
       "accountId": "ID_75491145",
-      "orders": [
-      ]
-    }
-  },
-  {
-    "account": {
-      "accountId": "ID_79470260",
       "orders": [
       ]
     }

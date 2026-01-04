@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EditDataScreen",
+            "request": "launch",
+            "mainClass": "App.View.Screens.EditDataScreen",
+            "projectName": "DEBGAINOUNTAUML_7fa5f62"
+        },
+        {
+            "type": "java",
+            "name": "AuditLogScreen",
+            "request": "launch",
+            "mainClass": "App.View.Screens.AuditLogScreen",
+            "projectName": "DEBGAINOUNTAUML_7fa5f62"
+        },
+        {
+            "type": "java",
+            "name": "AdminMenuScreen",
+            "request": "launch",
+            "mainClass": "App.View.Screens.AdminMenuScreen",
+            "projectName": "DEBGAINOUNTAUML_7fa5f62"
+        },
+        {
+            "type": "java",
+            "name": "MainSimGUI",
+            "request": "launch",
+            "mainClass": "App.MainSimGUI",
+            "projectName": "DEBGAINOUNTAUML_7fa5f62"
+        },
+        {
+            "type": "java",
             "name": "MainGUI",
             "request": "launch",
             "mainClass": "App.MainGUI",

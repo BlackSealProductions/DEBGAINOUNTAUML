@@ -75,7 +75,7 @@ public class OrderAssesor {
             if (pastCharges == null) {
                 pastCharges = new ArrayList<>();
             }
-            System.out.println("\n\n"+name+acc+orderId+String.valueOf(amount)+day+dueDate+freq+pastCharges+"\n\n");
+            // System.out.println("\n\n"+name+acc+orderId+String.valueOf(amount)+day+dueDate+freq+pastCharges+"\n\n");
     
             // 3. Pass the pastCharges list to the constructor
             // Make sure your StandingOrder constructor is updated to accept this list
@@ -111,7 +111,7 @@ public class OrderAssesor {
                 if(hadEnoughMoney){
                     chargePaidCount++;
                     // charges.remove(charge);
-                    System.out.println("Took "+ charge+"\n");
+                    System.out.println("Took "+charge+" from "+accId+"\n");
                 }
                 else{
                     break;
@@ -136,7 +136,6 @@ public class OrderAssesor {
                 }
             }
             
-            else{System.out.println("Not due date yet");}
         }   
 
     }

@@ -4,7 +4,6 @@ import App.Model.ModelHandler;
 import App.Model.Session;
 import App.Model.Database.TransactionDB;
 import App.Model.Database.UserDB;
-import App.Model.Entities.OperationEntities.Transaction;
 import App.Model.Entities.UserEntities.Account;
 import App.View.ViewHandler;
 import App.View.ViewSession;
@@ -80,19 +79,24 @@ public class StatementCon  implements Controller_t{
         List<Map<String, Object>> accTrans = new ArrayList();
         List<Transaction> receivedTrans = null;
         accTransactions = null;
-        
+
         acc = Session.getInstance().getActiveAccount();
-        accTransactions = acc.getTransactions();
+
+        // --- FIX START ---
+        // Create a NEW ArrayList as a copy of the account's transactions.
+        // This way, changes to 'accTransactions' do not affect the 'acc' object.
+        accTransactions = new ArrayList<>(acc.getTransactions()); 
+        // --- FIX END ---
+
         receivedTrans = getReceivedTransactions(acc.getAccountId());
+
+        // Now you can safely add to this local list without modifying the Account entity
         accTransactions.addAll(receivedTrans);
 
         System.out.println(accTransactions);
-        // accStatements = genStatements(accTransactions, acc);
+
         accTrans = genStatements2(accTransactions, acc);
         view.giveAccStatements2(accTrans);
-        
-        // System.out.println(accStatements);
-        // view.giveAccStatements(accStatements);
     }
     //
     public List<Map<String, Object>> genStatements2(List<Transaction> trans, Account acc){

@@ -39,12 +39,19 @@ public class ModelHandler {
 
     public void saveChangesToTDB_conv(){
         Account acct = Session.getInstance().getActiveAccount();
-        this.tDB.updateUserRecord(conv.convertAcctTransactionsToMap(acct));
+        if(!acct.getTransactions().isEmpty()){
+
+            this.tDB.updateUserRecord(conv.convertAcctTransactionsToMap(acct));
+        }
+
     }
 
     public void saveChangesToODB_conv(){
         Account acct = Session.getInstance().getActiveAccount();
-        this.oDB.updateUserRecord(conv.convertAcctOrdersToMap(acct));
+        if(!acct.getStandingorders().isEmpty()){
+
+            this.oDB.updateUserRecord(conv.convertAcctOrdersToMap(acct));
+        }
     }
 
     public void saveChangesToODB_conv_Id(List<StandingOrder> orders, String accountId){

@@ -4,14 +4,12 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-import App.Model.Session;
+import App.Model.Entities.OperationEntities.Transaction;
 
 public class TransactionDB {
     private static final String DB_FILE = "transactions.json";
 
-
     public TransactionDB(){
-
     }
 
     // ===========================
@@ -19,7 +17,6 @@ public class TransactionDB {
     // ===========================
 
     public Map<String, Object> findAccountWithId(String id){
-
         List<Map<String, Object>> records = getAllRecords();
         Map<String, Object> foundAccount = null;
 
@@ -27,7 +24,6 @@ public class TransactionDB {
             Map<String, Object> acct = (Map<String, Object>) wrapper.get("account");
             if (acct.get("accountId").equals(id)) {
                 foundAccount = acct;
-                // System.out.println(user.get("username"));
                 break;
             }
         }
@@ -92,22 +88,23 @@ public class TransactionDB {
         return parseJsonNested(DB_FILE);
     }
 
-
     /**
-     * Saves a NEW user during registration.
+     * Saves a NEW account record (used when a new account is created or found by Simulator).
      */
     public void saveRecord(Map<String, Object> userWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
-        // Map<String, Object> wrapper = new HashMap<>();
-        // wrapper.put("user", userData);
         allRecords.add(userWrapper);
         saveAllRecords(allRecords);
     }
 
+    /**
+     * Updates an existing account's transaction list.
+     * Used by the Simulator/Converter to save history.
+     */
     public void updateUserRecord(Map<String, Object> updatedWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
         
-        // Extract the updated username to find the match
+        // Extract the updated account ID to find the match
         Map<String, Object> updatedAcct = (Map<String, Object>) updatedWrapper.get("account");
         String targetId = (String) updatedAcct.get("accountId");
     
@@ -117,7 +114,7 @@ public class TransactionDB {
             Map<String, Object> currentAcct = (Map<String, Object>) currentWrapper.get("account");
     
             if (currentAcct.get("accountId").equals(targetId)) {
-                // Replace the old user data with the new updated version
+                // Replace the old data with the new updated version
                 allRecords.set(i, updatedWrapper);
                 found = true;
                 break;
@@ -125,33 +122,52 @@ public class TransactionDB {
         }
     
         if (found) {
-            saveAllRecords(allRecords); // Overwrites the file with the updated list
+            saveAllRecords(allRecords); 
         } else {
-            // If for some reason the user wasn't there, treat it as a new record
-            saveRecord((Map<String, Object>) updatedWrapper);
+            // If the account wasn't in transactions.json yet, add it now
+            saveRecord(updatedWrapper);
         }
     }
 
-    /**
-     * Adds a new account to an existing user identified by username.
-     */
-    // public void addAccountToUser(String username, Map<String, String> newAccount) {
-    //     List<Map<String, Object>> allRecords = getAllRecords();
-    //     for (Map<String, Object> wrapper : allRecords) {
-    //         Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
-    //         if (user.get("username").equals(username)) {
-    //             List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
-    //             if (accounts == null) {
-    //                 accounts = new ArrayList<>();
-    //                 user.put("accounts", accounts);
-    //             }
-    //             accounts.add(newAccount);
-    //             break;
-    //         }
-    //     }
-    //     saveAllRecords(allRecords);
-    // }
+    // ========================================================
+    //   Get All Transactions (Convert Maps to Objects)
+    // ========================================================
+    public ArrayList<Transaction> getAllTransactions() {
+        ArrayList<Transaction> allTransactions = new ArrayList<>();
+        
+        List<Map<String, Object>> allRecords = getAllRecords();
 
+        for (Map<String, Object> wrapper : allRecords) {
+            Map<String, Object> accountMap = (Map<String, Object>) wrapper.get("account");
+            
+            if (accountMap != null && accountMap.containsKey("transactions")) {
+                List<Map<String, String>> transList = (List<Map<String, String>>) accountMap.get("transactions");
+                
+                if (transList != null) {
+                    for (Map<String, String> tMap : transList) {
+                        try {
+                            String id = tMap.get("transactionId");
+                            String sender = tMap.get("senderId");
+                            String receiver = tMap.get("recieverId");
+                            // Safety replace for currency format
+                            double amount = Double.parseDouble(tMap.get("amount").replace(",", ".")); 
+                            String date = tMap.get("date");
+                            String time = tMap.get("time");
+                            String desc = tMap.get("description");
+                            String type = tMap.get("type");
+
+                            Transaction t = new Transaction(id, sender, receiver, amount, date, time, desc, type);
+                            allTransactions.add(t);
+                            
+                        } catch (Exception e) {
+                            System.err.println("Skipping corrupted transaction: " + tMap);
+                        }
+                    }
+                }
+            }
+        }
+        return allTransactions; 
+    }
 
     // ===========================
     //   PRIVATE HELPERS (Writer)
@@ -169,13 +185,11 @@ public class TransactionDB {
             sb.append("    \"account\": {\n");
             sb.append(String.format("      \"accountId\": \"%s\",\n", acct.get("accountId")));
         
-            // --- Transactions Section ---
             sb.append("      \"transactions\": [\n");
             List<Map<String, String>> transactions = (List<Map<String, String>>) acct.get("transactions");
             if (transactions != null) {
                 for (int j = 0; j < transactions.size(); j++) {
                     Map<String, String> tr = transactions.get(j);
-                    // Skip ghost accounts as discussed previously
                     if (tr.get("transactionId") == null || tr.get("transactionId").isEmpty()) continue;
     
                     sb.append("        {\n");
@@ -201,13 +215,13 @@ public class TransactionDB {
     
         sb.append("]");
     
-        // Write to file
         try (java.io.PrintWriter out = new java.io.PrintWriter("transactions.json")) {
             out.println(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     // ===========================
     //   PRIVATE HELPERS (Parser)
     // ===========================
@@ -221,10 +235,8 @@ public class TransactionDB {
             String content = new String(Files.readAllBytes(Paths.get(filename))).trim();
             if (content.length() < 3) return records; 
 
-            // Remove outer brackets []
             content = content.substring(1, content.length() - 1).trim();
 
-            // Split into "User" blocks by counting curly braces
             List<String> acctBlocks = new ArrayList<>();
             int braceCount = 0;
             StringBuilder sb = new StringBuilder();
@@ -246,33 +258,24 @@ public class TransactionDB {
             }
 
             for (String block : acctBlocks) {
-
                 String acctountId = extractValue(block, "accountId");
                 if (acctountId == null || acctountId.trim().isEmpty()) {
-                    continue; // Skip this ghost block
+                    continue; 
                 }
-
-                // String type = extractValue(block, "type");
 
                 Map<String, Object> userData = new HashMap<>();
                 userData.put("accountId", extractValue(block, "accountId"));
                 
-
-                // Handle nested accounts array
                 List<Map<String, String>> transactions = new ArrayList<>();
                 int trStart = block.indexOf("\"transactions\": [");
                 if (trStart != -1) {
                     int trEnd = block.lastIndexOf("]");
                     String trsSection = block.substring(trStart + 12, trEnd).trim();
                     
-                    // NEW CHECK: Only proceed if the section contains at least one object opening '{'
                     if (trsSection.contains("{")) {
-                        // Split accounts by looking for closing braces of account objects
                         String[] trParts = trsSection.split("\\},");
                         for (String part : trParts) {
                             if (part.trim().isEmpty()) continue;
-                            
-                            // Further safety: ensure this specific part has data
                             String id = extractValue(part, "transactionId");
                             if (id.isEmpty()) continue; 
 
@@ -306,16 +309,52 @@ public class TransactionDB {
         int index = block.indexOf(search);
         if (index == -1) return "";
         
-        // Find the opening quote after the colon
         int start = block.indexOf("\"", index + search.length()) + 1;
-        if (start == 0) return ""; // Not found
+        if (start == 0) return ""; 
         
-        // Find the closing quote
         int end = block.indexOf("\"", start);
         if (end == -1) return "";
         
         return block.substring(start, end);
     }
+
+
+    public void appendTransactionRecord(Map<String, Object> newWrapper) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        
+        Map<String, Object> newAcctMap = (Map<String, Object>) newWrapper.get("account");
+        String targetId = (String) newAcctMap.get("accountId");
+        List<Map<String, String>> newTransactions = (List<Map<String, String>>) newAcctMap.get("transactions");
+    
+        boolean found = false;
+        for (Map<String, Object> record : allRecords) {
+            Map<String, Object> existingAcct = (Map<String, Object>) record.get("account");
+            
+            if (existingAcct.get("accountId").equals(targetId)) {
+                // Found the account, let's append only the new transactions
+                List<Map<String, String>> existingTransactions = (List<Map<String, String>>) existingAcct.get("transactions");
+                if (existingTransactions == null) {
+                    existingTransactions = new ArrayList<>();
+                    existingAcct.put("transactions", existingTransactions);
+                }
+
+                if (newTransactions != null) {
+                    for (Map<String, String> newTr : newTransactions) {
+                        existingTransactions.add(newTr);
+                    }
+                }
+                found = true;
+                break;
+            }
+        }
+    
+        if (found) {
+            saveAllRecords(allRecords); 
+        } else {
+            // Account invalid or new, save normally
+            saveRecord(newWrapper);
+        }
+    }
+
+    
 }
-
-
