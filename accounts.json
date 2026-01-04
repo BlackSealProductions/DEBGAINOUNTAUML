@@ -257,7 +257,7 @@
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
           "secondaryOwner": "faker",
-          "balance": "1762.6502685546875",
+          "balance": "100000.0",
           "interestRate": "0.5%"
         },
         {
@@ -405,7 +405,7 @@
           "iban": "GR3529345747154017510425940",
           "ownerName": "fs",
           "secondaryOwner": "FS TUC",
-          "balance": "384.90000000000003",
+          "balance": "400010.0",
           "rfCode": "null",
           "interestRate": "1%"
         }

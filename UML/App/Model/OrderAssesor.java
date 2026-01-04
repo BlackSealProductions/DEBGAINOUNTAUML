@@ -18,6 +18,7 @@ public class OrderAssesor {
     ModelHandler m;
     OrderDB odb;
     TransactionDB tdb;
+    UserDB udb;
     
     
 
@@ -25,6 +26,7 @@ public class OrderAssesor {
         this.m = m;
         odb = m.get_oDB();
         tdb = m.get_tDB();
+        udb = m.get_uDB();
 
     }
 
@@ -79,7 +81,7 @@ public class OrderAssesor {
             // Make sure your StandingOrder constructor is updated to accept this list
             StandingOrder newOrder = new StandingOrder(name, acc, orderId, amount, day, freq);
             newOrder.setPastCharges(pastCharges);
-            newOrder.calcNextDate(freq, dueDate);
+            newOrder.setNextIssueDay(dueDate);
             orders.add(newOrder);
         }
 
@@ -92,41 +94,46 @@ public class OrderAssesor {
         LocalDate presentDay = LocalDate.now();
         presentDay.format(form);
         LocalDate issueDate = null;
+        boolean haveCharges=false;
+        boolean haveMoney=true;
+
 
 
         for(StandingOrder order : orders){
             issueDate = LocalDate.parse(order.getNextIssueDay(),form);
             
+            // Prwta dokimazoume na apoxrewsoume tin lista me ta palia xrwstoumena
+            int chargePaidCount = 0;
+            List<Double> charges = order.getPastCharges();
+            for(Double charge : charges){
+                
+                Boolean hadEnoughMoney = invadeVenezuela(accId, charge, order);
+                if(hadEnoughMoney){
+                    chargePaidCount++;
+                    // charges.remove(charge);
+                    System.out.println("Took "+ charge+"\n");
+                }
+                else{
+                    break;
+                }
+            }
+            for(int i=0; i<chargePaidCount; i++){
+                charges.removeFirst();
+            }
+                           
             // if today is after or == to issueDay
             if(issueDate.isBefore(presentDay) || issueDate.isEqual(presentDay)){
 
-                // Prwta dokimazoume na apoxrewsoume tin lista me ta palia xrwstoumena
-                List<Double> charges = order.getPastCharges();
-                int chargePaidCount = 0;
-                for(Double charge : charges){
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-                    Boolean hadEnoughMoney = invadeVenezuela(accId, charge, order);
-                    if(hadEnoughMoney){
-                        chargePaidCount++;
-                        // charges.remove(charge);
-                        System.out.println("Took "+ charge+"\n");
-                    }
-                    else{
-                        break;
-                    }
-                }
-                for(int i=0; i<chargePaidCount; i++){
-                    charges.removeFirst();
-                }
+
+                order.calcNextDate(order.getPaymentFrequency(),issueDate.format(formatter));
+
                 // try to charge for the currect order
                 Boolean hadEnoughMoney = invadeVenezuela(accId, order.getAmount(), order);
                 if(!hadEnoughMoney){
                     order.addCharge(order.getAmount());
                 }
-                LocalDate now = LocalDate.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                String formattedDate = now.format(formatter);
-                order.calcNextDate(order.getPaymentFrequency(), formattedDate);
             }
             
             else{System.out.println("Not due date yet");}
@@ -149,6 +156,12 @@ public class OrderAssesor {
         for (Map<String, Object> userWrapper : userRecords) {
             Map<String, Object> user = (Map<String, Object>) userWrapper.get("user");
             List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
+
+            float oppMoney=0f;
+            Map<String, Object> opUser = null;
+            Map<String, String> receivingAcc = null;
+            boolean targetFoundInDb = false;
+
     
             if (accounts != null) {
                 for (Map<String, String> acc : accounts) {
@@ -159,8 +172,35 @@ public class OrderAssesor {
                             acc.put("balance", String.valueOf(currentBalance-TrumpaneanDept));
                             uDB.updateUserRecord(userWrapper);
                             Map<String, Object> targetacc = uDB.findAccountWithIban(order.getAccountIban());
-                            Transaction trans = new Transaction(String.valueOf(System.currentTimeMillis()),acc.get("accountId"), (String)targetacc.get("accountId"), TrumpaneanDept,LocalDate.now().toString(),LocalTime.now().toString(),"Πάγια Χρέωση","send");
+                            Transaction trans = new Transaction(String.valueOf(System.currentTimeMillis()),acc.get("accountId"),targetacc != null ? (String)targetacc.get("accountId") : "unknown", TrumpaneanDept,LocalDate.now().toString(),LocalTime.now().toString(),"Πάγια Χρέωση","send");
                             tdb.addTransactionToWrapper(USAcitizenNumber,m.getConverter().convertTransactionToMap(trans));
+
+                            
+                            
+                            for (Map<String, Object> opWrapper : userRecords) {
+                                Map<String, Object> op = (Map<String, Object>) opWrapper.get("user");
+                                List<Map<String, String>> opAccs = (List<Map<String, String>>) op.get("accounts");
+                                
+                                if (opAccs != null) {
+                                    for (Map<String, String> account : opAccs) {
+                                        if (account.get("iban").equals(order.getAccountIban())) {
+                                            System.out.println("Name: "+account.get("ownerName"));
+                                            opUser = user;
+                                            receivingAcc = account;
+                                            targetFoundInDb = true;
+                                            // If we are in "In-Bank" mode, update the receiver's balance
+                                            if (targetFoundInDb) {
+                                                oppMoney = Float.parseFloat(receivingAcc.get("balance")); 
+                                                receivingAcc.put("balance", String.valueOf(oppMoney + TrumpaneanDept));
+                                                uDB.updateUserRecord(opWrapper);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            // add money to Oppressor
+
+
 
                             return true;
                         }

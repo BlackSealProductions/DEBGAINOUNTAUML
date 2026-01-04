@@ -78,9 +78,14 @@ public class StatementCon  implements Controller_t{
     
     public void onEnter(Account acc){
         List<Map<String, Object>> accTrans = new ArrayList();
+        List<Transaction> receivedTrans = null;
+        accTransactions = null;
+        
         acc = Session.getInstance().getActiveAccount();
         accTransactions = acc.getTransactions();
-        accTransactions.addAll(getReceivedTransactions(acc.getAccountId()));
+        receivedTrans = getReceivedTransactions(acc.getAccountId());
+        accTransactions.addAll(receivedTrans);
+
         System.out.println(accTransactions);
         // accStatements = genStatements(accTransactions, acc);
         accTrans = genStatements2(accTransactions, acc);

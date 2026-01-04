@@ -32,13 +32,13 @@ public class StandingOrder {
     
         public StandingOrder(String name, String accountIban, String orderId, double amount, String presentDay, String paymentFrequency) {
             this.name = name;
-        this.accountIban = accountIban;
-        this.orderId = orderId;
-        this.amount = amount;
-        this.presentDay = presentDay;
-        this.paymentFrequency = paymentFrequency;
-        // this.nextIssueDay = calcNextDate(paymentFrequency,presentDay);
-        isNotPaidOnTime = false;
+            this.accountIban = accountIban;
+            this.orderId = orderId;
+            this.amount = amount;
+            this.presentDay = presentDay;
+            this.paymentFrequency = paymentFrequency;
+            // this.nextIssueDay = calcNextDate(paymentFrequency,presentDay);
+            isNotPaidOnTime = false;
     }
 
     
@@ -64,6 +64,13 @@ public class StandingOrder {
     public String getPaymentFrequency() {
         return paymentFrequency;
     }
+    
+
+    public void setPresentDay(String presentDay) {
+        this.presentDay = presentDay;
+    }
+
+
 
     public boolean isNotPaidOnTime() {
         return isNotPaidOnTime;
@@ -81,6 +88,7 @@ public class StandingOrder {
 
 
     public void calcNextDate(String freq,String present){
+
         LocalDate nextDate=null;
 
         DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");

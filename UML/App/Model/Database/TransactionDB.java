@@ -76,7 +76,7 @@ public class TransactionDB {
             Map<String, Object> acct = (Map<String, Object>) wrapper.get("account");
             List<Map<String, Object>> trs = (List<Map<String, Object>>) acct.get("transactions");
             for(Map<String, Object> tr : trs){
-                if( tr.get("recieverId").equals(id)){
+                if( tr.get("recieverId").equals(id) && !acct.get("accountId").equals(id)){
                     foundTrs.add(tr);
                     // return tr;
                 }

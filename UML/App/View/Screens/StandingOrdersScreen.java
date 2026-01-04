@@ -295,8 +295,8 @@ public class StandingOrdersScreen implements View_t {
         glueGbc.fill = GridBagConstraints.BOTH;
         listContainer.add(Box.createVerticalGlue(), glueGbc);
     
-        // listContainer.revalidate();
-        // listContainer.repaint();
+        listContainer.revalidate();
+        listContainer.repaint();
     }
     
     // --- UPDATED CLEAR METHOD ---

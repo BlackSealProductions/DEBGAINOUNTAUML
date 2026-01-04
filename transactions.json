@@ -524,6 +524,46 @@
           "time": "06:16",
           "description": "Transfer to TUC",
           "type": "send"
+        },
+        {
+          "transactionId": "1767528214427",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "ID_45882085",
+          "amount": "69.36000061035156",
+          "date": "2026-01-04",
+          "time": "14:03:34.427889500",
+          "description": "Πάγια Χρέωση",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767528214427",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "ID_45882085",
+          "amount": "69.36000061035156",
+          "date": "2026-01-04",
+          "time": "14:03:34.427889500",
+          "description": "Πάγια Χρέωση",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767528683623",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "78.0",
+          "date": "2026-01-04",
+          "time": "14:11:23.623552600",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767528691547",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_45882085",
+          "amount": "32.0",
+          "date": "2026-01-04",
+          "time": "14:11:31.547899100",
+          "description": "Deposit",
+          "type": "receive"
         }
       ]
     }
