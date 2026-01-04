@@ -10,6 +10,8 @@ import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
 import App.Model.Entities.UserEntities.Individual;
 import App.View.Screens.SimulationScreen;
+// [ADDED] Import for StandingOrder logic
+import App.Model.Entities.OperationEntities.StandingOrder;
 
 public class Simulator {
 
@@ -32,6 +34,7 @@ public class Simulator {
         isRunning = true;
         totalActions = 0;
         totalVolume = 0.0;
+        model.setSimulationActive(true);
         
         new Thread(() -> {
             view.appendLog(">>> STARTING OPTIMIZED SIMULATION <<<");
@@ -89,11 +92,16 @@ public class Simulator {
                 }
 
                 // =============================================================
-                // 2. STANDING ORDERS (Rent on the 1st)
+                // [NEW] STANDING ORDERS (Checks OrderDB for due items)
+                // =============================================================
+                // Convert ISO date (yyyy-MM-dd) to European (dd/MM/yyyy) for StandingOrder logic
+                String eurDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                executeSimulationOrders(eurDate, userRecords, dateString);
+
+                // =============================================================
+                // 2. HARDCODED RENT (Fallback / Demo Logic)
                 // =============================================================
                 if (currentDate.getDayOfMonth() == 1) {
-                    view.appendLog("   [SYSTEM] 1st OF MONTH: PAYING RENT...");
-                    // Limit to just 2 automatic payments to keep logs clean
                     for (int k = 0; k < 2; k++) { 
                         try {
                             Customer user = mapToCustomer(userRecords.get(rand.nextInt(userRecords.size())));
@@ -122,7 +130,6 @@ public class Simulator {
                 List<Map<String, Object>> dailyUsers = new ArrayList<>(userRecords);
                 Collections.shuffle(dailyUsers);
                 
-                // Only pick a few users to act today
                 int usersToSimulate = Math.min(USERS_PER_DAY, dailyUsers.size());
                 
                 for (int i = 0; i < usersToSimulate; i++) {
@@ -149,6 +156,7 @@ public class Simulator {
             
             view.appendLog(">>> SIMULATION FINISHED <<<");
             isRunning = false;
+            model.setSimulationActive(false);
         }).start();
     }
 
@@ -221,6 +229,144 @@ public class Simulator {
             }
             totalActions++;
         } catch (Exception e) {}
+    }
+
+    // =============================================================
+    // [FIXED] STANDING ORDER SIMULATION (Sender Deduction + Receiver Deposit)
+    // =============================================================
+    private void executeSimulationOrders(String todayEuroDate, List<Map<String, Object>> userRecords, String isoDate) {
+        List<Map<String, Object>> allOrderWrappers = model.get_oDB().getAllRecords();
+        boolean ordersChanged = false;
+
+        for (Map<String, Object> wrapper : allOrderWrappers) {
+            Map<String, Object> accountData = (Map<String, Object>) wrapper.get("account");
+            String sourceAccountId = (String) accountData.get("accountId");
+            List<Map<String, Object>> orders = (List<Map<String, Object>>) accountData.get("orders");
+
+            if (orders == null) continue;
+
+            for (Map<String, Object> orderMap : orders) {
+                String dueDate = (String) orderMap.get("dueDate");
+                
+                // 1. CHECK IF DUE TODAY
+                if (dueDate != null && dueDate.equals(todayEuroDate)) {
+                    
+                    Map<String, String> sourceAccMap = findAccountInList(userRecords, sourceAccountId);
+                    
+                    if (sourceAccMap != null) {
+                        double amount = Double.parseDouble((String) orderMap.get("amount"));
+                        double balance = parseBalance(sourceAccMap.get("balance"));
+
+                        // 2. EXECUTE PAYMENT (Sender Side)
+                        if (balance >= amount) {
+                            // A. Deduct Money from Sender
+                            double newBal = balance - amount;
+                            sourceAccMap.put("balance", String.format(Locale.US, "%.2f", newBal));
+                            
+                            // B. Add Transaction Log (Sender)
+                            Account tempAcc = new Account();
+                            tempAcc.setAccountId(sourceAccountId);
+                            Transaction t = new Transaction(generateTxId(), sourceAccountId, (String) orderMap.get("targetIban"), amount, isoDate, "08:00", "Standing Order Auto-Pay", "Payment");
+                            tempAcc.addTransaction(t);
+                            model.get_tDB().appendTransactionRecord(convertAccountToTransactionMap(tempAcc));
+
+                            // C. [NEW] EXECUTE DEPOSIT (Receiver Side)
+                            String targetIban = (String) orderMap.get("targetIban");
+                            Map<String, String> targetAccMap = findAccountByIban(userRecords, targetIban);
+                            
+                            if (targetAccMap != null) {
+                                double targetBal = parseBalance(targetAccMap.get("balance"));
+                                double newTargetBal = targetBal + amount;
+                                targetAccMap.put("balance", String.format(Locale.US, "%.2f", newTargetBal));
+                                
+                                // Save Receiver Changes
+                                Map<String, Object> targetWrapper = findUserWrapperByIban(userRecords, targetIban);
+                                if(targetWrapper != null) model.get_uDB().updateUserRecord(targetWrapper);
+                            }
+
+                            // D. CALCULATE NEXT DATE
+                            StandingOrder tempOrder = new StandingOrder("", "", "", 0, "", (String)orderMap.get("frequency"));
+                            // CRITICAL: Use 'todayEuroDate' as the basis so we don't skip months
+                            tempOrder.calcNextDate((String)orderMap.get("frequency"), todayEuroDate);
+                            orderMap.put("dueDate", tempOrder.getNextIssueDay());
+                            ordersChanged = true;
+
+                            // E. LOG TO UI
+                            view.appendLog(String.format("   [STANDING ORDER] %s -> %s: €%.2f (Next: %s)", sourceAccountId, targetIban, amount, tempOrder.getNextIssueDay()));
+                            totalVolume += amount;
+                            totalActions++;
+                            
+                            // F. SAVE SENDER CHANGES
+                            Map<String, Object> userWrapper = findUserWrapper(userRecords, sourceAccountId);
+                            if(userWrapper != null) model.get_uDB().updateUserRecord(userWrapper);
+
+                        } else {
+                             view.appendLog(String.format("   [STANDING ORDER FAILED] %s: Insufficient Funds", sourceAccountId));
+                        }
+                    }
+                }
+            }
+        }
+        
+        if(ordersChanged) {
+            model.get_oDB().saveAllRecords(allOrderWrappers);
+        }
+    }
+
+    // --- HELPERS FOR STANDING ORDERS ---
+
+    private Map<String, String> findAccountInList(List<Map<String, Object>> userRecords, String accountId) {
+        for (Map<String, Object> uWrapper : userRecords) {
+            Map<String, Object> uData = (Map<String, Object>) uWrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) uData.get("accounts");
+            if (accounts != null) {
+                for (Map<String, String> acc : accounts) {
+                    if (acc.get("accountId").equals(accountId)) return acc;
+                }
+            }
+        }
+        return null;
+    }
+
+    private Map<String, Object> findUserWrapper(List<Map<String, Object>> userRecords, String accountId) {
+        for (Map<String, Object> uWrapper : userRecords) {
+            Map<String, Object> uData = (Map<String, Object>) uWrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) uData.get("accounts");
+            if (accounts != null) {
+                for (Map<String, String> acc : accounts) {
+                    if (acc.get("accountId").equals(accountId)) return uWrapper;
+                }
+            }
+        }
+        return null;
+    }
+
+    // [NEW] Helper to find account by IBAN (for Receiver)
+    private Map<String, String> findAccountByIban(List<Map<String, Object>> userRecords, String iban) {
+        for (Map<String, Object> uWrapper : userRecords) {
+            Map<String, Object> uData = (Map<String, Object>) uWrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) uData.get("accounts");
+            if (accounts != null) {
+                for (Map<String, String> acc : accounts) {
+                    if (acc.get("iban") != null && acc.get("iban").equals(iban)) return acc;
+                }
+            }
+        }
+        return null;
+    }
+
+    // [NEW] Helper to find Wrapper by IBAN (for Receiver)
+    private Map<String, Object> findUserWrapperByIban(List<Map<String, Object>> userRecords, String iban) {
+        for (Map<String, Object> uWrapper : userRecords) {
+            Map<String, Object> uData = (Map<String, Object>) uWrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) uData.get("accounts");
+            if (accounts != null) {
+                for (Map<String, String> acc : accounts) {
+                    if (acc.get("iban") != null && acc.get("iban").equals(iban)) return uWrapper;
+                }
+            }
+        }
+        return null;
     }
 
     // =============================================================

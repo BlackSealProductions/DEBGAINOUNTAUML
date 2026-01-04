@@ -33,6 +33,9 @@ public class OrderAssesor {
 
 
     public void assess(){
+        if (m.isSimulationActive()) {
+            return;
+        }
         fillOrderList();
     }
 

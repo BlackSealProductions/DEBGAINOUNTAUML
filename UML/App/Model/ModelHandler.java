@@ -17,6 +17,7 @@ public class ModelHandler {
     private OrderDB oDB;
     private DatabaseObjectConverter conv;
     public OrderAssesor ass;
+    private boolean isSimulationActive = false;
 
     public void init(){
         this.uDB = new UserDB();
@@ -81,6 +82,13 @@ public class ModelHandler {
 
     public DatabaseObjectConverter getConverter(){
         return this.conv;
+    }
+    public void setSimulationActive(boolean active) {
+        this.isSimulationActive = active;
+    }
+
+    public boolean isSimulationActive() {
+        return this.isSimulationActive;
     }
 
 }
