@@ -201,8 +201,15 @@ public class BillPaymentScreen implements View_t {
     public String getPaymentTime() { return timeField.getText(); }
     public RoundedButton getCompleteBtn() { return completeBtn; }
     public void setBalance(String amount) {
-        this.balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        try {
+            // Parse the string to a double to perform formatting
+            double val = Double.parseDouble(amount);
+            // %.2f limits the output to exactly two decimal places
+            String formattedBalance = String.format("%.2f", val);
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + formattedBalance + "€</u></html>");
+        } catch (NumberFormatException e) {
+            // Fallback in case the string isn't a valid number
+            balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>");
+        }
     }
-
-
 }

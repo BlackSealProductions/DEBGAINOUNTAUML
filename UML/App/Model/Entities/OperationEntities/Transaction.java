@@ -9,7 +9,7 @@ public class Transaction {
     private String transactionId;
     private String senderId;
     private String recieverId;
-    private float amount;
+    private double amount;
     private String date;
     private String time;
     private String description;
@@ -18,7 +18,7 @@ public class Transaction {
 
 
 
-public Transaction(String id, String sender, String receiver, float amount, String date, String time, String desc, String type) {
+public Transaction(String id, String sender, String receiver, double amount, String date, String time, String desc, String type) {
     this.transactionId = id;
     this.senderId = sender;
     this.recieverId = receiver;
@@ -28,11 +28,6 @@ public Transaction(String id, String sender, String receiver, float amount, Stri
     this.description = desc;
     this.type = type;
 }
-
-
-
-
-
 
 
     public String getTransactionId() {
@@ -45,7 +40,7 @@ public Transaction(String id, String sender, String receiver, float amount, Stri
         // this.recieverId = recieverId;
     }
 
-    public float getAmmount() {
+    public double getAmmount() {
         return amount;
     }
 

@@ -25,18 +25,55 @@ public class UserDB {
             Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
             if (user.get("username").equals(inputUser) && user.get("password").equals(inputPass)) {
                 foundUser = user;
-                System.out.println(user.get("username"));
+                // System.out.println(user.get("username"));
                 break;
             }
         }
         return foundUser;
     }
 
+    public Map<String, Object> findAccountWithId(String acctId){
+        List<Map<String, Object>> records = getAllRecords();
+        Map<String, Object> foundUser = null;
+
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            List<Map<String,Object>> accs = (List<Map<String,Object>>) user.get("accounts");
+            if (accs != null) {
+                for (Map<String, Object> acc : accs){
+                    if (acc.get("accountId").equals(acctId)) {
+                        foundUser = user;
+                        break;
+                    }
+                }
+            }
+            if(foundUser != null) break;
+        }
+        return foundUser;  
+    }
+
+    public Map<String, Object> findAccountWithIban(String iban){
+        List<Map<String, Object>> records = getAllRecords();
+        Map<String, Object> foundUser = null;
+
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            List<Map<String,Object>> accs = (List<Map<String,Object>>) user.get("accounts");
+            for (Map<String, Object> acc : accs){
+
+                if (acc.get("iban").equals(iban)) {
+                    foundUser = acc;
+                    break;
+                }
+            }
+        }
+        return foundUser;  
+    }
+                                                                       
     public Set<String> getExistingAcctIds(){
         List<Map<String, Object>> records = getAllRecords();
         Set<String> existingIds = new HashSet<>();
 
-        // Collect all IDs currently in the system
         for (Map<String, Object> wrapper : records) {
             Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
             List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
@@ -49,16 +86,104 @@ public class UserDB {
         return existingIds;
     }
 
+    // ==========================================
+    //   NEW ADMIN METHODS (ADDED HERE)
+    // ==========================================
+
     /**
-     * Loads all records from the JSON file.
+     * Delete a user by their unique Username.
      */
+    public void deleteUser(String username) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        boolean removed = false;
+
+        Iterator<Map<String, Object>> iterator = allRecords.iterator();
+        while (iterator.hasNext()) {
+            Map<String, Object> wrapper = iterator.next();
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            
+            if (user.get("username").equals(username)) {
+                iterator.remove();
+                removed = true;
+                break; 
+            }
+        }
+
+        if (removed) {
+            saveAllRecords(allRecords);
+        }
+    }
+
+    /**
+     * Update a user's password.
+     */
+    public void updateUserPassword(String username, String newPassword) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        
+        for (Map<String, Object> wrapper : allRecords) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            if (user.get("username").equals(username)) {
+                user.put("password", newPassword);
+                saveAllRecords(allRecords);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Delete a specific account (by ID) from WHOEVER owns it.
+     */
+    public void deleteAccount(String accountId) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        boolean changed = false;
+
+        for (Map<String, Object> wrapper : allRecords) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
+
+            if (accounts != null) {
+                boolean removed = accounts.removeIf(acct -> acct.get("accountId").equals(accountId));
+                if (removed) {
+                    changed = true;
+                }
+            }
+        }
+
+        if (changed) {
+            saveAllRecords(allRecords);
+        }
+    }
+
+    /**
+     * Update the balance of a specific account.
+     */
+    public void updateAccountBalance(String accountId, String newBalance) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        
+        for (Map<String, Object> wrapper : allRecords) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
+
+            if (accounts != null) {
+                for (Map<String, String> acct : accounts) {
+                    if (acct.get("accountId").equals(accountId)) {
+                        acct.put("balance", newBalance);
+                        saveAllRecords(allRecords);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    // ==========================================
+    //      STANDARD CRUD METHODS
+    // ==========================================
+
     public List<Map<String, Object>> getAllRecords() {
         return parseJsonNested(DB_FILE);
     }
 
-    /**
-     * Saves a NEW user during registration.
-     */
     public void saveRecord(Map<String, Object> userWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
         allRecords.add(userWrapper);
@@ -68,7 +193,6 @@ public class UserDB {
     public void updateUserRecord(Map<String, Object> updatedWrapper) {
         List<Map<String, Object>> allRecords = getAllRecords();
         
-        // Extract the updated username to find the match
         Map<String, Object> updatedUser = (Map<String, Object>) updatedWrapper.get("user");
         String targetUsername = (String) updatedUser.get("username");
     
@@ -78,7 +202,6 @@ public class UserDB {
             Map<String, Object> currentUser = (Map<String, Object>) currentWrapper.get("user");
     
             if (currentUser.get("username").equals(targetUsername)) {
-                // Replace the old user data with the new updated version
                 allRecords.set(i, updatedWrapper);
                 found = true;
                 break;
@@ -86,16 +209,12 @@ public class UserDB {
         }
     
         if (found) {
-            saveAllRecords(allRecords); // Overwrites the file with the updated list
+            saveAllRecords(allRecords);
         } else {
-            // If for some reason the user wasn't there, treat it as a new record
             saveRecord((Map<String, Object>) updatedWrapper);
         }
     }
 
-    /**
-     * Adds a new account to an existing user identified by username.
-     */
     public void addAccountToUser(String username, Map<String, String> newAccount) {
         List<Map<String, Object>> allRecords = getAllRecords();
         for (Map<String, Object> wrapper : allRecords) {
@@ -112,7 +231,6 @@ public class UserDB {
         }
         saveAllRecords(allRecords);
     }
-
 
     // ===========================
     //   PRIVATE HELPERS (Writer)
@@ -132,7 +250,6 @@ public class UserDB {
             sb.append(String.format("      \"username\": \"%s\",\n", user.get("username")));
             sb.append(String.format("      \"password\": \"%s\",\n", user.get("password")));
     
-            // --- Conditional Logic based on User Type ---
             if ("Company".equalsIgnoreCase(type)) {
                 String cName = user.containsKey("companyName") ? (String)user.get("companyName") : (String)user.get("name");
                 sb.append(String.format("      \"companyName\": \"%s\",\n", cName));
@@ -146,13 +263,11 @@ public class UserDB {
             sb.append(String.format("      \"type\": \"%s\",\n", type));
             sb.append(String.format("      \"taxId\": \"%s\",\n", user.get("taxId")));
     
-            // --- Accounts Section ---
             sb.append("      \"accounts\": [\n");
             List<Map<String, String>> accounts = (List<Map<String, String>>) user.get("accounts");
             if (accounts != null) {
                 for (int j = 0; j < accounts.size(); j++) {
                     Map<String, String> acc = accounts.get(j);
-                    // Skip ghost accounts
                     if (acc.get("accountId") == null || acc.get("accountId").isEmpty()) continue;
     
                     sb.append("        {\n");
@@ -161,12 +276,11 @@ public class UserDB {
                     sb.append(String.format("          \"ownerName\": \"%s\",\n", acc.get("ownerName")));
                     sb.append(String.format("          \"secondaryOwner\": \"%s\",\n", acc.get("secondaryOwner")));
                     sb.append(String.format("          \"balance\": \"%s\",\n", acc.get("balance")));
-                    // Added comma to interestRate line below so we can add rfCode after it
+                    
                     if("Company".equalsIgnoreCase(type)){
                         sb.append(String.format("          \"rfCode\": \"%s\",\n", acc.get("rfCode")));
                     }
                     sb.append(String.format("          \"interestRate\": \"%s\"\n", acc.get("interestRate"))); 
-                    // Added rfCode line exactly as requested
                     
                     sb.append("        }");
                     if (j < accounts.size() - 1) sb.append(",");
@@ -182,7 +296,6 @@ public class UserDB {
     
         sb.append("]");
     
-        // Write to file
         try (java.io.PrintWriter out = new java.io.PrintWriter("accounts.json")) {
             out.println(sb.toString());
         } catch (Exception e) {
@@ -203,7 +316,6 @@ public class UserDB {
             String content = new String(Files.readAllBytes(Paths.get(filename))).trim();
             if (content.length() < 3) return records; 
 
-            // Remove outer brackets []
             content = content.substring(1, content.length() - 1).trim();
 
             List<String> userBlocks = new ArrayList<>();
@@ -227,7 +339,6 @@ public class UserDB {
             }
 
             for (String block : userBlocks) {
-
                 String username = extractValue(block, "username");
                 if (username == null || username.trim().isEmpty()) {
                     continue; 
@@ -250,7 +361,6 @@ public class UserDB {
                 userData.put("phone", extractValue(block, "phone"));
                 userData.put("email", extractValue(block, "email"));
 
-                // Handle nested accounts array
                 List<Map<String, String>> accounts = new ArrayList<>();
                 int accStart = block.indexOf("\"accounts\": [");
                 if (accStart != -1) {
@@ -273,7 +383,7 @@ public class UserDB {
                             acc.put("balance", extractValue(part, "balance"));
                             acc.put("interestRate", extractValue(part, "interestRate"));
                             if("Company".equalsIgnoreCase(type)){
-                                acc.put("rfCode", extractValue(part, "rfCode")); // Already here, this is good
+                                acc.put("rfCode", extractValue(part, "rfCode")); 
                             }
                             accounts.add(acc);
                         }
@@ -304,5 +414,4 @@ public class UserDB {
         
         return block.substring(start, end);
     }
-
 }

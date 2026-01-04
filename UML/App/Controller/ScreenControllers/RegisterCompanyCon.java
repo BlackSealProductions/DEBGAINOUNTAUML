@@ -61,12 +61,16 @@ public class RegisterCompanyCon implements Controller_t{
 
         Company newUser = new Company(taxId, user, pass, cname, email, phone, Utils.GlobalConsts.userType.BUSINESS);
         List<Account> defaultAccList = new ArrayList<Account>();
+        newUser.setAccounts(defaultAccList);
 
         Map<String, Object> newUserWrapper = model.getConverter().convertUserToMap(newUser, defaultAccList);
 
         // 3. Save to Database
         UserDB db = model.get_uDB();
         db.saveRecord(newUserWrapper);
+
+        // model.addEntryToUDB_conv(newUser);
+
 
         JOptionPane.showMessageDialog(null, "Registration Successful!\n Please login");
         

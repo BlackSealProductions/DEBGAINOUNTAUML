@@ -20,13 +20,11 @@ public class WithdrawCon implements Controller_t {
     private WithdrawScreen view;
     private ModelHandler model; 
     private ViewHandler viewHandler;
-    private DashboardCon dashcon;
 
-    public WithdrawCon(WithdrawScreen view, ModelHandler model, ViewHandler viewHandler, Controller_t dashcon) {
+    public WithdrawCon(WithdrawScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
         this.viewHandler = viewHandler;
-        this.dashcon = (DashboardCon)dashcon;
     }
 
     @Override
@@ -85,7 +83,7 @@ public class WithdrawCon implements Controller_t {
             // 6. Navigate
             view.hide();
             DashboardScreen next = viewHandler.getDashboardScreen();
-            dashcon.refresh(user);
+            next.refresh(user);
             next.show();
             ViewSession.getInstance().updateScreenHistory(next);
 

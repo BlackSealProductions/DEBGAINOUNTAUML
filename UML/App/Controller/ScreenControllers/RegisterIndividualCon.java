@@ -70,6 +70,8 @@ public class RegisterIndividualCon implements Controller_t {
         UserDB db = model.get_uDB();
         db.saveRecord(newUserWrapper);
 
+        // model.addEntryToUDB_conv(newUser);
+
         JOptionPane.showMessageDialog(null, "Registration Successful!\n Please login");
         
         // Return to Login

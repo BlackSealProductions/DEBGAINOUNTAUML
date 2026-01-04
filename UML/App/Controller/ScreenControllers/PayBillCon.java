@@ -36,6 +36,7 @@ public class PayBillCon implements Controller_t {
 
     private void handlePayment() {
         // 1. Get Inputs
+        String receiverAccId="";
         String inputRf = view.getRFCode().trim(); 
         String amountText = view.getAmount().trim();
 
@@ -75,8 +76,9 @@ public class PayBillCon implements Controller_t {
                         if (acc.containsKey("rfCode") && inputRf.equals(acc.get("rfCode"))) {
                             Float targetBal = Float.parseFloat(acc.get("balance"));
                             Float newBal = Float.sum(targetBal, amountToPay);
+                            receiverAccId = (String)user.get("companyName");
                             acc.put("balance", String.valueOf(newBal));
-                            System.out.println("old bal: "+targetBal+"...new bal: "+ newBal);
+                            // System.out.println("old bal: "+targetBal+"...new bal: "+ newBal);
                             foundTarget = true;
                             uDB.updateUserRecord(userWrapper);
 
@@ -109,24 +111,25 @@ public class PayBillCon implements Controller_t {
             if(inputTime.isEmpty()) inputTime = "00:00";
             String dateNow = java.time.LocalDate.now().toString();
             String transID = String.valueOf(System.currentTimeMillis());
+            // String recieverId = uDB.findAccountWithId(receiverAccId);
 
             // Create Transaction Object
             Transaction t = new Transaction(
-             transID, myAccount.getAccountId(), inputRf, amountToPay, dateNow, inputTime, "Bill Payment", "send"
-            );
+            transID, myAccount.getAccountId(), receiverAccId, amountToPay, dateNow, inputTime, "Bill Payment", "send");
             
             myAccount.addTransaction(t);
-
-            TransactionDB tDB = model.get_tDB();
             
-            tDB.saveRecord(model.getConverter().convertAcctTransactionsToMap(myAccount));
+            // TransactionDB tDB = model.get_tDB();
+            
+            // tDB.saveRecord(model.getConverter().convertAcctTransactionsToMap(myAccount));
+            model.saveChanges();
 
             // 6. Update GUI
             String newBal = String.valueOf(myBalance - amountToPay);
             // myAccount.setBalance(newBal);
             view.setBalance(newBal);
 
-            model.saveChangesToUDB_conv();
+            // model.saveChangesToUDB_conv();
             view.hide();
             DashboardScreen next = viewHandler.getDashboardScreen();
             next.show();

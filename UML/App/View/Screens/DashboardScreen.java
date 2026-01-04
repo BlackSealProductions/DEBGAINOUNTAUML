@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.math.BigDecimal;
 
 import App.Model.Session;
 import App.Model.Entities.UserEntities.Account;
@@ -215,8 +216,17 @@ public class DashboardScreen implements View_t {
         return accountNumberLabel;
     }
 
-    public JLabel getBalanceLabel() {
-        return balanceLabel;
+    public void setBalance(String amount) {
+        try {
+            // Parse the string to a double to perform formatting
+            double val = Double.parseDouble(amount);
+            // %.2f limits the output to exactly two decimal places
+            String formattedBalance = String.format("%.2f", val);
+            balanceLabel.setText("Υπόλοιπο: " + formattedBalance + "€");
+        } catch (NumberFormatException e) {
+            // Fallback in case the string isn't a valid number
+            balanceLabel.setText("Υπόλοιπο: " + amount + "€");
+        }
     }
 
     public JLabel getUserNameLabel() {
@@ -235,16 +245,17 @@ public class DashboardScreen implements View_t {
         userNameLabel.setText("Welcome, " + username);
         accountNumberLabel.setText("Account: #" + acctId);
         usertype.setText(type);
-        if(Float.parseFloat(balance) <= 0){
+        setBalance(balance);
+        // if(Float.parseFloat(balance)  <= 0){
 
-            balanceLabel.setText(balance+" € (8a se valoun mesa se ligo :())");
-        }
-        else if (Float.parseFloat(balance) > 100 ) {
-           balanceLabel.setText(balance+" € (eisai leftas :))"); 
-        }
-        else{
-            balanceLabel.setText(balance+" € (eisai duskola :/)"); 
-        }
+        //     balanceLabel.setText(balance+" € (8a se valoun mesa se ligo :())");
+        // }
+        // else if (Float.parseFloat(balance) > 100 ) {
+        //    balanceLabel.setText(balance+" € (eisai leftas :))"); 
+        // }
+        // else{
+        //     balanceLabel.setText(balance+" € (eisai duskola :/)"); 
+        // }
     }
 
     public void refresh(Account account){

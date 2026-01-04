@@ -4,10 +4,12 @@ import java.awt.event.ActionListener;
 
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
+import App.Model.Session;
 import App.View.MainFrame;
 import App.View.ViewHandler;
 import App.View.ViewSession;
 import App.View.View_t;
+import App.View.Screens.DashboardScreen;
 import App.View.Screens.FirstPageScreen;
 
 public class MainFrameCon implements Controller_t{
@@ -38,6 +40,9 @@ public class MainFrameCon implements Controller_t{
             ViewSession.getInstance().getCurrentScreen().hide();
             ViewSession.getInstance().goBack();
             ViewSession.getInstance().getCurrentScreen().show();
+            if(ViewSession.getInstance().getCurrentScreen().equals(view.getDashboardScreen())){
+                ((DashboardScreen)ViewSession.getInstance().getCurrentScreen()).refresh(Session.getInstance().getActiveAccount());
+            }
         }
         else if (isLoginWithNoHistory){
             FirstPageScreen firstpage = view.getFirstPageScreen();
@@ -47,5 +52,4 @@ public class MainFrameCon implements Controller_t{
             ViewSession.getInstance().clearHistory();
         }
     }
-
 }

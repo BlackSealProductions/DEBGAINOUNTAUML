@@ -15,6 +15,7 @@ public class MainGUI {
         c.initViews();
         c.initControllers();
         c.initStartScreen();
+        m.ass.assess();
 
         
         

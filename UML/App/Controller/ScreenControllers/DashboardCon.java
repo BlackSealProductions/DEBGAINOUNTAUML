@@ -4,6 +4,7 @@ import App.Controller.ControllerHandler;
 import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
+import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.UserEntities.Account;
 import App.View.ViewHandler;
 import App.View.ViewSession;
@@ -35,10 +36,10 @@ public class DashboardCon implements Controller_t{
     @Override
     public void init() {
         if (view == null)return;
-
+        
         
         view.getLogoutBtn().addActionListener(e -> {
-            model.saveChangesToUDB_conv();
+            model.saveChanges();
             Session.getInstance().logout();
             view.hide();
             FirstPageScreen next = viewHandler.getFirstPageScreen();
@@ -48,7 +49,7 @@ public class DashboardCon implements Controller_t{
         });
 
         view.getSwitchBtn().addActionListener(e -> {
-            model.saveChangesToUDB_conv();
+            model.saveChanges();
             view.hide();
             AccountSelectionScreen next = viewHandler.getAccountSelectionScreen();
             next.populateAccounts((ArrayList<Account>)Session.getInstance().getCustomerAccounts());
@@ -100,6 +101,14 @@ public class DashboardCon implements Controller_t{
         Account user = Session.getInstance().getActiveAccount();
         pagies.setBalance(user.getBalance());
         refresh(user);
+        List<StandingOrder> orders = user.getStandingorders();
+        if(orders!=null){
+            pagies.clearListContainer();
+            for(StandingOrder order : orders){
+                String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount()), order.getNextIssueDay()};
+                viewHandler.getStandingOrdersScreen().addListRow2(dataForList);
+            }
+        }
         pagies.show();
         ViewSession.getInstance().updateScreenHistory(pagies);
 
@@ -126,6 +135,7 @@ public class DashboardCon implements Controller_t{
         Account user = Session.getInstance().getActiveAccount();
         metEktos.setBalance(user.getBalance());
         refresh(user);
+        metEktos.setFromAccountLabel(user.getIban());
         metEktos.show();
         ViewSession.getInstance().updateScreenHistory(metEktos);
 
