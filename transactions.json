@@ -168,7 +168,7 @@
           "transactionId": "1767490040131",
           "senderId": "ACC_ARIS_01",
           "recieverId": "opp",
-          "amount": "23.09",
+          "amount": "23.09000015258789",
           "date": "2026-01-04",
           "time": "03:27:20.131749200",
           "description": "Πάγια Χρέωση",
@@ -178,11 +178,211 @@
           "transactionId": "1767490040157",
           "senderId": "ACC_ARIS_01",
           "recieverId": "opp",
-          "amount": "32.9",
+          "amount": "32.900001525878906",
           "date": "2026-01-04",
           "time": "03:27:20.157493900",
           "description": "Πάγια Χρέωση",
           "type": "send"
+        },
+        {
+          "transactionId": "1767508457793",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:34:17.800213489",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767508457862",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:34:17.862980860",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767508812443",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:40:12.443571739",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767508812487",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:40:12.487128068",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767508951460",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:42:31.461038434",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767508951502",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:42:31.502487957",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767509284090",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:48:04.091033670",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767509333114",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:48:53.114562596",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767509445042",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "08:50:45.043240400",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510157371",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "09:02:37.372476396",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510157442",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "09:02:37.442834187",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510157482",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "09:02:37.482805233",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510157502",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "09:02:37.502540987",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510157525",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "09:02:37.525788093",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510242733",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "20.0",
+          "date": "2026-01-04",
+          "time": "09:04:02.734576614",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510242785",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "20.0",
+          "date": "2026-01-04",
+          "time": "09:04:02.786052188",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510242820",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "20.0",
+          "date": "2026-01-04",
+          "time": "09:04:02.820575220",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510242846",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "20.0",
+          "date": "2026-01-04",
+          "time": "09:04:02.847493987",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767510242869",
+          "senderId": "ACC_ARIS_01",
+          "recieverId": "opp",
+          "amount": "23.09000015258789",
+          "date": "2026-01-04",
+          "time": "09:04:02.869850585",
+          "description": "Πάγια Χρέωση",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767511842041",
+          "senderId": "ID_83848571",
+          "recieverId": "ACC_ARIS_01",
+          "amount": "50.0",
+          "date": "2026-01-04",
+          "time": "09:30",
+          "description": "Transfer to TUC",
+          "type": "receive"
         }
       ]
     }
@@ -314,6 +514,16 @@
           "time": "20:26",
           "description": "Transfer to TUC",
           "type": "send"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "send"
         }
       ]
     }
@@ -341,7 +551,215 @@
           "time": "04:27",
           "description": "Transfer to TUC",
           "type": "send"
+        },
+        {
+          "transactionId": "1767496998337",
+          "senderId": "ID_18081025",
+          "recieverId": "ID_10643754",
+          "amount": "10.0",
+          "date": "2026-01-04",
+          "time": "05:23",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767500125743",
+          "senderId": "ID_18081025",
+          "recieverId": "ID_10643754",
+          "amount": "13.0",
+          "date": "2026-01-04",
+          "time": "06:15",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767500131998",
+          "senderId": "ID_18081025",
+          "recieverId": "ID_10643754",
+          "amount": "25.0",
+          "date": "2026-01-04",
+          "time": "06:15",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500425075",
+          "senderId": "ID_12551432",
+          "recieverId": "ID_18081025",
+          "amount": "150.0",
+          "date": "2026-01-04",
+          "time": "06:20",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500212132",
+          "senderId": "ID_45882085",
+          "recieverId": "ID_18081025",
+          "amount": "66.0",
+          "date": "2026-01-04",
+          "time": "06:16",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500425075",
+          "senderId": "ID_12551432",
+          "recieverId": "ID_18081025",
+          "amount": "150.0",
+          "date": "2026-01-04",
+          "time": "06:20",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500425075",
+          "senderId": "ID_12551432",
+          "recieverId": "ID_18081025",
+          "amount": "150.0",
+          "date": "2026-01-04",
+          "time": "06:20",
+          "description": "Transfer to TUC",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767513148225",
+          "senderId": "ID_18081025",
+          "recieverId": "ID_83848571",
+          "amount": "6.0",
+          "date": "2026-01-04",
+          "time": "09:52",
+          "description": "Transfer to TUC",
+          "type": "send"
         }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_12551432",
+      "transactions": [
+        {
+          "transactionId": "1767500389983",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_12551432",
+          "amount": "250.0",
+          "date": "2026-01-04",
+          "time": "06:19:49.983631682",
+          "description": "Deposit",
+          "type": "receive"
+        },
+        {
+          "transactionId": "1767500425075",
+          "senderId": "ID_12551432",
+          "recieverId": "ID_18081025",
+          "amount": "150.0",
+          "date": "2026-01-04",
+          "time": "06:20",
+          "description": "Transfer to TUC",
+          "type": "send"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_83848571",
+      "transactions": [
+        {
+          "transactionId": "1767511842041",
+          "senderId": "ID_83848571",
+          "recieverId": "ACC_ARIS_01",
+          "amount": "50.0",
+          "date": "2026-01-04",
+          "time": "09:30",
+          "description": "Transfer to TUC",
+          "type": "send"
+        },
+        {
+          "transactionId": "1767511873320",
+          "senderId": "Κατάθεση",
+          "recieverId": "ID_83848571",
+          "amount": "78.0",
+          "date": "2026-01-04",
+          "time": "09:31:13.320577071",
+          "description": "Deposit",
+          "type": "receive"
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_75491145",
+      "transactions": [
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_79470260",
+      "transactions": [
       ]
     }
   }

@@ -1,5 +1,7 @@
 package App.Model.Entities.OperationEntities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +20,8 @@ public class StandingOrder {
     private String paymentFrequency;
     private boolean isNotPaidOnTime;
     private String name;
+
+    private List<Double> pastCharges = new ArrayList<Double>();
     
         public enum Frequency {
             DAY,
@@ -104,5 +108,17 @@ public class StandingOrder {
     }
 
     
-    
+    public void addCharge(Double t) {
+        if (t != null) {
+            this.pastCharges.add(t);
+        }
+    }
+
+    public List<Double> getPastCharges(){
+        return this.pastCharges;
+    }
+
+    public void setPastCharges(List<Double> charges){
+        this.pastCharges=charges;
+    }
 }

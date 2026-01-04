@@ -101,15 +101,13 @@ public class OrderDB {
                 sb.append("  {\n");
                 sb.append("    \"account\": {\n");
                 sb.append(String.format("      \"accountId\": \"%s\",\n", acct.get("accountId")));
-            
-                // --- Transactions Section ---
                 sb.append("      \"orders\": [\n");
-                List<Map<String, String>> orders = (List<Map<String, String>>) acct.get("orders");
+        
+                List<Map<String, Object>> orders = (List<Map<String, Object>>) acct.get("orders");
                 if (orders != null) {
                     for (int j = 0; j < orders.size(); j++) {
-                        Map<String, String> so = orders.get(j);
-                        // Skip ghost accounts as discussed previously
-                        if (so.get("orderId") == null || so.get("orderId").isEmpty()) continue;
+                        Map<String, Object> so = orders.get(j);
+                        if (so.get("orderId") == null || ((String)so.get("orderId")).isEmpty()) continue;
         
                         sb.append("        {\n");
                         sb.append(String.format("          \"name\": \"%s\",\n", so.get("name")));
@@ -118,7 +116,19 @@ public class OrderDB {
                         sb.append(String.format("          \"amount\": \"%s\",\n", so.get("amount")));
                         sb.append(String.format("          \"day\": \"%s\",\n", so.get("day")));
                         sb.append(String.format("          \"dueDate\": \"%s\",\n", so.get("dueDate")));
-                        sb.append(String.format("          \"frequency\": \"%s\"\n", so.get("frequency")));
+                        sb.append(String.format("          \"frequency\": \"%s\",\n", so.get("frequency")));
+                        
+                        // --- Past Charges List ---
+                        sb.append("          \"pastcharges\": [");
+                        List<Double> pcharges = (List<Double>) so.get("pastcharges");
+                        if (pcharges != null) {
+                            for (int k = 0; k < pcharges.size(); k++) {
+                                sb.append(String.format("\"%.2f\"", pcharges.get(k)));
+                                if (k < pcharges.size() - 1) sb.append(", ");
+                            }
+                        }
+                        sb.append("]\n"); // End of pastcharges array
+                        
                         sb.append("        }");
                         if (j < orders.size() - 1) sb.append(",");
                         sb.append("\n");
@@ -130,15 +140,11 @@ public class OrderDB {
                 if (i < allRecords.size() - 1) sb.append(",");
                 sb.append("\n");
             }
-        
             sb.append("]");
         
-            // Write to file
-            try (java.io.PrintWriter out = new java.io.PrintWriter("orders.json")) {
+            try (java.io.PrintWriter out = new java.io.PrintWriter(DB_FILE)) {
                 out.println(sb.toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (Exception e) { e.printStackTrace(); }
         }
         // ===========================
         //   PRIVATE HELPERS (Parser)
@@ -191,32 +197,44 @@ public class OrderDB {
                     
     
                     // Handle nested accounts array
-                    List<Map<String, String>> orders = new ArrayList<>();
+                    List<Map<String, Object>> orders = new ArrayList<>();
                     int soStart = block.indexOf("\"orders\": [");
                     if (soStart != -1) {
-                        int trEnd = block.lastIndexOf("]");
-                        String soSection = block.substring(soStart + 12, trEnd).trim();
+                        int soEnd = block.lastIndexOf("]");
+                        String soSection = block.substring(soStart + 11, soEnd).trim();
                         
-                        // NEW CHECK: Only proceed if the section contains at least one object opening '{'
                         if (soSection.contains("{")) {
-                            // Split accounts by looking for closing braces of account objects
                             String[] soParts = soSection.split("\\},");
                             for (String part : soParts) {
                                 if (part.trim().isEmpty()) continue;
-                                
-                                // Further safety: ensure this specific part has data
                                 String id = extractValue(part, "orderId");
                                 if (id.isEmpty()) continue; 
-    
-                                Map<String, String> so = new HashMap<>();
+                    
+                                Map<String, Object> so = new HashMap<>();
                                 so.put("name", extractValue(part, "name"));
                                 so.put("orderId", id);
                                 so.put("targetIban", extractValue(part, "targetIban"));
-                                so.put("transactionId", extractValue(part, "transactionId"));
                                 so.put("amount", extractValue(part, "amount"));
                                 so.put("day", extractValue(part, "day"));
                                 so.put("dueDate", extractValue(part, "dueDate"));
                                 so.put("frequency", extractValue(part, "frequency"));
+                    
+                                // --- Parse Past Charges ---
+                                List<Double> pcharges = new ArrayList<>();
+                                int pcStart = part.indexOf("\"pastcharges\": [");
+                                if (pcStart != -1) {
+                                    int pcEnd = part.indexOf("]", pcStart);
+                                    String pcSection = part.substring(pcStart + 16, pcEnd).replace("\"", "").trim();
+                                    if (!pcSection.isEmpty()) {
+                                        String[] pcValues = pcSection.split(",");
+                                        for (String val : pcValues) {
+                                            try {
+                                                pcharges.add(Double.parseDouble(val.trim()));
+                                            } catch (Exception e) {}
+                                        }
+                                    }
+                                }
+                                so.put("pastcharges", pcharges);
                                 orders.add(so);
                             }
                         }

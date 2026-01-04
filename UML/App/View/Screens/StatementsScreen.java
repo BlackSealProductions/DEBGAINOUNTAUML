@@ -252,7 +252,9 @@ public class StatementsScreen implements View_t {
         // this.allStatements = statements;
 
         if (statements != null && !statements.isEmpty()) {
-            for (Statement state : statements) {
+            for (Map<String, Object> stateMap : statements) {
+
+                Statement state = (Statement)stateMap.get("state");
                 String type = state.getTransaction().getType();
                 String desc = state.getTransaction().getDescription(); // Get Description
                 // UserDB uDB = model.get_uDB();
@@ -264,7 +266,7 @@ public class StatementsScreen implements View_t {
                     addTransaction(
                         state.getDate().toString(), 
                         state.getStatementId(), 
-                        state.getTransaction().getSenderId(), // Name
+                        (String)stateMap.get("trName"), // Name
                         desc,                                 // Description
                         sign + String.valueOf(state.getTransaction().getAmount()) + "€"
                     );
@@ -273,7 +275,7 @@ public class StatementsScreen implements View_t {
                     addTransaction(
                         state.getDate().toString(), 
                         state.getStatementId(), 
-                        state.getTransaction().getRecieverId(), // Name
+                        (String)stateMap.get("trName"), // Name
                         desc,                                   // Description
                         sign + String.valueOf(state.getTransaction().getAmount()) + "€"
                     );

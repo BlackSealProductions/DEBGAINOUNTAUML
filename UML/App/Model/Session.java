@@ -151,26 +151,35 @@ public class Session {
         activeAccount.setTransactions(accountTransactions);
     }
 
-    private void loadOrders(Map<String, Object> accData, ModelHandler m){
-
-        List<Map<String, String>> ordersList = (List<Map<String, String>>) accData.get("orders");
-        List<StandingOrder> accountOrders = new ArrayList<StandingOrder>();
-
-        
-        for (Map<String, String> so : ordersList) {
-
-            String name = so.get("name");
-            String acc = so.get("targetIban");
-            TransactionDB tDB = m.get_tDB();
-            Map<String, Object> trMap = tDB.findTransactionWithId(so.get("transactionId"));
-            // Transaction tr = genTransactionObject(trMap);
-            String orderId = so.get("orderId");
-            Double amount = Double.parseDouble(so.get("amount"));
-            String day = so.get("day");
-            String freq = so.get("frequency");
-
-            accountOrders.add(new StandingOrder(name, acc, orderId, amount, day, freq));
-            // foundAcc=true;
+    private void loadOrders(Map<String, Object> accData, ModelHandler m) {
+        // 1. Change List type from Map<String, String> to Map<String, Object> 
+        // to accommodate the List<Double> for pastcharges
+        List<Map<String, Object>> ordersList = (List<Map<String, Object>>) accData.get("orders");
+        List<StandingOrder> accountOrders = new ArrayList<>();
+    
+        for (Map<String, Object> so : ordersList) {
+            String name = (String) so.get("name");
+            String acc = (String) so.get("targetIban");
+            String orderId = (String) so.get("orderId");
+            
+            // Ensure amount is handled correctly as a String from JSON before parsing
+            Double amount = Double.parseDouble((String) so.get("amount"));
+            String day = (String) so.get("day");
+            String dueDate = (String) so.get("dueDate");
+            String freq = (String) so.get("frequency");
+    
+            // 2. Extract the new pastcharges list
+            List<Double> pastCharges = (List<Double>) so.get("pastcharges");
+            if (pastCharges == null) {
+                pastCharges = new ArrayList<>();
+            }
+    
+            // 3. Pass the pastCharges list to the constructor
+            // Make sure your StandingOrder constructor is updated to accept this list
+            StandingOrder newOrder = new StandingOrder(name, acc, orderId, amount, day, freq);
+            newOrder.calcNextDate(freq, dueDate);
+            newOrder.setPastCharges(pastCharges);
+            accountOrders.add(newOrder);
         }
         activeAccount.setStandingorders(accountOrders);
     }

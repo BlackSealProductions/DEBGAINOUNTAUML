@@ -49,6 +49,24 @@ public class UserDB {
         }
         return foundUser;  
     }
+
+    public Map<String, Object> findAccountWithIban(String iban){
+        List<Map<String, Object>> records = getAllRecords();
+        Map<String, Object> foundUser = null;
+
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> user = (Map<String, Object>) wrapper.get("user");
+            List<Map<String,Object>> accs = (List<Map<String,Object>>) user.get("accounts");
+            for (Map<String, Object> acc : accs){
+
+                if (acc.get("iban").equals(iban)) {
+                    foundUser = acc;
+                    break;
+                }
+            }
+        }
+        return foundUser;  
+    }
                                                                        
     public Set<String> getExistingAcctIds(){
         List<Map<String, Object>> records = getAllRecords();

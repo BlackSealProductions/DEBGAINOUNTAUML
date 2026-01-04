@@ -77,6 +77,7 @@ public class MetaforaCon implements Controller_t {
             boolean foundSender = false;
             // String myUsername = Session.getInstance().getActiveCustomer().getUsername();
             Map<String, Object> receivingUser = null;
+            Map<String, String> receivingAcc = null;
 
             // 1. Scan Database to find Target IBAN
             for (Map<String, Object> userWrapper : userRecords) {
@@ -87,6 +88,7 @@ public class MetaforaCon implements Controller_t {
                     for (Map<String, String> acc : accounts) {
                         if (acc.get("iban").equals(targetIban)) {
                             receivingUser = user;
+                            receivingAcc = acc;
                             targetFoundInDb = true;
                             // If we are in "In-Bank" mode, update the receiver's balance
                             if (isInBank) {
@@ -119,7 +121,8 @@ public class MetaforaCon implements Controller_t {
                     saveTransactionHistory(myAccount,"Unknown", amountToSend, fee, isInBank);
                 }
                 else{
-                    saveTransactionHistory(myAccount, (String)receivingUser.get("name")+" "+(String)receivingUser.get("surname"), amountToSend, fee, isInBank);
+                    saveTransactionHistory(myAccount, (String)receivingAcc.get("accountId"), amountToSend, fee, isInBank);
+                    // saveTransactionHistory(myAccount, (String)receivingUser.get("name")+" "+(String)receivingUser.get("surname"), amountToSend, fee, isInBank);
                 }
             
             // 5. Update UI

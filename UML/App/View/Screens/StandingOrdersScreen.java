@@ -1,5 +1,6 @@
 package App.View.Screens;
 
+import App.Model.Database.UserDB;
 import App.View.View_t;
 import App.View.helper_classes.*;
 import Utils.GlobalConsts;
@@ -43,6 +44,7 @@ public class StandingOrdersScreen implements View_t {
     private JPanel listContainer;
 
     private JLabel titleLabel;
+    private JScrollPane scrollPane;
 
     @Override
     public void init() {
@@ -97,23 +99,23 @@ public class StandingOrdersScreen implements View_t {
 
         listContainer = new JPanel(new GridBagLayout());
         listContainer.setOpaque(false);
-
+    
         GridBagConstraints gbcList = new GridBagConstraints();
         gbcList.fill = GridBagConstraints.HORIZONTAL;
         gbcList.anchor = GridBagConstraints.NORTH;
-
-        // 1. Add Headers (Updated with 6th column)
+    
+        // 1. Add Headers immediately
         addListHeader(listContainer, gbcList);
-
-        // 2. Add glue
+    
+        // 2. Add Glue immediately so the header starts at the top
         GridBagConstraints glueGbc = new GridBagConstraints();
         glueGbc.gridx = 0;
-        glueGbc.gridy = 999;
+        glueGbc.gridy = 999; // Stays at the bottom
         glueGbc.weighty = 1.0;
         glueGbc.fill = GridBagConstraints.BOTH;
         listContainer.add(Box.createVerticalGlue(), glueGbc);
 
-        JScrollPane scrollPane = new JScrollPane(listContainer);
+        scrollPane = new JScrollPane(listContainer);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
@@ -247,43 +249,84 @@ public class StandingOrdersScreen implements View_t {
         return field;
     }
 
-    // --- UPDATED LIST ROW ---
     public void addListRow2(String[] data) {
-        // data array should now contain 6 elements:
-        // [Name, IBAN, Start Date, Frequency, Amount, Next Due Date]
+        // Remove the previous glue/spacer before adding a new row
+        Component[] components = listContainer.getComponents();
+        for (Component comp : components) {
+            if (comp instanceof Box.Filler || (comp instanceof Box && ((Box)comp).getLayout() instanceof BoxLayout)) {
+                 listContainer.remove(comp);
+            }
+        }
+    
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridy = this.currRow;
         gbc.gridx = 0;
         gbc.weightx = 1.0;
+        gbc.weighty = 0.0; // Rows should not stretch vertically
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(10, 10, 10, 10);
-
+        gbc.anchor = GridBagConstraints.NORTH; // Anchor to the top
+        gbc.insets = new Insets(5, 10, 5, 10);
+    
+        // Load background image
         Image whiteImg = new ImageIcon(getClass().getResource("/App/View/Assets/white_ahh_image.png"))
                             .getImage().getScaledInstance(800, 100, Image.SCALE_SMOOTH);
         ImageIcon whiteIcon = new ImageIcon(whiteImg);
-
+    
         RoundedImage rowCard = new RoundedImage(whiteIcon, 25);
-        // CHANGED: GridLayout columns from 5 to 6
         rowCard.setLayout(new GridLayout(1, 6, 5, 0)); 
-        rowCard.setPreferredSize(new Dimension(620, 100));
+        rowCard.setPreferredSize(new Dimension(620, 80)); // Reduced height slightly for better fit
         rowCard.setBorder(new EmptyBorder(0, 20, 0, 20));
-
+    
         for (String d : data) {
             JLabel label = new JLabel(d);
-            // CHANGED: Smaller font (16) so it fits better
             label.setFont(customFont16); 
             label.setForeground(textColor);
             rowCard.add(label);
         }
-
+    
         this.listContainer.add(rowCard, gbc);
         this.currRow++;
-
-        listContainer.revalidate();
-        listContainer.repaint();
+    
+        // Re-add the "Glue" at the very bottom to push everything up
+        GridBagConstraints glueGbc = new GridBagConstraints();
+        glueGbc.gridx = 0;
+        glueGbc.gridy = this.currRow + 1;
+        glueGbc.weighty = 1.0; // This eats all remaining vertical space
+        glueGbc.fill = GridBagConstraints.BOTH;
+        listContainer.add(Box.createVerticalGlue(), glueGbc);
+    
+        // listContainer.revalidate();
+        // listContainer.repaint();
     }
+    
+    // --- UPDATED CLEAR METHOD ---
+    public void clearListContainer() {
 
+        SwingUtilities.invokeLater(() -> {
+            scrollPane.getViewport().setViewPosition(new Point(0, 0));
+        });
+
+        this.listContainer.removeAll();
+        this.currRow = 1;
+        
+        GridBagConstraints gbcList = new GridBagConstraints();
+        gbcList.fill = GridBagConstraints.HORIZONTAL;
+        gbcList.anchor = GridBagConstraints.NORTH;
+        
+        // Re-add Header
+        addListHeader(this.listContainer, gbcList);
+        
+        // Re-add Glue to keep header at the top
+        GridBagConstraints glueGbc = new GridBagConstraints();
+        glueGbc.gridx = 0;
+        glueGbc.gridy = 999;
+        glueGbc.weighty = 1.0;
+        glueGbc.fill = GridBagConstraints.BOTH;
+        this.listContainer.add(Box.createVerticalGlue(), glueGbc);
+        
+        this.listContainer.revalidate();
+        this.listContainer.repaint();
+    }
     // --- UPDATED LIST HEADER ---
     private void addListHeader(JPanel parent, GridBagConstraints gbc) {
         // CHANGED: Added "ΕΠΟΜΕΝΗ" (Next Due)
@@ -344,12 +387,18 @@ public class StandingOrdersScreen implements View_t {
         return true;
     }
 
+    public void warnIban(){
+        JOptionPane.showMessageDialog(panel, "Μη-έγκυρο IBAN..", "Σφάλμα IBAN", JOptionPane.ERROR_MESSAGE);
+    }
+
     @Override
     public JPanel getMainPanel() { return panel; }
     @Override
     public void show() { panel.setVisible(true); titleLabel.requestFocusInWindow(); }
     @Override
-    public void hide() { panel.setVisible(false); }
+    public void hide() { panel.setVisible(false); 
+        clearListContainer();
+    }
 
     public String getName() { return nameField.getText(); }
     public String getIban() { return ibanField.getText(); }
@@ -376,9 +425,6 @@ public class StandingOrdersScreen implements View_t {
     
     public JComboBox<String> getFreqBox() { return freqBox; }
 
-    public void clearListContainer(){
-        this.listContainer.removeAll();
-    }
     
     public void resetRowCounter(){
         this.currRow=1;

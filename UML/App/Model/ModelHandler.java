@@ -6,6 +6,7 @@ import java.util.Map;
 import App.Model.Database.OrderDB;
 import App.Model.Database.TransactionDB;
 import App.Model.Database.UserDB;
+import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Customer;
 
@@ -44,6 +45,10 @@ public class ModelHandler {
     public void saveChangesToODB_conv(){
         Account acct = Session.getInstance().getActiveAccount();
         this.oDB.updateUserRecord(conv.convertAcctOrdersToMap(acct));
+    }
+
+    public void saveChangesToODB_conv_Id(List<StandingOrder> orders, String accountId){
+        this.oDB.updateUserRecord(conv.convertAcctOrdersToMap_Id(orders, accountId));
     }
 
 

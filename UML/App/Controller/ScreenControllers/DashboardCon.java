@@ -105,7 +105,7 @@ public class DashboardCon implements Controller_t{
         if(orders!=null){
             pagies.clearListContainer();
             for(StandingOrder order : orders){
-                String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount())};
+                String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount()), order.getNextIssueDay()};
                 viewHandler.getStandingOrdersScreen().addListRow2(dataForList);
             }
         }

@@ -257,7 +257,7 @@
           "iban": "GR1862810229957087778102776",
           "ownerName": "Pitsoulis",
           "secondaryOwner": "faker",
-          "balance": "19.750012969970705",
+          "balance": "1762.6502685546875",
           "interestRate": "0.5%"
         },
         {
@@ -316,7 +316,7 @@
           "iban": "GR0434868378581762882502325",
           "ownerName": "nig",
           "secondaryOwner": "nigger2",
-          "balance": "1000.0",
+          "balance": "1034.0",
           "interestRate": "1%"
         },
         {
@@ -324,6 +324,14 @@
           "iban": "GR0507574741847728595205700",
           "ownerName": "nigga1",
           "secondaryOwner": "r",
+          "balance": "0",
+          "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_79470260",
+          "iban": "GR0693269657259292897712553",
+          "ownerName": "nigga1",
+          "secondaryOwner": "nigz2",
           "balance": "0",
           "interestRate": "1%"
         }
@@ -346,7 +354,15 @@
           "iban": "GR4721132123635377234428151",
           "ownerName": "osak",
           "secondaryOwner": "osak2",
-          "balance": "9988.0",
+          "balance": "10000.0",
+          "interestRate": "1%"
+        },
+        {
+          "accountId": "ID_12551432",
+          "iban": "GR2756489751801878949107522",
+          "ownerName": "osak",
+          "secondaryOwner": "nigz",
+          "balance": "100.0",
           "interestRate": "1%"
         }
       ]
@@ -368,7 +384,7 @@
           "iban": "GR6925679255646201696520316",
           "ownerName": "q",
           "secondaryOwner": "werty",
-          "balance": "0",
+          "balance": "48.0",
           "interestRate": "1%"
         }
       ]
@@ -389,7 +405,7 @@
           "iban": "GR3529345747154017510425940",
           "ownerName": "fs",
           "secondaryOwner": "FS TUC",
-          "balance": "450.90000000000003",
+          "balance": "384.90000000000003",
           "rfCode": "null",
           "interestRate": "1%"
         }

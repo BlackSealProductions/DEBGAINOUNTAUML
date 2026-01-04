@@ -67,6 +67,24 @@ public class TransactionDB {
         return foundTr;
     }
 
+    public List<Map<String, Object>> findTransactionsWithRecId(String id){
+
+        List<Map<String, Object>> records = getAllRecords();
+        List<Map<String, Object>> foundTrs = new ArrayList<>();
+
+        for (Map<String, Object> wrapper : records) {
+            Map<String, Object> acct = (Map<String, Object>) wrapper.get("account");
+            List<Map<String, Object>> trs = (List<Map<String, Object>>) acct.get("transactions");
+            for(Map<String, Object> tr : trs){
+                if( tr.get("recieverId").equals(id)){
+                    foundTrs.add(tr);
+                    // return tr;
+                }
+            }
+        }
+        return foundTrs;
+    }
+
     /**
      * Loads all records from the JSON file.
      */

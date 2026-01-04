@@ -15,7 +15,7 @@ public class Account {
     private String secondaryOwner;
     private String rfCode;
 
-    private List<Transaction> transactions;
+    private List<Transaction> transactions = new ArrayList<Transaction>();
     private List<StandingOrder> standingOrders = new ArrayList<StandingOrder>();
 
     public Account(String citizenId, String ownerName, String iban, String balance, String interestRate, String secondaryOwner) {

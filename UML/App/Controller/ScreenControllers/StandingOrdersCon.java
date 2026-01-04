@@ -6,6 +6,7 @@ import App.Controller.Controller_t;
 import App.Model.ModelHandler;
 import App.Model.Session;
 import App.Model.Database.OrderDB;
+import App.Model.Database.UserDB;
 import App.Model.Entities.OperationEntities.StandingOrder;
 import App.Model.Entities.OperationEntities.Transaction;
 import App.View.ViewHandler;
@@ -30,7 +31,12 @@ public class StandingOrdersCon implements Controller_t{
 
     public void handleOrderCreation(){
         String name = view.getName();
+        UserDB uDB = model.get_uDB();
         String acc = view.getIban();
+        if(uDB.findAccountWithIban(acc)==null){
+            view.warnIban();
+            return;
+        }
         String date = view.getDate();
         String freq = view.getFreqBox().getSelectedItem().toString();
         Double amount = 0.0;
@@ -58,7 +64,7 @@ public class StandingOrdersCon implements Controller_t{
         if(Session.getInstance().getActiveAccount().getStandingorders().isEmpty()){
             view.resetRowCounter();
         }
-        String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount())};
+        String[] dataForList = {order.getName(), order.getAccountIban(), order.getPresentDay(), order.getPaymentFrequency(), String.valueOf(order.getAmount()), order.getNextIssueDay()};
         view.addListRow2(dataForList);
 
     }

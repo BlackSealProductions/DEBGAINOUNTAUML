@@ -117,11 +117,11 @@ public class DatabaseObjectConverter {
         userData.put("accountId", accountId);
        
         // Handle nested accounts array
-        List<Map<String, String>> orders = new ArrayList<>();
+        List<Map<String, Object>> orders = new ArrayList<>();
 
         for(StandingOrder order : activeAccount.getStandingorders()){
 
-            Map<String, String> so = new HashMap<>();
+            Map<String, Object> so = new HashMap<>();
             so.put("name", order.getName());
             so.put("targetIban", order.getAccountIban());
             //so.put("transactionId", order.getTransaction().getTransactionId());
@@ -130,6 +130,38 @@ public class DatabaseObjectConverter {
             so.put("day", order.getPresentDay());
             so.put("dueDate", order.getNextIssueDay());
             so.put("frequency", order.getPaymentFrequency());
+            so.put("pastcharges", order.getPastCharges());
+            orders.add(so);
+        }
+
+        userData.put("orders", orders);
+                
+        Map<String, Object> wrapper = new HashMap<>();
+        wrapper.put("account", userData);
+        return wrapper;
+    }
+
+    public Map<String, Object> convertAcctOrdersToMap_Id(List<StandingOrder> ordersList, String accountId){
+        // String accountId = activeAccount.getAccountId();
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("accountId", accountId);
+       
+        // Handle nested accounts array
+        List<Map<String, Object>> orders = new ArrayList<>();
+
+        for(StandingOrder order : ordersList){
+
+            Map<String, Object> so = new HashMap<>();
+            so.put("name", order.getName());
+            so.put("targetIban", order.getAccountIban());
+            //so.put("transactionId", order.getTransaction().getTransactionId());
+            so.put("orderId", order.getOrderId());
+            so.put("amount", String.valueOf(order.getAmount()));
+            so.put("day", order.getPresentDay());
+            so.put("dueDate", order.getNextIssueDay());
+            so.put("frequency", order.getPaymentFrequency());
+            so.put("pastcharges", order.getPastCharges());
             orders.add(so);
         }
 
