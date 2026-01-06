@@ -103,10 +103,11 @@ public class PayBillCon implements Controller_t {
 
         // 5. UI Update
         view.setBalance(String.valueOf(newBal));
-        view.hide();
-        DashboardScreen dash = viewHandler.getDashboardScreen();
-        dash.refresh(myAccount);
-        dash.show();
+        view.clearFields();
+        // view.hide();
+        // DashboardScreen dash = viewHandler.getDashboardScreen();
+        // dash.refresh(myAccount);
+        // dash.show();
         
         JOptionPane.showMessageDialog(null, "Η πληρωμή ολοκληρώθηκε επιτυχώς!");
         foundBill = null; 

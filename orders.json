@@ -1,55 +1,15 @@
 [
   {
     "account": {
-      "accountId": "ACC_ARIS_01",
+      "accountId": "ID_47801771",
       "orders": [
         {
-          "name": "jerkmate",
-          "targetIban": "GR3412341234123",
-          "orderId": "1767482929236",
-          "amount": "23.09",
-          "day": "07/01/2026",
-          "dueDate": "04/06/2030",
-          "frequency": "ΜΗΝΑ",
-          "pastcharges": []
-        },
-        {
-          "name": "netflix",
-          "targetIban": "GR46746",
-          "orderId": "1767510327139",
-          "amount": "7.5",
-          "day": "04/01/2026",
-          "dueDate": "04/04/2027",
-          "frequency": "ΜΗΝΑ",
-          "pastcharges": []
-        },
-        {
-          "name": "fstuc",
-          "targetIban": "GR3529345747154017510425940",
-          "orderId": "1767528149197",
-          "amount": "100000.0",
-          "day": "04/01/2026",
-          "dueDate": "04/12/2028",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        },
-        {
-          "name": "Freaky Slinky",
-          "targetIban": "GR3529345747154017510425940",
-          "orderId": "1767528325332",
-          "amount": "23.09",
-          "day": "04/01/2026",
-          "dueDate": "04/07/2028",
-          "frequency": "ΜΗΝΑ",
-          "pastcharges": []
-        },
-        {
-          "name": "fstuc2",
-          "targetIban": "GR3529345747154017510425940",
-          "orderId": "1767529411772",
-          "amount": "23.0",
-          "day": "04/12/2026",
-          "dueDate": "04/01/2028",
+          "name": "RENT",
+          "targetIban": "GR7109378370842875997011501",
+          "orderId": "1767562506905",
+          "amount": "450.0",
+          "day": "01/02/2026",
+          "dueDate": "01/04/2026",
           "frequency": "ΜΗΝΑ",
           "pastcharges": []
         }
@@ -58,42 +18,25 @@
   },
   {
     "account": {
-      "accountId": "ID_20411552",
+      "accountId": "ID_49401656",
       "orders": [
         {
-          "name": "wertwert",
-          "targetIban": "GR213452345",
-          "orderId": "1767482961476",
-          "amount": "3200.12",
-          "day": "09/01/2026",
-          "dueDate": "04/09/2029",
-          "frequency": "ΜΗΝΑ",
-          "pastcharges": ["3200.12"]
-        }
-      ]
-    }
-  },
-  {
-    "account": {
-      "accountId": "ID_45882085",
-      "orders": [
-        {
-          "name": "a",
-          "targetIban": "GR239",
-          "orderId": "1767510765238",
-          "amount": "2.0",
-          "day": "04/01/2026",
-          "dueDate": "04/08/2029",
+          "name": "ENGLISH",
+          "targetIban": "GR0663680831109528923075152",
+          "orderId": "1767562671953",
+          "amount": "180.0",
+          "day": "15/01/2026",
+          "dueDate": "15/05/2026",
           "frequency": "ΜΗΝΑ",
           "pastcharges": []
         },
         {
-          "name": "a",
-          "targetIban": "GR239",
-          "orderId": "1767510769199",
-          "amount": "2.0",
-          "day": "04/01/2026",
-          "dueDate": "04/08/2029",
+          "name": "TUDELF FEE",
+          "targetIban": "GR0663680831109628923035152",
+          "orderId": "1767562705677",
+          "amount": "120.0",
+          "day": "10/01/2026",
+          "dueDate": "10/05/2026",
           "frequency": "ΜΗΝΑ",
           "pastcharges": []
         }
@@ -102,122 +45,38 @@
   },
   {
     "account": {
-      "accountId": "ID_18081025",
+      "accountId": "ID_81043716",
       "orders": [
         {
-          "name": "REVMA",
-          "targetIban": "GR734824",
-          "orderId": "1767510997674",
-          "amount": "4.0",
-          "day": "04/01/2026",
-          "dueDate": "04/08/2030",
+          "name": "FRENCH",
+          "targetIban": "GR0663680831109628926075152",
+          "orderId": "1767562784103",
+          "amount": "100.0",
+          "day": "28/01/2026",
+          "dueDate": "28/10/2026",
           "frequency": "ΜΗΝΑ",
           "pastcharges": []
         },
         {
-          "name": "nero",
-          "targetIban": "GR235",
-          "orderId": "1767511178049",
-          "amount": "5.0",
-          "day": "04/01/2026",
-          "dueDate": "04/06/2030",
+          "name": "ΑΠΟΤΑΜΙΕΥΣΗ",
+          "targetIban": "GR0663680831109624923075152",
+          "orderId": "1767562813540",
+          "amount": "100.0",
+          "day": "01/02/2026",
+          "dueDate": "01/11/2026",
           "frequency": "ΜΗΝΑ",
           "pastcharges": []
         },
         {
-          "name": "jerkmate",
-          "targetIban": "GR2353",
-          "orderId": "1767511219064",
-          "amount": "25.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2079",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        },
-        {
-          "name": "jerkmate",
-          "targetIban": "GR2353",
-          "orderId": "1767511230667",
-          "amount": "25.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2079",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        },
-        {
-          "name": "jerkmate",
-          "targetIban": "GR2353",
-          "orderId": "1767511230836",
-          "amount": "25.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2079",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        },
-        {
-          "name": "jerkmate",
-          "targetIban": "GR2353",
-          "orderId": "1767511230936",
-          "amount": "25.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2079",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        },
-        {
-          "name": "jerkmate",
-          "targetIban": "GR2353",
-          "orderId": "1767511231116",
-          "amount": "25.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2079",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        },
-        {
-          "name": "jerkmate",
-          "targetIban": "GR2353",
-          "orderId": "1767511231433",
-          "amount": "25.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2079",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        },
-        {
-          "name": "jerkmate",
-          "targetIban": "GR2353",
-          "orderId": "1767511231864",
-          "amount": "25.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2079",
-          "frequency": "ΧΡΟΝΟ",
+          "name": "NOVA",
+          "targetIban": "GR6471707622946167811742856",
+          "orderId": "1767728965487",
+          "amount": "17.0",
+          "day": "06/01/2026",
+          "dueDate": "06/04/2026",
+          "frequency": "ΜΗΝΑ",
           "pastcharges": []
         }
-      ]
-    }
-  },
-  {
-    "account": {
-      "accountId": "ID_83848571",
-      "orders": [
-        {
-          "name": "NERO",
-          "targetIban": "GR8338",
-          "orderId": "1767511705320",
-          "amount": "300.0",
-          "day": "04/01/2026",
-          "dueDate": "04/01/2065",
-          "frequency": "ΧΡΟΝΟ",
-          "pastcharges": []
-        }
-      ]
-    }
-  },
-  {
-    "account": {
-      "accountId": "ID_75491145",
-      "orders": [
       ]
     }
   }

@@ -1,85 +1,29 @@
 [
   {
     "user": {
-      "username": "ckadas",
-      "password": "ckadas",
-      "name": "Christos",
-      "surname": "Kadas",
-      "phone": "0000000011",
-      "email": "ckadas@tuc.gr",
+      "username": "ngioldasis",
+      "password": "nek123",
+      "name": "Nektarios",
+      "surname": "Gioldasis",
+      "phone": "6948634124",
+      "email": "ngioldasis@tuc.gr",
       "type": "Individual",
-      "taxId": "17983235",
+      "taxId": "067688302",
       "accounts": [
         {
-          "accountId": "ID_67676767",
-          "iban": "GR6700000000000000000000000",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "425.59",
+          "accountId": "ID_47801771",
+          "iban": "GR7379621661884959698707295",
+          "ownerName": "ngioldasis",
+          "secondaryOwner": "Giorgos Chalkiadakis",
+          "balance": "866.35",
           "interestRate": "3.0"
         },
         {
-          "accountId": "ID_69696969",
-          "iban": "GR6900000000000000000000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "32310.27",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_70707070",
-          "iban": "GR6900000000000000800000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "31347.95",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_23232323",
-          "iban": "GR6900000000000000000000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "31261.17",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_13131313",
-          "iban": "GR6900000000000000000000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "29921.34",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_90909090",
-          "iban": "GR6900000000000000000000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "32713.48",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_84848484",
-          "iban": "GR6900000000000000000000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "31220.02",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_45454545",
-          "iban": "GR6900000000000000000000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "31695.69",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_34343434",
-          "iban": "GR6900000000000000000000011",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "32869.91",
+          "accountId": "ID_20629218",
+          "iban": "GR7035821530205947555877497",
+          "ownerName": "ngioldasis",
+          "secondaryOwner": "Nikos Pappas",
+          "balance": "1834.27",
           "interestRate": "3.0"
         }
       ]
@@ -87,51 +31,29 @@
   },
   {
     "user": {
-      "username": "ioannis",
-      "password": "123",
-      "name": "Ioannis",
-      "surname": "Iostarios",
-      "phone": "6900000000",
-      "email": "ioannis@tuc.gr",
+      "username": "pappas",
+      "password": "nik123",
+      "name": "Nikos",
+      "surname": "Pappas",
+      "phone": "6924956542",
+      "email": "npapas@tuc.gr",
       "type": "Individual",
-      "taxId": "AK123456",
+      "taxId": "067688303",
       "accounts": [
         {
-          "accountId": "ACC_IOAN_01",
-          "iban": "GR1770137038471374039483827",
-          "ownerName": "Iostarios",
-          "secondaryOwner": "Gyros Zepelis",
-          "balance": "256.69000244140625",
-          "interestRate": "5%"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "admin",
-      "password": "admin",
-      "name": "Chris",
-      "surname": "Kadas",
-      "phone": "6911111111",
-      "email": "admin@bankoftuc.gr",
-      "type": "Individual",
-      "taxId": "DEV_001",
-      "accounts": [
-        {
-          "accountId": "ACC_ADMIN_MAIN",
-          "iban": "GR1010101010101010101010101",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "8683.72",
+          "accountId": "ID_49401656",
+          "iban": "GR0965681403848810006247876",
+          "ownerName": "pappas",
+          "secondaryOwner": "Secondary owner",
+          "balance": "1907.66",
           "interestRate": "3.0"
         },
         {
-          "accountId": "ACC_ADMIN_SAVINGS",
-          "iban": "GR1010101010101010101010999",
-          "ownerName": "Kadas",
-          "secondaryOwner": "null",
-          "balance": "49392.89",
+          "accountId": "ID_69426302",
+          "iban": "GR3335108386122222508092237",
+          "ownerName": "pappas",
+          "secondaryOwner": "Secondary owner",
+          "balance": "25.83",
           "interestRate": "3.0"
         }
       ]
@@ -139,29 +61,21 @@
   },
   {
     "user": {
-      "username": "prof",
-      "password": "pass",
-      "name": "Athanasios",
-      "surname": "Pliroforikos",
-      "phone": "6922222222",
-      "email": "prof@tuc.gr",
+      "username": "gchalkiadakis",
+      "password": "gio123",
+      "name": "Giorgos",
+      "surname": "Chalkiadakis",
+      "phone": "6987654687",
+      "email": "gchalkia@tuc.gr",
       "type": "Individual",
-      "taxId": "PROF_99",
+      "taxId": "067688304",
       "accounts": [
         {
-          "accountId": "ACC_PROF_01",
-          "iban": "GR9090909090909090909090909",
-          "ownerName": "Pliroforikos",
-          "secondaryOwner": "Mrs. Pliroforikou",
-          "balance": "120512.75",
-          "interestRate": "6%"
-        },
-        {
-          "accountId": "ACC_PROF_RESEARCH",
-          "iban": "GR9090909000000000000000888",
-          "ownerName": "Pliroforikos",
-          "secondaryOwner": "null",
-          "balance": "247690.62",
+          "accountId": "ID_81043716",
+          "iban": "GR0945638419597066340584513",
+          "ownerName": "gchalkiadakis",
+          "secondaryOwner": "Secondary owner",
+          "balance": "510.45",
           "interestRate": "3.0"
         }
       ]
@@ -169,20 +83,78 @@
   },
   {
     "user": {
-      "username": "cafe",
-      "password": "coffee",
-      "companyName": "",
-      "phone": "2821037000",
-      "email": "cafe@tuc.gr",
+      "username": "mteranova",
+      "password": "mar123",
+      "name": "Maria",
+      "surname": "Teranova",
+      "phone": "6987654213",
+      "email": "mteranova@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688305",
+      "accounts": [
+        {
+          "accountId": "ID_38412553",
+          "iban": "GR7579695740209107692507680",
+          "ownerName": "mteranova",
+          "secondaryOwner": "Nikos Pappas, Nektarios Gioldasis",
+          "balance": "620.54",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "skarakosta",
+      "password": "sof123",
+      "name": "Sofia",
+      "surname": "Karakosta",
+      "phone": "6998765417",
+      "email": "skarakosta@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688306",
+      "accounts": [
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "edimitriou",
+      "password": "ele123",
+      "name": "Eleni",
+      "surname": "Dimitriou",
+      "phone": "694687321",
+      "email": "edimitriou@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688307",
+      "accounts": [
+        {
+          "accountId": "ID_43089046",
+          "iban": "GR9602358328147037007267467",
+          "ownerName": "edimitriou",
+          "secondaryOwner": "Secondary owner",
+          "balance": "11.46",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "vodafone",
+      "password": "vod123",
+      "companyName": "VODAFONE GR",
+      "phone": "6958413215",
+      "email": "vodaphone@gmail.com",
       "type": "Company",
-      "taxId": "TUC_CAFE",
+      "taxId": "090800700",
       "accounts": [
         {
-          "accountId": "ACC_CAFE_01",
-          "iban": "GR5555555555555555555555555",
-          "ownerName": "Cafeteria",
-          "secondaryOwner": "null",
-          "balance": "2830.66",
+          "accountId": "ID_17047581",
+          "iban": "GR0663680831109628923075152",
+          "ownerName": "vodafone",
+          "secondaryOwner": "Secondary owner",
+          "balance": "9633.90",
           "interestRate": "3.0"
         }
       ]
@@ -190,50 +162,20 @@
   },
   {
     "user": {
-      "username": "yiannis",
-      "password": "nba",
-      "name": "Giannis",
-      "surname": "Antetokounmpo",
-      "phone": "001414555",
-      "email": "greekfreak@nba.com",
-      "type": "Individual",
-      "taxId": "GI343434",
-      "accounts": [
-        {
-          "accountId": "ACC_NBA_01",
-          "iban": "GR3434343434343434343434343",
-          "ownerName": "Antetokounmpo",
-          "secondaryOwner": "null",
-          "balance": "50385392.15",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ACC_NBA_MILWAUKEE",
-          "iban": "GR3434340000000000000000777",
-          "ownerName": "Antetokounmpo",
-          "secondaryOwner": "null",
-          "balance": "1208203.49",
-          "interestRate": "3.0"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "bank",
-      "password": "root",
-      "companyName": "",
-      "phone": "2821000000",
-      "email": "info@bankoftuc.gr",
+      "username": "cosmote",
+      "password": "cos123",
+      "companyName": "COSMOTE",
+      "phone": "6965987435",
+      "email": "cosmote@gmail.com",
       "type": "Company",
-      "taxId": "BANK_MAIN",
+      "taxId": "090800800",
       "accounts": [
         {
-          "accountId": "ACC_BANK_RESERVE",
-          "iban": "GR0000000000000000000000001",
-          "ownerName": "Of TUC",
-          "secondaryOwner": "null",
-          "balance": "10046911.92",
+          "accountId": "ID_52791710",
+          "iban": "GR7109378370842871997011501",
+          "ownerName": "cosmote",
+          "secondaryOwner": "Secondary owner",
+          "balance": "25069.46",
           "interestRate": "3.0"
         }
       ]
@@ -241,297 +183,42 @@
   },
   {
     "user": {
-      "username": "arisgod04",
-      "password": "steliosegamaw",
-      "name": "Aristeidis",
-      "surname": "Pitsoulis",
-      "phone": "6955826258",
-      "email": "arispitsoulis24@gmail.com",
-      "type": "Individual",
-      "taxId": "A69675524",
-      "accounts": [
-        {
-          "accountId": "ACC_ARIS_01",
-          "iban": "GR1862810229957087778102776",
-          "ownerName": "Pitsoulis",
-          "secondaryOwner": "faker",
-          "balance": "100000.0",
-          "interestRate": "0.5%"
-        },
-        {
-          "accountId": "ID_20411552",
-          "iban": "GR9393319356273823426639169",
-          "ownerName": "arisgod04",
-          "secondaryOwner": "steligger",
-          "balance": "1029.0",
-          "interestRate": "1%"
-        },
-        {
-          "accountId": "ID_66344270",
-          "iban": "GR5419917103776692680082703",
-          "ownerName": "arisgod04",
-          "secondaryOwner": "thanasis",
-          "balance": "0",
-          "interestRate": "1%"
-        },
-        {
-          "accountId": "ID_77595156",
-          "iban": "GR5323171109728152707781800",
-          "ownerName": "arisgod04",
-          "secondaryOwner": "null",
-          "balance": "200461.66",
-          "interestRate": "3.0"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "aziz",
-      "password": "123",
-      "companyName": "",
-      "phone": "6955555555",
-      "email": "osaker@gmail.com",
+      "username": "dei",
+      "password": "dei123",
+      "companyName": "DEI",
+      "phone": "6984751329",
+      "email": "dei@gmail.com",
       "type": "Company",
-      "taxId": "25324",
-      "accounts": [
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "nigga1",
-      "password": "123",
-      "name": "nig",
-      "surname": "nigz",
-      "phone": "124235",
-      "email": "nig@gmail.com",
-      "type": "Individual",
-      "taxId": "111",
+      "taxId": "090800900",
       "accounts": [
         {
-          "accountId": "ID_38322476",
-          "iban": "GR9893617159931942389399360",
-          "ownerName": "nigga1",
-          "secondaryOwner": "bfyef",
-          "balance": "0",
-          "interestRate": "1%"
+          "accountId": "ID_63912595",
+          "iban": "GR9242526377197796887091235",
+          "ownerName": "dei",
+          "secondaryOwner": "Secondary owner",
+          "balance": "99739.08",
+          "interestRate": "3.0"
         }
       ]
     }
   },
   {
     "user": {
-      "username": "osak",
-      "password": "123",
-      "name": "osaka",
-      "surname": "h",
-      "phone": "345",
-      "email": "a",
-      "type": "Individual",
-      "taxId": "7788",
-      "accounts": [
-        {
-          "accountId": "ID_18081025",
-          "iban": "GR4721132123635377234428151",
-          "ownerName": "osak",
-          "secondaryOwner": "osak2",
-          "balance": "9959.32",
-          "interestRate": "1%"
-        },
-        {
-          "accountId": "ID_12551432",
-          "iban": "GR2756489751801878949107522",
-          "ownerName": "osak",
-          "secondaryOwner": "nigz",
-          "balance": "100.0",
-          "interestRate": "1%"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "q",
-      "password": "q",
-      "name": "q",
-      "surname": "q",
-      "phone": "q",
-      "email": "q",
-      "type": "Individual",
-      "taxId": "q",
-      "accounts": [
-        {
-          "accountId": "ID_10643754",
-          "iban": "GR6925679255646201696520316",
-          "ownerName": "q",
-          "secondaryOwner": "werty",
-          "balance": "48.0",
-          "interestRate": "1%"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "fs",
-      "password": "123",
-      "companyName": "fs",
-      "phone": "333",
-      "email": "fss",
+      "username": "nova",
+      "password": "nova123",
+      "companyName": "NOVA",
+      "phone": "6965934762",
+      "email": "nove@gmail.com",
       "type": "Company",
-      "taxId": "444",
+      "taxId": "090800600",
       "accounts": [
         {
-          "accountId": "ID_45882085",
-          "iban": "GR3529345747154017510425940",
-          "ownerName": "fs",
-          "secondaryOwner": "FS TUC",
-          "balance": "400010.0",
-          "interestRate": "1%"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "a",
-      "password": "a",
-      "name": "a",
-      "surname": "a",
-      "phone": "a",
-      "email": "a",
-      "type": "Individual",
-      "taxId": "a",
-      "accounts": [
-        {
-          "accountId": "ID_51259348",
-          "iban": "GR6086248002856772322430785",
-          "ownerName": "a",
-          "secondaryOwner": "null",
-          "balance": "124.80",
+          "accountId": "ID_17574830",
+          "iban": "GR6471707622946167811742856",
+          "ownerName": "nova",
+          "secondaryOwner": "Secondary owner",
+          "balance": "7310.55",
           "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_56165136",
-          "iban": "GR1386827574990737208056975",
-          "ownerName": "a",
-          "secondaryOwner": "null",
-          "balance": "776.41",
-          "interestRate": "3.0"
-        },
-        {
-          "accountId": "ID_57587679",
-          "iban": "GR9160312536722710199329770",
-          "ownerName": "a",
-          "secondaryOwner": "null",
-          "balance": "886.49",
-          "interestRate": "3.0"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "b",
-      "password": "b",
-      "companyName": "b",
-      "phone": "b",
-      "email": "b",
-      "type": "Company",
-      "taxId": "b",
-      "accounts": [
-        {
-          "accountId": "ID_81038014",
-          "iban": "GR6409068716948369530842178",
-          "ownerName": "b",
-          "secondaryOwner": "null",
-          "balance": "247.56",
-          "interestRate": "3.0"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "mamo123",
-      "password": "1234",
-      "companyName": "MamoInc",
-      "phone": "6944556677",
-      "email": "mamo@gmail.com",
-      "type": "Company",
-      "taxId": "998800123",
-      "accounts": [
-        {
-          "accountId": "ID_22953810",
-          "iban": "GR5572952312178892854303288",
-          "ownerName": "mamo123",
-          "secondaryOwner": "null",
-          "balance": "876.71",
-          "interestRate": "3.0"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "n",
-      "password": "n",
-      "companyName": "n",
-      "phone": "n",
-      "email": "n",
-      "type": "Company",
-      "taxId": "n",
-      "accounts": [
-        {
-          "accountId": "ID_29984252",
-          "iban": "GR7263923592798249730846540",
-          "ownerName": "n",
-          "secondaryOwner": "null",
-          "balance": "64.94",
-          "interestRate": "3.0"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "w",
-      "password": "w",
-      "companyName": "w",
-      "phone": "w",
-      "email": "w",
-      "type": "Company",
-      "taxId": "w",
-      "accounts": [
-        {
-          "accountId": "ID_71708282",
-          "iban": "GR8571025449687529640477360",
-          "ownerName": "w",
-          "secondaryOwner": "null",
-          "balance": "113.72",
-          "interestRate": "3.0"
-        }
-      ]
-    }
-  },
-  {
-    "user": {
-      "username": "s",
-      "password": "s",
-      "companyName": "s",
-      "phone": "42",
-      "email": "s",
-      "type": "Company",
-      "taxId": "453",
-      "accounts": [
-        {
-          "accountId": "ID_21214597",
-          "iban": "GR9516302398641921141655116",
-          "ownerName": "s",
-          "secondaryOwner": "nigs",
-          "balance": "0",
-          "interestRate": "1%"
         }
       ]
     }

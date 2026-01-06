@@ -119,11 +119,12 @@ public class BillPaymentScreen implements View_t {
         label.setForeground(Color.DARK_GRAY);
         
         JTextField field = new JTextField(placeholder);
+        // field.setText(placeholder);
         field.setPreferredSize(new Dimension(width, 60)); 
         field.setMaximumSize(new Dimension(width, 60)); 
         field.setFont(customFont20); 
         field.setForeground(textColor);
-        field.setBackground(Color.decode("#F8F8F8")); 
+        field.setBackground(Color.decode("#F8F8F8"));
         field.setBorder(BorderFactory.createCompoundBorder(
             new LineBorder(borderRed, 2, true), 
             new EmptyBorder(0, 15, 0, 0) 
@@ -158,5 +159,18 @@ public class BillPaymentScreen implements View_t {
             double val = Double.parseDouble(amount);
             balanceLabel.setText("<html><u>Υπόλοιπο: " + String.format("%.2f", val) + "€</u></html>");
         } catch (Exception e) { balanceLabel.setText("<html><u>Υπόλοιπο: " + amount + "€</u></html>"); }
+    }
+
+    public void clearFields(){
+
+        String rfPlaceholder = "RF code";
+        String amountPlaceholder = "0.00";
+
+        this.rfCodeField.setText(rfPlaceholder);
+        this.rfCodeField.setForeground(placeholderColor);
+
+        this.amountField.setText(amountPlaceholder);
+        this.amountField.setForeground(placeholderColor);
+
     }
 }

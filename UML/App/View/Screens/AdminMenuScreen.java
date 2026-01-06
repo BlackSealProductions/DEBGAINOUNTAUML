@@ -78,10 +78,10 @@ public class AdminMenuScreen implements View_t {
         panel.add(userLabel);
 
         // 5. LOGOUT BUTTON
-        logoutBtn = new RoundedButton("➜", 10);
+        logoutBtn = new RoundedButton("X", 10);
         logoutBtn.setBounds(wWidth - 100, 50, 50, 50); 
-        logoutBtn.setBackground(Color.WHITE);
-        logoutBtn.setForeground(red);
+        logoutBtn.setBackground(red);
+        logoutBtn.setForeground(Color.WHITE);
         logoutBtn.setFont(arrowFont); 
         logoutBtn.setFocusPainted(false);
         panel.add(logoutBtn);

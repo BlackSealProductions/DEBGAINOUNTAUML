@@ -176,7 +176,8 @@ public class Session {
             // 3. Pass the pastCharges list to the constructor
             // Make sure your StandingOrder constructor is updated to accept this list
             StandingOrder newOrder = new StandingOrder(name, acc, orderId, amount, day, freq);
-            newOrder.calcNextDate(freq, dueDate);
+            // newOrder.calcNextDate(freq, dueDate);
+            newOrder.setNextIssueDay(dueDate);
             newOrder.setPastCharges(pastCharges);
             accountOrders.add(newOrder);
         }
