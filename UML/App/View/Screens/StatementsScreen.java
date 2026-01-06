@@ -261,7 +261,7 @@ public class StatementsScreen implements View_t {
 
                 if (desc == null) desc = "-"; // Safety check
 
-                if ("receive".equalsIgnoreCase(type)) {
+                if ("receive".equalsIgnoreCase(type) || "Deposit".equalsIgnoreCase(type) || "Interest".equalsIgnoreCase(type)) {
                     sign = "+";
                     addTransaction(
                         state.getDate().toString(), 
@@ -270,7 +270,7 @@ public class StatementsScreen implements View_t {
                         desc,                                 // Description
                         sign + String.valueOf(state.getTransaction().getAmount()) + "€"
                     );
-                } else {
+                } else if("send".equalsIgnoreCase(type) || "Withdrawal".equalsIgnoreCase(type) || "Payment".equalsIgnoreCase(type)) {
                     sign = "-";
                     addTransaction(
                         state.getDate().toString(), 

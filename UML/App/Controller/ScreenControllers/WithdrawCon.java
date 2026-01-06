@@ -70,7 +70,7 @@ public class WithdrawCon implements Controller_t {
                 LocalDate.now().toString(),
                 LocalTime.now().toString(), 
                 "Withdraw", 
-                "send"
+                "Withdrawal"
             );
             
             user.addTransaction(t);

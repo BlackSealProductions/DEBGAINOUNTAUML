@@ -68,7 +68,7 @@ public class DepositCon implements Controller_t {
                 LocalDate.now().toString(),
                 LocalTime.now().toString(), 
                 "Deposit", 
-                "receive"
+                "Deposit"
             );
             
             user.addTransaction(t);

@@ -14,7 +14,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +56,7 @@ public class StatementCon  implements Controller_t{
 
         for(Map<String, Object> trMap : trMaps){
 
-            if(((String)trMap.get("description")).equals("Deposit") || ((String)trMap.get("description")).equals("Withdrawal")){
+            if(((String)trMap.get("type")).equals("Deposit") || ((String)trMap.get("type")).equals("Withdrawal") || ((String)trMap.get("type")).equals("Interest")){
                 continue;
             }
 
@@ -92,6 +94,7 @@ public class StatementCon  implements Controller_t{
 
         // Now you can safely add to this local list without modifying the Account entity
         accTransactions.addAll(receivedTrans);
+        accTransactions.sort(Comparator.comparing(t -> LocalTime.parse(t.getTime())));
 
         System.out.println(accTransactions);
 
@@ -116,10 +119,16 @@ public class StatementCon  implements Controller_t{
                 Map<String, Object> entryMap =new HashMap<>();
 
 
-                if(transaction.getDescription().equals("Withdrawal")){
+                if(transaction.getType().equals("Withdrawal")){
                     transactorName=transaction.getRecieverId();
                 }
-                else if(transaction.getDescription().equals("Deposit")){
+                else if(transaction.getType().equals("Deposit")){
+                    transactorName=transaction.getSenderId();
+                }
+                else if(transaction.getType().equals("Payment")){
+                    transactorName=transaction.getRecieverId();
+                }
+                else if(transaction.getType().equals("Interest")){
                     transactorName=transaction.getSenderId();
                 }
                 else if(transaction.getType().equals("receive")){

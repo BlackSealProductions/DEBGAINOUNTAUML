@@ -5,11 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import App.Model.Entities.OperationEntities.Transaction;
+import App.Model.Entities.OperationEntities.Withdrawal;
 import App.Model.Entities.UserEntities.Account;
 import App.Model.Entities.UserEntities.Company;
 import App.Model.Entities.UserEntities.Customer;
 import App.Model.Entities.UserEntities.Individual;
 import App.View.Screens.SimulationScreen;
+import App.Model.Entities.OperationEntities.Deposit;
 // [ADDED] Import for StandingOrder logic
 import App.Model.Entities.OperationEntities.StandingOrder;
 
@@ -80,6 +82,7 @@ public class Simulator {
                                             updateBalance(acc, balance + interest);
                                             Transaction t = new Transaction(generateTxId(), "BANK_SYSTEM", acc.getAccountId(), interest, dateString, "23:59", "Monthly Interest Yield", "Interest");
                                             acc.addTransaction(t);
+
                                             saveChanges(user, acc);
                                             totalVolume += interest;
                                         }
@@ -113,7 +116,7 @@ public class Simulator {
 
                             if (bal >= rent) {
                                 updateBalance(acc, bal - rent);
-                                Transaction t = new Transaction(generateTxId(), acc.getAccountId(), "LANDLORD_ACC", rent, dateString, "09:00", "Standing Order: Rent", "Payment");
+                                Transaction t = new Transaction(generateTxId(), acc.getAccountId(), "LANDLORD_ACC", rent, dateString, "09:00", "Standing Order: Rent", "send");
                                 acc.addTransaction(t);
                                 saveChanges(user, acc);
                                 view.appendLog(String.format("   [AUTO] %s Rent: -€%.2f", acc.getAccountId(), rent));
@@ -174,9 +177,11 @@ public class Simulator {
             switch (type) {
                 case 0: // DEPOSIT
                     updateBalance(actorAcc, actorBal + amount);
-                    Transaction tDep = new Transaction(generateTxId(), "ATM_Machine", actorAcc.getAccountId(), amount, date, "10:00", "Cash Deposit", "Deposit");
+                    // this.model.get_uDB().updateUserRecord(convertUserToMap(actor, actor.getAccounts()));
+                    Deposit tDep = new Deposit(generateTxId(), "ATM_Machine", actorAcc.getAccountId(), amount, date, "10:00", "Cash Deposit", "Deposit");
                     actorAcc.addTransaction(tDep);
                     saveChanges(actor, actorAcc);
+                    // this.model.get_tDB().appendTransactionRecord(convertAccountToTransactionMap(actorAcc));
                     view.appendLog(String.format("   [DEPOSIT] %s: +€%.2f", actorAcc.getAccountId(), amount));
                     totalVolume += amount;
                     break;
@@ -184,7 +189,7 @@ public class Simulator {
                 case 1: // WITHDRAWAL
                     if (actorBal >= amount) {
                         updateBalance(actorAcc, actorBal - amount);
-                        Transaction tWith = new Transaction(generateTxId(), actorAcc.getAccountId(), "ATM_Machine", amount, date, "12:30", "Cash Withdrawal", "Withdrawal");
+                        Withdrawal tWith = new Withdrawal(generateTxId(), actorAcc.getAccountId(), "ATM_Machine", amount, date, "12:30", "Cash Withdrawal", "Withdrawal");
                         actorAcc.addTransaction(tWith);
                         saveChanges(actor, actorAcc);
                         view.appendLog(String.format("   [WITHDRAW] %s: -€%.2f", actorAcc.getAccountId(), amount));
@@ -212,13 +217,14 @@ public class Simulator {
                         double targetBal = parseBalance(targetAcc.getBalance());
                         
                         updateBalance(actorAcc, actorBal - amount);
-                        Transaction tSent = new Transaction(generateTxId(), actorAcc.getAccountId(), targetAcc.getAccountId(), amount, date, "18:00", "Transfer to " + target.getUsername(), "Transfer");
+                        this.model.get_uDB().updateUserRecord(convertUserToMap(actor, actor.getAccounts()));
+
+                        
+                        Transaction tSent = new Transaction(generateTxId(), actorAcc.getAccountId(), targetAcc.getAccountId(), amount, date, "18:00", "Transfer to TUC", "send");
                         actorAcc.addTransaction(tSent);
                         
                         updateBalance(targetAcc, targetBal + amount);
-                        Transaction tRec = new Transaction(generateTxId(), actorAcc.getAccountId(), targetAcc.getAccountId(), amount, date, "18:00", "Received from " + actor.getUsername(), "Transfer");
-                        targetAcc.addTransaction(tRec);
-
+        
                         saveChanges(actor, actorAcc);
                         saveChanges(target, targetAcc);
 

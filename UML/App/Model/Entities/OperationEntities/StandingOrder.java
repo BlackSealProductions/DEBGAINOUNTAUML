@@ -26,7 +26,7 @@ public class StandingOrder {
         MONTH,
         YEAR
     }
-
+    
     public StandingOrder(String name, String accountIban, String orderId, double amount, String presentDay, String paymentFrequency) {
         this.name = name;
         this.accountIban = accountIban;
