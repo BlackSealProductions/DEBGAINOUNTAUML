@@ -4,10 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import App.Model.ModelHandler;
+import App.View.MainFrame;
 import App.View.ViewHandler;
+import App.View.ViewSession;
 import App.View.Screens.AdminMenuScreen;
 import App.View.Screens.AuditLogScreen;
 import App.View.Screens.EditDataScreen;
+import App.View.Screens.FirstPageScreen;
 import App.View.Screens.LoginScreen;
 import App.View.Screens.SimulationScreen;
 
@@ -15,11 +18,13 @@ public class AdminMenuCon {
 
     private AdminMenuScreen view;
     private ModelHandler model;
-    private JFrame mainFrame; 
+    private JFrame adminFrame; 
+    ViewHandler viewHandler;
 
-    public AdminMenuCon(AdminMenuScreen view, ModelHandler model) {
+    public AdminMenuCon(AdminMenuScreen view, ModelHandler model, ViewHandler viewHandler) {
         this.view = view;
         this.model = model;
+        this.viewHandler = viewHandler;
     }
 
     public void init() {
@@ -100,26 +105,33 @@ public class AdminMenuCon {
 
     // --- 4. LOGOUT ---
     private void handleLogout() {
-        JFrame frame = getFrame();
+
+        MainFrame frame = viewHandler.getMainframe();
         
-        LoginScreen loginView = new LoginScreen();
+        FirstPageScreen loginView = viewHandler.getFirstPageScreen();
+
+        SwingUtilities.getWindowAncestor(view.getMainPanel()).dispose();
         // [FIX]: Ensure init is called
-        loginView.init();
+        loginView.show();
+
+        ViewSession.getInstance().updateScreenHistory(loginView);
+        ViewSession.getInstance().clearHistory();
+
+        frame.getFrame().setVisible(true);
         
-        frame.setContentPane(loginView.getMainPanel());
-        frame.revalidate();
-        frame.repaint();
+        // frame.setContentPane(loginView.getMainPanel());
+        frame.getFrame().revalidate();
+        frame.getFrame().repaint();
         
-        LoginCon loginCon = new LoginCon(loginView, this.model, new ViewHandler());
-        loginCon.init();
+        // LoginCon loginCon = new LoginCon(loginView, this.model, new ViewHandler());
+        // loginCon.init();
         
         System.out.println("Logged out.");
     }
 
     private JFrame getFrame() {
-        if (mainFrame == null) {
-            mainFrame = (JFrame) SwingUtilities.getWindowAncestor(view.getMainPanel());
-        }
-        return mainFrame;
+        
+        adminFrame = (JFrame) SwingUtilities.getWindowAncestor(view.getMainPanel());
+        return adminFrame;
     }
 }

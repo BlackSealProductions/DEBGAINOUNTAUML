@@ -115,6 +115,7 @@ public class AdminMenuScreen implements View_t {
         editDataBtn.setBounds(startX + (buttonWidth + gap) * 2, startY, buttonWidth, buttonHeight);
         styleButton(editDataBtn);
         panel.add(editDataBtn);
+
     }
 
     private void styleButton(JButton btn) {

@@ -20,7 +20,6 @@ public class AuditLogScreen implements View_t {
     public RoundedButton backBtn;
 
     public AuditLogScreen() {
-        init();
     }
 
     @Override
@@ -107,6 +106,7 @@ public class AuditLogScreen implements View_t {
         tableContainer.add(Box.createVerticalStrut(20), BorderLayout.SOUTH);
 
         panel.add(tableContainer, BorderLayout.CENTER);
+
     }
 
     @Override

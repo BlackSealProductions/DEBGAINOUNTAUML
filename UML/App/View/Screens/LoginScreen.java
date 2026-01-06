@@ -118,6 +118,28 @@ public class LoginScreen implements View_t {
         hide();
     }
 
+    public void clearFields(){
+        String userPlaceholder = "Username";
+        usernameField.setText(userPlaceholder);
+        // usernameField.setBounds(centerX, startY, fieldWidth, fieldHeight);
+        // usernameField.setBackground(Color.white);
+        usernameField.setForeground(placeholderColor);
+        // usernameField.setFont(customFont20);
+        // usernameField.setBorder(new EmptyBorder(0, 15, 0, 15));
+        // OnFocusEventHelper.setOnFocusText(usernameField, userPlaceholder, Color.black, placeholderColor);
+
+        // --- Password field ---
+        String passPlaceholder = "Password";
+        passwordField.setText(passPlaceholder);
+        // passwordField.setEchoChar((char) 0);
+        // passwordField.setBounds(centerX, startY + 90, fieldWidth, fieldHeight); // Tight 15px gap (90 - 75)
+        // passwordField.setBackground(Color.white);
+        passwordField.setForeground(placeholderColor);
+        // passwordField.setFont(customFont20);
+        // passwordField.setBorder(new EmptyBorder(0, 15, 0, 15));
+        // OnFocusEventHelper.setOnFocusText(passwordField, passPlaceholder, Color.black, placeholderColor);
+    }
+
     @Override
     public JPanel getMainPanel() {
         return panel;

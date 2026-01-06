@@ -133,7 +133,10 @@ public class BillPaymentScreen implements View_t {
 
         // CRITICAL FIX: Ensure placeholders match the calls in init()
         if (placeholder.contains("RF")) this.rfCodeField = field;
-        else if (placeholder.equals("0.00")) this.amountField = field;
+        else if (placeholder.equals("0.00")) {
+            this.amountField = field;
+            this.amountField.setEditable(false);
+        }
 
         container.add(label);
         container.add(Box.createVerticalStrut(8));

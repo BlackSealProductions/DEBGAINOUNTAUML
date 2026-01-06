@@ -62,6 +62,8 @@ public class LoginCon implements Controller_t {
             SwingUtilities.getWindowAncestor(view.getMainPanel()).dispose();
 
             openAdminDashboard();
+            view.clearFields();
+
             return;
         }
         // ============================================================
@@ -105,6 +107,7 @@ public class LoginCon implements Controller_t {
                 ViewSession.getInstance().updateScreenHistory(next);
                 ViewSession.getInstance().clearHistory();
             }
+            view.clearFields();
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Credentials");
         }
@@ -117,7 +120,7 @@ public class LoginCon implements Controller_t {
         adminView.init();
 
         // Create Controller (Pass Model so Audit Logs work!)
-        AdminMenuCon adminCon = new AdminMenuCon(adminView, this.model); 
+        AdminMenuCon adminCon = new AdminMenuCon(adminView, this.model, this.viewHandler); 
         adminCon.init();
 
         // Show Window
@@ -127,5 +130,6 @@ public class LoginCon implements Controller_t {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
     }
 }

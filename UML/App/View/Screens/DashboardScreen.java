@@ -63,6 +63,7 @@ public class DashboardScreen implements View_t {
     public RoundedButton withdrawBtn = createMenuButton("Ανάλυψη");
 
     int headeroffset = 990;
+    int headeroffset_comp = 990 - 190;
     // Boolean comp = false;
     public void checkForCompany(){
 
@@ -74,13 +75,14 @@ public class DashboardScreen implements View_t {
             issueBtn.setFont(customFont20);
             issueBtn.setFocusPainted(false);
             header.add(issueBtn);
-            headeroffset = headeroffset - 180 - 10;
+            headeroffset = headeroffset_comp;
             userNameLabel.setBounds(headeroffset, 50, 380, 50);
             userNameLabel.setFont(customFont20);
             userNameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
             issueBtn.setVisible(true);
         }
         else{
+            headeroffset = 990;
             issueBtn.setVisible(false);
             userNameLabel.setBounds(headeroffset, 50, 380, 50);
             userNameLabel.setFont(customFont20);

@@ -87,6 +87,7 @@ public class EditDataScreen implements View_t {
         tabbedPane.addTab("Manage Accounts", accountTab);
 
         panel.add(tabbedPane);
+
     }
 
     // =============================================================

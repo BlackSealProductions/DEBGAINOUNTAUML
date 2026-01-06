@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainGUI",
+            "request": "launch",
+            "mainClass": "App.MainGUI",
+            "projectName": "DEBGAINOUNTAUML_1c6f8db7"
+        },
+        {
+            "type": "java",
             "name": "EditDataScreen",
             "request": "launch",
             "mainClass": "App.View.Screens.EditDataScreen",

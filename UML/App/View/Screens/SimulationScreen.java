@@ -24,7 +24,6 @@ public class SimulationScreen implements View_t {
     public JLabel volumeLabel;
 
     public SimulationScreen() {
-        init();
     }
 
     @Override
@@ -118,6 +117,7 @@ public class SimulationScreen implements View_t {
         statsPanel.add(volumeLabel);
 
         panel.add(statsPanel, BorderLayout.SOUTH);
+
     }
 
     private JPanel createInputRow(String label, JTextField field) {

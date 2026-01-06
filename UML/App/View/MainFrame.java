@@ -54,5 +54,9 @@ public class MainFrame{
     public RoundedButton getBackBtn(){
         return this.backButton;
     }
+
+    public JFrame getFrame(){
+        return this.frame;
+    }
     
 }
