@@ -13,14 +13,12 @@ public class EditDataCon {
     private EditDataScreen view;
     private ModelHandler model;
 
-    // --- THIS IS THE MISSING CONSTRUCTOR ---
     public EditDataCon(EditDataScreen view, ModelHandler model) {
         this.view = view;
         this.model = model;
     }
 
     public void init() {
-        // 1. Load Data Immediately
         refreshTables();
 
         // ----------------------------------------------------
@@ -90,9 +88,30 @@ public class EditDataCon {
                 JOptionPane.showMessageDialog(null, "Select an account first.");
             }
         });
+
+        // [NEW] Logic for Interest Rate Editing
+        view.getEditInterestBtn().addActionListener(e -> {
+            int row = view.getAccountTable().getSelectedRow();
+            if (row >= 0) {
+                String accId = (String) view.getAccountModel().getValueAt(row, 2);
+                String oldRate = (String) view.getAccountModel().getValueAt(row, 4); // Column 4 is Interest
+                String newRate = JOptionPane.showInputDialog("New Interest Rate (%):", oldRate);
+                
+                if (newRate != null) {
+                    try {
+                        Double.parseDouble(newRate); // Validate it's a number
+                        model.get_uDB().updateAccountInterest(accId, newRate);
+                        refreshTables();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Invalid number (e.g. use 3.0 for 3%)");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Select an account first.");
+            }
+        });
     }
 
-    // --- DATA LOADING HELPERS ---
     private void refreshTables() {
         populateUserTable();
         populateAccountTable();
@@ -100,7 +119,7 @@ public class EditDataCon {
 
     private void populateUserTable() {
         DefaultTableModel modelUser = view.getUserModel();
-        modelUser.setRowCount(0); // Clear old data
+        modelUser.setRowCount(0); 
 
         List<Map<String, Object>> allRecords = model.get_uDB().getAllRecords();
         for (Map<String, Object> wrapper : allRecords) {
@@ -113,7 +132,7 @@ public class EditDataCon {
 
     private void populateAccountTable() {
         DefaultTableModel modelAcc = view.getAccountModel();
-        modelAcc.setRowCount(0); // Clear old data
+        modelAcc.setRowCount(0); 
 
         List<Map<String, Object>> allRecords = model.get_uDB().getAllRecords();
         for (Map<String, Object> wrapper : allRecords) {
@@ -122,7 +141,11 @@ public class EditDataCon {
             if (accounts != null) {
                 for (Map<String, String> acc : accounts) {
                     modelAcc.addRow(new Object[]{
-                        acc.get("iban"), acc.get("ownerName"), acc.get("accountId"), acc.get("balance"), acc.get("interestRate")
+                        acc.get("iban"), 
+                        acc.get("ownerName"), 
+                        acc.get("accountId"), 
+                        acc.get("balance"), 
+                        acc.get("interestRate") // This goes into the last column
                     });
                 }
             }

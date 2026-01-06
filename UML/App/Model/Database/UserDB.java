@@ -414,4 +414,35 @@ public class UserDB {
         
         return block.substring(start, end);
     }
+
+    public void updateAccountInterest(String accountId, String newRate) {
+        List<Map<String, Object>> allRecords = getAllRecords();
+        boolean found = false;
+
+        for (Map<String, Object> wrapper : allRecords) {
+            Map<String, Object> u = (Map<String, Object>) wrapper.get("user");
+            List<Map<String, String>> accounts = (List<Map<String, String>>) u.get("accounts");
+
+            if (accounts != null) {
+                for (Map<String, String> acc : accounts) {
+                    if (acc.get("accountId").equals(accountId)) {
+                        acc.put("interestRate", newRate);
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found) break;
+        }
+
+        if (found) {
+            saveAllRecords(allRecords); // Writes changes to users.json
+        }
+    }
+
+
+
+
+
+
 }

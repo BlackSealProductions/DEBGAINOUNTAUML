@@ -47,6 +47,7 @@ public class EditDataScreen implements View_t {
     private DefaultTableModel accountModel;
     private RoundedButton deleteAccountBtn;
     private RoundedButton editBalanceBtn;
+    private RoundedButton editInterestBtn; // [NEW]
 
     public JLabel title = new JLabel("System Data Management");
 
@@ -74,12 +75,10 @@ public class EditDataScreen implements View_t {
 
         // ==================== 2. TABBED PANE ====================
         tabbedPane = new JTabbedPane();
-        // Fix: Increased height slightly (wHeight - 150) to give more room
         tabbedPane.setBounds(50, 120, wWidth - 100, wHeight - 150);
         tabbedPane.setFont(customFont20);
         tabbedPane.setBackground(Color.WHITE);
         
-        // --- Create the two tabs ---
         JPanel userTab = createUserTab();
         JPanel accountTab = createAccountTab();
 
@@ -96,7 +95,6 @@ public class EditDataScreen implements View_t {
         JPanel p = new JPanel(null);
         p.setBackground(tabBg);
 
-        // Table
         String[] cols = {"Tax ID", "Username", "Type", "Email", "Phone"};
         userModel = new DefaultTableModel(cols, 0) {
              @Override public boolean isCellEditable(int row, int column) { return false; }
@@ -104,13 +102,11 @@ public class EditDataScreen implements View_t {
         userTable = new JTable(userModel);
         styleTable(userTable);
 
-        // Fix: Reduced ScrollPane Height from 500 to 420
         JScrollPane scroll = new JScrollPane(userTable);
         scroll.setBounds(20, 20, 1060, 420); 
         scroll.getViewport().setBackground(Color.WHITE);
         p.add(scroll);
 
-        // Buttons - Fix: Moved Y up from 540 to 480
         int btnY = 480;
         
         deleteUserBtn = new RoundedButton("Delete User", 15);
@@ -123,10 +119,6 @@ public class EditDataScreen implements View_t {
         styleButton(editUserBtn);
         p.add(editUserBtn);
         
-        // Sample Data
-        userModel.addRow(new Object[]{"0001", "stelios", "Individual", "s@mail.com", "69000"});
-        userModel.addRow(new Object[]{"0002", "techCorp", "Company", "info@tech.com", "21099"});
-
         return p;
     }
 
@@ -137,21 +129,19 @@ public class EditDataScreen implements View_t {
         JPanel p = new JPanel(null);
         p.setBackground(tabBg);
 
-        // Table
-        String[] cols = {"IBAN", "Owner ID", "Type", "Balance (€)", "Currency"};
+        // Updated columns to be clearer
+        String[] cols = {"IBAN", "Owner ID", "Type", "Balance (€)", "Interest %"};
         accountModel = new DefaultTableModel(cols, 0) {
              @Override public boolean isCellEditable(int row, int column) { return false; }
         };
         accountTable = new JTable(accountModel);
         styleTable(accountTable);
 
-        // Fix: Reduced ScrollPane Height from 500 to 420
         JScrollPane scroll = new JScrollPane(accountTable);
         scroll.setBounds(20, 20, 1060, 420);
         scroll.getViewport().setBackground(Color.WHITE);
         p.add(scroll);
 
-        // Buttons - Fix: Moved Y up from 540 to 480
         int btnY = 480;
 
         deleteAccountBtn = new RoundedButton("Delete Account", 15);
@@ -164,9 +154,11 @@ public class EditDataScreen implements View_t {
         styleButton(editBalanceBtn);
         p.add(editBalanceBtn);
 
-        // Sample Data
-        accountModel.addRow(new Object[]{"GR50...202", "0001", "Savings", "1500.00", "EUR"});
-        accountModel.addRow(new Object[]{"GR99...555", "0002", "Business", "50000.00", "EUR"});
+        // [NEW BUTTON]
+        editInterestBtn = new RoundedButton("Set Interest", 15);
+        editInterestBtn.setBounds(510, btnY, 200, 50);
+        styleButton(editInterestBtn);
+        p.add(editInterestBtn);
 
         return p;
     }
@@ -212,18 +204,5 @@ public class EditDataScreen implements View_t {
     public DefaultTableModel getAccountModel() { return accountModel; }
     public RoundedButton getDeleteAccountBtn() { return deleteAccountBtn; }
     public RoundedButton getEditBalanceBtn() { return editBalanceBtn; }
-
-    // --- TEST MAIN ---
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Edit Data Test");
-            EditDataScreen screen = new EditDataScreen();
-            screen.init();
-            frame.setContentPane(screen.getMainPanel());
-            frame.setSize(1200, 800);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        });
-    }
+    public RoundedButton getEditInterestBtn() { return editInterestBtn; } // [NEW]
 }

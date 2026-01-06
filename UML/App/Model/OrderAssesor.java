@@ -121,7 +121,7 @@ public class OrderAssesor {
                 }
             }
             for(int i=0; i<chargePaidCount; i++){
-                charges.removeFirst();
+                charges.remove(0);
             }
                            
             // if today is after or == to issueDay

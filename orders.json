@@ -9,8 +9,8 @@
           "orderId": "1767558546885",
           "amount": "10000.0",
           "day": "04/01/2026",
-          "dueDate": "04/03/2026",
-          "frequency": "ΜΗΝΑ",
+          "dueDate": "null",
+          "frequency": "ΜΗ�?Α",
           "pastcharges": []
         }
       ]
