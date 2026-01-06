@@ -1,0 +1,83 @@
+[
+  {
+    "account": {
+      "accountId": "ID_47801771",
+      "orders": [
+        {
+          "name": "RENT",
+          "targetIban": "GR7109378370842875997011501",
+          "orderId": "1767562506905",
+          "amount": "450.0",
+          "day": "01/02/2026",
+          "dueDate": "01/04/2026",
+          "frequency": "ΜΗΝΑ",
+          "pastcharges": []
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_49401656",
+      "orders": [
+        {
+          "name": "ENGLISH",
+          "targetIban": "GR0663680831109528923075152",
+          "orderId": "1767562671953",
+          "amount": "180.0",
+          "day": "15/01/2026",
+          "dueDate": "15/05/2026",
+          "frequency": "ΜΗΝΑ",
+          "pastcharges": []
+        },
+        {
+          "name": "TUDELF FEE",
+          "targetIban": "GR0663680831109628923035152",
+          "orderId": "1767562705677",
+          "amount": "120.0",
+          "day": "10/01/2026",
+          "dueDate": "10/05/2026",
+          "frequency": "ΜΗΝΑ",
+          "pastcharges": []
+        }
+      ]
+    }
+  },
+  {
+    "account": {
+      "accountId": "ID_81043716",
+      "orders": [
+        {
+          "name": "FRENCH",
+          "targetIban": "GR0663680831109628926075152",
+          "orderId": "1767562784103",
+          "amount": "100.0",
+          "day": "28/01/2026",
+          "dueDate": "28/10/2026",
+          "frequency": "ΜΗΝΑ",
+          "pastcharges": []
+        },
+        {
+          "name": "ΑΠΟΤΑΜΙΕΥΣΗ",
+          "targetIban": "GR0663680831109624923075152",
+          "orderId": "1767562813540",
+          "amount": "100.0",
+          "day": "01/02/2026",
+          "dueDate": "01/11/2026",
+          "frequency": "ΜΗΝΑ",
+          "pastcharges": []
+        },
+        {
+          "name": "NOVA",
+          "targetIban": "GR6471707622946167811742856",
+          "orderId": "1767728965487",
+          "amount": "17.0",
+          "day": "06/01/2026",
+          "dueDate": "06/04/2026",
+          "frequency": "ΜΗΝΑ",
+          "pastcharges": []
+        }
+      ]
+    }
+  }
+]

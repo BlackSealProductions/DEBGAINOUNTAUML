@@ -1,0 +1,226 @@
+[
+  {
+    "user": {
+      "username": "ngioldasis",
+      "password": "nek123",
+      "name": "Nektarios",
+      "surname": "Gioldasis",
+      "phone": "6948634124",
+      "email": "ngioldasis@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688302",
+      "accounts": [
+        {
+          "accountId": "ID_47801771",
+          "iban": "GR7379621661884959698707295",
+          "ownerName": "ngioldasis",
+          "secondaryOwner": "Giorgos Chalkiadakis",
+          "balance": "866.35",
+          "interestRate": "3.0"
+        },
+        {
+          "accountId": "ID_20629218",
+          "iban": "GR7035821530205947555877497",
+          "ownerName": "ngioldasis",
+          "secondaryOwner": "Nikos Pappas",
+          "balance": "1834.27",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "pappas",
+      "password": "nik123",
+      "name": "Nikos",
+      "surname": "Pappas",
+      "phone": "6924956542",
+      "email": "npapas@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688303",
+      "accounts": [
+        {
+          "accountId": "ID_49401656",
+          "iban": "GR0965681403848810006247876",
+          "ownerName": "pappas",
+          "secondaryOwner": "Secondary owner",
+          "balance": "1907.66",
+          "interestRate": "3.0"
+        },
+        {
+          "accountId": "ID_69426302",
+          "iban": "GR3335108386122222508092237",
+          "ownerName": "pappas",
+          "secondaryOwner": "Secondary owner",
+          "balance": "25.83",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "gchalkiadakis",
+      "password": "gio123",
+      "name": "Giorgos",
+      "surname": "Chalkiadakis",
+      "phone": "6987654687",
+      "email": "gchalkia@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688304",
+      "accounts": [
+        {
+          "accountId": "ID_81043716",
+          "iban": "GR0945638419597066340584513",
+          "ownerName": "gchalkiadakis",
+          "secondaryOwner": "Secondary owner",
+          "balance": "510.45",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "mteranova",
+      "password": "mar123",
+      "name": "Maria",
+      "surname": "Teranova",
+      "phone": "6987654213",
+      "email": "mteranova@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688305",
+      "accounts": [
+        {
+          "accountId": "ID_38412553",
+          "iban": "GR7579695740209107692507680",
+          "ownerName": "mteranova",
+          "secondaryOwner": "Nikos Pappas, Nektarios Gioldasis",
+          "balance": "620.54",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "skarakosta",
+      "password": "sof123",
+      "name": "Sofia",
+      "surname": "Karakosta",
+      "phone": "6998765417",
+      "email": "skarakosta@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688306",
+      "accounts": [
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "edimitriou",
+      "password": "ele123",
+      "name": "Eleni",
+      "surname": "Dimitriou",
+      "phone": "694687321",
+      "email": "edimitriou@tuc.gr",
+      "type": "Individual",
+      "taxId": "067688307",
+      "accounts": [
+        {
+          "accountId": "ID_43089046",
+          "iban": "GR9602358328147037007267467",
+          "ownerName": "edimitriou",
+          "secondaryOwner": "Secondary owner",
+          "balance": "11.46",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "vodafone",
+      "password": "vod123",
+      "companyName": "VODAFONE GR",
+      "phone": "6958413215",
+      "email": "vodaphone@gmail.com",
+      "type": "Company",
+      "taxId": "090800700",
+      "accounts": [
+        {
+          "accountId": "ID_17047581",
+          "iban": "GR0663680831109628923075152",
+          "ownerName": "vodafone",
+          "secondaryOwner": "Secondary owner",
+          "balance": "9633.90",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "cosmote",
+      "password": "cos123",
+      "companyName": "COSMOTE",
+      "phone": "6965987435",
+      "email": "cosmote@gmail.com",
+      "type": "Company",
+      "taxId": "090800800",
+      "accounts": [
+        {
+          "accountId": "ID_52791710",
+          "iban": "GR7109378370842871997011501",
+          "ownerName": "cosmote",
+          "secondaryOwner": "Secondary owner",
+          "balance": "25069.46",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "dei",
+      "password": "dei123",
+      "companyName": "DEI",
+      "phone": "6984751329",
+      "email": "dei@gmail.com",
+      "type": "Company",
+      "taxId": "090800900",
+      "accounts": [
+        {
+          "accountId": "ID_63912595",
+          "iban": "GR9242526377197796887091235",
+          "ownerName": "dei",
+          "secondaryOwner": "Secondary owner",
+          "balance": "99739.08",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  },
+  {
+    "user": {
+      "username": "nova",
+      "password": "nova123",
+      "companyName": "NOVA",
+      "phone": "6965934762",
+      "email": "nove@gmail.com",
+      "type": "Company",
+      "taxId": "090800600",
+      "accounts": [
+        {
+          "accountId": "ID_17574830",
+          "iban": "GR6471707622946167811742856",
+          "ownerName": "nova",
+          "secondaryOwner": "Secondary owner",
+          "balance": "7310.55",
+          "interestRate": "3.0"
+        }
+      ]
+    }
+  }
+]

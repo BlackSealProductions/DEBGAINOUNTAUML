@@ -1,10 +1,9 @@
 package App.View;
-
-import javax.swing.*;
-
-import Utils.GlobalConsts;
-
 import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import App.View.helper_classes.RoundedButton;
 
 
 public class MainFrame{
@@ -13,25 +12,51 @@ public class MainFrame{
     final int wHeight = Utils.GlobalConsts.wHeight;
 
     private JFrame frame = new JFrame();
+    private RoundedButton backButton = new RoundedButton(" <— ",15);
+
     Color darkgrey = new Color(22, 20, 19);
     Color blue = new Color(168, 237, 255);
+    Color red = Color.decode("#D82F4B");
+
 
 
     public void init(){
 
-        frame.setTitle("NIGGA");
+        frame.setTitle("Bank of TUC");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
-        frame.setBounds(140, 40, wWidth+14, wHeight+36);
+        frame.setBounds(140, 40, wWidth, wHeight); // 14,36
         frame.getContentPane().setBackground(darkgrey);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        // close program when x button top right :3
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // --- Top Bar (Back Button + Title) ---
+
+        
+        backButton.setBounds(10, 820, 80, 40);
+        backButton.setBackground(red);
+        backButton.setForeground(Color.white);
+        backButton.setFont(new Font("Bodoni MT", Font.BOLD, 20));
+        backButton.setFocusPainted(false);
+        backButton.setVisible(true);
+        frame.getLayeredPane().add(backButton, JLayeredPane.PALETTE_LAYER);
     }
+
         
     
     public void addPanel(JPanel p){
         this.frame.add(p);
+    }
 
+    public RoundedButton getBackBtn(){
+        return this.backButton;
+    }
+
+    public JFrame getFrame(){
+        return this.frame;
     }
     
 }

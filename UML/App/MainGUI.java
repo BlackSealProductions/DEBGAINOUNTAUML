@@ -11,9 +11,13 @@ public class MainGUI {
         ModelHandler m = new ModelHandler();
         ControllerHandler c = new ControllerHandler(v, m);
 
+        c.initModel();
         c.initViews();
         c.initControllers();
         c.initStartScreen();
+        m.ass.assess();
+
+        
         
     }
     
