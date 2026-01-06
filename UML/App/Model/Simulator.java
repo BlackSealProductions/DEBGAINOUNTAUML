@@ -212,12 +212,12 @@ public class Simulator {
                         double targetBal = parseBalance(targetAcc.getBalance());
                         
                         updateBalance(actorAcc, actorBal - amount);
-                        Transaction tSent = new Transaction(generateTxId(), actorAcc.getAccountId(), targetAcc.getAccountId(), amount, date, "18:00", "Transfer to " + target.getUsername(), "Transfer");
+                        Transaction tSent = new Transaction(generateTxId(), actorAcc.getAccountId(), targetAcc.getAccountId(), amount, date, "18:00", "Transfer to " + target.getUsername(), "send");
                         actorAcc.addTransaction(tSent);
                         
                         updateBalance(targetAcc, targetBal + amount);
-                        Transaction tRec = new Transaction(generateTxId(), actorAcc.getAccountId(), targetAcc.getAccountId(), amount, date, "18:00", "Received from " + actor.getUsername(), "Transfer");
-                        targetAcc.addTransaction(tRec);
+                        // Transaction tRec = new Transaction(generateTxId(), actorAcc.getAccountId(), targetAcc.getAccountId(), amount, date, "18:00", "Received from " + actor.getUsername(), "Transfer");
+                        // targetAcc.addTransaction(tRec);
 
                         saveChanges(actor, actorAcc);
                         saveChanges(target, targetAcc);
