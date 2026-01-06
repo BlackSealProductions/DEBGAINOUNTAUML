@@ -340,7 +340,9 @@ public class TransactionDB {
 
                 if (newTransactions != null) {
                     for (Map<String, String> newTr : newTransactions) {
-                        existingTransactions.add(newTr);
+                        if(!existingTransactions.contains(newTr)){
+                            existingTransactions.add(newTr);
+                        }
                     }
                 }
                 found = true;

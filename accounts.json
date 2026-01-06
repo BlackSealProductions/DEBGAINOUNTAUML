@@ -15,7 +15,7 @@
           "iban": "GR7379621661884959698707295",
           "ownerName": "ngioldasis",
           "secondaryOwner": "Giorgos Chalkiadakis",
-          "balance": "866.35",
+          "balance": "1076.51",
           "interestRate": "3.0"
         },
         {
@@ -23,7 +23,7 @@
           "iban": "GR7035821530205947555877497",
           "ownerName": "ngioldasis",
           "secondaryOwner": "Nikos Pappas",
-          "balance": "1834.27",
+          "balance": "1675.70",
           "interestRate": "3.0"
         }
       ]
@@ -45,7 +45,7 @@
           "iban": "GR0965681403848810006247876",
           "ownerName": "pappas",
           "secondaryOwner": "Secondary owner",
-          "balance": "1907.66",
+          "balance": "1899.469970703125",
           "interestRate": "3.0"
         },
         {
@@ -53,7 +53,7 @@
           "iban": "GR3335108386122222508092237",
           "ownerName": "pappas",
           "secondaryOwner": "Secondary owner",
-          "balance": "25.83",
+          "balance": "16.69",
           "interestRate": "3.0"
         }
       ]
@@ -75,7 +75,7 @@
           "iban": "GR0945638419597066340584513",
           "ownerName": "gchalkiadakis",
           "secondaryOwner": "Secondary owner",
-          "balance": "510.45",
+          "balance": "399.06",
           "interestRate": "3.0"
         }
       ]
@@ -97,7 +97,7 @@
           "iban": "GR7579695740209107692507680",
           "ownerName": "mteranova",
           "secondaryOwner": "Nikos Pappas, Nektarios Gioldasis",
-          "balance": "620.54",
+          "balance": "788.61",
           "interestRate": "3.0"
         }
       ]
@@ -133,7 +133,7 @@
           "iban": "GR9602358328147037007267467",
           "ownerName": "edimitriou",
           "secondaryOwner": "Secondary owner",
-          "balance": "11.46",
+          "balance": "213.66",
           "interestRate": "3.0"
         }
       ]
@@ -154,7 +154,7 @@
           "iban": "GR0663680831109628923075152",
           "ownerName": "vodafone",
           "secondaryOwner": "Secondary owner",
-          "balance": "9633.90",
+          "balance": "8892.16",
           "interestRate": "3.0"
         }
       ]
@@ -175,7 +175,7 @@
           "iban": "GR7109378370842871997011501",
           "ownerName": "cosmote",
           "secondaryOwner": "Secondary owner",
-          "balance": "25069.46",
+          "balance": "24658.03",
           "interestRate": "3.0"
         }
       ]
@@ -196,7 +196,7 @@
           "iban": "GR9242526377197796887091235",
           "ownerName": "dei",
           "secondaryOwner": "Secondary owner",
-          "balance": "99739.08",
+          "balance": "99080.99",
           "interestRate": "3.0"
         }
       ]
@@ -217,7 +217,7 @@
           "iban": "GR6471707622946167811742856",
           "ownerName": "nova",
           "secondaryOwner": "Secondary owner",
-          "balance": "7310.55",
+          "balance": "6560.24",
           "interestRate": "3.0"
         }
       ]
